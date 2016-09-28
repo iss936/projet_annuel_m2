@@ -1,0 +1,4 @@
+services:
+#    ath_main.example:
+#        class: Ath\MainBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
