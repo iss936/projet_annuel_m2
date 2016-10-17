@@ -11,13 +11,13 @@
 			<!-- <div class="logo"> <a href="index.html#"><img src="images/logo.png" alt="logo"></a>
 			</div> -->
  			
-			<h1><strong>Athleteec le réseau social consacré au Sport</strong></h1>
+			<h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
  
 			<div class="row myBackground">
 				<div class="col-md-6 col-sm-12 col-md-offset-3 subscribe">
 
                 <form action="{{ path("fos_user_security_check") }}" method="post" id="subscribeForm">
-					<h2>Connexion</h2>
+					<h2>{{ "connexion" | trans({}, 'home') }}</h2>
                     {% if error %}
     					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 					{% endif %}
@@ -30,17 +30,21 @@
     				<input type="password" id="password" class="form-control input-lg" name="_password" placeholder="mot de passe" required="required" autofocus=""/>
     				<br>
 	
-					<button type="submit" class="btn btn-info btn-lg">Se connecter</button>
+					<button type="submit" class="btn btn-info btn-lg">{{ "btn.submit.connect" | trans({}, 'home') }}</button>
+					
+					<h3>{{ "or" | trans({}, 'home') }}</h3>
 
-					<h3>Ou</h3>
 					<br>
-					<a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-lg"> Inscription</a>
+					<a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-lg"> {{ "inscription" | trans({}, 'home') }}</a>
 				</form>
 					<span id="result" class="alertMsg"></span> </div>
 				</div>
  
 				<a href="#explore" class="scrollto">
-					<p>SCROLL</p>
+					<p>{% filter upper %}
+                        {{ "scroll" | trans({}, 'home') }}
+                       {% endfilter %}
+                    </p>
 					<p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
 				</a>
 		</div><!-- /container -->

@@ -8,7 +8,7 @@
 			<!-- <div class="logo"> <a href="index.html#"><img src="images/logo.png" alt="logo"></a>
 			</div> -->
  			
-			<h1><strong>Athleteec le réseau social consacré au Sport</strong></h1>
+			<h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
  
 			<div class="row myBackground">
 				{# <div class="col-md-6 col-sm-12 col-md-offset-3 subscribe"> #}
@@ -16,7 +16,7 @@
 
 	                <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
 						
-						<h2>Inscription</h2>
+						<h2>{{ "inscription" | trans({}, 'home') }}</h2>
 	                    {{ form_widget(form._token) }}
 		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
 		                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
@@ -46,9 +46,9 @@
 						<br>
 		                {{ form_row(form.dateDeNaissance) }}
 					<br>
-					<button type="submit" class="btn btn-success btn-lg">Inscription</button>
-					<h3>Ou</h3>
-					<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">Connexion</a>
+					<button type="submit" class="btn btn-success btn-lg">{{ "inscription" | trans({}, 'home') }}</button>
+					<h3>{{ "ou" | trans({}, 'home') }}</h3>
+					<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">{{ "connexion" | trans({}, 'home') }}</a>
 					{# <button type="submit" class="btn btn-info btn-lg">Se connecter</button> #}
                 </form>
 					<span id="result" class="alertMsg"></span> 
@@ -57,7 +57,10 @@
 				</div>
  
 				<a href="#explore" class="scrollto">
-					<p>SCROLL</p>
+					<p>{% filter upper %}
+                        {{ "scroll" | trans({}, 'home') }}
+                       {% endfilter %}
+                    </p>
 					<p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
 				</a>
 		</div><!-- /container -->
