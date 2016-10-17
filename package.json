@@ -1,0 +1,13 @@
+{
+"name": "SRS",
+"version": "0.0.1",
+"scripts": {},
+"dependencies": {
+"bower": "^1.4.1",
+"gulp": "*",
+"gulp-concat": "^2.6.0",
+"gulp-rm": "^1.0.0",
+"gulp-sass": "*",
+"gulp-uglify": "*"
+}
+}

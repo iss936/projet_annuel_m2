@@ -1,0 +1,21 @@
+{
+  "name": "Athleteec",
+  "version": "0.0.1",
+  "authors": [
+
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery-debounce": ">=1.0.6",
+    "compass-mixins": "~1.0.2",
+    "jquery": "~2.1.4",
+    "js-cookie": ">=2.0.3",
+    "font-awesome":"https://github.com/FortAwesome/Font-Awesome.git",
+    "bootstrap-sass" : "*"
+  }
+}
