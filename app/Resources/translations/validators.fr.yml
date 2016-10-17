@@ -1,0 +1,7 @@
+ath_user.nom.blank: Veuillez saisir votre nom
+ath_user.nom.short: Veuillez saisir un nom contenant au moins 2 lettres
+ath_user.nom.long: Veuillez saisir un nom plus court
+
+ath_user.prenom.blank: Veuillez saisir votre prénom
+ath_user.prenom.short: Veuillez saisir un prénom contenant au moins 2 lettres
+ath_user.prenom.long: Veuillez saisir un prénom plus court

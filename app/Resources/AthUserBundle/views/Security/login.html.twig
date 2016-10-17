@@ -1,9 +1,7 @@
 {% extends "AthUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+
 
 
 <div class="preloader"></div>
@@ -15,12 +13,14 @@
  			
 			<h1><strong>Athleteec le réseau social consacré au Sport</strong></h1>
  
-			<div class="row">
+			<div class="row myBackground">
 				<div class="col-md-6 col-sm-12 col-md-offset-3 subscribe">
 
                 <form action="{{ path("fos_user_security_check") }}" method="post" id="subscribeForm">
 					<h2>Connexion</h2>
-                    
+                    {% if error %}
+    					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 	
     				<input type="text" class="form-control input-lg" id="username" name="_username" placeholder="login" value="{{ last_username }}" required="required" />
@@ -34,7 +34,7 @@
 
 					<h3>Ou</h3>
 					<br>
-					<button type="submit" class="btn btn-success btn-lg">Inscription</button>
+					<a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-lg"> Inscription</a>
 				</form>
 					<span id="result" class="alertMsg"></span> </div>
 				</div>
@@ -47,136 +47,7 @@
 	</main><!--/main -->
  
 
-    <!-- ******************** FEATURES SECTION ******************** -->	
-	<div class="container" id="explore">
- 
-		<div class="section-title">
-			<h2>Qu'est ce que propose ce fameux réseau social?</h2>
-			<h4>Voici un petit détail des fonctionnalités importantes</h4>
-		</div>
-		
-		<section class="row features">
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail"> 
-					<img src="/images/service_01.png" alt="analytics-icon">
-					<div class="caption">
-						<h3>Important Feature 1</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-				</div><!--/thumbnail -->
-			</div><!--/col-sm-6-->
- 
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail"> 
-					<img src="/images/service_02.png" alt="analytics-icon">
-					<div class="caption">
-						<h3>Important Feature 2</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-				</div><!--/thumbnail -->
-			</div><!--/col-sm-6-->
- 
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail"> 
-					<img src="/images/service_03.png" alt="analytics-icon">
-					<div class="caption">
-						<h3>Important Feature 3</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-				</div><!--/thumbnail -->
-			</div><!--/col-sm-6-->
- 
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail"> 
-					<img src="/images/service_04.png" alt="analytics-icon">
-					<div class="caption">
-						<h3>Important Feature 4</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-				</div><!--/thumbnail -->
-			</div><!--/col-sm-6-->
-		</section><!--/section -->
- 
-		<!-- ******************** TESTIMONIALS SECTION ******************** -->	 
-		<div class="highlight testimonials">
-			<div class="container">
-				<div class="section-title">
-					<h2>Les derniers utilisateurs</h2>
-				</div>
-				
-				<section class="row breath">
-					<div class="col-md-6">
-						<div class="testblock">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </div>
-						<div class="clientblock"> 
-							<img src="/images/customer-img-1.jpg" alt=".">
-							<p><strong>John Doe</strong> <br>
-								Founder of <a href="index.html#">Blacktie.co</a>
-							</p>
-						</div>
-					</div><!--/col-md-6 -->
-					
-					<div class="col-md-6">
-						<div class="testblock">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </div>
-						<div class="clientblock"> 
-							<img src="/images/customer-img-2.jpg" alt=".">
-							<p><strong>Richard Sommer</strong> <br>
-								CEO of <a href="index.html#">Blacktie.co</a>
-							</p>
-						</div>
-					</div><!--/col-md-6 -->
-				</section><!--/section -->
- 
-			</div><!--/container -->
-		</div><!--/highlight Testimonials -->
-	    <!-- ******************** CLIENTS SECTION ******************** -->	 
-		<div class="section-title">
-			<h2>Voici nos partenaires</h2>
-			<h4>Nous travaillons avec différentes marques</h4>
-		</div>
-	
-		<section class="row clientlogo breath">
-			<div class="col-md-12 text-center"> 
-				<img src="/images/client-logos.png" alt="client-logos">
-			</div>
-		</section><!--/section -->
- 
-	</div><!--/container -->
- 
-	    <!-- ******************** FOOTER ******************** -->	  
-		<main class="footercta" role="main">
-			<div class="container">
-				<h1></h1>
- 
-				<div class="row">
-					<div class="col-md-12 breath text-center"> 
-						<a href="index.html#top" class="btn btn-success btn-lg gototop">Inscription</a> 
-					</div>
-				</div>
-			</div><!--/container -->
-		</main><!--/main -->
- 
-		<div class="container">
-			<section class="row breath">
-				<div class="col-md-12 footerlinks">
-					<p>&copy; 2016 esgi.com All Rights Reserved</p>
-				</div>
-			</section><!--/section -->
-		</div><!--/container -->
- 
-<script>
-
- $(function() {
-    $('.scrollto, .gototop').bind('click',function(event){
-		 var $anchor = $(this);
-		 $('html, body').stop().animate({
-         scrollTop: $($anchor.attr('href')).offset().top
-          }, 1500,'easeInOutExpo');
-     event.preventDefault();
-      });
-  });
-        
-
-</script>
+    {% include '@ath_views/include_no_connected.html.twig' %}
 {% endblock fos_user_content %}
 
 

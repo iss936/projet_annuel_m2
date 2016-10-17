@@ -1,0 +1,6 @@
+form.password: Mot de passe (4 caractères)
+form.password_confirmation: Resaisir le mot de passe
+dateDeNaissance: Votre date de naissance
+nom: Nom
+prenom: Prenom
+ath_user.first_name.blank: Veuillez saisir votre prénom

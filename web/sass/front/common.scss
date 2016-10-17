@@ -1,1 +1,16 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
+.post-error-list {
+    float: left;
+    color: red;
+    font-weight:bold;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+    // margin-bottom: 50px;
+}
+
+.space-vertical-input {
+    margin-bottom: 50px;
+}

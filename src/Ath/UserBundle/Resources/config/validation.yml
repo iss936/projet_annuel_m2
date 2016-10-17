@@ -1,0 +1,55 @@
+Ath\UserBundle\Entity\User:
+    properties:
+        nom:
+            - NotBlank:
+                message: ath_user.nom.blank
+                groups: [ "AthRegistration" ]
+            - Length:
+                min: 2
+                minMessage: ath_user.nom.short
+                max: 255
+                maxMessage: ath_user.nom.long
+                groups: [ "AthRegistration" ]
+
+        prenom:
+            - NotBlank:
+                message: ath_user.prenom.blank
+                groups: [ "AthRegistration" ]
+            - Length:
+                min: 2
+                minMessage: ath_user.prenom.short
+                max: 255
+                maxMessage: ath_user.prenom.long
+                groups: [ "AthRegistration" ]
+
+FOS\UserBundle\Model\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+             fields: email
+             errorPath: email 
+             message: fos_user.email.already_used
+             groups: [ "AthRegistration"]
+
+    properties:
+        email:
+            - NotBlank:
+                message: fos_user.email.blank
+                groups: [ "AthRegistration"]
+            - Length:
+                min: 2
+                minMessage: fos_user.email.short
+                max: 255
+                maxMessage: fos_user.email.long
+                groups: [ "AthRegistration" ]
+            - Email:
+                message: fos_user.email.invalid
+                groups: [ "AthRegistration"]
+        plainPassword:
+            - NotBlank:
+                message: fos_user.password.blank
+                groups: [ "AthRegistration"]
+            - Length:
+                min: 4
+                max: 4096
+                minMessage: fos_user.password.short
+                groups: [ "AthRegistration"]

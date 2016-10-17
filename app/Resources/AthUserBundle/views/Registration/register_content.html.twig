@@ -1,8 +1,65 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-{{ form_end(form) }}
+ 
+    <div class="preloader"></div>
+
+	<main id="top" class="masthead" role="main">
+		<div class="container">
+			<!-- <div class="logo"> <a href="index.html#"><img src="images/logo.png" alt="logo"></a>
+			</div> -->
+ 			
+			<h1><strong>Athleteec le réseau social consacré au Sport</strong></h1>
+ 
+			<div class="row myBackground">
+				{# <div class="col-md-6 col-sm-12 col-md-offset-3 subscribe"> #}
+				<div class="">
+
+	                <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
+						
+						<h2>Inscription</h2>
+	                    {{ form_widget(form._token) }}
+		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+		                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+
+		                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
+
+	                  {#   <div class="form-group">
+							<label class="col-sm-3 control-label required">{{ "form.password" | trans({}, 'fosuser') }}</label>
+							<div class="col-sm-9">
+		                		{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div> #}
+		                {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+
+						{# <br>
+						<br> #}
+		                {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+
+					{# 	<div class="form-group">
+							<label class="col-sm-3 control-label required">{{ "form.password_confirmation" | trans({}, 'fosuser') }}</label>
+							<div class="col-sm-9">
+		                		{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+
+							</div>
+						</div> #}
+						<br>
+						<br>
+		                {{ form_row(form.dateDeNaissance) }}
+					<br>
+					<button type="submit" class="btn btn-success btn-lg">Inscription</button>
+					<h3>Ou</h3>
+					<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">Connexion</a>
+					{# <button type="submit" class="btn btn-info btn-lg">Se connecter</button> #}
+                </form>
+					<span id="result" class="alertMsg"></span> 
+				</div>
+
+				</div>
+ 
+				<a href="#explore" class="scrollto">
+					<p>SCROLL</p>
+					<p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
+				</a>
+		</div><!-- /container -->
+	</main><!--/main -->
+

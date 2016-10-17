@@ -1,6 +1,13 @@
 services:
+    # se déclenche lors de la connexion
     ath_user.login_success_handler:
         class: Ath\UserBundle\Managers\LoginSuccessHandler
         arguments:  [@router, @security.context, @session]
         tags:
             - { name: 'monolog.logger', channel: 'security' }
+            
+    # Fosuser override
+    app.form.registration:
+        class: Ath\UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }

@@ -4,11 +4,23 @@ namespace Ath\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="email",
+ *          column=@ORM\Column(
+ *              type =  "string",
+ *              name     = "email",
+ *              nullable = false,
+ *              unique   = true
+ *          )
+ *      ),
+ * })
  * @ORM\Entity(repositoryClass="Ath\UserBundle\Repository\UserRepository")
  */
 class User extends BaseUser
@@ -134,6 +146,14 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function setEmail($email)
+    {
+        parent::setEmail($email);
+        $this->setUsername($email);
+
+        return $this;
     }
 
     /**
