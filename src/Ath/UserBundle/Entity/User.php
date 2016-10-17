@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * User
@@ -37,56 +38,60 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDeNaissance", type="datetime", nullable=true)
+     * @ORM\Column(name="date_de_naissance", type="datetime")
      */
     private $dateDeNaissance;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=true)
+    * Creation date
+    * @var datetime $createdAt
+    *
+    * @ORM\Column(name="created_at", type="datetime")
+    * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+    * Modification date
+    * @var datetime $updatedAt
+    *
+    * @ORM\Column(name="updated_at", type="datetime")
+    * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photoId", type="string", length=255, nullable=true)
+     * @ORM\Column(name="photo_id", type="string", length=255, nullable=true)
      */
     private $photoId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photoExtension", type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(name="photo_extension", type="string", length=255, nullable=true)
      */
     private $photoExtension;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photoOriginalName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="photo_original_name", type="string", length=255, nullable=true)
      */
     private $photoOriginalName;
 
