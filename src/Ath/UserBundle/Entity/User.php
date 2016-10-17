@@ -7,6 +7,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -136,11 +137,24 @@ class User extends BaseUser
      * @ORM\Column(name="cgu", type="boolean")
      */
     private $cgu = 0;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserContact", mappedBy="userEmmeteur")
+     */
+    private $userContactEmmeteurs;
+
+    /**
+     * @var ArrayCollection User $userContactDestinataires
+     * 
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserContact", mappedBy="userDestinataire")
+     */
+    private $userContactDestinataires;
 
     public function __construct()
     {
-       parent::__construct();
-
+        parent::__construct();
+        $this->userContactEmmeteurs = new ArrayCollection();
+        $this->userContactDestinataires = new ArrayCollection();
     }
 
     /**
@@ -482,4 +496,74 @@ class User extends BaseUser
     {
         return $this->cgu;
     }
+    
+    /**
+     * Add userContactEmmeteur
+     *
+     * @param \Ath\Mainundle\Entity\UserContact $userContactEmmeteur
+     * @return User
+     */
+    public function addUserContactEmmeteur(\Ath\MainBundle\Entity\UserContact $userContactEmmeteur)
+    {
+        if (!$this->userContactEmmeteurs->contains($userContactEmmeteur)) {
+                $this->userContactEmmeteurs->add($userContactEmmeteur);
+        }
+
+        return $this;
+    }
+
+    /**
+    * Remove userContactEmmeteur
+    *
+    * @param \Ath\Mainundle\Entity\UserContact $userContactEmmeteur
+    */
+    public function removeUserContactEmmeteur(\Ath\Mainundle\Entity\UserContact $userContactEmmeteur)
+    {
+      $this->userContactEmmeteurs->removeElement($userContactEmmeteur);
+    }
+
+    /**
+     * Get userContactEmmeteurs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getuserContactEmmeteurs()
+    {
+      return $this->userContactEmmeteurs;
+    }
+
+    /**
+     * Add userContactDestinataire
+     *
+     * @param \Ath\Mainundle\Entity\UserContact $userContactDestinataire
+     * @return User
+     */
+    public function addUserContactDestinataire(\Ath\MainBundle\Entity\UserContact $userContactDestinataire)
+    {
+        if (!$this->userContactDestinataires->contains($userContactDestinataire))
+            $this->userContactDestinataires->add($userContactDestinataire);
+        
+        return $this;
+    }
+
+    /**
+     * Remove userContactDestinataire
+     *
+     * @param \Ath\Mainundle\Entity\UserContact $userContactDestinataire
+     */
+    public function removeUserContactDestinataire(\Ath\Mainundle\Entity\UserContact $userContactDestinataire)
+    {
+      $this->userContactDestinataires->removeElement($userContactDestinataire);
+    }
+
+    /**
+     * Get userContactDestinataires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getuserContactDestinataires()
+    {
+      return $this->userContactDestinataires;
+    }
+
 }
