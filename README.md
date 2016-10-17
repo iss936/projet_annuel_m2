@@ -10,7 +10,7 @@ npm install -g bower
 ```
 Puis installer les dépendances à la racine du projet
 ```
-npm install
+npm install => si ça ne passe pas faire npm install -g npm
 bower install
 ```
 #### Test:
@@ -27,3 +27,4 @@ Plutôt que de lancer gulp à chaque fois, on peut appeler un watcher pour lance
 gulp watch:sass
 gulp watch:js
 ```
+

@@ -1,0 +1,6 @@
+services:
+    ath_user.login_success_handler:
+        class: Ath\UserBundle\Managers\LoginSuccessHandler
+        arguments:  [@router, @security.context, @session]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }

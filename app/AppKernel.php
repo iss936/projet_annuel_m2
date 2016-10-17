@@ -15,7 +15,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Ath\UserBundle\AthUserBundle(),
+            new Ath\MainBundle\AthMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

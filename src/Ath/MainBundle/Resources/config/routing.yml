@@ -1,0 +1,3 @@
+ath_main_homepage:
+    path:     /
+    defaults: { _controller: AthMainBundle:Default:index }
