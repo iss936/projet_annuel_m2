@@ -5,6 +5,7 @@ namespace Ath\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Util\LegacyFormHelper;
+use Ath\UserBundle\Form\EventListener\RoleRegisterListener;
 
 class RegistrationType extends AbstractType
 {
@@ -49,13 +50,14 @@ class RegistrationType extends AbstractType
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
                 'widget' => 'choice',
                 'format' => 'dd/MM/yyyy',
-                'years' => range(Date('Y')-16, 1930),
+                'years' => range(Date('Y'), 1920),
                 'required' => false,
                 'translation_domain' => 'fosuser'
             ))
         ;
-
+        
         $builder->remove('username');
+        $builder->addEventSubscriber(new RoleRegisterListener());
     }
 
     public function getParent()
