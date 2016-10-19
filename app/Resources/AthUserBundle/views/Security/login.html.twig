@@ -18,9 +18,12 @@
 
                 <form action="{{ path("fos_user_security_check") }}" method="post" id="subscribeForm">
 					<h2>{{ "connexion" | trans({}, 'home') }}</h2>
-                    {% if error %}
-    					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-					{% endif %}
+					{% if error %}
+				        <div class="alert alert-warning">
+				            <strong>{{ "formConnection.errorPass" | trans({},'home') }}</strong>
+				        </div>
+                    {% endif %}
+
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 	
     				<input type="text" class="form-control input-lg" id="username" name="_username" placeholder="{{ "mail_adress" | trans({}, 'fosuser') }}" value="{{ last_username }}" required="required" />

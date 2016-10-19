@@ -18,3 +18,7 @@ services:
         tags:
             - { name: kernel.event_subscriber }
     
+    ath.user.validator.post_registration_validation:
+        class: Ath\UserBundle\Validator\Constraints\ConditionalValidatorForUser
+        tags:
+            - { name: validator.constraint_validator, alias: post_registration_validation }  

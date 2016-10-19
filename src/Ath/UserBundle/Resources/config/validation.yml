@@ -11,23 +11,14 @@ Ath\UserBundle\Entity\User:
                 maxMessage: ath_user.nom.long
                 groups: [ "AthRegistration" ]
 
-        prenom:
-            - NotBlank:
-                message: ath_user.prenom.blank
-                groups: [ "AthRegistration" ]
-            - Length:
-                min: 2
-                minMessage: ath_user.prenom.short
-                max: 255
-                maxMessage: ath_user.prenom.long
-                groups: [ "AthRegistration" ]
-
 FOS\UserBundle\Model\User:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
              fields: email
              errorPath: email 
              message: fos_user.email.already_used
+             groups: [ "AthRegistration"]
+        - Ath\UserBundle\Validator\Constraints\ConditionalValidatorForUser: 
              groups: [ "AthRegistration"]
 
     properties:

@@ -6,3 +6,4 @@ btn.submit.connect: Se connecter
 connexion: Connexion
 inscription: Inscription
 deconnexion: Déconnexion
+formConnection.errorPass: L'authentification a échoué

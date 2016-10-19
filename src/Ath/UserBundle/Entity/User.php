@@ -47,14 +47,14 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable = true)
      */
     private $prenom;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_de_naissance", type="datetime")
+     * @ORM\Column(name="date_de_naissance", type="datetime", nullable = true)
      */
     private $dateDeNaissance;
 
@@ -140,6 +140,11 @@ class User extends BaseUser
     private $statutJuridique;
 
     /**
+     * @ORM\Column(name="date_de_creation", type="datetime", nullable = true)
+     */
+    private $dateDeCreation;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="is_celebrite", type="boolean")
@@ -157,12 +162,21 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserContact", mappedBy="userDestinataire")
      */
     private $userContactDestinataires;
+	
+	 /**
+     * @var ArrayCollection User $posts
+     * 
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="author")
+     */
+    private $posts;
+	
 
     public function __construct()
     {
         parent::__construct();
         $this->userContactEmmeteurs = new ArrayCollection();
         $this->userContactDestinataires = new ArrayCollection();
+		$this->posts = new ArrayCollection();
     }
 
     /**
@@ -515,6 +529,29 @@ class User extends BaseUser
 
         return $this;
     }
+    
+    /**
+     * Set dateDeCreation
+     *
+     * @param \DateTime $dateDeCreation
+     * @return User
+     */
+    public function setDateDeCreation($dateDeCreation)
+    {
+        $this->dateDeCreation = $dateDeCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDeCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateDeCreation()
+    {
+        return $this->dateDeCreation;
+    }
 
     /**
      * Set isCelebrite
@@ -607,5 +644,24 @@ class User extends BaseUser
     {
       return $this->userContactDestinataires;
     }
+	
+    public function getPosts()
+    {
+      return $this->posts;
+    }
+	
+	   public function removePost(\Ath\Mainundle\Entity\Post $post)
+    {
+      $this->posts->removeElement($post);
+    }
+	
+	public function addPost(\Ath\MainBundle\Entity\Post $post)
+    {
+        if (!$this->posts->contains($post))
+            $this->posts->add($post);
+        
+        return $this;
+    }
+	
 
 }

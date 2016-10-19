@@ -7,12 +7,11 @@ namespace Ath\UserBundle\Model;
 */
 class StatutJuridique
 {
-
     protected static $statuts = array(
         // ''  => '',
-        '0' => 'unHomme',
-        '1' => 'uneFemme',
-        '2' => 'uneAssociation',
+        '0' => 'Homme',
+        '1' => 'Femme',
+        '2' => 'Association',
     );
 
     /**

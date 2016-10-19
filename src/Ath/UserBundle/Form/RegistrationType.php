@@ -23,7 +23,8 @@ class RegistrationType extends AbstractType
          /*   ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'required' => false))*/
             
             ->add('nom', 'text', array('label' => 'nom', 'attr' => array('placeholder' => 'nom'), 'translation_domain' => 'fosuser'))
-            ->add('prenom', 'text', array('label' => 'prenom', 'attr' => array('placeholder' => 'prenom'), 'translation_domain' => 'fosuser'))
+            
+            ->add('prenom', 'text', array('label' => 'registration.prenom', 'required' => false, 'attr' => array('placeholder' => 'prenom'), 'translation_domain' => 'fosuser'))
 
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
                 'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
@@ -34,16 +35,24 @@ class RegistrationType extends AbstractType
             ))
 
             ->add('dateDeNaissance','date',array(
-            'label' => 'dateDeNaissance',
-            'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
-            'widget' => 'choice',
-            'format' => 'dd/MM/yyyy',
-            'years' => range(Date('Y')-16, 1930),
-            'required' => true,
-            'translation_domain' => 'fosuser'
+                'label' => 'registration.dateDeNaissance',
+                'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
+                'widget' => 'choice',
+                'format' => 'dd/MM/yyyy',
+                'years' => range(Date('Y')-16, 1930),
+                'required' => false,
+                'translation_domain' => 'fosuser'
             ))
 
-
+            ->add('dateDeCreation','date',array(
+                'label' => 'registration.dateDeCreation',
+                'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
+                'widget' => 'choice',
+                'format' => 'dd/MM/yyyy',
+                'years' => range(Date('Y')-16, 1930),
+                'required' => false,
+                'translation_domain' => 'fosuser'
+            ))
         ;
 
         $builder->remove('username');

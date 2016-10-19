@@ -27,46 +27,47 @@
 								{% endfor %}
 					        </div>
 					    </div>
+					    <br>
 		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
 		                <br>
-
-		                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
-
-		                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
-
-	                  {#   <div class="form-group">
-							<label class="col-sm-3 control-label required">{{ "form.password" | trans({}, 'fosuser') }}</label>
-							<div class="col-sm-9">
-		                		{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-							</div>
-						</div> #}
-		                {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-
-						{# <br>
-						<br> #}
-		                {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-
-					{# 	<div class="form-group">
-							<label class="col-sm-3 control-label required">{{ "form.password_confirmation" | trans({}, 'fosuser') }}</label>
-							<div class="col-sm-9">
-		                		{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-
-							</div>
-						</div> #}
-						<br>
-						<br>
-		                {{ form_row(form.dateDeNaissance) }}
+                        {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+							
+			            {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
 		                
+		                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+		                
+		                {% if form.vars.value.statutJuridique != "Association" %}
+		                
+	                        <div class="Human">
+	           
+				                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
+	                            <br>
+								<br>
+				                {{ form_row(form.dateDeNaissance) }}
+			                </div>
+			                <div class="Assoc" style="display: none">
+				                {{ form_row(form.dateDeCreation) }}
+			                </div>
+		                {% else %}
+		                    <div class="Human" style="display: none">
+	           
+				                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
+	                            <br>
+								<br>
+				                {{ form_row(form.dateDeNaissance) }}
+			                </div>
+			                <div class="Assoc">
+				                {{ form_row(form.dateDeCreation) }}
+			                </div>
+		                {% endif %}
+
 					<br>
 					<button type="submit" class="btn btn-success btn-lg">{{ "inscription" | trans({}, 'home') }}</button>
 					<h3>{{ "ou" | trans({}, 'home') }}</h3>
 					<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">{{ "connexion" | trans({}, 'home') }}</a>
 					{# <button type="submit" class="btn btn-info btn-lg">Se connecter</button> #}
                 </form>
-                <form>
-		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
-                	
-                </form>
+
 					<span id="result" class="alertMsg"></span> 
 				</div>
 
@@ -82,3 +83,32 @@
 		</div><!-- /container -->
 	</main><!--/main -->
 
+<script type="text/javascript">
+	
+	$(document).ready(function($) {
+		$("body").delegate("input:radio[name='fos_user_registration_form[statutJuridique]']", "click",  function(e) {
+			var idStatut = $(this).val();
+
+		    if(idStatut == "0")
+		    {   
+		    	$('#fos_user_registration_form_prenom').attr('required',true);
+		    	$(".Assoc").hide();
+	    		$(".Human").show();
+		    }
+		    else if(idStatut == "1")
+		    {
+		    	$('#fos_user_registration_form_prenom').attr('required',true);
+	    		$(".Assoc").hide();
+	    		$(".Human").show();
+		    }
+		    else // 2 ==  Assoc
+		    {
+		    	$('#fos_user_registration_form_prenom').removeAttr('required');
+
+	    		$(".Human").hide();
+	    		$(".Assoc").show();
+		    }
+		});
+	});
+
+</script>
