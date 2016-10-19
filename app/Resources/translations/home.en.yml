@@ -1,8 +1,8 @@
-filActualite: Fil d'actualité
+filActualite: Feed
 scroll: scroll
-or: ou
+or: or
 noConnected.h1: Athleteec le réseau social consacré au Sport
-btn.submit.connect: Se connecter
+btn.submit.connect: Sign in
 connexion: Connexion
 inscription: Inscription
-deconnexion: Déconnexion
+deconnexion: log out

@@ -4,3 +4,5 @@ dateDeNaissance: Votre date de naissance
 nom: Nom
 prenom: Prenom
 ath_user.first_name.blank: Veuillez saisir votre prénom
+password: mot de passe
+mail_adress: Adresse électronique

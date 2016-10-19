@@ -23,11 +23,11 @@
 					{% endif %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 	
-    				<input type="text" class="form-control input-lg" id="username" name="_username" placeholder="login" value="{{ last_username }}" required="required" />
+    				<input type="text" class="form-control input-lg" id="username" name="_username" placeholder="{{ "mail_adress" | trans({}, 'fosuser') }}" value="{{ last_username }}" required="required" />
                     <br><br>
 					{# <label for="password">{{ 'security.login.password'|trans }}</label> #}
 
-    				<input type="password" id="password" class="form-control input-lg" name="_password" placeholder="mot de passe" required="required" autofocus=""/>
+    				<input type="password" id="password" class="form-control input-lg" name="_password" placeholder="{{ "password" | trans({}, 'fosuser') }}" required="required" autofocus=""/>
     				<br>
 	
 					<button type="submit" class="btn btn-info btn-lg">{{ "btn.submit.connect" | trans({}, 'home') }}</button>
