@@ -46,7 +46,18 @@
       {% endif %}
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Flag</a></li>
+        <li>
+          <li class="menu-lang">
+            <a class="{% if app.request.locale == 'fr'%}active-flag{% endif %}" href="{{ path('ath_choose_langue', {'langue' : 'fr'}) }}" role="button">
+            <img class="lang-flag" width="22" height="22" src="/images/flags/fr.png" alt="FR" />
+            </a>
+          </li>
+          <li class="menu-lang">
+              <a class="{% if app.request.locale == 'en'%}active-flag{% endif %}" href="{{ path('ath_choose_langue', {'langue' : 'en'}) }}" role="button">
+                  <img class="lang-flag" width="22" height="22" src="/images/flags/en.png" alt="EN" />
+              </a>
+          </li>
+        </li>
         {% if app.user %}
         <li><a href="{{ path('user_security_logout') }}">{{ "deconnexion" | trans({}, 'home') }}</a></li>
         {% else %}

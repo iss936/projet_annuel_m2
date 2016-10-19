@@ -13,3 +13,4 @@ parameters:
     email_from: soumar_i14@myges.fr
     delivery_address: soumare.iss@gmail.com
     disable_delivery: false
+    locale: fr

@@ -37,3 +37,10 @@ user_security_check:
 user_security_check_type:
     pattern:    /login_check_type
     defaults:   { _controller: AthUserBundle:Security:checkTest }
+
+# Permet de changer le parametre langue dans la configuration du site
+ath_choose_langue:
+    pattern: /public/choisir-langue/{langue}
+    defaults: { _controller: 'AthUserBundle:Default:choisirLangue' }
+    requirements:
+        langue: en|fr

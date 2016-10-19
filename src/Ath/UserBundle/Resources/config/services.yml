@@ -6,8 +6,15 @@ services:
         tags:
             - { name: 'monolog.logger', channel: 'security' }
             
-    # Fosuser override
-    app.form.registration:
+    # Fosuser registration override
+    ath.form.registration:
         class: Ath\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+    
+    ath.locale_listener:
+        class: Ath\UserBundle\EventListener\LocaleListener
+        arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_subscriber }
+    
