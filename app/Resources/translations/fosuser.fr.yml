@@ -6,3 +6,7 @@ prenom: Prenom
 ath_user.first_name.blank: Veuillez saisir votre prénom
 password: mot de passe
 mail_adress: Adresse électronique
+form.genre: Vous êtes
+unHomme: Un homme
+uneFemme: Une femme
+uneAssociation: Une Association

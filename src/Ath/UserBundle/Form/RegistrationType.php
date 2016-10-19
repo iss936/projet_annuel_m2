@@ -11,8 +11,16 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('statutJuridique', 'choice', array(
+                'choices' => array(0 => "Un homme", 1 => 'Une femme', 2 => 'Une association'),
+                'required' => true,
+                'label' => 'form.genre',
+                'empty_data'  => null,
+                'translation_domain' => "fosuser",
+                'expanded' => true))
+
            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle','attr' => array('placeholder' => 'form.email')))
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'required' => false))
+         /*   ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'required' => false))*/
             
             ->add('nom', 'text', array('label' => 'nom', 'attr' => array('placeholder' => 'nom'), 'translation_domain' => 'fosuser'))
             ->add('prenom', 'text', array('label' => 'prenom', 'attr' => array('placeholder' => 'prenom'), 'translation_domain' => 'fosuser'))
@@ -33,7 +41,9 @@ class RegistrationType extends AbstractType
             'years' => range(Date('Y')-16, 1930),
             'required' => true,
             'translation_domain' => 'fosuser'
-        ))
+            ))
+
+
         ;
 
         $builder->remove('username');

@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ath\UserBundle\Model\StatutJuridique;
 
 /**
  * User
@@ -127,17 +128,24 @@ class User extends BaseUser
     /**
      * @var bool
      *
-     * @ORM\Column(name="genre", type="boolean")
-     */
-    private $genre = 0;
-
-    /**
-     * @var bool
-     *
      * @ORM\Column(name="cgu", type="boolean")
      */
     private $cgu = 0;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="statut_juridique", type="integer")
+     */
+    private $statutJuridique;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_celebrite", type="boolean")
+     */
+    private $isCelebrite = 0;
+
     /**
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserContact", mappedBy="userEmmeteur")
      */
@@ -452,29 +460,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set genre
-     *
-     * @param boolean $genre
-     * @return User
-     */
-    public function setGenre($genre)
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    /**
-     * Get genre
-     *
-     * @return boolean 
-     */
-    public function getGenre()
-    {
-        return $this->genre;
-    }
-
-    /**
      * Set cgu
      *
      * @param boolean $cgu
@@ -497,6 +482,63 @@ class User extends BaseUser
         return $this->cgu;
     }
     
+    /**
+     * Get the value string of statutJuridique
+     *
+     * @return mixed
+     */
+    public function getStatutJuridique()
+    {
+        return statutJuridique::getLibFromId($this->statutJuridique);
+    }
+    
+    /**
+     * Get the value of statutJuridique
+     *
+     * @return mixed
+     */
+    public function getStatutJuridiqueId()
+    {
+        return $this->statutJuridique;
+    }
+
+    /**
+     * Set the value of statutJuridique
+     *
+     * @param mixed statutJuridique
+     *
+     * @return self
+     */
+    public function setStatutJuridique($statutJuridique)
+    {
+        $this->statutJuridique = $statutJuridique;
+
+        return $this;
+    }
+
+    /**
+     * Set isCelebrite
+     *
+     * @param boolean $isCelebrite
+     * @return User
+     */
+    public function setIsCelebrite($isCelebrite)
+    {
+        $this->isCelebrite = $isCelebrite;
+
+        return $this;
+    }
+
+    /**
+     * Get isCelebrite
+     *
+     * @return boolean
+     */
+    public function getIsCelebrite()
+    {
+        return $this->isCelebrite;
+    }
+
     /**
      * Add userContactEmmeteur
      *

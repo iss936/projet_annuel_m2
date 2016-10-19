@@ -18,7 +18,18 @@
 						
 						<h2>{{ "inscription" | trans({}, 'home') }}</h2>
 	                    {{ form_widget(form._token) }}
+	                    <div class="space-vertical-input">
+					        {{ form_label(form.statutJuridique) }}
+					        <div class="col-sm-9">
+					            {{ form_errors(form.statutJuridique) }}
+					           {% for choiceFormView in form.statutJuridique %}
+								    {{ form_widget(choiceFormView) }}
+								{% endfor %}
+					        </div>
+					    </div>
 		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+		                <br>
+
 		                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
 
 		                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
@@ -45,11 +56,16 @@
 						<br>
 						<br>
 		                {{ form_row(form.dateDeNaissance) }}
+		                
 					<br>
 					<button type="submit" class="btn btn-success btn-lg">{{ "inscription" | trans({}, 'home') }}</button>
 					<h3>{{ "ou" | trans({}, 'home') }}</h3>
 					<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">{{ "connexion" | trans({}, 'home') }}</a>
 					{# <button type="submit" class="btn btn-info btn-lg">Se connecter</button> #}
+                </form>
+                <form>
+		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+                	
                 </form>
 					<span id="result" class="alertMsg"></span> 
 				</div>

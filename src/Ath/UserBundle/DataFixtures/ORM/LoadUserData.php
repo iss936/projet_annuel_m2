@@ -57,9 +57,10 @@ class LoadUserData extends AbstractDataFixture
                 "setVille" => "Aulnay-Sous-Bois",
                 "setCp" => "93600",
                 "setDescription" => "Je suis ......",
-                "setGenre" => 0, // = H et 1 pour F 
+                "setStatutJuridique" => 0, // = H et 1 pour F  2 pour Association
                 "setEnabled" => 1,
-                "setCgu" => 1
+                "setCgu" => 1,
+                "setIsCelebrite" => 0
             ),
             array(
                 "setUsername" => "john@gmail.com",
@@ -73,9 +74,27 @@ class LoadUserData extends AbstractDataFixture
                 "setVille" => "Saint-mandé",
                 "setCp" => "94160",
                 "setDescription" => "Je suis ......",
-                "setGenre" => 0, // = H et 1 pour F 
+                "setStatutJuridique" => 0, // = H et 1 pour F 
                 "setEnabled" => 1,
-                "setCgu" => 1
+                "setCgu" => 1,
+                "setIsCelebrite" => 0
+            ),
+            array(
+                "setUsername" => "esgi@gmail.com",
+                "setPlainPassword" => "esgi",
+                "setEmail" => "esgi@gmail.com",
+                "addRole" => "ROLE_ASSOCIATION",
+                "setPrenom" => "",
+                "setNom" => "ESGI",
+                "setDateDeNaissance" => $dateOfBirth,
+                "setRue" => "12 avenue du général de Gaulle",
+                "setVille" => "Saint-mandé",
+                "setCp" => "94160",
+                "setDescription" => "Je suis ......",
+                "setStatutJuridique" => 2, // = H et 1 pour F 
+                "setEnabled" => 1,
+                "setCgu" => 1,
+                "setIsCelebrite" => 0
             )
         );
 
