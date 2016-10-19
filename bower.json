@@ -16,6 +16,7 @@
     "jquery": "~2.1.4",
     "js-cookie": ">=2.0.3",
     "font-awesome":"https://github.com/FortAwesome/Font-Awesome.git",
-    "bootstrap-sass" : "*"
+    "bootstrap-sass" : "*",
+    "bootstrap" : "*"
   }
 }

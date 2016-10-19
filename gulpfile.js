@@ -14,21 +14,23 @@ var rm = require( 'gulp-rm' );
 // Local variables
 // ===================
 
-var jsFiles,sassDir,compiledDir,othersSassFiles,jsDir;
+var sassDir,compiledDir,jsDir;
 
 sassDir = appDir + '/web/sass/';
 jsDir = appDir + '/web/js/';
 compiledDir = appDir + '/web/compiled/';
 
 jsFrontFiles = [
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/jquery-debounce/jquery.debounce.js',
+    appDir + '/bower_components/jquery/dist/jquery.min.js',
+    appDir + '/bower_components/jquery-debounce/jquery.debounce.js',
+    appDir + '/bower_components/bootstrap/js/*.js',
     jsDir + '/front/**/*.js'
 ];
 
 jsBackFiles = [
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/jquery-debounce/jquery.debounce.js',
+    appDir + '/bower_components/jquery/dist/jquery.min.js',
+    appDir + '/bower_components/jquery-debounce/jquery.debounce.js',
+    appDir + '/bower_components/bootstrap/js/*.js',
     jsDir + '/admin/**/*.js'
 ];
 
