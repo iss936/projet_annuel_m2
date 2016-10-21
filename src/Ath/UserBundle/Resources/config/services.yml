@@ -21,4 +21,15 @@ services:
     ath.user.validator.post_registration_validation:
         class: Ath\UserBundle\Validator\Constraints\ConditionalValidatorForUser
         tags:
-            - { name: validator.constraint_validator, alias: post_registration_validation }  
+            - { name: validator.constraint_validator, alias: post_registration_validation }
+
+    ath.user.form.handler.edit_profile:
+        class: Ath\UserBundle\Form\Handler\EditProfileFormHandler
+        scope: request
+        arguments:
+          - "@request"
+          - "@doctrine.orm.default_entity_manager"
+          - "@session"
+          - "@translator"
+        tags:
+            - { name: form.handler, alias: edit_profile.handler }

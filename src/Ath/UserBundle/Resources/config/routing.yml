@@ -52,6 +52,11 @@ fos_user_resetting_reset:
     requirements:
         method: "GET|POST"
 
+### UserBundle -> Fos user route override
+ath_user_change_password:
+    pattern: /profile/change-password
+    defaults: { _controller: 'AthUserBundle:ChangePassword:changePassword' }
+
 user_security_login:
     pattern:    /login
     defaults:   { _controller: AthUserBundle:Security:login }

@@ -1,0 +1,8 @@
+{% set filtre = 'user_short' %}
+{% if img_filter is defined %}
+    {% set filtre = img_filter %}
+{% endif %}
+
+<span class="avatar avatar-{{filtre}} {% if AvtrClass is not defined %}{% else %}{{AvtrClass}}{% endif %}">
+    <img class="img-rounded" src="{{ user.webPath | apply_filter(filtre) }}" alt="{{ user }}" title="{{ user }}" />
+</span>

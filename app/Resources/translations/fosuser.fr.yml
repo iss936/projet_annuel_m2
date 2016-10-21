@@ -11,3 +11,16 @@ unHomme: Un homme
 uneFemme: Une femme
 uneAssociation: Une Association
 registration.dateDeCreation: Date de Création *
+title.edit.profile: Modification du profil
+label.rue: Rue
+placeholder.rue: Rue
+label.ville: Ville
+placeholder.ville: Ville
+label.cp: Code postal
+placeholder.cp: Code postal
+label.description: Description
+placeholder.description: Description
+title.monProfil: Mon profil
+formEditProfile.photo: Photo de profil
+profile.retirerLaPhoto: Retirer la photo
+profile.supprimerMaPhoto: Supprimer ma photo

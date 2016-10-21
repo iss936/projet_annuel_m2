@@ -8,4 +8,6 @@ inscription: Inscription
 deconnexion: Déconnexion
 formConnection.errorPass: L'authentification a échoué
 forgotPassword: Mot de passe oublié
-
+save: Enregistrer
+flash.edit.success: Modification enregistré
+flash.edit.error: Une erreur est survenue
