@@ -1,0 +1,6 @@
+[19-Oct-2016 08:33:06 UTC] PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class Ath\Mainundle\Entity\UserContact does not exist' in /home/ubuntu/workspace/projet_annuel_m2/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php:950
+Stack trace:
+#0 /home/ubuntu/workspace/projet_annuel_m2/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php(950): ReflectionParameter->getClass()
+#1 /home/ubuntu/workspace/projet_annuel_m2/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php(903): Doctrine\Common\Proxy\ProxyGenerator->getParameterType(Object(Doctrine\ORM\Mapping\ClassMetadata), Object(ReflectionMethod), Object(ReflectionParameter))
+#2 /home/ubuntu/workspace/projet_annuel_m2/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php(780): Doctrine\Common\Proxy\ProxyGenerator->buildParametersString(Object(Doctrine\ORM\Mapping\ClassMetadata), Object(ReflectionMethod), Array)
+#3 [internal function]: Doctrine\Common\Proxy\ProxyGenerator->generateMethods(Object(Doctrine\ORM\Mapping\ClassM in /home/ubuntu/workspace/projet_annuel_m2/vendor/doctrine/common/lib/Doctrine/Common/Proxy/Exception/UnexpectedValueException.php on line 53
