@@ -7,3 +7,5 @@ connexion: Connexion
 inscription: Inscription
 deconnexion: Déconnexion
 formConnection.errorPass: L'authentification a échoué
+forgotPassword: Mot de passe oublié
+

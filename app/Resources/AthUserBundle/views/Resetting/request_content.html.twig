@@ -1,14 +1,44 @@
 {% trans_default_domain 'FOSUserBundle' %}
+<div class="preloader"></div>
 
-<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
-        {% if invalid_username is defined %}
-            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
-        {% endif %}
-        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-        <input type="text" id="username" name="username" required="required" />
-    </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
-    </div>
-</form>
+    <main id="top" class="masthead" role="main">
+        <div class="container">
+            <h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
+            <div class="row myBackground">
+                <div class="">
+                    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                        <div>
+                            {% if invalid_username is defined %}
+                                <div class="alert alert-warning">
+                                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                                </div>
+                            {% endif %}
+                            <div class="space-vertical-input">
+                                <div class="col-sm-3">
+                                   <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="username" name="username" required="required" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div>
+                            <input type="submit" class="btn btn-default" value="{{ 'resetting.request.submit'|trans }}" />
+                        </div>
+                    </form>
+                        <br>
+                        <br>
+                </div>
+            </div>
+            <a href="#explore" class="scrollto">
+                    <p>{% filter upper %}
+                        {{ "scroll" | trans({}, 'home') }}
+                       {% endfilter %}
+                    </p>
+                    <p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
+                </a>
+        </div><!-- /container -->
+    </main><!--/main -->

@@ -1,5 +1,6 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "AthUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
 {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+{% include '@ath_views/include_no_connected.html.twig' %}
 {% endblock fos_user_content %}

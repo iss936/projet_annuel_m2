@@ -28,6 +28,30 @@ fos_user_profile_edit:
     requirements:
         _method: GET|POST
 
+fos_user_resetting_request:
+    pattern: /resetting/request
+    defaults: { _controller: 'AthUserBundle:Resetting:request' }
+    requirements:
+        method: "GET"
+
+fos_user_resetting_send_email:
+    pattern: /resetting/send-email
+    defaults: { _controller: 'AthUserBundle:Resetting:sendEmail' }
+    requirements:
+        method: "POST"
+
+fos_user_resetting_check_email:
+    pattern: /resetting/check-email
+    defaults: { _controller: 'AthUserBundle:Resetting:checkEmail' }
+    requirements:
+        method: "GET"
+
+fos_user_resetting_reset:
+    pattern: /resetting/reset/{token}
+    defaults: { _controller: 'AthUserBundle:Resetting:reset' }
+    requirements:
+        method: "GET|POST"
+
 user_security_login:
     pattern:    /login
     defaults:   { _controller: AthUserBundle:Security:login }

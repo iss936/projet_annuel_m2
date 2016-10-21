@@ -34,12 +34,15 @@
     				<br>
 	
 					<button type="submit" class="btn btn-info btn-lg">{{ "btn.submit.connect" | trans({}, 'home') }}</button>
-					
 					<h3>{{ "or" | trans({}, 'home') }}</h3>
 
 					<br>
 					<a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-lg"> {{ "inscription" | trans({}, 'home') }}</a>
 				</form>
+					<br>
+					<br>
+				
+				<a href="{{ path('fos_user_resetting_request') }}" class="btn btn-default btn-lg"> {{ "forgotPassword" | trans({}, 'home') }}</a>
 					<span id="result" class="alertMsg"></span> </div>
 				</div>
  
