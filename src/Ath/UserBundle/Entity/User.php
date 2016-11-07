@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ath\UserBundle\Model\StatutJuridique;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
 /**
  * User
  *
@@ -179,8 +178,8 @@ class User extends BaseUser
      * @ORM\Column(name="is_celebrite", type="boolean")
      */
     private $isCelebrite = 0;
-	
-	/**
+    
+    /**
      * @var ArrayCollection User $posts
      * 
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="author")
@@ -195,6 +194,18 @@ class User extends BaseUser
     private $demandeCelebrites;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Sport", cascade={"persist"})
+     * @ORM\JoinTable(name="user_interet_sport")
+     */
+    private $userInteretSports;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Sport", cascade={"persist"})
+     * @ORM\JoinTable(name="association_sport")
+     */
+    private $associationSports;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
@@ -202,8 +213,10 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-		$this->posts = new ArrayCollection();
+        $this->posts = new ArrayCollection();     
         $this->demandeCelebrites = new ArrayCollection();
+        $this->userInteretSports = new ArrayCollection();
+        $this->associationSports = new ArrayCollection();
     }
 
     /**
@@ -687,30 +700,93 @@ class User extends BaseUser
     {
       return $this->posts;
     }
-	
-	public function removePost(\Ath\Mainundle\Entity\Post $post)
+    
+    public function removePost(\Ath\Mainundle\Entity\Post $post)
     {
       $this->posts->removeElement($post);
     }
-	
-	public function addPost(\Ath\MainBundle\Entity\Post $post)
+    
+    public function addPost(\Ath\MainBundle\Entity\Post $post)
     {
         if (!$this->posts->contains($post))
             $this->posts->add($post);
         
         return $this;
     }
-	
+    
     public function getDemandeCelebrites()
     {
       return $this->demandeCelebrites;
     }
 
+    /**
+     * Add userInteretSports
+     *
+     * @param \Ath\MainBundle\Entity\Sport $userInteretSport
+     * @return Member
+     */
+    public function addUserInteretSport(\Ath\MainBundle\Entity\Sport $userInteretSport) {
+        if (!$this->userInteretSports->contains($userInteretSport)) {
+          $this->userInteretSports[] = $userInteretSport;
+        }
+        return $this;
+    }
+
+    /**
+     * Remove userInteretSports
+     *
+     * @param \Ath\MainBundle\Entity\Sport $userInteretSport
+     */
+    public function removeUserInteretSport(\Ath\MainBundle\Entity\Sport $userInteretSport) {
+        $this->userInteretSports->removeElement($userInteretSport);
+    }
+
+   /**
+    * Get userInteretSports
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getUserInteretSports() {
+        return $this->userInteretSports;
+    }
+
+    /**
+     * Add associationSports
+     *
+     * @param \Ath\MainBundle\Entity\Sport $userInteretSport
+     * @return Member
+     */
+    public function addAssociationSport(\Ath\MainBundle\Entity\Sport $associationSport) {
+        if (!$this->associationSports->contains($associationSport)) {
+          $this->associationSports[] = $associationSport;
+        }
+        return $this;
+    }
+
+    /**
+     * Remove associationSports
+     *
+     * @param \Ath\MainBundle\Entity\Sport $associationSport
+     */
+    public function removeAssociationSport(\Ath\MainBundle\Entity\Sport $associationSport) {
+        $this->associationSports->removeElement($associationSport);
+    }
+
+   /**
+    * Get associationSports
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getAssociationSports() {
+        return $this->associationSports;
+    }
+
+    /******* Function pratique **************/
+
     public function getNomComplet() {
         return ucfirst($this->prenom) . ' ' . ucfirst($this->nom);
     }
 
-    /******* Function pratique **************/
     /**
      * Vérifie si l'utilisateur peut faire une demande de célébrité
      * @return boolean
