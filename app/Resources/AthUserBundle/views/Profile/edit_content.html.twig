@@ -44,3 +44,31 @@
 
 </form>
 
+
+<script type="text/javascript">
+	$(document).ready(function($) {
+	
+	    // On supprime la photo
+	    $("#removePhoto").click(function () {
+	      // confirm("{{ 'profile.confirmSuppressionPhoto' | trans({},'home') }}", function(r){
+	        // if(r){
+	          window.location.href="{{ path('ath_user_remove_photo') }}";
+	        // }
+	      })
+
+	    // On enlève la photo sélectionnez
+	    $("#clear").click(function () {
+	        $("#ath_user_edit_profile_file").val("");
+	        $("#clear").hide();
+	    });
+
+	    $("#ath_user_edit_profile_file").change(function () {
+	        var chemin;
+	        if(chemin != "") {
+	            $("#clear").show();
+	        }
+    	});
+
+    });
+
+</script>

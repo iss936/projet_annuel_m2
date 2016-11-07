@@ -13,21 +13,22 @@ class EditProfileType extends AbstractType
     {
         $builder
             ->add('nom', 'text', array('label' => 'nom', 'attr' => array('placeholder' => 'nom')))
+            ->add('prenom', 'text', array('label' => 'prenom', 'attr' => array('placeholder' => 'prenom')))
 
-            ->add('dateDeCreation','date',array(
-                'label' => 'registration.dateDeCreation',
+            ->add('dateDeNaissance','date',array(
+                'label' => 'registration.dateDeNaissance',
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
                 'widget' => 'choice',
                 'format' => 'dd/MM/yyyy',
                 'years' => range(Date('Y') - 16, 1930),
-                'required' => false,
+                // 'required' => false,
             ))
 
             ->add('rue', 'text', array('label' => 'label.rue', 'required' => false, 'attr' => array('placeholder' => 'placeholder.rue')))
             ->add('ville', 'text', array('label' => 'label.ville', 'required' => false,'attr' => array('placeholder' => 'placeholder.ville')))
             ->add('cp', 'text', array('label' => 'label.cp', 'required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
             ->add('description', 'textarea', array('label' => 'label.cp','required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
-            ->add('file', 'image', array('data_class' => 'Symfony\Component\HttpFoundation\File\File','label' => 'formEditProfile.photo', 'required' => false))
+            ->add('file', 'file', array('data_class' => 'Symfony\Component\HttpFoundation\File\File','label' => 'formEditProfile.photo', 'required' => false))
             ->add('description', 'textarea', array('label' => 'label.description','required' => false, 'attr' => array('placeholder' => 'placeholder.description')))
         ;
     }

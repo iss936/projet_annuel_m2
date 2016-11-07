@@ -43,6 +43,32 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     */
+    protected $facebookId;
+    
+    /** 
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) 
+     */
+    protected $facebookAccessToken;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google_id", type="string", nullable=true)
+     */
+    protected $googleId;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_id", type="string", nullable=true)
+     */
+    protected $twitterId;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
@@ -195,7 +221,87 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * Get getFacebookId
+     *
+     * @return string 
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * Get setFacebookId
+     *
+     * @return string 
+     */
+    public function setFacebookId($facebookId)
+    {
+        return $this->facebookId = $facebookId;
+    }
+
+    /**
+     * Get getfacebookAccessToken
+     *
+     * @return string 
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebookAccessToken;
+    }
+
+    /**
+     * Get setfacebookAccessToken
+     *
+     * @return string 
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        return $this->facebookAccessToken = $facebookAccessToken;
+    }
+
+    /**
+     * Get getGoogleId
+     *
+     * @return string 
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * Get setGoogleId
+     *
+     * @return string 
+     */
+    public function setGoogleId($googleId)
+    {
+        return $this->googleId = $googleId;
+    }
+
+    /**
+     * Get getTwitterId
+     *
+     * @return string 
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
     
+    /**
+     * Get setTwitterId
+     *
+     * @return string 
+     */
+    public function setTwitterId($twitterId)
+    {
+        return $this->twitterId = $twitterId;
+    }
+
     public function setEmail($email)
     {
         parent::setEmail($email);
@@ -681,9 +787,11 @@ class User extends BaseUser
 
     public function getWebPath()
     {
-        return null === $this->photoId
-             ? null
-             : $this->getUploadDir().'/'.$this->photoId;
+        if ($this->photoId == null) {
+            return '/images/inconnu.jpg';
+        }
+
+        return $this->getUploadDir().'/'.$this->photoId;
     }
 
     protected function getUploadRootDir() 
@@ -785,6 +893,16 @@ class User extends BaseUser
     public function getFile()
     {
         return $this->file;
+    }
+
+    public function removePhoto()
+    {
+        $file_path = $this->getUploadRootDir().'/'.$this->getPhotoId();
+
+        if(file_exists($file_path))
+        {
+            unlink($file_path);
+        }
     }
   /**** FIN GESTION UPLOADS ****/
 }

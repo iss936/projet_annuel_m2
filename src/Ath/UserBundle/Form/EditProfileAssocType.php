@@ -21,7 +21,7 @@ class EditProfileAssocType extends AbstractType
                 'widget' => 'choice',
                 'format' => 'dd/MM/yyyy',
                 'years' => range(Date('Y'), 1920),
-                'required' => false,
+                // 'required' => false,
             ))
             ->add('rue', 'text', array('label' => 'label.rue', 'required' => false, 'attr' => array('placeholder' => 'placeholder.rue')))
             ->add('ville', 'text', array('label' => 'label.ville', 'required' => false,'attr' => array('placeholder' => 'placeholder.ville')))

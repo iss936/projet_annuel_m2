@@ -21,6 +21,11 @@ security:
         login:
             pattern:  ^/demo/secured/login$
             security: false
+            remember_me:
+                key: "%secret%"
+                lifetime: 31536000
+                path: /
+                domain: ~
 
         main:
             pattern: ^/
@@ -32,6 +37,16 @@ security:
                 default_target_path: /
                 # failure_path:   null
                 use_referer: true
+            oauth:
+                resource_owners:
+                    facebook:           "/login/check-facebook"
+                    google:             "/login/check-google"
+                    twitter:            "/login/check-twitter"
+                login_path:        /login
+                use_forward:       false
+                failure_path:      /login
+                oauth_user_provider:
+                    service: my_user_provider
             logout:       true
             anonymous:    true
 
@@ -39,6 +54,9 @@ security:
         - { path: ^/_wdt, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_profiler, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login/check-google$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connect/check-facebook, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/public, role: IS_AUTHENTICATED_ANONYMOUSLY }

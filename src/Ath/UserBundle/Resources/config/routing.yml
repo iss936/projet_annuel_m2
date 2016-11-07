@@ -2,6 +2,10 @@ ath_user_homepage:
     path:     /
     defaults: { _controller: AthUserBundle:Default:index }
 
+ath_user_remove_photo:
+    path: /remove-my-photo
+    defaults: { _controller: AthUserBundle:Profile:removePhoto }
+
 # fOSUser routes
 fos_user_security:
    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -79,3 +83,4 @@ ath_choose_langue:
     defaults: { _controller: 'AthUserBundle:Default:choisirLangue' }
     requirements:
         langue: en|fr
+

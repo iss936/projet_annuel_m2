@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "gedmo/doctrine-extensions": "v2.4.7",
-        "avalanche123/imagine-bundle": "^2.1"
+        "avalanche123/imagine-bundle": "^2.1",
+        "hwi/oauth-bundle": "0.4.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

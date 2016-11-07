@@ -46,4 +46,24 @@ class ProfileController extends BaseController
             'form' => $form->createView()
         ));
     }
+
+    public function removePhotoAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $trad = $this->container->get('translator');
+
+        $user = $this->getUser();
+
+        $user->removePhoto();
+
+        $user->setPhotoId(null);
+        $user->setPhotoExtension(null);
+        $user->setPhotoOriginalName(null);
+
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('notice', $trad->trans("profile.flash.photoSupprimer", array(), 'home'));
+
+        return $this->redirect($this->generateUrl('fos_user_profile_edit'));
+    }
 }

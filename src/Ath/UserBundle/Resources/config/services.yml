@@ -5,7 +5,12 @@ services:
         arguments:  [@router, @security.context, @session]
         tags:
             - { name: 'monolog.logger', channel: 'security' }
-            
+    
+    my_user_provider:
+        class: Ath\UserBundle\Security\Core\User\MyOAuthProvider
+        #this is the place where the properties are passed to the UserProvider - see config.yml
+        arguments: [@fos_user.user_manager,{facebook: facebookId, google: googleId}, @doctrine.orm.default_entity_manager]
+
     # Fosuser registration override
     ath.form.registration:
         class: Ath\UserBundle\Form\RegistrationType

@@ -2,7 +2,7 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: athleteec
+    database_name: projet_annuel_m2
     database_user: root
     database_password: null
     mailer_transport: smtp
@@ -13,4 +13,12 @@ parameters:
     email_from: soumar_i14@myges.fr
     delivery_address: soumare.iss@gmail.com
     disable_delivery: false
+    app_id_facebook: 1796694273906712
+    app_secret_facebook: fa72f71da415a1f049091f25452ee14b
+
+    app_id_twitter: none
+    app_secret_twitter: none
+
+    app_id_google: none
+    app_secret_google: none
     locale: fr

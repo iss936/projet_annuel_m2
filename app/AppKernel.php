@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Ath\UserBundle\AthUserBundle(),
             new Ath\MainBundle\AthMainBundle(),
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
