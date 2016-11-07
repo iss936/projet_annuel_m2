@@ -15,7 +15,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
     	$user = $this->getUser();
-    	
+
         return $this->render('@ath_main_path/index.html.twig');
     }
 }

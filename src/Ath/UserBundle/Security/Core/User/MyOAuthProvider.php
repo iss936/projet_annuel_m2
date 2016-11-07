@@ -13,9 +13,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class MyOAuthProvider extends FOSUBUserProvider
 {
-    public function __construct(UserManagerInterface $userManager, Array $properties, ObjectManager $em)
+    private $em;
+    private $container;
+
+    public function __construct(UserManagerInterface $userManager, Array $properties, ObjectManager $em, $container)
     {
         $this->em=$em;
+        $this->container = $container;
+
         parent::__construct($userManager, $properties);
     }
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
@@ -147,6 +152,10 @@ class MyOAuthProvider extends FOSUBUserProvider
             $user->setPassword($secret);
             $this->em->persist($user);
             $this->em->flush();
+
+            $sendMail = $this->container->get('ath_main.services.send_mail');
+
+            $sendMail->registrationBySocialNetwork($user);
         }
 
         // His profile image : file_get_contents('https://graph.facebook.com/' . $response->getUsername() . '/picture?type=large')
@@ -187,6 +196,8 @@ class MyOAuthProvider extends FOSUBUserProvider
             $user->setPassword($secret);
             $this->em->persist($user);
             $this->em->flush();
+            $sendMail = $this->container->get('ath_main.services.send_mail');
+            $sendMail->registrationBySocialNetwork($user);
         }
  
         return $user;

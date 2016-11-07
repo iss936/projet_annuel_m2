@@ -16,7 +16,7 @@ class EditProfileType extends AbstractType
             ->add('prenom', 'text', array('label' => 'prenom', 'attr' => array('placeholder' => 'prenom')))
 
             ->add('dateDeNaissance','date',array(
-                'label' => 'registration.dateDeNaissance',
+                'label' => 'edit.dateDeNaissance',
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
                 'widget' => 'choice',
                 'format' => 'dd/MM/yyyy',

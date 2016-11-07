@@ -20,7 +20,7 @@
 	    <a href="#" id="clear" style="display:none;"> {{ 'profile.retirerLaPhoto' | trans({},'fosuser') }}</a>
 	  </p>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-6">
 	    {% if app.user.statutJuridiqueId == 2 %}
 		    {{ form_row(form.nom) }}
 		    {{ form_row(form.dateDeCreation) }}
@@ -39,6 +39,12 @@
 		{% endif %}
 	<input type="submit" class="btn btn-default" name="Enregistrer" value="{{ "save" | trans({}, 'home') }}">
 	{{ form_rest(form) }}
+    </div>
+
+    <div class="col-md-3">
+		{% if canDemandeCelebrite %}
+		    <a href="{{ path('ath_user_demande_celebrite') }}" class="btn btn-info"> {{ "faire.demande.celebrite" | trans({}, 'home') }}</a>
+		{% endif %}
     </div>
 	
 

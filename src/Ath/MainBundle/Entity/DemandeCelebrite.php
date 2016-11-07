@@ -35,7 +35,7 @@ class DemandeCelebrite
      *
      * @ORM\Column(name="is_accepte", type="boolean")
      */
-    private $isAccepte;
+    private $isAccepte = 0;
 
     /**
      * @var \Ath\UserBundle\Entity\User
@@ -81,7 +81,7 @@ class DemandeCelebrite
     /**
      * @var datetime $updatedAt
      *
-     * @ORM\Column(name="date_reponse", type="datetime")
+     * @ORM\Column(name="date_reponse", type="datetime", nullable = true)
      */
     private $dateReponse;
 

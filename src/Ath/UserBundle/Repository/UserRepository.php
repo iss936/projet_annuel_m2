@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getAssociationAll() {
+        $query = $this
+            ->createQueryBuilder('u')
+            ->where('u.statutJuridique = :statutJuridique')
+            ->setParameter('statutJuridique', 2)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

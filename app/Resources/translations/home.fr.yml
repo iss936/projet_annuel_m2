@@ -11,6 +11,7 @@ forgotPassword: Mot de passe oublié
 save: Enregistrer
 flash.edit.success: Modification enregistré
 flash.edit.error: Une erreur est survenue
+flash.demande_celebrite.success: Votre demande a bien été enregistré vous receverez une réponse par mail
 profile.flash.photoSupprimer: La photo de profil a bien été supprimé
 prenom: prénom
 connexion.facebook: Connexion Facebook
@@ -19,3 +20,7 @@ connexion.twitter: Connexion Twitter
 inscription.facebook: Inscription Facebook
 inscription.google: Inscription google+
 inscription.twitter: Inscription Twitter
+faire.demande.celebrite: faire une demande afin d'avoir le statut de célébrité
+title.demande.celecrite: Créer une demande de célébrité
+demande_celebrite.label.message: Veuillez saisir votre demande
+edit.dateDeNaissance: Votre date de naissance

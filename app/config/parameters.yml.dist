@@ -2,23 +2,24 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: projet_annuel_m2
+    database_name: athleteec
     database_user: root
     database_password: null
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_host: 10.100.51.30
     mailer_user: null
     mailer_password: null
     secret: 45cffe2956acc4fc5ee6636fa273c15f404f8d3e
     email_from: soumar_i14@myges.fr
-    delivery_address: soumare.iss@gmail.com
+    delivery_address: isoumare@atixnet.fr
     disable_delivery: false
-    app_id_facebook: 1796694273906712
-    app_secret_facebook: fa72f71da415a1f049091f25452ee14b
 
-    app_id_twitter: none
-    app_secret_twitter: none
-
-    app_id_google: none
-    app_secret_google: none
+    app_id_facebook: 830799980358755
+    app_secret_facebook: 6699875a62253b874fff855d082ce5ab
+    
+    app_id_twitter: wXBu9J7GCJMNqG3bdud7VAzui
+    app_secret_twitter: Q0NZ0KPsvIme8DKvzQ5Lkc0cgyQekGeAlPlLy68yy6EAt9LMAL
+    
+    app_id_google: 754878249591-1c9nmdvufe00kgujetin91ina01it858.apps.googleusercontent.com
+    app_secret_google: Xo2zko72qpeeCaHBCYBxKKLt
     locale: fr

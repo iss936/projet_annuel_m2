@@ -3,8 +3,12 @@ ath_user_homepage:
     defaults: { _controller: AthUserBundle:Default:index }
 
 ath_user_remove_photo:
-    path: /remove-my-photo
+    path: /user/remove-my-photo
     defaults: { _controller: AthUserBundle:Profile:removePhoto }
+
+ath_user_demande_celebrite:
+    path: /user/demande-celebrite
+    defaults: { _controller: AthUserBundle:Profile:demandeCelebrite }
 
 # fOSUser routes
 fos_user_security:

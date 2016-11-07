@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>{{ "title.demande.celecrite" | trans({}, 'home') }}</h1>
+
+<form class="" action="{{ path('ath_user_demande_celebrite') }}" method="POST">
+    {{ form_rest(form)}}
+	 <div class="form-group">
+        <label class="col-md-3 control-label" for="message">
+          {{ 'demande_celebrite.label.message' | trans({}, 'home')}}</label>
+        <div class="col-md-9">
+          {{
+            form_widget(form.contenu, {
+              'id': 'textarea_message',
+              'attr': {
+                'class' : 'form-control',
+              }
+            })
+          }}
+        </div>
+      </div>
+    <input type="submit" value="Submit" class="btn btn-default" />
+</form>
+
+{% endblock body %}
+
+

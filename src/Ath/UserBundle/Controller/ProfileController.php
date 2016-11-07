@@ -8,6 +8,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Ath\UserBundle\Form\EditProfileAssocType;
 use Ath\UserBundle\Form\EditProfileType;
+use Ath\MainBundle\Form\Type\DemandeCelebriteFormType;
+use Ath\MainBundle\Entity\DemandeCelebrite;
 
 class ProfileController extends BaseController
 {
@@ -32,6 +34,7 @@ class ProfileController extends BaseController
     public function editAction(Request $request)
     {
         $user = $this->getUser();
+
         if($user->getStatutJuridiqueId() == 2)
             $form = $this->createForm(new EditProfileAssocType(), $user);
         else
@@ -43,7 +46,8 @@ class ProfileController extends BaseController
         $formHandler->process($form);
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'canDemandeCelebrite' => $user->canDemandeCelebrite()
         ));
     }
 
@@ -65,5 +69,32 @@ class ProfileController extends BaseController
         $this->get('session')->getFlashBag()->add('notice', $trad->trans("profile.flash.photoSupprimer", array(), 'home'));
 
         return $this->redirect($this->generateUrl('fos_user_profile_edit'));
+    }
+
+    public function demandeCelebriteAction()
+    {
+
+        $user = $this->getUser();
+        
+        if (!$user->canDemandeCelebrite()) {
+            return $this->redirect($this->generateUrl('fos_user_profile_edit'));
+        }
+        $demandeCelebrite = new DemandeCelebrite();
+        $demandeCelebrite->setCreatedBy($user);
+
+        $form = $this->createForm(new DemandeCelebriteFormType(), $demandeCelebrite);
+
+        $formHandler = $this->container->get('ath.form.handler.demande_celebrite');
+
+        if($formHandler->process($form))
+        {
+            $sendMail = $this->container->get('ath_main.services.send_mail');
+            $sendMail->demandeCelebrite($user, $form->getData()->getContenu());
+            return $this->redirect($this->generateUrl('fos_user_profile_edit'));
+        }
+
+        return $this->render('@ath_user_path/demande_celebrite.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }
