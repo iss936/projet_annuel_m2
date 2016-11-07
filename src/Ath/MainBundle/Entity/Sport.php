@@ -3,17 +3,20 @@
 namespace Ath\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Sport
  *
- * @ORM\Table(name="Sport")
- * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\UserContactRepository")
+ * @ORM\Table(name="sport")
+ * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\SportRepository")
  */
 class Sport
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -21,7 +24,7 @@ class Sport
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="text")
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
