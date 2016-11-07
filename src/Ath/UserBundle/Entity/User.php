@@ -9,6 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ath\UserBundle\Model\StatutJuridique;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 /**
  * User
@@ -25,6 +27,7 @@ use Ath\UserBundle\Model\StatutJuridique;
  *      ),
  * })
  * @ORM\Entity(repositoryClass="Ath\UserBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
@@ -170,6 +173,10 @@ class User extends BaseUser
      */
     private $posts;
 	
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
 
     public function __construct()
     {
@@ -663,5 +670,121 @@ class User extends BaseUser
         return $this;
     }
 	
+      /*** GESTION UPLOADS ***/
 
+    public function getAbsolutePath()
+    {
+        return null === $this->photoId
+             ? null
+             : $this->getUploadRootDir().'/'.$this->photoId;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->photoId
+             ? null
+             : $this->getUploadDir().'/'.$this->photoId;
+    }
+
+    protected function getUploadRootDir() 
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir() {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/profil';
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->photoId = $filename.'.'.$this->getFile()->guessExtension();
+            $this->photoExtension = $this->file->guessExtension();
+            $this->photoOriginalName = $this->file->getClientOriginalName();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        // la propriété « file » peut être vide comme le champ n'est pas requis
+        if (null === $this->file) {
+          return;
+        }
+
+        if (!file_exists($this->getUploadRootDir())) {
+            mkdir($this->getUploadRootDir());
+        }
+        // la méthode « move » prend comme arguments le répertoire cible et
+        // le nom de fichier cible où le fichier doit être déplacé
+        $this->file->move($this->getUploadRootDir(), $this->photoId);
+
+         // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            if (is_file($this->getUploadRootDir().'/'.$this->temp)) {
+                unlink($this->getUploadRootDir().'/'.$this->temp);
+                // clear the temp image path
+                $this->temp = null;
+            }
+        }
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($this->getphotoId()) {
+            $file = $this->getAbsolutePath();
+            if ($file && is_file($file)) {
+                unlink($file);
+            }
+        }
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        if ($this->file) {
+            // check if we have an old image path
+            if (isset($this->photoId)) {
+                // store the old name to delete after the update
+                $this->temp = $this->photoId;
+                $this->photoId = null;
+            }
+             else {
+                $this->photoId = 'initial';
+            }
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+  /**** FIN GESTION UPLOADS ****/
 }

@@ -15,11 +15,13 @@
     </head>
     <body>
         {% include 'top_nav.html.twig' %}
-        
-        {% block body %}
+        <div class="container">
+            {% include "flash_messages.html.twig" %}
 
-        {% endblock %}
-        
+            {% block body %}
+
+            {% endblock %}
+        </div>
         {% block javascripts %}
 
         {% endblock %}
