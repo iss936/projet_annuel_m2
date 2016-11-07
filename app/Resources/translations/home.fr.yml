@@ -13,3 +13,9 @@ flash.edit.success: Modification enregistré
 flash.edit.error: Une erreur est survenue
 profile.flash.photoSupprimer: La photo de profil a bien été supprimé
 prenom: prénom
+connexion.facebook: Connexion Facebook
+connexion.google: Connexion google+
+connexion.twitter: Connexion Twitter
+inscription.facebook: Inscription Facebook
+inscription.google: Inscription google+
+inscription.twitter: Inscription Twitter

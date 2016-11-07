@@ -192,13 +192,20 @@ class User extends BaseUser
      */
     private $userContactDestinataires;
 	
-	 /**
+	/**
      * @var ArrayCollection User $posts
      * 
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="author")
      */
     private $posts;
-	
+
+    /**
+     * @var ArrayCollection DemandeCelebrites $demandeCelebrites
+     * 
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\DemandeCelebrite", mappedBy="createdBy")
+     */
+    private $demandeCelebrites;
+
     /**
      * @Assert\File(maxSize="6000000")
      */
@@ -210,6 +217,7 @@ class User extends BaseUser
         $this->userContactEmmeteurs = new ArrayCollection();
         $this->userContactDestinataires = new ArrayCollection();
 		$this->posts = new ArrayCollection();
+        $this->demandeCelebrites = new ArrayCollection();
     }
 
     /**
@@ -763,7 +771,7 @@ class User extends BaseUser
       return $this->posts;
     }
 	
-	   public function removePost(\Ath\Mainundle\Entity\Post $post)
+	public function removePost(\Ath\Mainundle\Entity\Post $post)
     {
       $this->posts->removeElement($post);
     }
@@ -776,7 +784,13 @@ class User extends BaseUser
         return $this;
     }
 	
-      /*** GESTION UPLOADS ***/
+    public function getDemandeCelebrites()
+    {
+      return $this->demandeCelebrites;
+    }
+
+
+    /*** GESTION UPLOADS ***/
 
     public function getAbsolutePath()
     {

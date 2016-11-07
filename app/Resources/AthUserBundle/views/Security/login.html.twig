@@ -32,10 +32,10 @@
     				<br>
 	
 					<p>
-        				<a href="{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}" class="btn btn-facebook" > Connexion facebook</a>
+        				<a href="{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}" class="btn btn-facebook" > {{ "connexion.facebook" | trans({}, 'home') }}</a>
 						<button type="submit" class="btn btn-info btn-lg">{{ "btn.submit.connect" | trans({}, 'home') }}</button>
-        				{# <a href="{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}" class="btn btn-facebook" > Connexion twitter</a> #}
-        				<a href="{{ url("hwi_oauth_service_redirect", {service: "google"}) }}" class="btn btn-facebook" > Connexion google+</a>
+        				{# <a href="{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}" class="btn btn-facebook" > {{ "connexion.twitter" | trans({}, 'home') }}</a> #}
+        				<a href="{{ url("hwi_oauth_service_redirect", {service: "google"}) }}" class="btn btn-facebook" > {{ "connexion.google" | trans({}, 'home') }}</a>
     				</p>
 					<h3>{{ "or" | trans({}, 'home') }}</h3>
 
