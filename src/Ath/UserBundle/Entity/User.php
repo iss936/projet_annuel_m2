@@ -140,7 +140,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="statut_juridique", type="integer")
      */
-    private $statutJuridique;
+    private $statutJuridique; // 0=Homme, 1= Femme, 2= Association
 
     /**
      * @ORM\Column(name="date_de_creation", type="datetime", nullable = true)
