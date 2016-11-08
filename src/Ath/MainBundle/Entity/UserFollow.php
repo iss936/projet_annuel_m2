@@ -18,7 +18,7 @@ class UserFollow
      * 
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Ath\UserBundle\Entity\User",inversedBy="userEmetteursFollow")
-     * @ORM\JoinColumn(name="user_emetteur", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_emetteur_id", referencedColumnName="id")
      */
     private $userEmetteur;
 
@@ -27,7 +27,7 @@ class UserFollow
      * 
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Ath\UserBundle\Entity\User",inversedBy="userDestinatairesFollow")
-     * @ORM\JoinColumn(name="user_destinataire", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_destinataire_id", referencedColumnName="id")
      */
     private $userDestinataire;
 
@@ -66,7 +66,7 @@ class UserFollow
     /**
      * @var bool
      *
-     * @ORM\Column(name="accepte", type="boolean")
+     * @ORM\Column(name="accepte", type="boolean", nullable = true)
      */
     private $accepte;
     

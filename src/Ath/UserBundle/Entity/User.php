@@ -210,6 +210,20 @@ class User extends BaseUser
     private $userDestinatairesFollow;
 
     /**
+     * @var ArrayCollection UserDiscussion $userDiscussionEmetteurs
+     *
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserDiscussion", mappedBy="userEmetteur")
+     */
+    private $userDiscussionEmetteurs;
+
+    /**
+     * @var ArrayCollection UserDiscussion $userDiscussionEmetteurs
+     *
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserDiscussion", mappedBy="userDestinataire")
+     */
+    private $userDiscussionDestinataires;
+
+    /**
      * @var ArrayCollection DemandeCelebrites $demandeCelebrites
      * @ORM\OrderBy({"dateDemande" = "DESC"})
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\DemandeCelebrite", mappedBy="createdBy")
@@ -783,15 +797,15 @@ class User extends BaseUser
       return $this->userEmetteursFollow;
     }
     
-    public function removeUserEmetteursFollow(\Ath\UserBundle\Entity\User $userEmetteur)
+    public function removeUserEmetteursFollow(\Ath\MainBundle\Entity\UserFollow $userEmetteurFollow)
     {
-      $this->userEmetteursFollow->removeElement($userEmetteur);
+      $this->userEmetteursFollow->removeElement($userEmetteurFollow);
     }
     
-    public function addUserEmetteursFollow(\Ath\UserBundle\Entity\User $userEmetteur)
+    public function addUserEmetteursFollow(\Ath\MainBundle\Entity\UserFollow $userEmetteurFollow)
     {
-        if (!$this->userEmetteursFollow->contains($userEmetteur))
-            $this->userEmetteursFollow->add($userEmetteur);
+        if (!$this->userEmetteursFollow->contains($userEmetteurFollow))
+            $this->userEmetteursFollow->add($userEmetteurFollow);
         
         return $this;
     }
@@ -801,15 +815,51 @@ class User extends BaseUser
       return $this->userDestinatairesFollow;
     }
     
-    public function removeUserDestinatairesFollow(\Ath\UserBundle\Entity\User $userDestinataire)
+    public function removeUserDestinatairesFollow(\Ath\MainBundle\Entity\UserFollow $userDestinataireFollow)
     {
-      $this->userDestinatairesFollow->removeElement($userDestinataire);
+      $this->userDestinatairesFollow->removeElement($userDestinataireFollow);
     }
     
-    public function addUserDestinatairesFollow(\Ath\UserBundle\Entity\User $userDestinataire)
+    public function addUserDestinatairesFollow(\Ath\MainBundle\Entity\UserFollow $userDestinataireFollow)
     {
-        if (!$this->userDestinatairesFollow->contains($userDestinataire))
-            $this->userDestinatairesFollow->add($userDestinataire);
+        if (!$this->userDestinatairesFollow->contains($userDestinataireFollow))
+            $this->userDestinatairesFollow->add($userDestinataireFollow);
+        
+        return $this;
+    }
+
+    public function getUserDiscussionEmetteurs()
+    {
+      return $this->userDiscussionEmetteurs;
+    }
+    
+    public function removeUserDiscussionEmetteur(\Ath\MainBundle\Entity\UserDiscussion $userDiscussion)
+    {
+      $this->userDiscussionEmetteurs->removeElement($userDiscussion);
+    }
+    
+    public function addUserDiscussionEmetteurs(\Ath\MainBundle\Entity\UserDiscussion $userDiscussion)
+    {
+        if (!$this->userDiscussionEmetteurs->contains($userDiscussion))
+            $this->userDiscussionEmetteurs->add($userDiscussion);
+        
+        return $this;
+    }
+
+    public function getUserDiscussionDestinataires()
+    {
+      return $this->userDiscussionDestinataires;
+    }
+    
+    public function removeUserDiscussionDestinataire(\Ath\MainBundle\Entity\UserDiscussion $userDiscussion)
+    {
+      $this->userDiscussionDestinataires->removeElement($userDiscussion);
+    }
+    
+    public function addUserDiscussionDestinataire(\Ath\MainBundle\Entity\UserDiscussion $userDiscussion)
+    {
+        if (!$this->userDiscussionDestinataires->contains($userDiscussion))
+            $this->userDiscussionDestinataires->add($userDiscussion);
         
         return $this;
     }
