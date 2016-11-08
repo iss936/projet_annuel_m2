@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ath\UserBundle\Model\StatutJuridique;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+
 /**
  * User
  *
@@ -178,13 +179,20 @@ class User extends BaseUser
      * @ORM\Column(name="is_celebrite", type="boolean")
      */
     private $isCelebrite = 0;
-    
-    /**
+	
+	/**
      * @var ArrayCollection User $posts
      * 
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="createdBy")
      */
     private $posts;
+
+    /**
+     * @var ArrayCollection User $comments
+     * 
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Comment", mappedBy="createdBy")
+     */
+    private $comments;
 
     /**
      * @var ArrayCollection DemandeCelebrites $demandeCelebrites
@@ -213,7 +221,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->posts = new ArrayCollection();     
+		$this->posts = new ArrayCollection();     
         $this->demandeCelebrites = new ArrayCollection();
         $this->userInteretSports = new ArrayCollection();
         $this->associationSports = new ArrayCollection();
@@ -700,20 +708,38 @@ class User extends BaseUser
     {
       return $this->posts;
     }
-    
-    public function removePost(\Ath\Mainundle\Entity\Post $post)
+	
+	public function removePost(\Ath\Mainundle\Entity\Post $post)
     {
       $this->posts->removeElement($post);
     }
-    
-    public function addPost(\Ath\MainBundle\Entity\Post $post)
+	
+	public function addPost(\Ath\MainBundle\Entity\Post $post)
     {
         if (!$this->posts->contains($post))
             $this->posts->add($post);
         
         return $this;
     }
+	
+    public function getComments()
+    {
+      return $this->comments;
+    }
     
+    public function removeComments(\Ath\Mainundle\Entity\Comment $comment)
+    {
+      $this->comments->removeElement($comment);
+    }
+    
+    public function addComment(\Ath\MainBundle\Entity\Comment $comment)
+    {
+        if (!$this->comments->contains($comment))
+            $this->comments->add($comment);
+        
+        return $this;
+    }
+
     public function getDemandeCelebrites()
     {
       return $this->demandeCelebrites;

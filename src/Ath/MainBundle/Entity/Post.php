@@ -52,16 +52,9 @@ class Post
      * @var \Ath\UserBundle\Entity\User
      *
 	 * @ORM\ManyToOne(targetEntity="Ath\UserBundle\Entity\User",inversedBy="posts")
-     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
-    private $author;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
-     */
-    private $photo;
+    private $createdBy;
 
     /**
      * @var int
@@ -70,6 +63,21 @@ class Post
      */
     private $status;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\FilePost", mappedBy="post", cascade={"persist", "remove"})
+     */
+    private $filePosts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Comment", mappedBy="post", cascade={"persist", "remove"})
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->filePosts = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -151,49 +159,26 @@ class Post
     }
 
     /**
-     * Set author
+     * Set createdBy
      *
-     * @param integer $author
+     * @param integer $createdBy
      * @return Post
      */
-    public function setAuthor($author)
+    public function setCreatedBy($createdBy)
     {
-        $this->author = $author;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get author
+     * Get createdBy
      *
      * @return integer 
      */
-    public function getAuthor()
+    public function getCreatedBy()
     {
-        return $this->author;
-    }
-
-    /**
-     * Set photo
-     *
-     * @param string $photo
-     * @return Post
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return string 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
+        return $this->createdBy;
     }
 
     /**
@@ -217,5 +202,58 @@ class Post
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Get filePosts
+     *
+     * @return Array collection of filePosts
+     */
+    public function getFilePosts()
+    {
+        return $this->filePosts;
+    }
+
+    /**
+     * Add filePost
+     *
+     * @param \Ath\MainBundle\Entity\FilePost $filePost
+     *
+     * @return Produit
+     */
+    public function addFilePost(\Ath\MainBundle\Entity\FilePost $filePost)
+    {
+        if (!$this->filePosts->contains($filePost))
+            $this->filePosts[] = $filePost;
+
+        return $this;
+    }
+
+    /**
+     * Remove filePost
+     *
+     * @param \Ath\MainBundle\Entity\FilePost $filePost
+     */
+    public function removeFilePost(\Ath\MainBundle\Entity\FilePost $filePost)
+    {
+        $this->filePosts->removeElement($filePost);
+    }
+
+    public function getComments()
+    {
+      return $this->comments;
+    }
+    
+    public function removeComments(\Ath\Mainundle\Entity\Comment $comment)
+    {
+      $this->comments->removeElement($comment);
+    }
+    
+    public function addComment(\Ath\MainBundle\Entity\Comment $comment)
+    {
+        if (!$this->comments->contains($comment))
+            $this->comments->add($comment);
+        
+        return $this;
     }
 }
