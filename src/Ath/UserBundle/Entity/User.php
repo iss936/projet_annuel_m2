@@ -229,6 +229,14 @@ class User extends BaseUser
     private $associationSports;
 
     /**
+     * @var ArrayCollection Produits $produits
+     * @ORM\OrderBy({"updatedAt" = "DESC"})
+     * 
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Produit", mappedBy="createdBy")
+     */
+    private $produits; // produits créés par le user
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
@@ -856,6 +864,24 @@ class User extends BaseUser
     */
     public function getAssociationSports() {
         return $this->associationSports;
+    }
+
+    public function getProduits()
+    {
+      return $this->produits;
+    }
+    
+    public function removeProduit(\Ath\MainBundle\Entity\Produit $produit)
+    {
+      $this->produits->removeElement($produit);
+    }
+    
+    public function addProduit(\Ath\MainBundle\Entity\Produit $produit)
+    {
+        if (!$this->produits->contains($produit))
+            $this->produits->add($produit);
+        
+        return $this;
     }
 
     /******* Function pratique **************/

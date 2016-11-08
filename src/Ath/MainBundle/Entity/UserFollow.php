@@ -3,6 +3,7 @@
 namespace Ath\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * UserFollow
@@ -31,30 +32,34 @@ class UserFollow
     private $userDestinataire;
 
     /**
-     * @var \DateTime
+     * Creation date
+     * @var datetime $createdAt
      *
-     * @ORM\Column(name="created_at", type="datetimetz")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * Modification date
+     * @var datetime $updatedAt
      *
-     * @ORM\Column(name="updated_at", type="datetimetz")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_demande", type="datetimetz")
+     * @ORM\Column(name="date_demande", type="datetime")
      */
     private $dateDemande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_reponse", type="datetimetz")
+     * @ORM\Column(name="date_reponse", type="datetime")
      */
     private $dateReponse;
 
@@ -64,8 +69,8 @@ class UserFollow
      * @ORM\Column(name="accepte", type="boolean")
      */
     private $accepte;
-
-
+    
+    
 
     /**
      * Set createdAt
