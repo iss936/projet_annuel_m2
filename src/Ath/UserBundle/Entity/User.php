@@ -195,6 +195,21 @@ class User extends BaseUser
     private $comments;
 
     /**
+     * @var ArrayCollection User $userEmetteursFollow
+     * 
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserFollow", mappedBy="userEmetteur")
+     */
+    private $userEmetteursFollow; // veut suivre
+
+    /**
+     * @var ArrayCollection User $userDestinatairesFollow
+     * 
+     * @ORM\OrderBy({"dateDemande" = "DESC"})
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserFollow", mappedBy="userDestinataire")
+     */
+    private $userDestinatairesFollow;
+
+    /**
      * @var ArrayCollection DemandeCelebrites $demandeCelebrites
      * @ORM\OrderBy({"dateDemande" = "DESC"})
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\DemandeCelebrite", mappedBy="createdBy")
@@ -709,7 +724,7 @@ class User extends BaseUser
       return $this->posts;
     }
 	
-	public function removePost(\Ath\Mainundle\Entity\Post $post)
+	public function removePost(\Ath\MainBundle\Entity\Post $post)
     {
       $this->posts->removeElement($post);
     }
@@ -727,7 +742,7 @@ class User extends BaseUser
       return $this->comments;
     }
     
-    public function removeComments(\Ath\Mainundle\Entity\Comment $comment)
+    public function removeComments(\Ath\MainBundle\Entity\Comment $comment)
     {
       $this->comments->removeElement($comment);
     }
@@ -736,6 +751,42 @@ class User extends BaseUser
     {
         if (!$this->comments->contains($comment))
             $this->comments->add($comment);
+        
+        return $this;
+    }
+
+    public function getUserEmetteursFollow()
+    {
+      return $this->userEmetteursFollow;
+    }
+    
+    public function removeUserEmetteursFollow(\Ath\UserBundle\Entity\User $userEmetteur)
+    {
+      $this->userEmetteursFollow->removeElement($userEmetteur);
+    }
+    
+    public function addUserEmetteursFollow(\Ath\UserBundle\Entity\User $userEmetteur)
+    {
+        if (!$this->userEmetteursFollow->contains($userEmetteur))
+            $this->userEmetteursFollow->add($userEmetteur);
+        
+        return $this;
+    }
+
+    public function getUserDestinatairesFollow()
+    {
+      return $this->userDestinatairesFollow;
+    }
+    
+    public function removeUserDestinatairesFollow(\Ath\UserBundle\Entity\User $userDestinataire)
+    {
+      $this->userDestinatairesFollow->removeElement($userDestinataire);
+    }
+    
+    public function addUserDestinatairesFollow(\Ath\UserBundle\Entity\User $userDestinataire)
+    {
+        if (!$this->userDestinatairesFollow->contains($userDestinataire))
+            $this->userDestinatairesFollow->add($userDestinataire);
         
         return $this;
     }
