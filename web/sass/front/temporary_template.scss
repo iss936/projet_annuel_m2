@@ -1,0 +1,349 @@
+/* .preloader {
+  background-color: #FFFFFF;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+} */
+
+.myBackground {
+  background-color: rgba(255, 255, 255, 0.5);
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  border-radius: 5px 10px 5px 5px;
+  color: black;
+  height: auto;
+}
+
+.btn, .btn-lg, .input-lg {
+  border-radius: 3px;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 10px 28px;
+  height: 52px;
+}
+
+.form-control {
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 0;
+}
+
+.input-lg {
+  height: 55px;
+}
+
+.breath {
+  margin: 50px auto;
+}
+
+.highlight {
+  background: #f4f4f4;
+  margin-top: 40px;
+}
+
+.masthead {
+  position: relative;
+  padding: 80px 15px;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+  background: #6883cc url("/images/header.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 1000px;
+  margin-top: -20px;
+  .container {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
+  }
+}
+
+.btn-large {
+  font-size: 18px;
+  padding: 20px 50px;
+  margin: 5px 10px;
+}
+
+.btn-success {
+  background-color: #2ecc71;
+  background-image: none;
+  border: 0;
+  -webkit-box-shadow: 0 3px 0 rgba(2, 154, 67, 1);
+  box-shadow: 0 3px 0 rgba(2, 154, 67, 1);
+  line-height: 1.8;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active {
+  background-color: #29c36a;
+  color: #FFF;
+  border: 0;
+  -webkit-box-shadow: 0 3px 0 rgba(2, 139, 61, 1);
+  box-shadow: 0 3px 0 rgba(2, 139, 61, 1);
+}
+
+.btn-info {
+  background-color: #39B3D7;
+  background-image: none;
+  border: 0;
+  -webkit-box-shadow: 0 3px 0 rgba(2, 154, 67, 1);
+  box-shadow: 0 3px 0 rgba(2, 154, 67, 1);
+  line-height: 1.8;
+  &:hover, &:active, &:focus {
+    background-color: #39B3D7;
+    color: #FFF;
+    border: 0;
+    -webkit-box-shadow: 0 3px 0 rgba(2, 139, 61, 1);
+    box-shadow: 0 3px 0 rgba(2, 139, 61, 1);
+  }
+}
+
+.btn-primary {
+  background-color: #2db6d8;
+  background-image: none;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background-color: #209ab8 !important;
+  color: #FFF !important;
+}
+
+.subscribe {
+  padding: 45px 0;
+}
+
+.alertMsg {
+  float: left;
+  font-size: 14px;
+  display: block;
+  padding: 5px 17px;
+}
+
+.section-title {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 30px;
+
+  h2 {
+    color: #384047;
+  }
+
+  h4 {
+    color: #94a3a8;
+  }
+
+}
+
+
+.heroimg img, .clientlogo img {
+  max-width: 100%;
+}
+
+.scrollto, .scrollto:hover {
+  margin: 30px;
+  display: block;
+  color: #FFF;
+  text-decoration: none;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.scrollto--arrow {
+  padding: 10px;
+}
+
+.scrollto--arrow img {
+  animation: arrowbounce 1s alternate infinite;
+  -moz-animation: arrowbounce 1s alternate infinite; /* Firefox */
+  -webkit-animation: arrowbounce 1s alternate infinite; /* Safari and Chrome */
+  -o-animation: arrowbounce 1s alternate infinite; /* Opera */
+}
+
+
+.features {
+  margin: 25px 0;
+}
+
+.thumbnail {
+  border: 0;
+  text-align: center;
+}
+
+.thumbnail .caption p {
+  color: #94a3a8;
+}
+
+/*Hover Animation*/
+
+.thumbnail img {
+  -moz-transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
+.thumbnail:hover img {
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/*========== 5. TESTIMONIALS ==============*/
+
+.testblock {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background: #FFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  position: relative;
+  line-height: 28px;
+  font-size: 16px;
+}
+
+.testblock:after {
+  top: 100%;
+  left: 20%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 15px;
+  margin-left: -15px;
+}
+
+.clientblock {
+  margin-top: 40px;
+  margin-left: 10px;
+}
+
+.clientblock img {
+  float: left;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+}
+
+.clientblock p {
+  padding-left: 80px;
+  padding-top: 13px;
+}
+
+.clientblock p strong {
+  color: #384047;
+  font-size: 16px;
+}
+
+/* Animation */
+
+.testblock {
+  -moz-transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
+.testblock:hover {
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/*========== 6. PLANS AND PRICING ==============*/
+
+.pricing {
+  padding: 25px;
+  color: #FFF;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.pricing .planname {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.pricing .price {
+  font-size: 52px;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+.pricing .billing {
+  text-transform: uppercase;
+  color: #FFF;
+  opacity: 0.7;
+}
+
+.pricing .price .curr {
+  display: inline-block;
+  font-size: 20px;
+  vertical-align: super;
+}
+
+.pricing .price .per {
+  display: inline-block;
+  font-size: 20px;
+  vertical-align: baseline;
+}
+
+.color1 {
+  background-color: #2ecc71;
+}
+
+.color2 {
+  background-color: #1abc9c;
+}
+
+.color3 {
+  background-color: #16a085;
+}
+
+/* Animation */
+
+.pricing {
+  -moz-transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
+.pricing:hover {
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/*========== 7. FAQ ==============*/
+
+.faq p {
+  margin-bottom: 25px;
+}

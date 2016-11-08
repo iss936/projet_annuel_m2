@@ -1,0 +1,35 @@
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 9999999;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+
+  .pace-progress {
+    @include box-sizing(border-box);
+    @include transition(width 1s ease-in-out 1s linear);
+    @include transform(translate3d(0, 0, 0));
+    max-width: 100%;
+    z-index: 9999999;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #61b5f0;
+  }
+
+  .pace-inactive {
+    display: none;
+  }
+}

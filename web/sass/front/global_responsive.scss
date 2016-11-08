@@ -1,0 +1,54 @@
+$phone : 500px;
+$tablet : 767px;
+$desktop : 991px;
+
+
+@include breakpoint($desktop){
+  h1 {
+    font-size: 35px;
+    line-height: 50px;
+    margin: 15px 0;
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  .testimonials [class*="col-"]:not(:first-child) {
+    margin-top: 40px;
+  }
+
+  .planpricing [class*="col-"]:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  .breath {
+    margin: 30px auto;
+  }
+}
+
+
+@include breakpoint($tablet){
+  h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .subscribe [class*="col-"]:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  .masthead {
+    padding: 40px 15px;
+  }
+}
+@include breakpoint($phone){
+  .masthead {
+    background-attachment: scroll;
+  }
+}
