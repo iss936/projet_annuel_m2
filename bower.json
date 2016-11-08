@@ -1,5 +1,5 @@
 {
-  "name": "Athleteec",
+  "name": "athleteec",
   "version": "0.0.1",
   "authors": [
 
@@ -17,6 +17,7 @@
     "js-cookie": ">=2.0.3",
     "font-awesome":"https://github.com/FortAwesome/Font-Awesome.git",
     "bootstrap-sass" : "*",
+    "breakpoint-sass" : "*",
     "bootstrap" : "*"
   }
 }
