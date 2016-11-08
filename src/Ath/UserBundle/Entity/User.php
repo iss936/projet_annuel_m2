@@ -179,8 +179,8 @@ class User extends BaseUser
      * @ORM\Column(name="is_celebrite", type="boolean")
      */
     private $isCelebrite = 0;
-    
-    /**
+	
+	/**
      * @var ArrayCollection User $posts
      * 
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="createdBy")
@@ -243,6 +243,14 @@ class User extends BaseUser
     private $produits; // produits créés par le user
 
     /**
+     * @var \Ath\UserBundle\Entity\User
+     *
+     * @ORM\OneToOne(targetEntity="Ath\MainBundle\Entity\UserSetting", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $userSetting;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
@@ -250,7 +258,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->posts = new ArrayCollection();     
+		$this->posts = new ArrayCollection();     
         $this->demandeCelebrites = new ArrayCollection();
         $this->userInteretSports = new ArrayCollection();
         $this->userComparateurProduits = new ArrayCollection();
@@ -738,20 +746,20 @@ class User extends BaseUser
     {
       return $this->posts;
     }
-    
-    public function removePost(\Ath\MainBundle\Entity\Post $post)
+	
+	public function removePost(\Ath\MainBundle\Entity\Post $post)
     {
       $this->posts->removeElement($post);
     }
-    
-    public function addPost(\Ath\MainBundle\Entity\Post $post)
+	
+	public function addPost(\Ath\MainBundle\Entity\Post $post)
     {
         if (!$this->posts->contains($post))
             $this->posts->add($post);
         
         return $this;
     }
-    
+	
     public function getComments()
     {
       return $this->comments;
@@ -920,6 +928,29 @@ class User extends BaseUser
             $this->produits->add($produit);
         
         return $this;
+    }
+
+    /**
+     * Set userSetting
+     *
+     * @param UserSetting $userSetting
+     * @return User
+     */
+    public function setUserSetting($userSetting)
+    {
+        $this->userSetting = $userSetting;
+
+        return $this;
+    }
+
+    /**
+     * Get userSetting
+     *
+     * @return User
+     */
+    public function getUserSetting()
+    {
+        return $this->userSetting;
     }
 
     /******* Function pratique **************/
