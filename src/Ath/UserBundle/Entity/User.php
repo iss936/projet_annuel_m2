@@ -1008,6 +1008,11 @@ class User extends BaseUser
     public function getNomComplet() {
         return ucfirst($this->prenom) . ' ' . ucfirst($this->nom);
     }
+	
+	public function getPrefixMail($email) {
+		list($prefix, $suffixe) = explode('@', $email);
+		return $prefix;
+	}
 
     /**
      * Vérifie si l'utilisateur peut faire une demande de célébrité
