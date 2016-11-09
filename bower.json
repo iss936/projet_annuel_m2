@@ -18,6 +18,7 @@
     "font-awesome":"https://github.com/FortAwesome/Font-Awesome.git",
     "bootstrap-sass" : "*",
     "breakpoint-sass" : "*",
-    "bootstrap" : "*"
+    "bootstrap" : "*",
+	"bootstrap-social" : "*"
   }
 }
