@@ -81,6 +81,13 @@ class User extends BaseUser
     private $prenom;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="siteweb", type="string", length=255)
+     */
+    private $siteWeb;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_de_naissance", type="datetime", nullable = true)
@@ -421,6 +428,29 @@ class User extends BaseUser
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Set site web
+     *
+     * @param string $siteWeb
+     * @return User
+     */
+    public function setSiteWeb($siteWeb)
+    {
+        $this->siteWeb = $siteWeb;
+
+        return $this;
+    }
+
+    /**
+     * Get Site web
+     *
+     * @return string
+     */
+    public function getSiteWeb()
+    {
+        return $this->siteWeb;
     }
 
     /**

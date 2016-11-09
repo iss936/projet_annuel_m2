@@ -4,6 +4,7 @@ namespace Ath\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use FOS\UserBundle\Util\LegacyFormHelper;
 use Ath\UserBundle\Form\EventListener\RoleRegisterListener;
 
 class RegistrationType extends AbstractType
@@ -19,15 +20,15 @@ class RegistrationType extends AbstractType
                 'translation_domain' => "fosuser",
                 'expanded' => true))
 
-           ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle','attr' => array('placeholder' => 'form.email')))
+           ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle','attr' => array('placeholder' => 'form.email')))
          /*   ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'required' => false))*/
             
             ->add('nom', 'text', array('label' => 'nom', 'attr' => array('placeholder' => 'nom'), 'translation_domain' => 'fosuser'))
             
             ->add('prenom', 'text', array('label' => 'registration.prenom', 'required' => false, 'attr' => array('placeholder' => 'prenom'), 'translation_domain' => 'fosuser'))
 
-            ->add('plainPassword', 'repeated', array(
-                'type' => 'password',
+            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
+                'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
                 'options' => array('translation_domain' => 'fosuser'),
                 'first_options' => array('label' => 'form.password','attr' => array('placeholder' => 'form.password')),
                 'second_options' => array('label' => 'form.password_confirmation','attr' => array('placeholder' => 'form.password_confirmation')),

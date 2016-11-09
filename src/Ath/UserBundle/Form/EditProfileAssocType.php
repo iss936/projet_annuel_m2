@@ -23,9 +23,9 @@ class EditProfileAssocType extends AbstractType
                 'years' => range(Date('Y'), 1920),
                 // 'required' => false,
             ))
-            ->add('rue', 'text', array('label' => 'label.rue', 'required' => false, 'attr' => array('placeholder' => 'placeholder.rue')))
-            ->add('ville', 'text', array('label' => 'label.ville', 'required' => false,'attr' => array('placeholder' => 'placeholder.ville')))
-            ->add('cp', 'text', array('label' => 'label.cp', 'required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
+            ->add('rue', 'text', array('label' => 'label.rue', 'required' => true, 'attr' => array('placeholder' => 'placeholder.rue')))
+            ->add('ville', 'text', array('label' => 'label.ville', 'required' => true,'attr' => array('placeholder' => 'placeholder.ville')))
+            ->add('cp', 'text', array('label' => 'label.cp', 'required' => true, 'attr' => array('placeholder' => 'placeholder.cp')))
             ->add('description', 'textarea', array('label' => 'label.cp','required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
             ->add('file', 'file', array('data_class' => 'Symfony\Component\HttpFoundation\File\File','label' => 'formEditProfile.photo', 'required' => false))
             ->add('description', 'textarea', array('label' => 'label.description','required' => false, 'attr' => array('placeholder' => 'placeholder.description')))

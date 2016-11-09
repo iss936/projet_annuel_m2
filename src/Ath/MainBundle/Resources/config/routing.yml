@@ -1,3 +1,6 @@
 ath_main_homepage:
     path:     /
     defaults: { _controller: AthMainBundle:Default:index }
+ath_list_association:
+    path:     /associations
+    defaults: { _controller: AthMainBundle:Association:index }
