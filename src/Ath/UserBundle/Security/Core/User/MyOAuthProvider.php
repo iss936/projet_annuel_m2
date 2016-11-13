@@ -185,8 +185,17 @@ class MyOAuthProvider extends FOSUBUserProvider
             $user->setEmail($email);
             $user->setEnabled(1);
             $user->addRole('ROLE_USER');
-            $user->setNom($nom);
-            $user->setPrenom($prenom);
+
+            if(empty($nom)){
+                $user->setNom($user->getPrefixMail($email));
+                $user->setPrenom(null);
+            }
+            else
+            {
+                $user->setNom($nom);
+                $user->setPrenom($prenom);
+            }
+            
             if($gender == "male")
                 $user->setStatutJuridique(0);
             else

@@ -126,47 +126,54 @@ hwi_oauth:
                 email: email
             options:
                 csrf: true
- 
-# hwi_oauth:
-#     connect:
-#         account_connector: my_user_provider
-#     firewall_name: main
-#     fosub:
-#         username_iterations: 30
-#         properties:
-#             # these properties will be used/redefined later in the custom FOSUBUserProvider service.
-#             facebook: facebookId
-#             google: googleId
-#     resource_owners:
-#         facebook:
-#             type:                facebook
-#             client_id:           "%app_id_facebook%"
-#             client_secret:       "%app_secret_facebook%"
-#             scope:               "email"
-# hwi_oauth:
-#     connect:
-#         confirmation: true
-#         registration_form: fos_user.registration.form
-#     firewall_name: main
-#     fosub:
-#         username_iterations: 30
-#         properties:
-#             facebook: facebookId
-#             google: google_id
-#             twitter: twitter_id
-#     resource_owners:
-#         # Facebook Access
-#         facebook:
-#             type:                facebook
-#             client_id:           "%app_id_facebook%"
-#             client_secret:       "%app_secret_facebook%"
-#             scope:               "email"
-#             infos_url:     "https://graph.facebook.com/me?fields=username,name,email,picture.type(large)"
-#             paths:
-#                 email:          email
-#                 profilepicture: picture.data.url
-#             options:
-#                 display: popup
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+sonata_admin:
+    title:                Athleteec
+    # title_logo:           images/logo.png
+    options:
+        # Auto order groups and admins by label or id
+        confirm_exit:         false
+    templates:
+        #dashboard: :Atix:Admin/dashboard.html.twig
+        # layout: :Atix:Admin/standard_layout.html.twig
+        # user_block: :Atix:Admin/user_block.html.twig
+        # delete:   :Atix:Admin/delete.html.twig
+    assets:
+        stylesheets:
+            - compiled/front/common.css
+            - bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css
+            - bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css
+            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
+            - bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css
+            - bundles/sonataadmin/vendor/select2/select2.css
+            - bundles/sonataadmin/vendor/select2/select2-bootstrap.css
+            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
+            - bundles/sonataadmin/css/styles.css
+            - bundles/sonataadmin/css/layout.css
+        javascripts:
+            # Defaults:
+            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
+            - bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js
+            - compiled/front/main.min.js
+            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
+            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
+            - bundles/sonataadmin/jquery/jquery.form.js
+            - bundles/sonataadmin/jquery/jquery.confirmExit.js
+            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
+            - bundles/sonataadmin/vendor/select2/select2.min.js
+            - bundles/sonataadmin/App.js
+            - bundles/sonataadmin/Admin.js
+
+knp_paginator:
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
 
 services:
     gedmo.listener.tree:
