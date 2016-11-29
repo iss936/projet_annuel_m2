@@ -13,3 +13,9 @@
 /.idea/
 /web/compiled/*
 /web/uploads/*
+/web/.sass-cache
+/web/stylesheets
+/app/SymfonyRequirements.php
+/app/check.php
+composer.lock
+/web/config.php

@@ -11,18 +11,12 @@
     {% block scripts_head %}
         <script type="text/javascript" src="{{ asset('compiled/front/main.min.js') }}"></script>
         {# {% if app.user is null %} #}
-        <script type="text/javascript" src="{{ asset('js/front/no_connected/easing.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/front/no_connected/html5shiv.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/front/no_connected/nicescroll.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/front/no_connected/pace.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/front/no_connected/respond.min.js') }}"></script>
-        <script type="text/javascript" src="//connect.facebook.net/fr_Fr/all.js"></script>
-        {# {% endif %} #}
+
     {% endblock scripts_head %}
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
-<body>
+<body class="auth_container">
 {% include 'top_nav.html.twig' %}
 
 {% block body %}

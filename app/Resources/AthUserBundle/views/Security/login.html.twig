@@ -2,62 +2,129 @@
 
 {% block fos_user_content %}
 
-	
-	<main id="top" class="masthead" role="main">
-		<div class="container">
-			<!-- <div class="logo"> <a href="index.html#"><img src="images/logo.png" alt="logo"></a>
-			</div> -->
- 			
-			<h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
- 
-			<div class="row myBackground">
-				<div class="col-md-6 col-sm-12 col-md-offset-3 subscribe">
 
-                <form action="{{ path("fos_user_security_check") }}" method="post" id="subscribeForm">
-					<h2>{{ "connexion" | trans({}, 'home') }}</h2>
-					{% if error %}
-				        <div class="alert alert-warning">
-				            <strong>{{ "formConnection.errorPass" | trans({},'home') }}</strong>
-				        </div>
-                    {% endif %}
-
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-	
-    				<input type="text" class="form-control input-lg" id="username" name="_username" placeholder="{{ "mail_adress" | trans({}, 'fosuser') }}" value="{{ last_username }}" required="required" />
-                    <br><br>
-					{# <label for="password">{{ 'security.login.password'|trans }}</label> #}
-
-    				<input type="password" id="password" class="form-control input-lg" name="_password" placeholder="{{ "password" | trans({}, 'fosuser') }}" required="required" autofocus=""/>
-    				<br>
-	
-					<p>
-						<button type="submit" class="btn btn-info btn-lg">{{ "btn.submit.connect" | trans({}, 'home') }}</button>
-						<a href="{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}" class="btn btn-block btn-social btn-facebook" ><span class="fa fa-facebook"></span> {{ "connexion.facebook" | trans({}, 'home') }}</a>
-        				{# <a href="{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}" class="btn btn-block btn-social btn-twitter" ><span class="fa fa-twitter"></span> {{ "connexion.twitter" | trans({}, 'home') }}</a> #}
-        				<a href="{{ url("hwi_oauth_service_redirect", {service: "google"}) }}" class="btn btn-block btn-social btn-google" ><span class="fa fa-google"></span> {{ "connexion.google" | trans({}, 'home') }}</a>
-    				</p>
-					<h3>{{ "or" | trans({}, 'home') }}</h3>
-
-					<br>
-					<a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-lg"> {{ "inscription" | trans({}, 'home') }}</a>
-				</form>
-					<br>
-					<br>
-
-				<a href="{{ path('fos_user_resetting_request') }}" class="btn btn-default btn-lg"> {{ "forgotPassword" | trans({}, 'home') }}</a>
-					<span id="result" class="alertMsg"></span> </div>
-				</div>
- 
-				<a href="#explore" class="scrollto">
-					<p>{% filter upper %}
-                        {{ "scroll" | trans({}, 'home') }}
-                       {% endfilter %}
+    <div class="container">
+        <div class="row">
+            <div class="hidden-sm col-sm-6 col-md-7">
+                <div class="auth_descr hidden-xs">
+                    <a href="#" class="menu_xs hidden-md hidden-sm hidden-lg">
+                        <i class="fa fa-bars fa-2x"></i>
+                    </a>
+                    <h2>
+                        <strong>auth </strong><span>:</span>
+                        <span class="yellow"></span>
+                    </h2>
+                    <p>
+                        I figured I could cut classes for the rest of the semester and he couldn't flunk me as long as I, you know, made the thing. So I finished it in a couple days. And it looked pretty lame, but it worked. You know, for putting in or whatnot. So when I showed it to Mr. Pike for my grade, he looked at it and said: 'Is that the best you can do?'
                     </p>
-					<p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
-				</a>
-		</div><!-- /container -->
-	</main><!--/main -->
- 
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="reg_image_container reg_opacity_in">
+                    <div class="reg_block">
+                        <div class="btn-hack">
+                            <div class="btn-back">
+                                <div class="authorization register_p">
+                                    <div class="authorization_head clearfix">
+                                        <p class="auth_p pull-left">
+                                            <span class="edited" id="edited_reg1">Registration</span>
+                                        </p>
+                                        <a href="#" class="reg_close" id="reg_close">
+                                            <i class="fa fa-times fa-2x pull-right"></i>
+                                        </a>
+                                    </div>
+                                    <div class="authorization_form">
+                                        <div class="auth_input clearfix">
+                                            <div class="icon">
+                                                <i class="fa fa-envelope fa-2x"></i>
+                                            </div>
+                                            <label class="enter_label">
+                                                E-mail: </label>
+                                            <input type="text" class="e-mail_in form-control"
+                                                   onchange="checkesc_html_email()" id="reglogin"
+                                                   placeholder="Your email">
+                                        </div>
+
+                                        <div class="auth_input clearfix">
+                                            <div class="icon">
+                                                <i class="fa fa-user fa-2x"></i>
+                                            </div>
+                                            <label class="enter_label">
+                                                Enter name: </label>
+                                            <input type="text" class="e-mail_in form-control" name="display_name"
+                                                   id="display_name" placeholder="Nick">
+                                        </div>
+                                        <div class="auth_input clearfix">
+                                            <div class="icon">
+                                                <i class="fa fa-user fa-2x"></i>
+                                            </div>
+                                            <label class="enter_label">
+                                                Password: </label>
+                                            <input type="text" class="e-mail_in form-control" name="pass" id="regpass"
+                                                   placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="auth_login">
+                                        <button class="ladda-button ladda-primary btn btn-primary" id="tryreg"
+                                                onclick="reg();" data-color="red" data-style="zoom-out"><span
+                                                    class="ladda-label">Register</span><span
+                                                    class="ladda-spinner"></span></button>
+                                        <span id="result">
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-front">
+                                <div class="authorization">
+                                    <div class="authorization_head clearfix">
+                                        <p class="edited auth_p pull-left" id="edited_Autorization1">
+                                            Autorization </p>
+                                        <a href="#" id="auth_menu">
+                                            <i class="fa fa-user-plus fa-2x pull-right"></i>
+                                        </a>
+                                    </div>
+
+                                    <form action="{{ path("fos_user_security_check") }}" method="post"
+                                          id="subscribeForm">
+                                        <div class="authorization_form">
+                                            <div class="auth_input clearfix">
+                                                <div class="icon">
+                                                    <i class="fa fa-envelope fa-2x"></i>
+                                                </div>
+                                                <label class="enter_label"> Email:</label>
+                                                <input type="text" class="form-control e-mail_in" id="login"
+                                                       placeholder="Your email">
+                                            </div>
+                                            <div class="auth_input clearfix">
+                                                <div class="icon">
+                                                    <i class="fa fa-key fa-2x"></i>
+                                                </div>
+                                                <label class="enter_label"> Password:</label>
+                                                <input type="password" class="form-control e-mail_in" id="pass"
+                                                       placeholder="*******">
+                                            </div>
+                                        </div>
+                                        <div class="auth_login">
+                                            <div class="" id="loginresult">
+                                                <input id="try_login" type="submit" class="ladda-button ladda-primary btn btn-primary" value="{{ "btn.submit.connect" | trans({}, 'home') }}">
+                                                <a href="{{ path('fos_user_resetting_request') }}">{{ "forgotPassword" | trans({}, 'home') }}</a>
+                                                <a href="{{ path('fos_user_registration_register') }}">
+                                                    {{ "inscription" | trans({}, 'home') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     {% include '@ath_views/include_no_connected.html.twig' %}
 

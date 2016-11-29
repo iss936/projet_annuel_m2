@@ -15,7 +15,6 @@ Already provided by compass
 @include keyframes(arrowbounce) {
   from {
     @include transform(translateY(0px));
-
   }
   to {
     @include transform(translateY(-20px));

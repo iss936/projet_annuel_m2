@@ -1,17 +1,24 @@
+
 @import "../../../bower_components/breakpoint-sass/stylesheets/breakpoint";
 @import "../../../bower_components/compass-mixins/lib/compass";
 @import "../../../bower_components/compass-mixins/lib/animation/core";
 @import "../../../bower_components/compass-mixins/lib/animation/animate";
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
+@import "../../../bower_components/bootstrap-social/bootstrap-social.scss";
 
+// Base Theme
+@import "theme/animate";
+@import "theme/bootstrap.min";
+@import "theme/bootstrap-tokenfield.min";
+@import "theme/font-awesome.min";
+@import "theme/ladda.min";
+@import "theme/lightcase";
+@import "theme/media";
+@import "theme/owl.carousel";
+@import "theme/owl.theme";
+@import "theme/style";
 
-@import "base";
-@import "global_keyframes";
-@import "partials/pace";
-@import "partials/footer";
-@import "partials/header";
+// Custom Style
 
-@import "global_responsive";
+@import "partials/auth";
 
-// TODO remove
-@import "temporary_template";
