@@ -9,18 +9,15 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-class CategorieProduitAdmin extends Admin
+class UserDiscussionAdmin extends Admin
 {
-
-    private $em;
-
-    protected $baseRoutePattern = 'categorie/produit';
+    protected $baseRoutePattern = 'user/discution';
 
     public function toString($object)
     {
         return  $object->getId()
-            ? $object
-            : 'Création d\' une catégorie de produit'; // shown in the breadcrumb on the create view
+            ? $object->getId()
+            : 'Création d\' une discution'; // shown in the breadcrumb on the create view
     }
 
     protected function configureRoutes(RouteCollection $collection)
@@ -35,7 +32,8 @@ class CategorieProduitAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('libelle')
+            ->add('userEmetteur')
+            ->add('userDestinataire')
         ;
     }
 
@@ -46,8 +44,8 @@ class CategorieProduitAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('libelle')
-            ->add('description', 'text', array('template' => '@ath_admin_path/Commun/list_sub_string.html.twig'))
+            ->add('userEmetteur')
+            ->add('userDestinataire')
             ->add('createdAt', 'array', array('label' => "Créé le", 'template' => '@ath_admin_path/Commun/list_date.html.twig'))
             ->add('updatedAt','array', array('label' => "Modifié le",'template' => '@ath_admin_path/Commun/list_date.html.twig'))
             ->add('_action', 'actions', array(
@@ -65,16 +63,9 @@ class CategorieProduitAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('libelle')
-            ->add('description', 'text', array('template' => '@ath_admin_path/Commun/list_sub_string.html.twig'))
+            ->add('userEmetteur')
+            ->add('userDestinataire')
         ;
-    }
-
-    public function getExportFormats()
-    {
-        return array(
-            'csv'
-        );
     }
 
     public function getBatchActions()
@@ -84,5 +75,4 @@ class CategorieProduitAdmin extends Admin
 
         return $actions;
     }
-
 }

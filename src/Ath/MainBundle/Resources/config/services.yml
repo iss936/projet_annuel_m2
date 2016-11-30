@@ -50,6 +50,12 @@ services:
         arguments: [~, Ath\MainBundle\Entity\Sport, ~]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Catégorie de sport}
+    
+    admin.user_discussion:
+        class: Ath\MainBundle\Admin\UserDiscussionAdmin
+        arguments: [~, Ath\MainBundle\Entity\UserDiscussion, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Discutions utilisateurs}
 
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
@@ -65,4 +71,4 @@ services:
         tags:
             - { name: form.type, alias: image }
 
-    
+   
