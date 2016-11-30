@@ -19,13 +19,17 @@ class StatutJuridiqueFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $id = $builder->getData();
+        
         $transformer = new StatutJuridiqueDataTransformer();
         $builder->add('statuts', 'choice', array(
             'choices'  => $this->statuts,
             'label'    => false,
             'required' => true,
             'empty_value' => "",
-            'multiple' => false
+            'data' => $id,
+            'multiple' => false,
+            "attr" => array('class' => 'statut-juridique', 'data-id' => 'statut-juridique')
         ))->addModelTransformer($transformer);
 
     }

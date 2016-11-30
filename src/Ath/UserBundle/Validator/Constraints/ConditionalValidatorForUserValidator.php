@@ -13,19 +13,23 @@ class ConditionalValidatorForUserValidator extends ConstraintValidator
         $prenom = $protocol->getPrenom();
         $dateDeCreation = $protocol->getDateDeCreation();
         $dateDeNaissance = $protocol->getDateDeNaissance();
-      
+        $enabled = $protocol->IsEnabled();
         // on a une Association
-        if ($statutId == 2)
+        if ($statutId == 3)
         {
             if (empty($dateDeCreation))
             {
                 $this->context->addViolationAt('dateDeCreation', 'Veuillez saisir la date de création de votre Association', array(), null);
             }
+
+            if($enabled == 1 && count($protocol->getAssociationSports()) < 1){
+                $this->context->addViolationAt('associationSports', 'Veuillez ajouter les sports pratiqués au sein de l\'association', array(), null);
+            }
           
         }
 
         // On a un Homme ou une Femme
-        if($statutId < 2)
+        if($statutId < 3)
         {
             if (empty($prenom))
             {

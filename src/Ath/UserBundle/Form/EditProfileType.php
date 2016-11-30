@@ -20,12 +20,12 @@ class EditProfileType extends AbstractType
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
                 'widget' => 'choice',
                 'format' => 'dd/MM/yyyy',
-                'years' => range(Date('Y') - 16, 1930),
+                'years' => range(Date('Y') - 13, 1930),
                 // 'required' => false,
             ))
 
             ->add('rue', 'text', array('label' => 'label.rue', 'required' => false, 'attr' => array('placeholder' => 'placeholder.rue')))
-            ->add('ville', 'text', array('label' => 'label.ville', 'required' => false,'attr' => array('placeholder' => 'placeholder.ville')))
+            ->add('ville', 'text', array('label' => 'label.ville', 'required' => true,'attr' => array('placeholder' => 'placeholder.ville')))
             ->add('cp', 'text', array('label' => 'label.cp', 'required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
             ->add('description', 'textarea', array('label' => 'label.cp','required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
             ->add('file', 'file', array('data_class' => 'Symfony\Component\HttpFoundation\File\File','label' => 'formEditProfile.photo', 'required' => false))

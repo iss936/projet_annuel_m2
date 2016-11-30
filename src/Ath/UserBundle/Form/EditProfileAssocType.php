@@ -20,7 +20,7 @@ class EditProfileAssocType extends AbstractType
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
                 'widget' => 'choice',
                 'format' => 'dd/MM/yyyy',
-                'years' => range(Date('Y'), 1920),
+                'years' => range(Date('Y'), 1850),
                 // 'required' => false,
             ))
             ->add('rue', 'text', array('label' => 'label.rue', 'required' => true, 'attr' => array('placeholder' => 'placeholder.rue')))

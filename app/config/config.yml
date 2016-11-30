@@ -139,6 +139,7 @@ sonata_admin:
     title:                Athleteec
     # title_logo:           images/logo.png
     options:
+        use_select2:    true # disable select2
         # Auto order groups and admins by label or id
         confirm_exit:         false
     templates:

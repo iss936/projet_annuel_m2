@@ -17,7 +17,15 @@ class UserAdmin extends Admin
     {
         return  $object->getId()
             ? $object
-            : 'Création d\' un utilisateur'; // shown in the breadcrumb on the create view
+            : 'Création d\'un utilisateur'; // shown in the breadcrumb on the create view
+    }
+
+    /**
+     * [configure permet de charger le js et le css nécessaire pour les pages create/edit/list]
+     * @return Void
+     */
+    public function configure() {
+        $this->setTemplate('edit', '@ath_admin_path/Commun/user_edit_javascript.html.twig');
     }
 
     /**
@@ -74,93 +82,144 @@ class UserAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $user = $this->getSubject();
+        $id = $this->getRequest()->get($this->getIdParameter());
+
         $formMapper
-            ->add('username')
-            ->add('usernameCanonical')
-            ->add('emailCanonical')
-            ->add('enabled')
-            ->add('salt')
-            ->add('password')
-            ->add('lastLogin')
-            ->add('locked')
-            ->add('expired')
-            ->add('expiresAt')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
-            ->add('roles')
-            ->add('credentialsExpired')
-            ->add('credentialsExpireAt')
-            ->add('id')
-            ->add('facebookId')
-            ->add('facebookAccessToken')
-            ->add('googleId')
-            ->add('twitterId')
-            ->add('nom')
-            ->add('prenom')
-            ->add('siteWeb')
-            ->add('dateDeNaissance')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('photoId')
-            ->add('photoExtension')
-            ->add('photoOriginalName')
-            ->add('rue')
-            ->add('ville')
-            ->add('cp')
-            ->add('description')
-            ->add('cgu')
-            ->add('statutJuridique')
-            ->add('dateDeCreation')
-            ->add('isCelebrite')
+            ->add('file', 'image', array(
+                'data_class' => 'Symfony\Component\HttpFoundation\File\File',
+                'label' => 'Photo',
+                'required' => false,
+                'image_web_path' => ($id && is_object($user)) ? $this->getRequest()->getBasePath().'/'.$user->getWebPath() : ''// affiche
+            ))
             ->add('email')
+
+            ->add('statutJuridique', 'statuts_juridique_widget', array('label' => 'Statut Juridique', 'data' => $user->getStatutJuridiqueId()))
+            ->add('enabled', null, array('label' => 'Activé'))
+            // ->add('roles')
+            ->add('nom')
+            ->add('prenom', null, array('label' => 'Prenom *', 'required' => false, "attr" => array('class' => 'prenom')))
+            ->add('dateDeNaissance','date',array(
+                'label' => 'Date de Naissance *',
+                'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
+                'widget' => 'choice',
+                'format' => 'ddMMyyyy',
+                'years' => range(Date('Y') - 13, 1930),
+                'required' => false,
+                "attr" => array('class' => 'dateDeNaissance', 'data-id' => 'dateDeNaissance')
+            ))
+            ->add('description')
+            ->add('rue')
+            ->add('ville', null, array('required' => true))
+            ->add('cp')
+            ->add('userInteretSports', null, array('required' => true, 'label' => 'Sport qui suscite votre intérêt ?'))
+            ->add('isCelebrite', null, array('label' => 'Célébrité', 'required' => false, "attr" => array('class' => 'celebrite', 'data-id' => 'celebrite')))
+
+             ->add('dateDeCreation','date',array(
+                'label' => 'Date de Création  *',
+                'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'),
+                'widget' => 'choice',
+                'format' => 'ddMMyyyy',
+                'years' => range(Date('Y'), 1850),
+                'required' => false,
+                "attr" => array('class' => 'dateDeCreation', 'data-id' => 'dateDeCreation')
+            ))
+            ->add('siteWeb', null, array('label' => 'Url site web', 'required' => false, "attr" => array('class' => 'siteWeb')))
+            ->add('associationSports', null, array('label' => 'Sport pratiqué au sein de l\'association *', 'required' => false, "attr" => array('class' => 'siteWeb')))
+
         ;
     }
 
+    public function prePersist($object)
+    {
+        $associationRoles = array('ROLE_USER','ROLE_ASSOC');
+        $celebriteRoles = array('ROLE_USER','ROLE_CELEBRITE');
+        $userRoles = array('ROLE_USER');
+        $object->setPlainPassword(uniqid());
+        if($object->getStatutJuridiqueId() == 3)
+            $object->setRoles($associationRoles);
+        else{
+            if($object->getIsCelebrite())
+                $object->setRoles($celebriteRoles);
+            else
+                $object->setRoles($userRoles);
+        }
+    }
+
+    public function preUpdate($object)
+    {
+        $associationRoles = array('ROLE_USER','ROLE_ASSOC');
+        $celebriteRoles = array('ROLE_USER','ROLE_CELEBRITE');
+        $userRoles = array('ROLE_USER');
+
+        if($object->getStatutJuridiqueId() == 3)
+            $object->setRoles($associationRoles);
+        else{
+            if($object->getIsCelebrite())
+                $object->setRoles($celebriteRoles);
+            else
+                $object->setRoles($userRoles);
+        }
+    }
     /**
      * @param ShowMapper $showMapper
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
-        $showMapper
-            ->add('username')
-            ->add('usernameCanonical')
-            ->add('emailCanonical')
-            ->add('enabled')
-            ->add('salt')
-            ->add('password')
-            ->add('lastLogin')
-            ->add('locked')
-            ->add('expired')
-            ->add('expiresAt')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
-            ->add('roles')
-            ->add('credentialsExpired')
-            ->add('credentialsExpireAt')
-            ->add('id')
-            ->add('facebookId')
-            ->add('facebookAccessToken')
-            ->add('googleId')
-            ->add('twitterId')
-            ->add('nom')
-            ->add('prenom')
-            ->add('siteWeb')
-            ->add('dateDeNaissance')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('photoId')
-            ->add('photoExtension')
-            ->add('photoOriginalName')
-            ->add('rue')
-            ->add('ville')
-            ->add('cp')
-            ->add('description')
-            ->add('cgu')
-            ->add('statutJuridique')
-            ->add('dateDeCreation')
-            ->add('isCelebrite')
-            ->add('email')
+        $user = $this->getSubject();
+        $id = $this->getRequest()->get($this->getIdParameter());
+        // on a une assoc
+        if ($user->getStatutJuridiqueId() == 3) {
+            $showMapper
+                ->add('file', 'array', array(
+                    'label' => "Photo",
+                    'template' => '@ath_admin_path/Commun/show_image.html.twig'
+                ))
+                ->add('email')
+
+                ->add('statutJuridique')
+                ->add('enabled', null, array('label' => 'Activé'))
+                // ->add('roles')
+                ->add('nom')
+                // ->add('prenom')
+                // ->add('dateDeNaissance', 'array', array('template' => '@ath_admin_path/Commun/list_date.html.twig'))
+                ->add('description')
+                ->add('rue')
+                ->add('ville')
+                ->add('cp')
+                ->add('userInteretSports', null, array('label' => 'Sport qui suscite votre intérêt ?'))
+                // ->add('isCelebrite', null, array('label' => 'Célébrité'))
+                ->add('dateDeCreation', 'array', array('template' => '@ath_admin_path/Commun/list_date.html.twig'))
+                ->add('siteWeb', null, array('label' => 'Url site web'))
+                ->add('associationSports', null, array('label' => 'Sport pratiqué au sein de l\'association *'))
         ;
+        }
+        else{
+            $showMapper
+                ->add('file', 'array', array(
+                    'label' => "Photo",
+                    'template' => '@ath_admin_path/Commun/show_image.html.twig'
+                ))
+                ->add('email')
+
+                ->add('statutJuridique')
+                ->add('enabled', null, array('label' => 'Activé'))
+                // ->add('roles')
+                ->add('nom')
+                ->add('prenom')
+                ->add('dateDeNaissance', 'array', array('template' => '@ath_admin_path/Commun/list_date.html.twig'))
+                ->add('description')
+                ->add('rue')
+                ->add('ville')
+                ->add('cp')
+                ->add('userInteretSports', null, array('label' => 'Sport qui suscite votre intérêt ?'))
+                ->add('isCelebrite', null, array('label' => 'Célébrité'))
+                // ->add('dateDeCreation', 'array', array('template' => '@ath_admin_path/Commun/list_date.html.twig'))
+                // ->add('siteWeb', null, array('label' => 'Url site web'))
+                // ->add('associationSports', null, array('label' => 'Sport pratiqué au sein de l\'association *'))
+            ;
+        }
+        
     }
 
     public function getBatchActions()

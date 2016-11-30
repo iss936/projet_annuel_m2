@@ -1,0 +1,106 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+	
+		$(document).ready(function() {
+			var idStatut = "{{ object.statutJuridiqueId }}";
+			
+			if (idStatut == "") {
+				$('.dateDeCreation').parent().parent().hide();
+				$(".siteWeb").parent().parent().hide();
+				$(".associationSports").parent().parent().hide();
+
+				$('.prenom').parent().parent().show();
+		    	$('.celebrite').parent().parent().show();
+		    	$('.dateDeNaissance').parent().parent().show();
+
+			}
+			else if(idStatut == "1")
+		    {   
+		    	$('.dateDeCreation').parent().parent().hide();
+				$(".siteWeb").parent().parent().hide();
+				$(".associationSports").parent().parent().hide();
+
+		    	$('.prenom').parent().parent().show();
+		    	$('.celebrite').parent().parent().show();
+		    	$('.dateDeNaissance').parent().parent().show();
+
+
+		    }
+		    else if(idStatut == "2")
+		    {
+		    	$('.dateDeCreation').parent().parent().hide();
+				$(".siteWeb").parent().parent().hide();
+				$(".associationSports").parent().parent().hide();
+				
+		    	$('.prenom').parent().parent().show();
+		    	$('.celebrite').parent().parent().show();
+		    	$('.dateDeNaissance').parent().parent().show();
+		    }
+		    else // 3 ==  Assoc
+		    {
+		    	$('.prenom').parent().parent().hide();
+		    	$('.celebrite').parent().parent().parent().hide();
+		    	$('.dateDeNaissance').parent().parent().hide();
+
+		    	$(".dateDeCreation").parent().parent().show();
+				$(".siteWeb").parent().parent().show();
+				$(".associationSports").parent().parent().show();
+		    }
+
+			$('.statut-juridique[data-id="statut-juridique"]').change(function(event) {
+				var idStatut = $(this).val();
+
+				if (idStatut == "") {
+
+					$('.dateDeCreation').parent().parent().hide();
+					$(".siteWeb").parent().parent().hide();
+					$(".associationSports").parent().parent().hide();
+
+					$('.prenom').parent().parent().show();
+			    	$('.celebrite').parent().parent().parent().show();
+			    	$('.dateDeNaissance').parent().parent().show();
+				}
+				else if(idStatut == "1")
+			    {   
+
+			    	$('.dateDeCreation').parent().parent().hide();
+					$(".siteWeb").parent().parent().hide();
+					$(".associationSports").parent().parent().hide();
+
+			    	$('.prenom').parent().parent().show();
+			    	$('.celebrite').parent().parent().parent().show();
+			    	$('.dateDeNaissance').parent().parent().show();
+
+			    }
+			    else if(idStatut == "2")
+			    {
+
+			    	$('.dateDeCreation').parent().parent().hide();
+					$(".siteWeb").parent().parent().hide();
+					$(".associationSports").parent().parent().hide();
+
+			    	$('.prenom').parent().parent().show();
+			    	$('.celebrite').parent().parent().parent().show();
+			    	$('.dateDeNaissance').parent().parent().show();
+			    }
+			    else // 3 ==  Assoc
+			    {
+
+			    	$('.prenom').parent().parent().hide();
+			    	$('.celebrite').parent().parent().parent().hide();
+			    	$('.dateDeNaissance').parent().parent().hide();
+
+			    	$(".dateDeCreation").parent().parent().show();
+					$(".siteWeb").parent().parent().show();
+					$(".associationSports").parent().parent().show();
+			    }
+			});
+		});
+	</script>
+ {% endblock %}

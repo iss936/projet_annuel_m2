@@ -94,19 +94,19 @@
 		$("body").delegate("input:radio[name='fos_user_registration_form[statutJuridique]']", "click",  function(e) {
 			var idStatut = $(this).val();
 
-		    if(idStatut == "0")
+		    if(idStatut == "1")
 		    {   
 		    	$('#fos_user_registration_form_prenom').attr('required',true);
 		    	$(".Assoc").hide();
 	    		$(".Human").show();
 		    }
-		    else if(idStatut == "1")
+		    else if(idStatut == "2")
 		    {
 		    	$('#fos_user_registration_form_prenom').attr('required',true);
 	    		$(".Assoc").hide();
 	    		$(".Human").show();
 		    }
-		    else // 2 ==  Assoc
+		    else // 3 ==  Assoc
 		    {
 		    	$('#fos_user_registration_form_prenom').removeAttr('required');
 

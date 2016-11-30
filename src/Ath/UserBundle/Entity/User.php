@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ath\UserBundle\Validator\Constraints as UserAssert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ath\UserBundle\Model\StatutJuridique;
@@ -28,6 +29,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * })
  * @ORM\Entity(repositoryClass="Ath\UserBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UserAssert\ConditionalValidatorForUser
  */
 class User extends BaseUser
 {
@@ -783,7 +785,7 @@ class User extends BaseUser
      */
     public function getIsCelebrite()
     {
-        return $this->isCelebrite;
+        return (boolean)$this->isCelebrite;
     }
 
     public function getPosts()
