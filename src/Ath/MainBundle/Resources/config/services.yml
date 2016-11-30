@@ -23,7 +23,7 @@ services:
 #  ----------------------- Gestion ADMIN -----------------------------------------------------
     admin.demande_celebrite:
         class: Ath\MainBundle\Admin\DemandeCelebriteAdmin
-        arguments: [~, Ath\MainBundle\Entity\DemandeCelebrite, AthMainBundle:CRUD]
+        arguments: [~, Ath\MainBundle\Entity\DemandeCelebrite, AthMainBundle:DemandeCelebriteAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Demandes de Célébrité}
 

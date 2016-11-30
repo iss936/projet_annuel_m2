@@ -1,0 +1,8 @@
+{% if object.statutId == 1 %}
+    <a class="btn btn-sm btn-success reponse" href="{{ admin.generateObjectUrl('reponse_demande_celebrite', object,{'statut': 2}) }}" 
+    data-confirm="Voulez vous vraiment valider la demande {{ object.id }} ?">
+    	Valider
+   	</a>
+    <a class="btn btn-sm btn-danger reponse" href="{{ admin.generateObjectUrl('reponse_demande_celebrite', object,{'statut': 3}) }}"
+    data-confirm="Voulez vous vraiment refuser la demande {{ object.id }} ?">Refuser</a>
+{% endif %}

@@ -19,6 +19,7 @@ class DemandeCelebriteFormType extends AbstractType
                 /*'attr' => array(
                     'class' => "js-editor"
                 )*/
+                'label' => 'demandeCelebrite.message'
             ))
         ;
     }

@@ -1,0 +1,30 @@
+{% extends "::Ath/Mail/base.html.twig" %}
+
+{# @see \app\Resources\translations\mail.{$lang}}.yml #}
+{% block body_mail %}
+
+    <table class="scaleForMobile" width="590" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tbody>
+            <tr>
+                <td width="590" height="15" bgcolor="#ffffff" style="line-height:1px;-webkit-text-size-adjust:none;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="590" style="font-size:14px;line-height:135%;color:#31414C;text-align:center;font-weight:bold;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-text-size-adjust:none;">
+
+                    <p> Bonjour {{ user }}, </p>
+                    <p>Votre demande de célébrité a bien été accepté par l'équipe Athleteec.</p>                 
+                    <br>
+                    <p> Mettez en valeur votre équipement sportif et votre profil <a href="{{ path('fos_user_profile_edit') }}">Athleteec</a> </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="590" height="15" style="-webkit-text-size-adjust:none;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+{%  endblock %}
+
+{% block footer_mail %}
+    {{ 'footer' | trans({},'mail') |nl2br }}
+{%  endblock %}

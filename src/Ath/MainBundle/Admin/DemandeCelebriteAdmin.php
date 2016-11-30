@@ -22,12 +22,20 @@ class DemandeCelebriteAdmin extends Admin
             : 'Création d\' une demande de célébrité'; // shown in the breadcrumb on the create view
     }
 
+    /**
+     * [configure permet de charger le js et le css nécessaire pour les pages create/edit/list]
+     * @return Void
+     */
+    public function configure() {
+        $this->setTemplate('list', '@ath_admin_path/Commun/list_demande_celebrite_javascript.html.twig');
+    }
+
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('create');
         $collection->remove('edit');
+        $collection->add('reponse_demande_celebrite', $this->getRouterIdParameter().'reponse/demande-celebrite');
     }
-
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -55,6 +63,7 @@ class DemandeCelebriteAdmin extends Admin
                 'actions' => array(
                     'show' => array(),
                     'delete' => array(),
+                    'reponse' => array('template' => '@ath_admin_path/Commun/reponse_demande_celebrite.html.twig')
                 )
             ))
         ;

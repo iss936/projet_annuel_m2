@@ -1058,15 +1058,19 @@ class User extends BaseUser
             $ok=true;
         else // le user a déjà une ou plusieurs demande
         {
-            $lastDemande = $demandeCelebrites[0];
+            if(!$this->hasRole("ROLE_CELEBRITE"))
+            {
+                $lastDemande = $demandeCelebrites[0];
             
-            $dateDemande = $lastDemande->getDateDemande();
+                $dateDemande = $lastDemande->getDateDemande();
 
-            $dateAutoriser = new \DateTime($dateDemande->format('Y-m-d'));
-            $dateAutoriser->add(new \DateInterval('P30D'));
-            $now = new \DateTime();
-            if($now > $dateAutoriser)
-                $ok = true;
+                $dateAutoriser = new \DateTime($dateDemande->format('Y-m-d'));
+                $dateAutoriser->add(new \DateInterval('P30D'));
+                $now = new \DateTime();
+                // le user peut refaire une demande 30j après sa dernière demande
+                if($now > $dateAutoriser)
+                    $ok = true;
+            }
         }
 
         return $ok;

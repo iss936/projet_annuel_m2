@@ -64,9 +64,9 @@ class SendMail
     /**
      * Permet d'envoyer un mail afin de faire une demande célébrité aux administrateurs
      *
-     * @param User $user, string $message
+     * @param User $user, string $messageDemande
      */
-    public function demandeCelebrite($user,$message)
+    public function demandeCelebrite($user,$messageDemande)
     {
         $trad = $this->container->get('translator');
         $subject = $trad->trans(
@@ -85,7 +85,73 @@ class SendMail
                 '::Ath/Mail/mail_demande_celebrite.html.twig',
                 array(
                     'user' => $user,
-                    'message' => $message
+                    'message' => $messageDemande
+                )
+            )
+        )
+        ->setContentType('text/html');
+
+        $this->container->get('mailer')->send($message);
+    }
+
+    /**
+     * Permet de confirmer la validation d'une demande de célébrité
+     *
+     * @param demandeCelebrite $demandeCelebrite
+     */
+    public function validationDemandeCelebrite($demandeCelebrite)
+    {
+        $trad = $this->container->get('translator');
+        $user = $demandeCelebrite->getCreatedBy();
+        $subject = $trad->trans(
+            "demande_celebrite_validation.email.subject",
+            array(),
+            'mail'
+        );
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->from)
+            ->setTo($user->getEmail());
+
+        $message->setBody(
+            $this->container->get('templating')->render(
+                '::Ath/Mail/mail_validation_demande_celebrite.html.twig',
+                array(
+                    'user' => $user,
+                )
+            )
+        )
+        ->setContentType('text/html');
+
+        $this->container->get('mailer')->send($message);
+    }
+
+    /**
+     * Permet de confirmer refuser une demande de célébrité
+     *
+     * @param demandeCelebrite $demandeCelebrite
+     */
+    public function refusDemandeCelebrite($demandeCelebrite)
+    {
+        $trad = $this->container->get('translator');
+        $user = $demandeCelebrite->getCreatedBy();
+        $subject = $trad->trans(
+            "demande_celebrite_refus.email.subject",
+            array(),
+            'mail'
+        );
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->from)
+            ->setTo($user->getEmail());
+
+        $message->setBody(
+            $this->container->get('templating')->render(
+                '::Ath/Mail/mail_refus_demande_celebrite.html.twig',
+                array(
+                    'user' => $user,
                 )
             )
         )

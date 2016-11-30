@@ -1,0 +1,19 @@
+{% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    <script type="text/javascript">
+
+    	$(document).ready(function($) {
+		    $('.reponse').click(function(e) {
+		        var dataConfirm = $(this).attr('data-confirm');
+		        e.preventDefault();
+		        if (window.confirm(dataConfirm)) {
+		            location.href = this.href;
+		           var href = $(this).attr("href");
+		        }
+		    });
+    	});
+    </script>
+ {% endblock %}
