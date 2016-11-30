@@ -13,7 +13,9 @@
                     <p> Bonjour {{ user }}, </p>
                     <p>Votre demande de célébrité a été refusé par l'équipe Athleteec. </p>               
                     <br>
-                    <p> A bientôt, sur <a href="{{ path('ath_user_homepage') }}">Athleteec</a> </p>
+                    {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_homepage') %}
+
+                    <p> A bientôt, sur <a href="{{ url }}">Athleteec</a> </p>
                 </td>
             </tr>
             <tr>

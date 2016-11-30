@@ -1,10 +1,10 @@
 services:
     # se déclenche lors de la connexion
-    ath_user.login_success_handler:
-        class: Ath\UserBundle\Managers\LoginSuccessHandler
-        arguments:  [@router, @security.context, @session]
-        tags:
-            - { name: 'monolog.logger', channel: 'security' }
+    # ath_user.login_success_handler:
+    #     class: Ath\UserBundle\Managers\LoginSuccessHandler
+    #     arguments:  [@router, @security.context, @session]
+    #     tags:
+    #         - { name: 'monolog.logger', channel: 'security' }
     
     my_user_provider:
         class: Ath\UserBundle\Security\Core\User\MyOAuthProvider
