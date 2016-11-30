@@ -50,3 +50,13 @@
     <label  for="{{ id }}"><input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ label|trans }}</label>
 {% endspaceless %}
 {% endblock radio_widget %}
+
+{% block image_widget %}
+{% spaceless %}
+    {% set type = type|default('file') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {% if image_web_path is not empty %}
+        <img src="{{ image_web_path }}" alt="image_photo" height="200px" width="200px" />
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

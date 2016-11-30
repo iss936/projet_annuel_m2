@@ -80,7 +80,7 @@ class Produit
     private $prix;
 
     /**
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable = true)
      */
     private $url;
 
@@ -319,5 +319,10 @@ class Produit
     public function getUrl()
     {
         return $this->url;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }

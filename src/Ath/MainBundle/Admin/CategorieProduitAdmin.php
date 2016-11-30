@@ -47,7 +47,7 @@ class CategorieProduitAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('libelle')
-            ->add('description')
+            ->add('description', 'text', array('template' => '@ath_admin_path/Commun/list_sub_string.html.twig'))
             ->add('createdAt', 'array', array('label' => "Créé le", 'template' => '@ath_admin_path/Commun/list_date.html.twig'))
             ->add('updatedAt','array', array('label' => "Modifié le",'template' => '@ath_admin_path/Commun/list_date.html.twig'))
             ->add('_action', 'actions', array(

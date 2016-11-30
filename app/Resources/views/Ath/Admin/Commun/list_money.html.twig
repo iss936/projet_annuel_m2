@@ -1,0 +1,9 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field%}
+    {% if value is empty %}
+        &nbsp;
+    {% else %}
+        {{ value|number_format(2,'.') }} €
+    {% endif %}
+{% endblock %}

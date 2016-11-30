@@ -32,6 +32,19 @@ services:
         arguments: [~, Ath\MainBundle\Entity\CategorieProduit, ~]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Catégorie de Produit}
+
+    admin.produit:
+        class: Ath\MainBundle\Admin\ProduitAdmin
+        arguments: [~, Ath\MainBundle\Entity\Produit, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Produit}
+
+    admin.file_produit:
+        class: Ath\MainBundle\Admin\FileProduitAdmin
+        arguments: [~, Ath\MainBundle\Entity\FileProduit, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Images, show_in_dashboard: false }
+
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
 # Widget Form pour les statuts de demande de célébrité
@@ -40,4 +53,9 @@ services:
         tags:
             - { name: form.type, alias: statuts_demande_celebrite_widget }
 
-   
+# Type Widget form
+    ath_main.form.widget_type.image:
+        class: Ath\MainBundle\Form\WidgetType\ImageType
+        tags:
+            - { name: form.type, alias: image }
+
