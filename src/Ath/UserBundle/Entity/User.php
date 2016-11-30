@@ -173,13 +173,13 @@ class User extends BaseUser
      *
      * @ORM\Column(name="statut_juridique", type="integer")
      */
-    private $statutJuridique; // 0 = Homme, 1 = Femme, 2 = Association
+    private $statutJuridique; // 1 = Homme, 2 = Femme, 3 = Association
 
     /**
      * @ORM\Column(name="date_de_creation", type="datetime", nullable = true)
      */
     private $dateDeCreation;
-    
+
     /**
      * @var bool
      *
@@ -712,7 +712,7 @@ class User extends BaseUser
      * @return mixed
      */
     public function getStatutJuridique()
-    {
+    {  
         return StatutJuridique::getLibFromId($this->statutJuridique);
     }
     
@@ -1053,23 +1053,25 @@ class User extends BaseUser
         $ok = false;
 
         $demandeCelebrites = $this->getDemandeCelebrites();
-        
-        if(count($demandeCelebrites) == 0)
-            $ok=true;
-        else // le user a déjà une ou plusieurs demande
+        if($this->statutJuridique < 3)
         {
-            if(!$this->hasRole("ROLE_CELEBRITE"))
+            if(count($demandeCelebrites) == 0)
+                $ok=true;
+            else // le user a déjà une ou plusieurs demande
             {
-                $lastDemande = $demandeCelebrites[0];
-            
-                $dateDemande = $lastDemande->getDateDemande();
+                if(!$this->hasRole("ROLE_CELEBRITE"))
+                {
+                    $lastDemande = $demandeCelebrites[0];
+                
+                    $dateDemande = $lastDemande->getDateDemande();
 
-                $dateAutoriser = new \DateTime($dateDemande->format('Y-m-d'));
-                $dateAutoriser->add(new \DateInterval('P30D'));
-                $now = new \DateTime();
-                // le user peut refaire une demande 30j après sa dernière demande
-                if($now > $dateAutoriser)
-                    $ok = true;
+                    $dateAutoriser = new \DateTime($dateDemande->format('Y-m-d'));
+                    $dateAutoriser->add(new \DateInterval('P30D'));
+                    $now = new \DateTime();
+                    // le user peut refaire une demande 30j après sa dernière demande
+                    if($now > $dateAutoriser)
+                        $ok = true;
+                }
             }
         }
 

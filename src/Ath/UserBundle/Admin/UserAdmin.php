@@ -52,7 +52,7 @@ class UserAdmin extends Admin
             ->add('prenom')
             ->add('description')
             ->add('isCelebrite', null, array('label' => 'Célébrité'))
-            // ->add('statutJuridique')
+            ->add('statutJuridique')
             ->add('enabled', null, array('label' => "Activé"))
             ->add('lastLogin','array', array('label' => "Dernière connexion",'template'=> '@ath_admin_path/Commun/list_date.html.twig'))
             // ->add('roles')

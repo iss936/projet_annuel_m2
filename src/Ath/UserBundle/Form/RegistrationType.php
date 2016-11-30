@@ -12,7 +12,7 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('statutJuridique', 'choice', array(
-                'choices' => array(0 => "Un homme", 1 => 'Une femme', 2 => 'Une association'),
+                'choices' => array(1 => "Un homme", 2 => 'Une femme', 3 => 'Une association'),
                 'required' => true,
                 'label' => 'form.genre',
                 'empty_data'  => null,

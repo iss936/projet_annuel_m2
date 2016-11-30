@@ -9,9 +9,9 @@ class StatutJuridique
 {
     protected static $statuts = array(
         ''  => '',
-        '0' => 'Homme',
-        '1' => 'Femme',
-        '2' => 'Association',
+        '1' => 'Homme',
+        '2' => 'Femme',
+        '3' => 'Association',
     );
 
     /**
