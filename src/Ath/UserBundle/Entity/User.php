@@ -190,21 +190,21 @@ class User extends BaseUser
 	/**
      * @var ArrayCollection User $posts
      * 
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="createdBy")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="createdBy", cascade={"all"})
      */
     private $posts;
 
     /**
      * @var ArrayCollection User $comments
      * 
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Comment", mappedBy="createdBy")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Comment", mappedBy="createdBy", cascade={"all"})
      */
     private $comments;
 
     /**
      * @var ArrayCollection User $userEmetteursFollow
      * 
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserFollow", mappedBy="userEmetteur")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserFollow", mappedBy="userEmetteur", cascade={"all"})
      */
     private $userEmetteursFollow; // veut suivre
 
@@ -212,45 +212,45 @@ class User extends BaseUser
      * @var ArrayCollection User $userDestinatairesFollow
      * 
      * @ORM\OrderBy({"dateDemande" = "DESC"})
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserFollow", mappedBy="userDestinataire")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserFollow", mappedBy="userDestinataire", cascade={"all"})
      */
     private $userDestinatairesFollow;
 
     /**
      * @var ArrayCollection UserDiscussion $userDiscussionEmetteurs
      *
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserDiscussion", mappedBy="userEmetteur")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserDiscussion", mappedBy="userEmetteur", cascade={"all"})
      */
     private $userDiscussionEmetteurs;
 
     /**
      * @var ArrayCollection UserDiscussion $userDiscussionEmetteurs
      *
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserDiscussion", mappedBy="userDestinataire")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\UserDiscussion", mappedBy="userDestinataire", cascade={"all"})
      */
     private $userDiscussionDestinataires;
 
     /**
      * @var ArrayCollection DemandeCelebrites $demandeCelebrites
      * @ORM\OrderBy({"dateDemande" = "DESC"})
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\DemandeCelebrite", mappedBy="createdBy")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\DemandeCelebrite", mappedBy="createdBy", cascade={"all"})
      */
     private $demandeCelebrites;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Sport", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Sport", cascade={"all"})
      * @ORM\JoinTable(name="user_interet_sport")
      */
     private $userInteretSports;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Produit", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Produit", cascade={"all"})
      * @ORM\JoinTable(name="user_comparateur_produit")
      */
     private $userComparateurProduits;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Sport", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Sport", cascade={"all"})
      * @ORM\JoinTable(name="association_sport")
      */
     private $associationSports;
@@ -259,14 +259,14 @@ class User extends BaseUser
      * @var ArrayCollection Produits $produits
      * @ORM\OrderBy({"updatedAt" = "DESC"})
      * 
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Produit", mappedBy="createdBy")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Produit", mappedBy="createdBy", cascade={"all"})
      */
     private $produits; // produits créés par le user
 
     /**
      * @var \Ath\UserBundle\Entity\User
      *
-     * @ORM\OneToOne(targetEntity="Ath\MainBundle\Entity\UserSetting", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Ath\MainBundle\Entity\UserSetting", cascade={"all"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $userSetting;

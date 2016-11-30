@@ -58,7 +58,7 @@ class UserDiscussion
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Message", mappedBy="userDiscussion")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Message", mappedBy="userDiscussion", cascade={"all"})
      */
     private $messages;
 

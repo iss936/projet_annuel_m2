@@ -110,7 +110,7 @@ class CategorieProduit
     private $position;
     
     /**
-     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Produit", mappedBy="categorieProduit")
+     * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Produit", mappedBy="categorieProduit", cascade={"remove"})
      */
     private $produits;
 

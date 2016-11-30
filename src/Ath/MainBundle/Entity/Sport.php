@@ -42,7 +42,7 @@ class Sport
      * @ORM\Column(name="updated_at", type="datetime")
      * @Gedmo\Timestampable(on="update")
      */
-    private $updateAt;
+    private $updatedAt;
 
 
     /**
@@ -102,25 +102,30 @@ class Sport
     }
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $updatedAt
      * @return Sport
      */
-    public function setUpdateAt($updateAt)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getUpdateAt()
+    public function getUpdatedAt()
     {
-        return $this->updateAt;
+        return $this->updatedAt;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

@@ -44,6 +44,12 @@ services:
         arguments: [~, Ath\MainBundle\Entity\FileProduit, ~]
         tags:
             - {name: sonata.admin, manager_type: orm, label: Images, show_in_dashboard: false }
+    
+    admin.sport:
+        class: Ath\MainBundle\Admin\SportAdmin
+        arguments: [~, Ath\MainBundle\Entity\Sport, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Catégorie de sport}
 
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
@@ -59,3 +65,4 @@ services:
         tags:
             - { name: form.type, alias: image }
 
+    
