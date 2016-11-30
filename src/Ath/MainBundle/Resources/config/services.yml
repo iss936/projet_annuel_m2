@@ -75,6 +75,12 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Article}
 
+    admin.comment:
+        class: Ath\MainBundle\Admin\CommentAdmin
+        arguments: [~, Ath\MainBundle\Entity\Comment, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Commentaires des articles}
+
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
 # Widget Form pour les statuts de demande de célébrité
@@ -88,5 +94,3 @@ services:
         class: Ath\MainBundle\Form\WidgetType\ImageType
         tags:
             - { name: form.type, alias: image }
-
-    

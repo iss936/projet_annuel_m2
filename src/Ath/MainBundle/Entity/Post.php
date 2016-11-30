@@ -214,7 +214,7 @@ class Post
       return $this->comments;
     }
     
-    public function removeComments(\Ath\Mainundle\Entity\Comment $comment)
+    public function removeComment(\Ath\MainBundle\Entity\Comment $comment)
     {
       $this->comments->removeElement($comment);
     }
@@ -225,5 +225,10 @@ class Post
             $this->comments->add($comment);
         
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->id;
     }
 }
