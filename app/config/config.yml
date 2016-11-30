@@ -141,15 +141,20 @@ sonata_admin:
         # Auto order groups and admins by label or id
         confirm_exit:         false
     templates:
-        #dashboard: :Atix:Admin/dashboard.html.twig
-        # layout: :Atix:Admin/standard_layout.html.twig
-        # user_block: :Atix:Admin/user_block.html.twig
-        # delete:   :Atix:Admin/delete.html.twig
+        dashboard: :Ath:Admin/dashboard.html.twig
+        layout: :Ath:Admin/standard_layout.html.twig
+        user_block: :Ath:Admin/user_block.html.twig
+        delete:   :Ath:Admin/delete.html.twig
     assets:
         stylesheets:
-            - compiled/front/common.css
+            # - compiled/front/common.css
+            - bundles/atixheader/css/shared/bootstrap.css
+            - bundles/atixheader/css/shared/bootstrap.responsive-table.css
+            - bundles/atixheader/css/shared/sonata.atixSkin.css
+            - bundles/atixformextra/css/farbtastic.css
             - bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css
             - bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css
+            - cssAdmin/admin.css
             - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
             - bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css
             - bundles/sonataadmin/vendor/select2/select2.css
@@ -157,11 +162,15 @@ sonata_admin:
             - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
             - bundles/sonataadmin/css/styles.css
             - bundles/sonataadmin/css/layout.css
+            - bundles/atixformextra/css/farbtastic.css
         javascripts:
             # Defaults:
+            - components/jquery/jquery.min.js
+            - bundles/atixheader/js/atixResponsTable.js
             - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
             - bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js
-            - compiled/front/main.min.js
+            - components/bootstrap/js/bootstrap.min.js
+            - bundles/atixformextra/js/bootstrap-datetimepicker.js
             - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
             - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
             - bundles/sonataadmin/jquery/jquery.form.js
@@ -170,6 +179,7 @@ sonata_admin:
             - bundles/sonataadmin/vendor/select2/select2.min.js
             - bundles/sonataadmin/App.js
             - bundles/sonataadmin/Admin.js
+            - bundles/atixformextra/js/farbtastic.js
 
 knp_paginator:
     template:

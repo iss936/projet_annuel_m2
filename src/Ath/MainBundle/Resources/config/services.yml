@@ -19,3 +19,12 @@ services:
           - "@translator"
         tags:
             - { name: form.handler, alias: demande_celebrite.handler }
+
+#  ----------------------- Gestion ADMIN -----------------------------------------------------
+    admin.demande_celebrite:
+        class: Ath\MainBundle\Admin\DemandeCelebriteAdmin
+        arguments: [~, Ath\MainBundle\Entity\DemandeCelebrite, AthMainBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Demandes de Célébrité}
+
+#  ----------------------- FIN GESTION ADMIN -------------------------------------------------

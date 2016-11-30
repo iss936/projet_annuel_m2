@@ -1,0 +1,11 @@
+{% if is_granted("ROLE_ADMIN") %}
+
+    <li class="has-children">
+        <a href="#">Administration <b class="caret"></b></a>
+        <ul>
+            <li>
+                <a href="{{ path('sonata_admin_dashboard')}}">Tableau de bord</a>
+            </li>
+        </ul>
+    </li>
+{% endif %}

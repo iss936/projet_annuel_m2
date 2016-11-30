@@ -33,9 +33,9 @@ class DemandeCelebrite
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_accepte", type="boolean")
+     * @ORM\Column(name="is_accepte", type="boolean", nullable = true)
      */
-    private $isAccepte = 0;
+    private $isAccepte;
 
     /**
      * @var \Ath\UserBundle\Entity\User
@@ -273,10 +273,15 @@ class DemandeCelebrite
     /**
      * Get dateReponse
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateReponse()
     {
         return $this->dateReponse;
+    }
+
+    public function __toString()
+    {
+        return $this->id;
     }
 }

@@ -14,7 +14,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% include 'top_nav.html.twig' %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include 'top_nav_admin.html.twig' %}
+        {% else %}
+            {% include 'top_nav.html.twig' %}
+        {% endif %}
+
         <div class="container">
             {% include "flash_messages.html.twig" %}
 

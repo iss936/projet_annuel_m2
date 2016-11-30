@@ -1,0 +1,87 @@
+<script type="text/javascript" src="http://hammerjs.github.io/dist/hammer.min.js"></script>
+<script type="text/javascript" src="/bundles/atixheader/js/atixHeader.js"></script>
+
+<link rel="stylesheet" href="{{ asset('bundles/atixheader/css/header.css') }}" type="text/css" media="all" />
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="headerSite-left">
+                <ul class="headerSite-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle icon-link menu-toggle" data-toggle="dropdown">
+                            <i class="icon-menu-01" style="color: #005E52"></i>
+                        </a>
+                        <div class="sidebarSite" role="navigation">
+                            <ul class="sidebarSite-navHeader">
+                                <li class="sidebarSite-close">
+                                    <a href="#">
+                                        <i class="icon-arrow-67"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        <ul class="sidebarSite-nav">
+                            {% include 'Ath/Admin/sidebar.html.twig' %}
+                        </ul>
+                        </div>
+                    </li>
+                   
+                    <li class="appName">
+                        <a class="navbar-brand" href="{{ path('ath_main_homepage') }}">Athleteec</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+        <ul class="nav navbar-nav">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Profil <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Voir mon profil</a></li>
+              <li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
+              <li><a href="{{ path('ath_user_change_password') }}">Modifier mon mot de passe</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#"></a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Mon album photo</a></li>
+            </ul>
+          </li>
+          <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussions</a></li>
+          <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Mes performances</a></li>
+          <li><a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i> Relations/Invitations/Groupe</a></li>
+          <li><a href="{{ path('ath_list_association') }}"><i class="fa fa-users" aria-hidden="true"></i> Liste des Associations</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+        </form>
+
+        <ul class="nav navbar-nav">
+          <li><a href="#"><i class="fa fa-eur" aria-hidden="true"></i> Comparateur de prix</a></li>
+        </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <li class="menu-lang">
+            <a class="{% if app.request.locale == 'fr'%}active-flag{% endif %}" href="{{ path('ath_choose_langue', {'langue' : 'fr'}) }}" role="button">
+            <img class="lang-flag" width="22" height="22" src="/images/flags/fr.png" alt="FR" />
+            </a>
+          </li>
+          <li class="menu-lang">
+              <a class="{% if app.request.locale == 'en'%}active-flag{% endif %}" href="{{ path('ath_choose_langue', {'langue' : 'en'}) }}" role="button">
+                  <img class="lang-flag" width="22" height="22" src="/images/flags/en.png" alt="EN" />
+              </a>
+          </li>
+        </li>
+
+          <li><a href="{{ path('user_security_logout') }}">{{ "deconnexion" | trans({}, 'home') }}</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

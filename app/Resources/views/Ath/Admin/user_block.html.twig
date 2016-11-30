@@ -1,0 +1,8 @@
+{% block user_block %}
+{# <li><a href="{{ path('fos_user_profile_show') }}">Mon profile</a></li>
+<li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profile</a></li>
+{% if app.user.dn == "" %}
+    <li><a href="{{ path('fos_user_change_password') }}">Modifier mon mot de passe</a></li>
+{% endif %}
+<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li> #}
+{% endblock %}

@@ -5,7 +5,8 @@ security:
     role_hierarchy:
         ROLE_USER:
         ROLE_ASSOC: ROLE_USER
-        ROLE_ADMIN:       ROLE_ASSOC
+        ROLE_CELEBRITE: ROLE_USER
+        ROLE_ADMIN:       [ROLE_ASSOC, ROLE_CELEBRITE, ROLE_ALLOWED_TO_SWITCH]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers

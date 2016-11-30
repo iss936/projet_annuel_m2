@@ -2,7 +2,7 @@
 ##Installation
 ### Via Composer
 ### Dépendances JS & CSS
-Pour commencer installer [**nodeJs**](https://nodejs.org/en/) en global.
+Pour commencer installer [**nodeJs**](https://nodejs.org/en/) en global (Executer les commandes avec l'utilisateur par defaut).
 Installer gulp et bower.
 ```
 npm install -g gulp

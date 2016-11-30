@@ -71,7 +71,6 @@
                                                     class="ladda-spinner"></span></button>
                                         <span id="result">
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
@@ -87,27 +86,45 @@
 
                                     <form action="{{ path("fos_user_security_check") }}" method="post"
                                           id="subscribeForm">
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                    
                                         <div class="authorization_form">
+                                            <h2>{{ "connexion" | trans({}, 'home') }}</h2>
+                                            {% if error %}
+                                                <div class="alert alert-warning">
+                                                    <strong>{{ "formConnection.errorPass" | trans({},'home') }}</strong>
+                                                </div>
+                                            {% endif %}
                                             <div class="auth_input clearfix">
                                                 <div class="icon">
                                                     <i class="fa fa-envelope fa-2x"></i>
                                                 </div>
-                                                <label class="enter_label"> Email:</label>
-                                                <input type="text" class="form-control e-mail_in" id="login"
-                                                       placeholder="Your email">
+                                                <label class="enter_label"> {{ "mail_adress" | trans({}, 'fosuser') }}:</label>
+
+                                                <input type="text" class="form-control e-mail_in" id="username" name="_username"
+                                                       placeholder="{{ "mail_adress" | trans({}, 'fosuser') }}" value="{{ last_username }}" required="required">
                                             </div>
                                             <div class="auth_input clearfix">
                                                 <div class="icon">
                                                     <i class="fa fa-key fa-2x"></i>
                                                 </div>
-                                                <label class="enter_label"> Password:</label>
-                                                <input type="password" class="form-control e-mail_in" id="pass"
-                                                       placeholder="*******">
+                                                <label class="enter_label"> {{ "password" | trans({}, 'fosuser') }}: </label>
+                                                <input type="password" class="form-control e-mail_in" name="_password" id="password"
+                                                       placeholder="{{ "password" | trans({}, 'fosuser') }}" required="required" autofocus="">
                                             </div>
                                         </div>
                                         <div class="auth_login">
                                             <div class="" id="loginresult">
+
+
                                                 <input id="try_login" type="submit" class="ladda-button ladda-primary btn btn-primary" value="{{ "btn.submit.connect" | trans({}, 'home') }}">
+                                                <p>
+                                                    <a href="{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}" class="btn btn-block btn-social btn-facebook" ><span class="fa fa-facebook"></span> {{ "connexion.facebook" | trans({}, 'home') }}</a>
+                                                    {# <a href="{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}" class="btn btn-block btn-social btn-twitter" ><span class="fa fa-twitter"></span> {{ "connexion.twitter" | trans({}, 'home') }}</a> #}
+                                                    <a href="{{ url("hwi_oauth_service_redirect", {service: "google"}) }}" class="btn btn-block btn-social btn-google" ><span class="fa fa-google"></span> {{ "connexion.google" | trans({}, 'home') }}</a>
+                                                </p>
+                                                <h3>{{ "or" | trans({}, 'home') }}</h3>
+
                                                 <a href="{{ path('fos_user_resetting_request') }}">{{ "forgotPassword" | trans({}, 'home') }}</a>
                                                 <a href="{{ path('fos_user_registration_register') }}">
                                                     {{ "inscription" | trans({}, 'home') }}
