@@ -4,12 +4,14 @@ namespace Ath\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Ath\MainBundle\Validator\Constraints as MainAssert;
 /**
  * Message
  *
  * @ORM\Table(name="message")
  * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\MessageRepository")
+ * @MainAssert\UserMessage
  */
 class Message
 {
@@ -56,7 +58,7 @@ class Message
      *
      * @ORM\Column(name="lu", type="boolean")
      */
-    private $lu;
+    private $lu =0;
 
     /**
     * Creation date

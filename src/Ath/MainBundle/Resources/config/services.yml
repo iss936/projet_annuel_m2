@@ -57,6 +57,12 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Discutions utilisateurs}
 
+    admin.message:
+        class: Ath\MainBundle\Admin\MessageAdmin
+        arguments: [~, Ath\MainBundle\Entity\Message, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Message utilisateurs}
+
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
 # Widget Form pour les statuts de demande de célébrité
@@ -71,4 +77,4 @@ services:
         tags:
             - { name: form.type, alias: image }
 
-   
+    
