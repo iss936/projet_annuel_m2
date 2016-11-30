@@ -8,9 +8,34 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class FileProduitAdmin extends Admin
+class FilePostAdmin extends Admin
 {
 
+    /**
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->add('id')
+            ->add('nomFichier')
+            ->add('typeFichier')
+            ->add('originalFichier')
+            ->add('createdAt')
+            ->add('updatedAt')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
+        ;
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         // get the current Image instance
@@ -25,16 +50,6 @@ class FileProduitAdmin extends Admin
             'required' => false,
             'image_web_path' => ($id && is_object($image)) ? $this->getRequest()->getBasePath().'/'.$image->getWebPath() : ''// affiche
         ))
-        ;
-    }
-
-     // Fields to be shown on lists
-    protected function configureListFields(ListMapper $listMapper)
-    {
-        $listMapper
-            ->add('produit')
-            ->add('nomFichier', 'array', array('label'=>'Photo','template'=>'@ath_admin_path/Commun/image.html.twig'))
-
         ;
     }
 

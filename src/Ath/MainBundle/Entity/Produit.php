@@ -5,12 +5,15 @@ namespace Ath\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ath\MainBundle\Validator\Constraints as MainAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\ProduitRepository")
+ * @MainAssert\Decimal
  */
 class Produit
 {
@@ -75,6 +78,7 @@ class Produit
     private $fileProduits;
 
     /**
+     * @Assert\Regex(pattern="/[0-9]+(\.[0-9][0-9]?)?/")
      * @ORM\Column(name="prix", type="float")
      */
     private $prix;

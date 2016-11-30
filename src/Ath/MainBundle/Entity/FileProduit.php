@@ -71,7 +71,12 @@ class FileProduit
     private $produit;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(
+     *     maxSize = "5M",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"},
+     *     maxSizeMessage = "L'image ne doit dépasser 5MB.",
+     *     mimeTypesMessage = "Seulement les images sont autorisées."
+     * )
      */
     public $file;
 

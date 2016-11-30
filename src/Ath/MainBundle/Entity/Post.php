@@ -57,13 +57,6 @@ class Post
     private $createdBy;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="status", type="boolean")
-     */
-    private $status;
-
-    /**
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\FilePost", mappedBy="post", cascade={"persist", "remove"})
      */
     private $filePosts;
@@ -179,29 +172,6 @@ class Post
     public function getCreatedBy()
     {
         return $this->createdBy;
-    }
-
-    /**
-     * Set status
-     *
-     * @param integer $status
-     * @return Post
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean 
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**

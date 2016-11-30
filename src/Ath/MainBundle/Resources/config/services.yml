@@ -43,8 +43,14 @@ services:
         class: Ath\MainBundle\Admin\FileProduitAdmin
         arguments: [~, Ath\MainBundle\Entity\FileProduit, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Images, show_in_dashboard: false }
+            - {name: sonata.admin, manager_type: orm, label: Photos, show_in_dashboard: false }
     
+    admin.file_post:
+        class: Ath\MainBundle\Admin\FilePostAdmin
+        arguments: [~, Ath\MainBundle\Entity\FilePost, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Photos, show_in_dashboard: false }
+
     admin.sport:
         class: Ath\MainBundle\Admin\SportAdmin
         arguments: [~, Ath\MainBundle\Entity\Sport, ~]
@@ -62,6 +68,12 @@ services:
         arguments: [~, Ath\MainBundle\Entity\Message, ~]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Message utilisateurs}
+
+    admin.post:
+        class: Ath\MainBundle\Admin\PostAdmin
+        arguments: [~, Ath\MainBundle\Entity\Post, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Article}
 
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 

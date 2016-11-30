@@ -245,3 +245,35 @@ avalanche_imagine:
         user_micro:
             type:    thumbnail
             options: { size: [24, 24], mode: outbound, quality: 100, format: png }
+
+        produit_detail:
+            type:    thumbnail
+            options: { size: [124, 124], mode: outbound, quality: 100, format: png }
+        produit:
+            type:    thumbnail
+            options: { size: [96, 96], mode: outbound, quality: 100, format: png }
+        produit_short:
+            type:    thumbnail
+            options: { size: [48, 48], mode: outbound, quality: 100, format: png }
+        produit_mini:
+            type:    thumbnail
+            options: { size: [32, 32], mode: outbound, quality: 100, format: png }
+        produit_micro:
+            type:    thumbnail
+            options: { size: [24, 24], mode: outbound, quality: 100, format: png }
+
+        post_detail:
+            type:    thumbnail
+            options: { size: [124, 124], mode: outbound, quality: 100, format: png }
+        post:
+            type:    thumbnail
+            options: { size: [96, 96], mode: outbound, quality: 100, format: png }
+        post_short:
+            type:    thumbnail
+            options: { size: [48, 48], mode: outbound, quality: 100, format: png }
+        post_mini:
+            type:    thumbnail
+            options: { size: [32, 32], mode: outbound, quality: 100, format: png }
+        post_micro:
+            type:    thumbnail
+            options: { size: [24, 24], mode: outbound, quality: 100, format: png }
