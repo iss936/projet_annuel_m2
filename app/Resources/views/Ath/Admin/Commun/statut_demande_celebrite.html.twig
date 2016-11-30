@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {% set xtraClass = '' %}
+    {% if object.statutId == 1 %}
+        {% set xtraClass = ' label-default' %}
+    {% elseif object.statutId == 2 %}
+        {% set xtraClass = ' label-success' %}
+    {% elseif object.statutId == 3 %}
+        {% set xtraClass = ' label-danger' %}
+    {% endif %}
+    <div class="label{{xtraClass}}">
+        {{object.statut}}
+    </div>
+{% endblock %}

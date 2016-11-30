@@ -1,5 +1,6 @@
-{% extends '::base_no_connected.html.twig' %}
-
+{% extends is_granted('ROLE_USER') 
+    ? '::base.html.twig' 
+    : '::base_no_connected.html.twig' %}
 {% block title %}{% endblock %}
 
 {% block body %}

@@ -5,6 +5,7 @@ namespace Ath\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ath\MainBundle\Model\StatutDemandeCelebrite;
 
 /**
  * DemandeCelebrite
@@ -33,9 +34,9 @@ class DemandeCelebrite
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_accepte", type="boolean", nullable = true)
+     * @ORM\Column(name="statut", type="integer")
      */
-    private $isAccepte;
+    private $statut; // 1 = En cours, 2 = Accepte, 3 = Refuser
 
     /**
      * @var \Ath\UserBundle\Entity\User
@@ -86,6 +87,11 @@ class DemandeCelebrite
     private $dateReponse;
 
     
+    public function __construct()
+    {
+        $this->statut = 1; // si le statut n'est pas renseigné on le met à en cours
+    }
+
     /**
      * Get id
      *
@@ -120,27 +126,38 @@ class DemandeCelebrite
     }
 
     /**
-     * Set isAccepte
+     * Set statut
      *
-     * @param boolean $isAccepte
+     * @param integer $statut
      * @return DemandeCelebrite
      */
-    public function setIsAccepte($isAccepte)
+    public function setStatut($statut)
     {
-        $this->isAccepte = $isAccepte;
+        $this->statut = $statut;
 
         return $this;
     }
 
     /**
-     * Get isAccepte
+     * Get statut
      *
-     * @return boolean 
+     * @return string 
      */
-    public function getIsAccepte()
+    public function getStatut()
     {
-        return $this->isAccepte;
+        return StatutDemandeCelebrite::getLibFromId($this->statut);
     }
+
+    /**
+     * Get the value of statut
+     *
+     * @return integer
+     */
+    public function getStatutId()
+    {
+        return $this->statut;
+    }
+
 
     /**
      * Set createdAt

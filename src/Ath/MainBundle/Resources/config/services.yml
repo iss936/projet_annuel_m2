@@ -28,3 +28,9 @@ services:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Demandes de Célébrité}
 
 #  ----------------------- FIN GESTION ADMIN -------------------------------------------------
+
+# Widget Form pour les statuts de demande de célébrité
+    ath_main.form.type.statuts_demande_celebrite:
+        class: Ath\MainBundle\Form\Type\StatutDemandeCelebriteFormType
+        tags:
+            - { name: form.type, alias: statuts_demande_celebrite_widget }

@@ -37,6 +37,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     paths:
+        "%kernel.root_dir%/Resources/views/Ath/Admin": ath_admin_path
         "%kernel.root_dir%/Resources/views/Ath/Main": ath_main_path
         "%kernel.root_dir%/Resources/views/Ath/User": ath_user_path
         "%kernel.root_dir%/Resources/views": ath_views

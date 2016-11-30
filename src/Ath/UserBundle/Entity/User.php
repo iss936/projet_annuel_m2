@@ -713,7 +713,7 @@ class User extends BaseUser
      */
     public function getStatutJuridique()
     {
-        return statutJuridique::getLibFromId($this->statutJuridique);
+        return StatutJuridique::getLibFromId($this->statutJuridique);
     }
     
     /**

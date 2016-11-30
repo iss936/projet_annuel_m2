@@ -1,0 +1,13 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field%}
+    {% if value is empty %}
+        &nbsp;
+    {% else %}
+	    {% if value|length <= 50 %}
+	    	{{ value }}
+	    {% else %}
+        	{{ value|slice(0,50) }} ...
+	    {% endif %}
+    {% endif %}
+{% endblock %}

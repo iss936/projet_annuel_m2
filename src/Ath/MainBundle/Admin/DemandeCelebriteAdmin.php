@@ -35,7 +35,7 @@ class DemandeCelebriteAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('isAccepte')
+            ->add('statut', null, array('required' => false), 'statuts_demande_celebrite_widget')
         ;
     }
 
@@ -46,15 +46,14 @@ class DemandeCelebriteAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('contenu')
-            ->add('isAccepte')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('dateDemande')
-            ->add('dateReponse')
+            ->add('createdBy', 'text', array('label' => "Créé par"))
+            ->add('contenu', 'text', array('template' => '@ath_admin_path/Commun/list_sub_string.html.twig'))
+            ->add('statut', 'text', array('label' => "Statut", 'template'=> '@ath_admin_path/Commun/statut_demande_celebrite.html.twig'))
+            ->add('dateDemande', 'array', array('label' => "Date de la demande", 'template'=> '@ath_admin_path/Commun/list_date.html.twig'))
+            ->add('dateReponse','array', array('label' => "Date de la réponse",'template'=> '@ath_admin_path/Commun/list_date.html.twig'))
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    // 'edit' => array(),
+                    'show' => array(),
                     'delete' => array(),
                 )
             ))
@@ -62,29 +61,21 @@ class DemandeCelebriteAdmin extends Admin
     }
 
     /**
-     * @param FormMapper $formMapper
-     */
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper
-            ->add('contenu')
-            ->add('isAccepte')
-        ;
-    }
-
-    /**
      * @param ShowMapper $showMapper
      */
-   /* protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->add('id')
             ->add('contenu')
-            ->add('isAccepte')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('dateDemande')
-            ->add('dateReponse')
+            ->add('createdBy','text', array('label' => "Créé par"))
         ;
-    }*/
+    }
+
+    public function getExportFormats()
+    {
+        return array(
+            'csv'
+        );
+    }
 }
