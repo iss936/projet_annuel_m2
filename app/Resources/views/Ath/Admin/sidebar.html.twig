@@ -4,7 +4,28 @@
         <a href="#">Administration <b class="caret"></b></a>
         <ul>
             <li>
-                <a href="{{ path('sonata_admin_dashboard')}}">Tableau de bord</a>
+                <a href="{{ path('sonata_admin_dashboard')}}">{{ "dashboard" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_categorieproduit_list')}}">{{ "gestion_categorie_produits" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_sport_list')}}">{{ "gestion_categorie_sports" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_userdiscussion_list')}}">{{ "gestion_discution_utilisateurs" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_message_list')}}">{{ "gestion_message_utilisateurs" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_post_list')}}">{{ "gestion_articles" | trans({}, 'administration') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_ath_main_comment_list')}}">{{ "gestion_commentaire_articles" | trans({}, 'administration') }}</a>
             </li>
         </ul>
     </li>
