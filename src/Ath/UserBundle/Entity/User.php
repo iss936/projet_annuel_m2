@@ -173,13 +173,13 @@ class User extends BaseUser
      *
      * @ORM\Column(name="statut_juridique", type="integer")
      */
-    private $statutJuridique; // 0=Homme, 1= Femme, 2= Association
+    private $statutJuridique; // 0 = Homme, 1 = Femme, 2 = Association
 
     /**
      * @ORM\Column(name="date_de_creation", type="datetime", nullable = true)
      */
     private $dateDeCreation;
-
+    
     /**
      * @var bool
      *

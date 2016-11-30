@@ -1,25 +1,25 @@
 <?php
 
-namespace Ath\MainBundle\Form\Type;
+namespace Ath\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Ath\MainBundle\Form\DataTransformer\StatutDemandeCelebriteDataTransformer;
-use Ath\MainBundle\Model\StatutDemandeCelebrite;
+use Ath\UserBundle\Form\DataTransformer\StatutJuridiqueDataTransformer;
+use Ath\UserBundle\Model\StatutJuridique;
 
-class StatutDemandeCelebriteFormType extends AbstractType
+class StatutJuridiqueFormType extends AbstractType
 {
     private $statuts;
 
     public function __construct()
     {
-        $this->statuts = StatutDemandeCelebrite::getAll();
+        $this->statuts = StatutJuridique::getAll();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new StatutDemandeCelebriteDataTransformer();
+        $transformer = new StatutJuridiqueDataTransformer();
         $builder->add('statuts', 'choice', array(
             'choices'  => $this->statuts,
             'label'    => false,
@@ -40,6 +40,6 @@ class StatutDemandeCelebriteFormType extends AbstractType
 
     public function getName()
     {
-        return 'statuts_demande_celebrite_widget';
+        return 'statuts_juridique_widget';
     }
 }

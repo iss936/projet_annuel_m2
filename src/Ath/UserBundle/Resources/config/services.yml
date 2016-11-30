@@ -38,3 +38,15 @@ services:
           - "@translator"
         tags:
             - { name: form.handler, alias: edit_profile.handler }
+
+    admin.user:
+        class: Ath\UserBundle\Admin\UserAdmin
+        arguments: [~, Ath\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Gestion des utilisateurs}
+
+    # Widget Form pour les statuts de demande de célébrité
+    ath_user.form.type.statuts_juridique:
+        class: Ath\UserBundle\Form\Type\StatutJuridiqueFormType
+        tags:
+            - { name: form.type, alias: statuts_juridique_widget }

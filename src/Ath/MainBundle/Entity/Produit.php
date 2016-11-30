@@ -254,6 +254,14 @@ class Produit
         return $this->fileProduits;
     }
 
+    public function getFirstFileProduit()
+    {
+        if(count($this->fileProduits) > 0)
+            return $this->fileProduits[0];
+
+        return null;
+    }
+
     /**
      * Add fileProduit
      *

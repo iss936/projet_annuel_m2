@@ -1,12 +1,12 @@
 <?php
 
-namespace Ath\MainBundle\Form\DataTransformer;
+namespace Ath\UserBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use Ath\MainBundle\Model\StatutDemandeCelebrite;
+use Ath\UserBundle\Model\StatutJuridique;
 
-class StatutDemandeCelebriteDataTransformer implements DataTransformerInterface
+class StatutJuridiqueDataTransformer implements DataTransformerInterface
 {
     /**
      * Transforms a string to an array => Bdd to Application (getSatut retourne un string dans entity).
@@ -16,10 +16,9 @@ class StatutDemandeCelebriteDataTransformer implements DataTransformerInterface
      */
     public function transform($statut)
     {
-
         if(!empty($statut))
         {
-            $arrayStatut = array($statut => StatutDemandeCelebrite::getIdFromLib($statut));
+            $arrayStatut = array($statut => StatutJuridique::getIdFromLib($statut));
         }
         else
             return;
@@ -36,7 +35,7 @@ class StatutDemandeCelebriteDataTransformer implements DataTransformerInterface
      */
     public function reverseTransform($statuts)
     {
-        $allStatuts = StatutDemandeCelebrite::getAll();
+        $allStatuts = StatutJuridique::getAll();
 
         if (array_key_exists($statuts['statuts'], $allStatuts))
         {
