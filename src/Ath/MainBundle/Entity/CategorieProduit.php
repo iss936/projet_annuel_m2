@@ -416,4 +416,8 @@ class CategorieProduit
         return false;
     }
 
+    public function __toString(){
+        return $this->libelle;
+    }
+
 }
