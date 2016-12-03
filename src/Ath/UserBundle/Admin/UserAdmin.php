@@ -7,12 +7,18 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class UserAdmin extends Admin
 {
 
     protected $baseRoutePattern = 'utilisateurs';
 
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('password', $this->getRouterIdParameter().'/password');
+    }
+    
     public function toString($object)
     {
         return  $object->getId()
@@ -72,6 +78,9 @@ class UserAdmin extends Admin
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
+                    'Password' => array(
+                        'template' => '@ath_admin_path/User/list_action_password.html.twig'
+                    )
                 )
             ))
         ;

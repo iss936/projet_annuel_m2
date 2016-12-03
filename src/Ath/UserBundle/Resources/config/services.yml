@@ -41,7 +41,7 @@ services:
 
     admin.user:
         class: Ath\UserBundle\Admin\UserAdmin
-        arguments: [~, Ath\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+        arguments: [~, Ath\UserBundle\Entity\User, AthUserBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Gestion des utilisateurs}
 
