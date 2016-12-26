@@ -43,7 +43,7 @@ class StatutDemandeCelebriteDataTransformer implements DataTransformerInterface
             $statuts = $statuts['statuts'];
         }
         else
-             throw new TransformationFailedException("La clé est introuvable");
+            throw new TransformationFailedException("La clé est introuvable");
 
         return $statuts;
     }

@@ -57,7 +57,7 @@ class LoadUserData extends AbstractDataFixture
                 "setVille" => "Aulnay-Sous-Bois",
                 "setCp" => "93600",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 0, // = H et 1 pour F  2 pour Association
+                "setStatutJuridique" => 1, // 1 = H et 2 pour F  3 pour Association
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0
@@ -74,7 +74,7 @@ class LoadUserData extends AbstractDataFixture
                 "setVille" => "Saint-mandé",
                 "setCp" => "94160",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 0, // = H et 1 pour F 
+                "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0
@@ -90,7 +90,7 @@ class LoadUserData extends AbstractDataFixture
                 "setVille" => "Saint-mandé",
                 "setCp" => "94160",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2, // = H et 1 pour F 
+                "setStatutJuridique" => 3,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0

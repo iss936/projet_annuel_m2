@@ -6,3 +6,7 @@ gestion_discution_utilisateurs: Gestion des discutions utilisateurs
 gestion_message_utilisateurs: Gestion des messages utilisateurs
 gestion_articles: Gestion des articles
 gestion_commentaire_articles: Gestion des commentaires d'articles
+user.changepassword.title: Changement de mot de passe
+user.changepassword.cancel: Retourner à la liste
+user.changepassword.save: Enregistrer
+user.button.changepassword: Changer mot de passe

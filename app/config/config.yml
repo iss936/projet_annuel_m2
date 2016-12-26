@@ -139,6 +139,7 @@ sonata_admin:
     title:                Athleteec
     # title_logo:           images/logo.png
     options:
+        use_select2:    true # disable select2
         # Auto order groups and admins by label or id
         confirm_exit:         false
     templates:
@@ -232,48 +233,48 @@ avalanche_imagine:
     filters:
         user_detail:
             type:    thumbnail
-            options: { size: [124, 124], mode: outbound, quality: 100, format: png }
+            options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg]  }
         user:
             type:    thumbnail
-            options: { size: [96, 96], mode: outbound, quality: 100, format: png }
+            options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg]  }
         user_short:
             type:    thumbnail
-            options: { size: [48, 48], mode: outbound, quality: 100, format: png }
+            options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg]  }
         user_mini:
             type:    thumbnail
-            options: { size: [32, 32], mode: outbound, quality: 100, format: png }
+            options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg]  }
         user_micro:
             type:    thumbnail
-            options: { size: [24, 24], mode: outbound, quality: 100, format: png }
+            options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }
 
         produit_detail:
             type:    thumbnail
-            options: { size: [124, 124], mode: outbound, quality: 100, format: png }
+            options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg]  }
         produit:
             type:    thumbnail
-            options: { size: [96, 96], mode: outbound, quality: 100, format: png }
+            options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg]  }
         produit_short:
             type:    thumbnail
-            options: { size: [48, 48], mode: outbound, quality: 100, format: png }
+            options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg]  }
         produit_mini:
             type:    thumbnail
-            options: { size: [32, 32], mode: outbound, quality: 100, format: png }
+            options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg]  }
         produit_micro:
             type:    thumbnail
-            options: { size: [24, 24], mode: outbound, quality: 100, format: png }
+            options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }
 
         post_detail:
             type:    thumbnail
-            options: { size: [124, 124], mode: outbound, quality: 100, format: png }
+            options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg]  }
         post:
             type:    thumbnail
-            options: { size: [96, 96], mode: outbound, quality: 100, format: png }
+            options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg]  }
         post_short:
             type:    thumbnail
-            options: { size: [48, 48], mode: outbound, quality: 100, format: png }
+            options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg]  }
         post_mini:
             type:    thumbnail
-            options: { size: [32, 32], mode: outbound, quality: 100, format: png }
+            options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg]  }
         post_micro:
             type:    thumbnail
-            options: { size: [24, 24], mode: outbound, quality: 100, format: png }
+            options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }

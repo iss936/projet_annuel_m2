@@ -19,7 +19,7 @@ class RoleRegisterListener implements EventSubscriberInterface
 
         /** @var $user \FOS\UserBundle\Model\UserInterface */
         $user = $event->getForm()->getData();
-        if($user->getStatutJuridiqueId() == 2)
+        if($user->getStatutJuridiqueId() == 3)
             $user->setRoles($aRoles);
         else
             $user->addRole('ROLE_USER');
