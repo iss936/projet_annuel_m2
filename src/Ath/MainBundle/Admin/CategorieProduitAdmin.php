@@ -66,7 +66,7 @@ class CategorieProduitAdmin extends Admin
     {
         $formMapper
             ->add('libelle')
-            ->add('description', 'text', array('template' => '@ath_admin_path/Commun/list_sub_string.html.twig'))
+            ->add('description')
         ;
     }
 

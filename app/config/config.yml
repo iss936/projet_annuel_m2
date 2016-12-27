@@ -182,6 +182,8 @@ sonata_admin:
             - bundles/sonataadmin/App.js
             - bundles/sonataadmin/Admin.js
             - bundles/atixformextra/js/farbtastic.js
+    security:
+        handler: sonata.admin.security.handler.role
 
 knp_paginator:
     template:

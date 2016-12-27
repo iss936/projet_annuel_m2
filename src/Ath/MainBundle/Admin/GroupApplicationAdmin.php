@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class GroupApplicationAdmin extends Admin
 {
     protected $baseRoutePattern = 'groups';
+    protected $em;
 
     public function toString($object)
     {
@@ -89,4 +90,33 @@ class GroupApplicationAdmin extends Admin
             'csv', 'xls'
         );
     }
+
+ /*   public function prePersist($object)
+    {
+        $users = $object->getUsers();
+
+        $roles = $object->getRoles();
+
+        foreach ($roles as $oneRole) {
+            foreach ($users as $oneUser) {
+                $oneUser->addRole($oneRole);
+            }
+        }
+
+        return $object;
+    }
+
+    public function preUpdate($object)
+    {
+        $users = $object->getUsers();
+
+        $roles = $object->getRoles();
+
+        foreach ($roles as $oneRole) {
+            foreach ($users as $oneUser) {
+                $oneUser->addRole($oneRole);
+            }
+        }
+        return $object;
+    }*/
 }

@@ -1047,8 +1047,8 @@ class User extends BaseUser
     public function getRoles()
     {
         $roles = $this->roles;
-        if ($this->getGroups()) {
-            foreach ($this->getGroups() as $group) {
+        if ($this->getGroupApplications()) {
+            foreach ($this->getGroupApplications() as $group) {
                 $rolesGroup = $group->getRoles();
                 $arraydiff = array_diff($rolesGroup, $roles);
                 $roles = array_merge($arraydiff, $roles);
@@ -1109,7 +1109,16 @@ class User extends BaseUser
 
         return false;
     }
-    
+
+    /**
+     * Get the value of groupApplications
+     *
+     * @return ArrayCollection groupApplications
+     */
+    public function getGroupApplications()
+    {
+        return $this->groupApplications;
+    }
     /******* Function pratique **************/
 
     public function getNomComplet() {

@@ -14,7 +14,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ADMIN_TABORD') %}
             {% include 'top_nav_admin.html.twig' %}
         {% else %}
             {% include 'top_nav.html.twig' %}

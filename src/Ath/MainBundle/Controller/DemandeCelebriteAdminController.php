@@ -25,6 +25,10 @@ class DemandeCelebriteAdminController extends Controller
     	$statut = $request->get('statut');
     	$user = $this->getUser();
 
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN_REPONSE_DEMANDE_CELEBRITE')) {
+            throw $this->createAccessDeniedException();
+        }
+
     	if($statut == 2)
     	{
     		$object->setStatut(2);

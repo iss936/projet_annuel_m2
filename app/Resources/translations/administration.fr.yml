@@ -10,3 +10,6 @@ user.changepassword.title: Changement de mot de passe
 user.changepassword.cancel: Retourner à la liste
 user.changepassword.save: Enregistrer
 user.button.changepassword: Changer mot de passe
+gestion_utilisateurs: Gestion des utilisateurs
+gestion_groupe_administrations: Gestion des groupes d'administration
+gestion_demande_celebrite: Gestion des demandes de célébrité

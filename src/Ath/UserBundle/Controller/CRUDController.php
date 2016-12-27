@@ -18,6 +18,10 @@ class CRUDController extends Controller
             throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
         }
 
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN_USER_PASSWORD')) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $formPassword = $this->createForm(new ChangePasswordFormType());
         if ($request->getMethod() == 'POST') {
             $formPassword->bind($request);

@@ -85,7 +85,7 @@ services:
         class: Ath\MainBundle\Admin\GroupApplicationAdmin
         arguments: [~, Ath\MainBundle\Entity\GroupApplication, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Gestion des groupes administrateurs}
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Gestion des groupes administrateurs}
 
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 

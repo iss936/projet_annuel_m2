@@ -1,32 +1,73 @@
-{% if is_granted("ROLE_ADMIN") %}
-
-    <li class="has-children">
-        <a href="#">Administration <b class="caret"></b></a>
-        <ul>
+<li class="has-children">
+    <a href="#">Administration <b class="caret"></b></a>
+    <ul>
+        {% if is_granted("ROLE_ADMIN") %}
             <li>
                 <a href="{{ path('sonata_admin_dashboard')}}">{{ "dashboard" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+        
+        {% if is_granted("ROLE_ADMIN_USER_LIST") %}
+            <li>
+                <a href="{{ path('admin_ath_user_user_list')}}">{{ "gestion_utilisateurs" | trans({}, 'administration') }}</a>
+            </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN_GROUP_APPLICATION_LIST") %}
+            <li>
+                <a href="{{ path('admin_ath_main_groupapplication_list')}}">{{ "gestion_groupe_administrations" | trans({}, 'administration') }}</a>
+            </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN_DEMANDE_CELEBRITE_LIST") %}
+
+            <li>
+                <a href="{{ path('admin_ath_main_demandecelebrite_list')}}">{{ "gestion_demande_celebrite" | trans({}, 'administration') }}</a>
+            </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN_CATEGORIE_PRODUIT_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_categorieproduit_list')}}">{{ "gestion_categorie_produits" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN_PRODUIT_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN_SPORT_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_sport_list')}}">{{ "gestion_categorie_sports" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+        
+        {% if is_granted("ROLE_ADMIN_USER_DISCUSSION_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_userdiscussion_list')}}">{{ "gestion_discution_utilisateurs" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN_MESSAGE_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_message_list')}}">{{ "gestion_message_utilisateurs" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+        
+        {% if is_granted("ROLE_ADMIN_POST_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_post_list')}}">{{ "gestion_articles" | trans({}, 'administration') }}</a>
             </li>
+        {% endif %}
+        
+        {% if is_granted("ROLE_ADMIN_COMMENT_LIST") %}
             <li>
                 <a href="{{ path('admin_ath_main_comment_list')}}">{{ "gestion_commentaire_articles" | trans({}, 'administration') }}</a>
             </li>
-        </ul>
-    </li>
-{% endif %}
+        {% endif %}
+
+
+    </ul>
+</li>

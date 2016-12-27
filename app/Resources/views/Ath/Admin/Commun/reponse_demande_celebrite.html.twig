@@ -1,4 +1,4 @@
-{% if object.statutId == 1 %}
+{% if object.statutId == 1 and is_granted('ROLE_ADMIN_REPONSE_DEMANDE_CELEBRITE') %}
     <a class="btn btn-sm btn-success reponse" href="{{ admin.generateObjectUrl('reponse_demande_celebrite', object,{'statut': 2}) }}" 
     data-confirm="Voulez vous vraiment valider la demande {{ object.id }} ?">
     	Valider
