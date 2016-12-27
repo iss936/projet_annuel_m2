@@ -41,6 +41,23 @@ class DemandeCelebriteAdminController extends Controller
 
     		$sendMail = $this->container->get('ath_main.services.send_mail');
     		$sendMail->validationDemandeCelebrite($object);
+
+            // envoit de mail aux valideurs
+            $groups = $em->getRepository('AthMainBundle:GroupApplication')->findAll();
+            $aUser = array();
+            foreach ($groups as $group) {
+                foreach ($group->getUsers() as $utilisateur) {
+                    if ($utilisateur != $user && !array_key_exists($utilisateur->getId(), $aUser)) {
+                        if ($utilisateur->hasRole('ROLE_ADMIN_DEMANDE_CELEBRITE')) {
+                            $aUser[$utilisateur->getId()] = $utilisateur;
+                        }
+                    }
+                }
+            }
+            foreach ($aUser as $oneUser) {
+                $sendMail->validationDemandeCelebriteForValideur($object, $oneUser);
+            }
+
            	$this->addFlash('sonata_flash_success', 'La demande de célébrité n°'.$object->getId(). ' a bien été accepté');
 
     	}
@@ -52,6 +69,23 @@ class DemandeCelebriteAdminController extends Controller
     		$em->flush();
     		$sendMail = $this->container->get('ath_main.services.send_mail');
     		$sendMail->refusDemandeCelebrite($object);
+
+            // envoit de mail aux valideurs
+            $groups = $em->getRepository('AthMainBundle:GroupApplication')->findAll();
+            $aUser = array();
+            foreach ($groups as $group) {
+                foreach ($group->getUsers() as $utilisateur) {
+                    if ($utilisateur != $user && !array_key_exists($utilisateur->getId(), $aUser)) {
+                        if ($utilisateur->hasRole('ROLE_ADMIN_DEMANDE_CELEBRITE')) {
+                            $aUser[$utilisateur->getId()] = $utilisateur;
+                        }
+                    }
+                }
+            }
+            foreach ($aUser as $oneUser) {
+                $sendMail->refusDemandeCelebriteForValideur($object, $oneUser);
+            }
+
            	$this->addFlash('sonata_flash_success', 'La demande de célébrité n°'.$object->getId(). ' a bien été refusé');
     	}
 

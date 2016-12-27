@@ -293,12 +293,12 @@ ath_main:
             ROLE_ADMIN_USER_PASSWORD: Modifier un mot de passe utilisateur
             ROLE_ADMIN_USER: Tous les droits utilisateurs
         Demande de celebrite:
-            ROLE_ADMIN_DEMANDE_CELEBRITE_LIST: Liste des demandes de célébrités
-            ROLE_ADMIN_DEMANDE_CELEBRITE_VIEW: Voir une demande de célébrité
-            ROLE_ADMIN_DEMANDE_CELEBRITE_DELETE: Supprimer une demande de célébrité
-            ROLE_ADMIN_DEMANDE_CELEBRITE_EXPORT: Exporter une demande de célébrité
-            ROLE_ADMIN_REPONSE_DEMANDE_CELEBRITE: Valider/refuser une demande de célébrité
-            ROLE_ADMIN_DEMANDE_CELEBRITE: Tous les droits demandes de célébrité
+            # ROLE_ADMIN_DEMANDE_CELEBRITE_LIST: Liste des demandes de célébrités
+            # ROLE_ADMIN_DEMANDE_CELEBRITE_VIEW: Voir une demande de célébrité
+            # ROLE_ADMIN_DEMANDE_CELEBRITE_DELETE: Supprimer une demande de célébrité
+            # ROLE_ADMIN_DEMANDE_CELEBRITE_EXPORT: Exporter une demande de célébrité
+            # ROLE_ADMIN_REPONSE_DEMANDE_CELEBRITE: Valider/refuser une demande de célébrité
+            ROLE_ADMIN_DEMANDE_CELEBRITE: Valider/refuser une demande de célébrité
         Groupe:
             ROLE_ADMIN_GROUP_APPLICATION_LIST: Liste des groupes d'administration
             ROLE_ADMIN_GROUP_APPLICATION_VIEW: Voir un groupe d'administration

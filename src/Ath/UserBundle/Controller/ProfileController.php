@@ -73,9 +73,9 @@ class ProfileController extends BaseController
 
     public function demandeCelebriteAction()
     {
-
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        
+
         if (!$user->canDemandeCelebrite()) {
             return $this->redirect($this->generateUrl('fos_user_profile_edit'));
         }
@@ -85,11 +85,24 @@ class ProfileController extends BaseController
         $form = $this->createForm(new DemandeCelebriteFormType(), $demandeCelebrite);
 
         $formHandler = $this->container->get('ath.form.handler.demande_celebrite');
-
         if($formHandler->process($form))
         {
             $sendMail = $this->container->get('ath_main.services.send_mail');
-            $sendMail->demandeCelebrite($user, $form->getData()->getContenu());
+            $groups = $em->getRepository('AthMainBundle:GroupApplication')->findAll();
+            $aUser = array();
+            foreach ($groups as $group) {
+                foreach ($group->getUsers() as $utilisateur) {
+                    if ($utilisateur != $user && !array_key_exists($utilisateur->getId(), $aUser)) {
+                        if ($utilisateur->hasRole('ROLE_ADMIN_DEMANDE_CELEBRITE')) {
+                            $aUser[$utilisateur->getId()] = $utilisateur;
+                        }
+                    }
+                }
+            }
+            foreach ($aUser as $oneUser) {
+                $sendMail->demandeCelebrite($user,$oneUser, $form->getData()->getContenu());
+            }
+            // $sendMail->demandeCelebrite($user, $form->getData()->getContenu());
             return $this->redirect($this->generateUrl('fos_user_profile_edit'));
         }
 

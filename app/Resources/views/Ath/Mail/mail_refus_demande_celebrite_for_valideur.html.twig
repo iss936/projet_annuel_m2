@@ -12,12 +12,15 @@
                 <td width="590" style="font-size:14px;line-height:135%;color:#31414C;text-align:center;font-weight:bold;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-text-size-adjust:none;">
 
                     <p> Bonjour {{ destinataire }}, </p>
-                    <p>L'utilisateur {{ user }}, ayant l'id utilisateur <b>{{ user.id }}</b> a fait une demande de célébrité en laissant le message suivant: </p>
-                    
-                    <p> {{ message }} </p>
+                    {% if destinataire.id ==  demandeCelebrite.updatedBy.id %}
+                        <p> Vous avez bien refusé la demande de célébrité n°{{ demandeCelebrite.id }}.</p>              
+                    {% else %}
+                        <p>La demande de célébrité n°{{ demandeCelebrite.id }} a été refusé par {{ demandeCelebrite.updatedBy }}.</p>  
+                    {% endif %}              
                     <br>
                     {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('admin_ath_main_demandecelebrite_list') %}
-                    <p> A bientôt, sur <a href="{{ url }}">Athleteec</a> </p>
+
+                    <p> Voir la liste des demandes de célébrité <a href="{{ url }}">Athleteec</a> </p>
                 </td>
             </tr>
             <tr>
