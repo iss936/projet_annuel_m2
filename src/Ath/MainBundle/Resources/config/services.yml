@@ -81,6 +81,12 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Commentaires des articles}
 
+    admin.group_application:
+        class: Ath\MainBundle\Admin\GroupApplicationAdmin
+        arguments: [~, Ath\MainBundle\Entity\GroupApplication, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Gestion des groupes administrateurs}
+
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
 # Widget Form pour les statuts de demande de célébrité
@@ -94,3 +100,13 @@ services:
         class: Ath\MainBundle\Form\WidgetType\ImageType
         tags:
             - { name: form.type, alias: image }
+
+    
+    ath_main.form.type.roles_app:
+        class: Ath\MainBundle\Form\Type\RolesAppFormType
+        arguments:
+          - ""
+          - ""
+          - ""
+        tags:
+            - { name: form.type, alias: roles_app }

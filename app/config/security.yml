@@ -1,13 +1,12 @@
+imports:
+    - { resource: role_admin.yml }
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_USER:
-        ROLE_ASSOC: ROLE_USER
-        ROLE_CELEBRITE: ROLE_USER
-        ROLE_ADMIN:       [ROLE_ASSOC, ROLE_CELEBRITE, ROLE_ALLOWED_TO_SWITCH]
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -61,7 +60,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/public, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        # - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
             
     

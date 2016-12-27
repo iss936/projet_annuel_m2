@@ -274,6 +274,14 @@ class User extends BaseUser
     private $userSetting;
 
     /**
+    * @var ArrayCollection GroupApplications
+    * Owning Side
+    *
+    * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\GroupApplication", mappedBy="users")
+    */
+    protected $groupApplications;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
@@ -286,6 +294,7 @@ class User extends BaseUser
         $this->userInteretSports = new ArrayCollection();
         $this->userComparateurProduits = new ArrayCollection();
         $this->associationSports = new ArrayCollection();
+        $this->groupApplications = new ArrayCollection();
     }
 
     /**
@@ -1033,8 +1042,74 @@ class User extends BaseUser
     public function getUserSetting()
     {
         return $this->userSetting;
+    }  
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        if ($this->getGroups()) {
+            foreach ($this->getGroups() as $group) {
+                $rolesGroup = $group->getRoles();
+                $arraydiff = array_diff($rolesGroup, $roles);
+                $roles = array_merge($arraydiff, $roles);
+            }
+        }
+
+        return $roles;
     }
 
+    public function getRolesOnly()
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = array();
+
+        foreach ($roles as $role) {
+            $this->addRole($role);
+        }
+
+        return $this;
+    }
+
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+
+        return $this;
+    }
+
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    public function hasRole($role)
+    {
+        $role = strtoupper($role);
+
+        if (in_array($role, $this->getRoles())) {
+            return true;
+        }
+
+        if (in_array('ROLE_SUPER_ADMIN', $this->getRoles())) {
+            return true;
+        }
+
+        return false;
+    }
+    
     /******* Function pratique **************/
 
     public function getNomComplet() {
@@ -1211,6 +1286,7 @@ class User extends BaseUser
         }
     }
   /**** FIN GESTION UPLOADS ****/
+
 
     public function __toString() {
       return $this->getNomComplet();

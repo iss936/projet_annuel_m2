@@ -278,3 +278,86 @@ avalanche_imagine:
         post_micro:
             type:    thumbnail
             options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }
+
+ath_main:
+    roles_gp_app:
+        Utilisateur:
+            ROLE_ADMIN_USER_LIST: Liste des utilisateurs
+            ROLE_ADMIN_USER_VIEW: Voir un utilisateurs
+            ROLE_ADMIN_USER_CREATE: Création d'un utilisateur
+            ROLE_ADMIN_USER_EDIT: Modification d'un utilisateur
+            ROLE_ADMIN_USER_DELETE: Supprimer un utilisateur
+            ROLE_ADMIN_USER_EXPORT: Exporter un utilisateur
+            ROLE_ADMIN_USER_PASSWORD: Modifier un mot de passe utilisateur
+            ROLE_ADMIN_USER: Tous les droits utilisateurs
+        Demande de celebrite:
+            ROLE_ADMIN_DEMANDE_CELEBRITE_LIST: Liste des demandes de célébrités
+            ROLE_ADMIN_DEMANDE_CELEBRITE_VIEW: Voir une demande de célébrité
+            ROLE_ADMIN_DEMANDE_CELEBRITE_DELETE: Supprimer une demande de célébrité
+            ROLE_ADMIN_DEMANDE_CELEBRITE_EXPORT: Exporter une demande de célébrité
+            ROLE_ADMIN_REPONSE_DEMANDE_CELEBRITE: Valider/refuser une demande de célébrité
+            ROLE_ADMIN_DEMANDE_CELEBRITE: Tous les droits demandes de célébrité
+        Groupe:
+            ROLE_ADMIN_GROUP_APPLICATION_LIST: Liste des groupes d'administration
+            ROLE_ADMIN_GROUP_APPLICATION_VIEW: Voir un groupe d'administration
+            ROLE_ADMIN_GROUP_APPLICATION_CREATE: Création d'un groupe d'administration
+            ROLE_ADMIN_GROUP_APPLICATION_EDIT: Modification d'un groupe d'administration
+            ROLE_ADMIN_GROUP_APPLICATION_DELETE: Supprimer un groupe d'administration
+            ROLE_ADMIN_GROUP_APPLICATION_EXPORT: Exporter un groupe d'administration
+            ROLE_ADMIN_GROUP_APPLICATION: Tous les droits groupes d'administration
+        Categorie de produit:
+            ROLE_ADMIN_CATEGORIE_PRODUIT_LIST: Liste des catégories de produits
+            ROLE_ADMIN_CATEGORIE_PRODUIT_VIEW: Voir une catégorie de produit
+            ROLE_ADMIN_CATEGORIE_PRODUIT_CREATE: Création d'une catégorie de produit
+            ROLE_ADMIN_CATEGORIE_PRODUIT_EDIT: Modification d'une catégorie de produit
+            ROLE_ADMIN_CATEGORIE_PRODUIT_DELETE: Supprimer une catégorie de produit
+            ROLE_ADMIN_CATEGORIE_PRODUIT_EXPORT: Exporter une catégorie de produit
+            ROLE_ADMIN_CATEGORIE_PRODUIT: Tous les droits catégorie de produit
+        Produit:
+            ROLE_ADMIN_PRODUIT_LIST: Liste des produits
+            ROLE_ADMIN_PRODUIT_VIEW: Voir une catégorie de produit
+            ROLE_ADMIN_PRODUIT_CREATE: Création d'un produit
+            ROLE_ADMIN_PRODUIT_EDIT: Modification d'un produit
+            ROLE_ADMIN_PRODUIT_DELETE: Supprimer un produit
+            ROLE_ADMIN_PRODUIT_EXPORT: Exporter un produit
+            ROLE_ADMIN_PRODUIT: Tous les droits produits
+        Categorie de sport:
+            ROLE_ADMIN_SPORT_LIST: Liste des catégorie de sports
+            ROLE_ADMIN_SPORT_VIEW: Voir une catégorie de sport
+            ROLE_ADMIN_SPORT_CREATE: Création d'une catégorie de sport
+            ROLE_ADMIN_SPORT_EDIT: Modification d'une catégorie de sport
+            ROLE_ADMIN_SPORT_DELETE: Supprimer une catégorie de sport
+            ROLE_ADMIN_SPORT_EXPORT: Exporter une catégorie de sport
+            ROLE_ADMIN_SPORT: Tous les droits catégorie de sport
+        Discutions utilisateurs:
+            ROLE_ADMIN_USER_DISCUSSION_LIST: Liste des discutions utilisateurs
+            ROLE_ADMIN_USER_DISCUSSION_VIEW: Voir une discution utilisateurs
+            ROLE_ADMIN_USER_DISCUSSION_CREATE: Création d'une discution utilisateurs
+            ROLE_ADMIN_USER_DISCUSSION_EDIT: Modification d'une discution utilisateurs
+            ROLE_ADMIN_USER_DISCUSSION_DELETE: Supprimer une discution utilisateurs
+            ROLE_ADMIN_USER_DISCUSSION_EXPORT: Exporter une discution utilisateurs
+            ROLE_ADMIN_USER_DISCUSSION: Tous les droits discutions utilisateurs
+        Messages discutions:
+            ROLE_ADMIN_MESSAGE_LIST: Liste des messages discutions
+            ROLE_ADMIN_MESSAGE_VIEW: Voir un message
+            ROLE_ADMIN_MESSAGE_CREATE: Création d'un message
+            ROLE_ADMIN_MESSAGE_EDIT: Modification d'un message
+            ROLE_ADMIN_MESSAGE_DELETE: Supprimer un message
+            ROLE_ADMIN_MESSAGE_EXPORT: Exporter un message
+            ROLE_ADMIN_MESSAGE: Tous les droits messages discutions
+        Articles :
+            ROLE_ADMIN_POST_LIST: Liste des articles
+            ROLE_ADMIN_POST_VIEW: Voir un article
+            ROLE_ADMIN_POST_CREATE: Création d'un article
+            ROLE_ADMIN_POST_EDIT: Modification d'un article
+            ROLE_ADMIN_POST_DELETE: Supprimer un article
+            ROLE_ADMIN_POST_EXPORT: Exporter un article
+            ROLE_ADMIN_POST: Tous les droits articles
+        Commentaires:
+            ROLE_ADMIN_COMMENT_LIST: Liste des commentaires
+            ROLE_ADMIN_COMMENT_VIEW: Voir un commentaire
+            ROLE_ADMIN_COMMENT_CREATE: Création d'un commentaire
+            ROLE_ADMIN_COMMENT_EDIT: Modification d'un commentaire
+            ROLE_ADMIN_COMMENT_DELETE: Supprimer un commentaire
+            ROLE_ADMIN_COMMENT_EXPORT: Exporter un commentaire
+            ROLE_ADMIN_COMMENT: Tous les droits commentaires
