@@ -13,3 +13,6 @@ user.button.changepassword: Changer mot de passe
 gestion_utilisateurs: Gestion des utilisateurs
 gestion_groupe_administrations: Gestion des groupes d'administration
 gestion_demande_celebrite: Gestion des demandes de célébrité
+datavisualisation: Datavisualisation
+statistique_user: Statistique utilisateur
+statistique: Statistique

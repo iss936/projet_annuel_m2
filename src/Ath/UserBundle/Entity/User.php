@@ -1141,12 +1141,11 @@ class User extends BaseUser
         $demandeCelebrites = $this->getDemandeCelebrites();
         if($this->statutJuridique < 3)
         {
-            if(count($demandeCelebrites) == 0)
-                $ok=true;
-            else // le user a déjà une ou plusieurs demande
+            if(!$this->hasRole("ROLE_CELEBRITE"))
             {
-                if(!$this->hasRole("ROLE_CELEBRITE"))
-                {
+                if(count($demandeCelebrites) == 0)
+                    $ok=true;
+                else {
                     $lastDemande = $demandeCelebrites[0];
                 
                     $dateDemande = $lastDemande->getDateDemande();

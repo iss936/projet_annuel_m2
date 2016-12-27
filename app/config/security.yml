@@ -62,6 +62,7 @@ security:
         - { path: ^/public, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/admin, role: ROLE_ADMIN_TABORD }
         - { path: ^/admin/dashboard, role: ROLE_ADMIN }
+        - { path: ^/admin/datavis, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
             
     

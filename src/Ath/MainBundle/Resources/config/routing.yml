@@ -4,3 +4,7 @@ ath_main_homepage:
 ath_list_association:
     path:     /associations
     defaults: { _controller: AthMainBundle:Association:index }
+
+ath_main_datavis_user:
+    path: /admin/datavis/user
+    defaults: { _controller: AthMainBundle:Datavisualisation:user }

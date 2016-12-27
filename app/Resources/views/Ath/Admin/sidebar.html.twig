@@ -7,34 +7,44 @@
             </li>
         {% endif %}
         
-        {% if is_granted("ROLE_ADMIN_USER_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_user_user_list')}}">{{ "gestion_utilisateurs" | trans({}, 'administration') }}</a>
+        {% if is_granted("ROLE_ADMIN_USER_LIST") or is_granted("ROLE_ADMIN_GROUP_APPLICATION_LIST") or is_granted('ROLE_ADMIN_DEMANDE_CELEBRITE_LIST') %}
+            <li class="has-children">
+                <a href="#">{{ "gestion_utilisateurs" | trans({}, 'administration') }}<b class="caret"></b></a>
+                <ul>
+                    {% if is_granted("ROLE_ADMIN_USER_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_user_user_list')}}">{{ "gestion_utilisateurs" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN_GROUP_APPLICATION_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_groupapplication_list')}}">{{ "gestion_groupe_administrations" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN_DEMANDE_CELEBRITE_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_demandecelebrite_list')}}">{{ "gestion_demande_celebrite" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </li>
         {% endif %}
-
-        {% if is_granted("ROLE_ADMIN_GROUP_APPLICATION_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_main_groupapplication_list')}}">{{ "gestion_groupe_administrations" | trans({}, 'administration') }}</a>
-            </li>
-        {% endif %}
-
-        {% if is_granted("ROLE_ADMIN_DEMANDE_CELEBRITE_LIST") %}
-
-            <li>
-                <a href="{{ path('admin_ath_main_demandecelebrite_list')}}">{{ "gestion_demande_celebrite" | trans({}, 'administration') }}</a>
-            </li>
-        {% endif %}
-
-        {% if is_granted("ROLE_ADMIN_CATEGORIE_PRODUIT_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_main_categorieproduit_list')}}">{{ "gestion_categorie_produits" | trans({}, 'administration') }}</a>
-            </li>
-        {% endif %}
-
-        {% if is_granted("ROLE_ADMIN_PRODUIT_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits" | trans({}, 'administration') }}</a>
+           
+        {% if is_granted("ROLE_ADMIN_CATEGORIE_PRODUIT_LIST") or is_granted("ROLE_ADMIN_PRODUIT_LIST") %}
+            <li class="has-children">
+                <a href="#">{{ "gestion_produits" | trans({}, 'administration') }}<b class="caret"></b></a>
+                <ul>
+                    {% if is_granted("ROLE_ADMIN_CATEGORIE_PRODUIT_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_categorieproduit_list')}}">{{ "gestion_categorie_produits" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN_PRODUIT_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </li>
         {% endif %}
 
@@ -67,7 +77,16 @@
                 <a href="{{ path('admin_ath_main_comment_list')}}">{{ "gestion_commentaire_articles" | trans({}, 'administration') }}</a>
             </li>
         {% endif %}
-
-
+        
+        {% if is_granted("ROLE_ADMIN") %}
+            <li class="has-children">
+                <a href="#">{{ "statistique" | trans({}, 'administration') }}<b class="caret"></b></a>
+                <ul>
+                    <li>
+                        <a href="{{ path('ath_main_datavis_user')}}">{{ "statistique_user" | trans({}, 'administration') }}</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
     </ul>
 </li>
