@@ -1,0 +1,63 @@
+.profil, .modify-profil{
+    @include standard-box($base-font-size, $base-font-family, $base-radius, $bp-desktop);
+}
+
+.profil-apps, .profil-entity{
+    @include clearfix();
+}
+.apps-item, .entity-item{
+    width:(100%/4);
+    float:left;
+    padding:1em;
+    & > div{
+        min-height:90px;
+        text-align: center;
+        img{
+            max-width:100%;
+        }
+    }
+    & > p{
+        text-align: center;
+    }
+}
+.modify-profil-form{
+    width:100%;
+    margin: 0 auto;
+    @media (min-width: $bp-desktop) {
+        width:80%;
+    }
+
+    .field-container, .form-group{
+        margin-top: 2em;
+    }
+    label{
+        display:block;
+    }
+    input[type=text], input[type=password], input[type=email], input[type=submit]{
+        width: 100%;
+        padding: 1em;
+        border:none;
+        color: black;
+        @include box-shadow(0 0 $base-radius rgba(0, 0, 0, 0.3));
+        font-size: $base-font-size;//overloadBstrap
+        height: auto;//overloadBstrap
+    }
+    input[type=text], input[type=password], input[type=email]{
+        width: 100%;
+        @include border-radius($base-radius 0px 0px $base-radius);
+        &:active,&:focus{
+            border:none;
+            @include box-shadow(0)
+        }
+    }
+    input[type=submit]{
+        background-color: $color1;
+        color: white;
+        margin-top:3em;
+        margin-bottom:3em;
+        cursor: pointer;
+        @include border-radius($base-radius);
+        @include box-shadow(0 0 $base-radius rgba(0, 0, 0, 0.3));
+    }
+
+}

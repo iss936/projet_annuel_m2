@@ -1,0 +1,226 @@
+
+
+.headerSite-list {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  font-size:$base-font-size;
+  font-family: $base-font-family;
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 3px dashed;
+    border-top: 4px solid\9;
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+  }
+  > li {
+    float: left;
+    position: relative;
+    display: block;
+    > a {
+      position: relative;
+      display: block;
+      padding: 1em;
+    }
+    &.headerSite-userMenu {
+      & > a{
+        & > span {
+          vertical-align: middle;
+          display: block;
+          float: left;
+          padding-top: 6px;
+
+          overflow: hidden;
+          max-height: 2em;
+          text-align: right;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        & > b {
+          display: block;
+          float: left;
+          margin-top: 17px;
+        }
+      }
+    }
+  }
+  .icon-link{
+    padding: 10px 1em 0px 1em;
+    & > i{font-size:$icon-font-size;}
+    & > span{
+      max-width: 116px;
+    }
+  }
+}
+
+.userInformation > li {
+  float: right;
+}
+.list-user-info{
+  position: relative;
+  display: block;
+  padding: 1em;
+  @include clearfix();
+  i{
+    border-radius: 50%;
+    border: 4px solid $color1;
+    width: 50px;
+    height: 50px;
+    margin-right: 0.3em;
+    padding: 6px 9px;
+    font-size: 1.5em;
+    @include opacity(0.5);
+    float:left;
+  }
+  span{
+    float:left;
+    display: block;
+    padding-top: 1em;
+  }
+}
+.user-info-lang{
+  float:right;
+  font-size: 0.8em;
+  color: $grey-dark;
+  margin-top:1.2em;
+  img{
+    width: 18px;
+    float: left;
+    height:20px;
+  }
+  span{
+    padding-top: 1px;
+    display: block;
+    float: left;
+    padding-left: 3px;
+  }
+}
+.flag-container {
+  .icon-link{
+    padding: 14px 1em 0px 1em;
+  }
+  .flag {
+    height: 28px;
+  }
+}
+
+.headerSite-listEntites {
+  img {
+    height: 36px;
+    display: inline !important;
+  }
+  li a img {
+    height: 40px;
+    margin-right: 5px;
+    padding: 0.2em;
+    @include border-radius($base-radius);
+    @include box-shadow(0px 0px $base-radius rgba(0, 0, 0, 0.3));
+  }
+  border-left: 1px solid $grey;
+  border-right: 1px solid $grey;
+  a {
+    padding: 0.5em 0.5em !important;
+  }
+}
+
+.headerSite-listApp {
+  border-left:1px solid $grey;
+
+  @media (min-width: $bp-desktop) {
+    border-left:none;
+  }
+  .headerSite-popover-content{
+    padding:0.5em;
+  }
+  li {
+    float: left;
+    width: 97px;
+    a {
+      text-align: center;
+      padding: 0em 0.4em 0.7em 0.4em !important;
+
+    }
+  }
+  .headerSite-list{
+    @include clearfix;
+    margin-left: -0.25em;
+    margin-right: -0.25em;
+  }
+  .application {
+
+    padding: 1em;
+    border: 1px solid $grey;
+    overflow: hidden;
+    text-align:center;
+    @include border-radius(2px);
+    @include transition(all 0.2s ease-in-out);
+    &:hover{
+      background-color: $grey-light;
+      color:$color1;
+    }
+    .application-image{
+      min-height:53px;
+      max-height:53px;
+      overflow: hidden;
+      img{
+        max-width:100%;
+      }
+    }
+    span{
+      margin-top: 10px;
+      display: inline-block;
+      font-size: $base-font-size-mini;
+      // font-size: 0.8em;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-left: -1em;
+      text-align: center;
+      display: block;
+      margin-right: -1em;
+    }
+  }
+  .dropdown-menu {
+    width: 200px;
+  }
+
+  .list-footer{
+    clear:both;
+    width:auto;
+    float:none;
+    border: 1px solid $grey;
+    text-align:center;
+    padding: 0.7em;
+    @include border-radius(2px);
+    display: block;
+    color:$grey-dark;
+    span{
+      text-transform: uppercase;
+    }
+    &:hover{
+      background-color: $grey-light;
+      color:$color1;
+    }
+  }
+}
+
+.headerSite-userMenu {
+  .caret{
+    margin-left:0.5em;
+    margin-right:0.5em;
+  }
+}
+.headerSite-userMenu, .headerSite-listEntites {
+  .headerSite-list > li{
+    float:none;
+    border-bottom:1px solid $grey;
+    a:hover{
+      background-color: $grey-light;
+      color:$color1;
+    }
+  }
+}

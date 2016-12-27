@@ -1,0 +1,27 @@
+@import "compass";
+
+@import '../common/variables';
+@import '../common/mixins';
+$base-font-size:14px;
+.sonata-bc{
+    font-size:$base-font-size;
+
+    .btn, .form-control{
+        font-size:$base-font-size;
+    }
+    .sonata-ba-form{
+        @include standard-box($base-font-size, $base-font-family, $base-radius, $bp-desktop);
+        h4{
+            text-align: center;
+            font-weight: normal;
+            font-size: 2em;
+            padding-bottom: 1em;
+            margin-bottom: 1em;
+            border-bottom: 1px solid $grey-light;
+
+        }
+        .input-group-addon {
+            color: white;
+        }
+    }
+}

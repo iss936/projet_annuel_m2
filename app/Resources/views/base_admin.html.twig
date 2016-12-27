@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %} Athleteec {% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/atixheader/css/shared/bootstrap.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('sonata/atixheader/css/shared/bootstrap.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
             {# <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" media="all" /> #}
         {% endblock %}
@@ -24,6 +24,41 @@
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('components/bootstrap/js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
+
+            <script type="text/javascript">
+            $(document).ready(function($) {
+                
+                $( "#searchUser" ).autocomplete({
+                    source: function( request, response ){
+                        $.ajax({
+                            url: "{{path('ath_main_search_user')}}",
+                            data: {
+                                string: request.term
+                            },
+                            beforeSend: function(xhr) {
+                                // $("#atix_caissebundle_facture_filtre_fkSoc").addClass("loadinggif-for-input");
+                            },
+                            success: function( data ) {
+                                // $("#atix_caissebundle_facture_filtre_fkSoc").removeClass("loadinggif-for-input");
+                                console.log(data);
+                                // response( data.append(data.img) );
+                                response(data);
+
+                            }
+                        });
+                    },
+                    create: function () {
+                        $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                            return $('<li>')
+                                .append('<a>' + item.img + ' ' + item.value + '<br>'+ '('+ item.ville+')'+ '</a>')
+                                .appendTo(ul);
+                        };
+                    }
+                    
+                });
+            });
+
+            </script>
         {% endblock %}
     </body>
 </html>

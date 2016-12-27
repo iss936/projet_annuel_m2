@@ -5,6 +5,8 @@
 @import "../../../bower_components/compass-mixins/lib/animation/animate";
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
 @import "../../../bower_components/bootstrap-social/bootstrap-social.scss";
+@import "../../../bower_components/jquery-ui/themes/base/jquery-ui.css";
+@import "../../../bower_components/jquery-ui/themes/smoothness/jquery-ui.css";
 
 // Base Theme
 @import "theme/animate";
@@ -19,6 +21,5 @@
 @import "theme/style";
 
 // Custom Style
-
 @import "partials/auth";
 

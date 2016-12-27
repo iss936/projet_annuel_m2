@@ -31,7 +31,7 @@ file that was distributed with this source code.
             {% for stylesheet in admin_pool.getOption('stylesheets', []) %}
                 <link rel="stylesheet" href="{{ asset(stylesheet) }}">
             {% endfor %}
-            <link rel="stylesheet" href="{{ asset('bundles/atixheader/css/header.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('sonata/atixheader/css/header.css') }}" type="text/css" media="all" />
         {% endblock %}
 
         {% block javascripts %}
@@ -44,6 +44,7 @@ file that was distributed with this source code.
                 window.SONATA_TRANSLATIONS = {
                     CONFIRM_EXIT:  '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
                };
+
             </script>
 
             {% for javascript in admin_pool.getOption('javascripts', []) %}
@@ -57,10 +58,42 @@ file that was distributed with this source code.
 
                 {# omit default EN locale #}
                 {% if locale[:2] != 'en' %}
-                    <script src="{{ asset('bundles/sonataadmin/vendor/select2/select2_locale_' ~ locale|replace({'_':'-'}) ~ '.js') }}"></script>
+                    <script src="{{ asset('sonata/sonataadmin/vendor/select2/select2_locale_' ~ locale|replace({'_':'-'}) ~ '.js') }}"></script>
                 {% endif %}
             {% endif %}
+            <script type="text/javascript">
+            $(document).ready(function($) {
+                
+                $( "#searchUser" ).autocomplete({
+                    source: function( request, response ){
+                        $.ajax({
+                            url: "{{path('ath_main_search_user')}}",
+                            data: {
+                                string: request.term
+                            },
+                            beforeSend: function(xhr) {
+                                // $("#atix_caissebundle_facture_filtre_fkSoc").addClass("loadinggif-for-input");
+                            },
+                            success: function( data ) {
+                                // $("#atix_caissebundle_facture_filtre_fkSoc").removeClass("loadinggif-for-input");
+                                console.log(data);
+                                // response( data.append(data.img) );
+                                response(data);
 
+                            }
+                        });
+                    },
+                    create: function () {
+                        $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                            return $('<li>')
+                                .append('<a>' + item.img + ' ' + item.value + '<br>'+ '('+ item.ville+')'+ '</a>')
+                                .appendTo(ul);
+                        };
+                    }
+                    
+                });
+            });
+            </script>
         {% endblock %}
 
         <title>

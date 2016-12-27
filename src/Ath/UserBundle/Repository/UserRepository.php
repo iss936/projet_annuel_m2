@@ -21,4 +21,23 @@ class UserRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * getUserActivesAutocomplete
+     * @param  string $string
+     * @return array of collection of this
+     */
+    public function getUserActivesAutocomplete($string){
+		$query = $this->createQueryBuilder('u')
+	    	->where('u.enabled = :enabled')
+	    	->andWhere('u.nom like :string')
+	    	->setParameters(array(
+	    		'enabled' => 1,
+	    		'string' => '%'. $string .'%'
+	    	))
+	    	->getQuery()
+	    	->getResult();
+
+		return $query;
+	}
 }

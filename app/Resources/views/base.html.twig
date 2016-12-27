@@ -28,7 +28,40 @@
             {% endblock %}
         </div>
         {% block javascripts %}
+            <script type="text/javascript">
+            $(document).ready(function($) {
+                
+                $( "#searchUser" ).autocomplete({
+                    source: function( request, response ){
+                        $.ajax({
+                            url: "{{path('ath_main_search_user')}}",
+                            data: {
+                                string: request.term
+                            },
+                            beforeSend: function(xhr) {
+                                // $("#atix_caissebundle_facture_filtre_fkSoc").addClass("loadinggif-for-input");
+                            },
+                            success: function( data ) {
+                                // $("#atix_caissebundle_facture_filtre_fkSoc").removeClass("loadinggif-for-input");
+                                console.log(data);
+                                // response( data.append(data.img) );
+                                response(data);
 
+                            }
+                        });
+                    },
+                    create: function () {
+                        $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                            return $('<li>')
+                                .append('<a>' + item.img + ' ' + item.value + '<br>'+ '('+ item.ville+')'+ '</a>')
+                                .appendTo(ul);
+                        };
+                    }
+                    
+                });
+            });
+
+            </script>
         {% endblock %}
     </body>
 </html>

@@ -1,0 +1,19 @@
+$bg-image: '/bundles/atixheader/images/navbar-top-bg.png';
+$bp-desktop: 700px;
+$bp-mobile: $bp-desktop - 400px;
+
+$base-font-family: "parisine-std",Calibri,Helvetica,Arial,sans-serif;
+
+$base-font-size: 16px;
+$icon-font-size: 28px;
+$base-font-size-mini: 0.8em;
+$base-line-height: 24px;
+$h1-font-size: 2em;
+
+$base-radius: 3px;
+
+$black: #232323;
+$grey: #e7e7e7;
+$grey-light: lighten($grey, 5);
+$grey-dark: darken($grey, 30);
+$color1: #00aa95;

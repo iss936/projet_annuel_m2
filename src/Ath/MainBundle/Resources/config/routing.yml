@@ -8,3 +8,7 @@ ath_list_association:
 ath_main_datavis_user:
     path: /admin/datavis/user
     defaults: { _controller: AthMainBundle:Datavisualisation:user }
+
+ath_main_search_user:
+    path:     /user/autocomplete
+    defaults: { _controller: AthMainBundle:Default:searchUserAjax }

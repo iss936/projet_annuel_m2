@@ -1,0 +1,10 @@
+@import "compass";
+
+@import 'common/variables';
+@import 'common/mixins';
+
+@import 'user/profil';
+
+body{
+    background: rgba(0, 0, 0, 0.02);
+}

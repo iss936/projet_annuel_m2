@@ -1,0 +1,182 @@
+
+.headerSite-popover {
+  position: absolute;
+  left: 0;
+  z-index: 1060;
+  width:97%;
+  margin-left: 1.5%;
+  top:114px;
+  @include opacity(1);
+  visibility: visible;
+  @include transition(all 0.2s ease-in-out);
+  @media (min-width: $bp-desktop) {
+    max-width: 400px;
+    top: 58px;
+    margin-left: inherit;
+  }
+  padding: 1px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  @include box-shadow(0 0px 4px rgba(0, 0, 0, 0.2));
+}
+
+.headerSite-arrow {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 11px;
+  top: -11px;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+  &:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    content: " ";
+    border-width: 10px;
+    top: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-width: 0;
+    border-bottom-color: #fff;
+  }
+}
+
+.headerSite-popover__sidebar .headerSite-arrow {
+  left: 20px;
+}
+
+.headerSite-popover-content {
+  a {
+    text-decoration: none;
+  }
+  &:before {
+    display: table;
+    content: " ";
+  }
+  &:after {
+    clear: both;
+    display: table;
+    content: " ";
+  }
+}
+
+.headerSite-popover__hidden {
+  @include opacity(0);
+  visibility: hidden;
+}
+
+/* Popover specificites */
+
+.flag-container {
+  .headerSite-popover-content {
+    padding: 0;
+  }
+}
+
+.headerSite-userMenu {
+  .headerSite-popover-content{
+    padding: 1em 0em;
+  }
+}
+.headerSite-userMenu {
+  .headerSite-arrow {
+    right: 68px;
+  }
+}
+.headerSite-listApp {
+  .headerSite-arrow {
+    right: 8px;
+  }
+}
+.flag-container {
+  .headerSite-popover {
+    top: 58px;
+    width: 63px;
+    left: inherit;
+  }
+  .headerSite-arrow {
+    left: 50%;
+  }
+}
+.headerSite-listEntites {
+  .headerSite-popover {
+    top: 58px;
+  }
+  .headerSite-arrow {
+    left: 80px;
+  }
+}
+
+
+
+.sidebarSite .headerSite-listEntites {
+  .headerSite-popover {
+    width: 190px;
+    left: 5px;
+  }
+  .headerSite-arrow {
+    left: 10%;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+
+  .headerSite-listEntites {
+    .headerSite-popover {
+      width: 300px;
+      left: -40px;
+      top: 58px;
+    }
+    .headerSite-arrow {
+      left: 23%;
+    }
+  }
+
+  .flag-container {
+    .headerSite-popover {
+      left: -3px;
+    }
+    .headerSite-arrow {
+      left: 50%;
+    }
+  }
+
+  .headerSite-userMenu {
+    .headerSite-arrow {
+      left: 80%;
+    }
+    .headerSite-popover {
+      width: 300px;
+      right: -31px;
+      left: inherit;
+    }
+  }
+
+  .headerSite-listApp {
+    .headerSite-popover {
+      left: -252px;
+      width: 304px;
+    }
+    .headerSite-arrow {
+      left: 93%;
+    }
+  }
+}
+
+@media (max-width: $bp-desktop) {
+  .headerSite-left > ul > li,
+  .headerSite-right > ul > li {
+    position: inherit;
+    &.flag-container{
+      position: relative;
+    }
+  }
+}

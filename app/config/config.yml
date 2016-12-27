@@ -150,38 +150,38 @@ sonata_admin:
     assets:
         stylesheets:
             # - compiled/front/common.css
-            - bundles/atixheader/css/shared/bootstrap.css
-            - bundles/atixheader/css/shared/bootstrap.responsive-table.css
-            - bundles/atixheader/css/shared/sonata.atixSkin.css
-            - bundles/atixformextra/css/farbtastic.css
-            - bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css
-            - bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css
+            - sonata/atixheader/css/shared/bootstrap.css
+            - sonata/atixheader/css/shared/bootstrap.responsive-table.css
+            - sonata/atixheader/css/shared/sonata.atixSkin.css
+            - sonata/atixformextra/css/farbtastic.css
+            - sonata/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css
+            - sonata/sonataadmin/vendor/AdminLTE/css/ionicons.min.css
             - cssAdmin/admin.css
-            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
-            - bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css
-            - bundles/sonataadmin/vendor/select2/select2.css
-            - bundles/sonataadmin/vendor/select2/select2-bootstrap.css
-            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
-            - bundles/sonataadmin/css/styles.css
-            - bundles/sonataadmin/css/layout.css
-            - bundles/atixformextra/css/farbtastic.css
+            - sonata/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
+            - sonata/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css
+            - sonata/sonataadmin/vendor/select2/select2.css
+            - sonata/sonataadmin/vendor/select2/select2-bootstrap.css
+            - sonata/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
+            - sonata/sonataadmin/css/styles.css
+            - sonata/sonataadmin/css/layout.css
+            - sonata/atixformextra/css/farbtastic.css
         javascripts:
             # Defaults:
             - components/jquery/jquery.min.js
-            - bundles/atixheader/js/atixResponsTable.js
-            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
-            - bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js
+            - sonata/atixheader/js/atixResponsTable.js
+            - sonata/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
+            - sonata/sonatacore/vendor/moment/min/moment-with-locales.min.js
             - components/bootstrap/js/bootstrap.min.js
-            - bundles/atixformextra/js/bootstrap-datetimepicker.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
-            - bundles/sonataadmin/jquery/jquery.form.js
-            - bundles/sonataadmin/jquery/jquery.confirmExit.js
-            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
-            - bundles/sonataadmin/vendor/select2/select2.min.js
-            - bundles/sonataadmin/App.js
-            - bundles/sonataadmin/Admin.js
-            - bundles/atixformextra/js/farbtastic.js
+            - sonata/atixformextra/js/bootstrap-datetimepicker.js
+            - sonata/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
+            - sonata/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
+            - sonata/sonataadmin/jquery/jquery.form.js
+            - sonata/sonataadmin/jquery/jquery.confirmExit.js
+            - sonata/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
+            - sonata/sonataadmin/vendor/select2/select2.min.js
+            - sonata/sonataadmin/App.js
+            - sonata/sonataadmin/Admin.js
+            - sonata/atixformextra/js/farbtastic.js
     security:
         handler: sonata.admin.security.handler.role
 
@@ -289,6 +289,10 @@ liip_imagine:
 
     filter_sets:
         cache: ~
+        mini:
+            quality: 75
+            filters:
+                thumbnail: { size: [70, 70], mode: outbound }
         small:
             quality: 75
             filters:
