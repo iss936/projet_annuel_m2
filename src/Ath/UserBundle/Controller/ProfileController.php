@@ -35,7 +35,7 @@ class ProfileController extends BaseController
     {
         $user = $this->getUser();
 
-        if($user->getStatutJuridiqueId() == 2)
+        if($user->getStatutJuridiqueId() == 3)
             $form = $this->createForm(new EditProfileAssocType(), $user);
         else
             $form = $this->createForm(new EditProfileType(), $user);

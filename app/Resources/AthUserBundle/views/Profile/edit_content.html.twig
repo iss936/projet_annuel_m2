@@ -33,7 +33,13 @@
 		    {{ form_row(form.cp) }}
 		    <br><br>
 		    {{ form_row(form.description) }}
-		    <br><br> <br>	    
+		    <br><br>
+		    {{ form_row(form.siteWeb) }}
+		    <br><br>
+		    {{ form_row(form.associationSports) }}
+		    <br><br><br>
+		    {{ form_row(form.userInteretSports) }}
+		    <br><br> <br>
 		    {{ form_row(form.dateDeCreation) }}
 		{% else %}
 			{{ form_row(form.nom) }}
@@ -47,6 +53,8 @@
 		    {{ form_row(form.cp) }}
 		    <br><br>		    
 		    {{ form_row(form.description) }}
+		    <br><br>
+		    {{ form_row(form.userInteretSports) }}
 		    <br><br> <br>	    
 		    {{ form_row(form.dateDeNaissance) }}
 		    
@@ -65,10 +73,26 @@
 </form>
 </div>
 
+{% block stylesheet%}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block javascript %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+{% if app.request.locale == "fr" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-fr_FR.js"></script>
+	{% else %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+
+{% endif %}
 
 <script type="text/javascript">
 	$(document).ready(function($) {
-	
+		$('.selectpicker').selectpicker({
+		});
+
 	    // On supprime la photo
 	    $("#removePhoto").click(function () {
 	      // confirm("{{ 'profile.confirmSuppressionPhoto' | trans({},'home') }}", function(r){
@@ -93,3 +117,5 @@
     });
 
 </script>
+
+{% endblock %}

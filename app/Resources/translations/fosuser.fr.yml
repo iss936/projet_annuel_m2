@@ -25,3 +25,8 @@ formEditProfile.photo: Photo de profil
 profile.retirerLaPhoto: Retirer la photo
 profile.supprimerMaPhoto: Supprimer ma photo
 edit.dateDeNaissance: Votre date de naissance
+edit.siteWeb: Votre site web
+edit.associationSports: Les sports pratiqués au sein de votre association
+edit.dateDeCreation: Date de Création
+edit.emptyValue: Sélectionner une valeur
+edit.userInterets: Les sport qui vous intéressent

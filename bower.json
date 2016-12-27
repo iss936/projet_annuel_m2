@@ -19,6 +19,6 @@
     "bootstrap-sass" : "*",
     "breakpoint-sass" : "*",
     "bootstrap" : "*",
-	"bootstrap-social" : "*"
+    "bootstrap-social" : "*"
   }
 }
