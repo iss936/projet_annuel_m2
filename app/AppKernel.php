@@ -24,7 +24,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Ath\UserBundle\AthUserBundle(),
             new Ath\MainBundle\AthMainBundle(),
-            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+            // new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             // Add your dependencies

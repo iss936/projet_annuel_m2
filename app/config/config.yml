@@ -229,58 +229,78 @@ services:
         calls:
             - [ setAnnotationReader, [ @annotation_reader ] ]
 
-avalanche_imagine:
-    web_root: %kernel.root_dir%/../web
-    cache_prefix: uploads/avalanche/
-    filters:
-        user_detail:
-            type:    thumbnail
-            options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg]  }
-        user:
-            type:    thumbnail
-            options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg]  }
-        user_short:
-            type:    thumbnail
-            options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg]  }
-        user_mini:
-            type:    thumbnail
-            options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg]  }
-        user_micro:
-            type:    thumbnail
-            options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }
+# avalanche_imagine:
+#     source_root:  %kernel.root_dir%/../web
+#     web_root: %kernel.root_dir%/../web
+#     cache_prefix: uploads/avalanche/
+#     driver:       gd
+#     filters:
+#         user_detail:
+#             type:    thumbnail
+#             options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         user:
+#             type:    thumbnail
+#             options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         user_short:
+#             type:    thumbnail
+#             options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         user_mini:
+#             type:    thumbnail
+#             options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         user_micro:
+#             type:    thumbnail
+#             options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
 
-        produit_detail:
-            type:    thumbnail
-            options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg]  }
-        produit:
-            type:    thumbnail
-            options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg]  }
-        produit_short:
-            type:    thumbnail
-            options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg]  }
-        produit_mini:
-            type:    thumbnail
-            options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg]  }
-        produit_micro:
-            type:    thumbnail
-            options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }
+#         produit_detail:
+#             type:    thumbnail
+#             options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         produit:
+#             type:    thumbnail
+#             options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         produit_short:
+#             type:    thumbnail
+#             options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         produit_mini:
+#             type:    thumbnail
+#             options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         produit_micro:
+#             type:    thumbnail
+#             options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
 
-        post_detail:
-            type:    thumbnail
-            options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg]  }
-        post:
-            type:    thumbnail
-            options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg]  }
-        post_short:
-            type:    thumbnail
-            options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg]  }
-        post_mini:
-            type:    thumbnail
-            options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg]  }
-        post_micro:
-            type:    thumbnail
-            options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg]  }
+#         post_detail:
+#             type:    thumbnail
+#             options: { size: [124, 124], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         post:
+#             type:    thumbnail
+#             options: { size: [96, 96], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         post_short:
+#             type:    thumbnail
+#             options: { size: [48, 48], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         post_mini:
+#             type:    thumbnail
+#             options: { size: [32, 32], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+#         post_micro:
+#             type:    thumbnail
+#             options: { size: [24, 24], mode: outbound, quality: 100, format: [png, jpg, jpeg, gif]  }
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
 
+    filter_sets:
+        cache: ~
+        small:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
+        medium:
+            quality: 75
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }
+        big:
+            quality: 75
+            filters:
+                thumbnail: { size: [400, 400], mode: outbound }
 ath_main:
     roles_gp_app:
         Utilisateur:

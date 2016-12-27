@@ -19,3 +19,4 @@
 /app/check.php
 composer.lock
 /web/config.php
+/web/media/*

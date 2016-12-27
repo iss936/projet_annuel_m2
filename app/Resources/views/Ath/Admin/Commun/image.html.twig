@@ -1,5 +1,5 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field%}
-    <img src="/{{ object.webPath }}" alt="{{ object.photoOriginalName }}" height="100px" width="100px" />
+    <img src="{{ object.webPath }}" alt="{{ object.photoOriginalName }}" height="100px" width="100px" />
 {% endblock %}

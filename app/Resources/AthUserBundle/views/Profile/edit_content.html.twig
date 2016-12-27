@@ -1,54 +1,69 @@
 <h1>{{ "title.edit.profile" | trans({}, 'fosuser') }}</h1>
 {% include "::flash_messages.html.twig" %}
 
+<div class="row">
+	
 <form action="{{ path('fos_user_profile_edit') }}" method="POST" {{ form_enctype(form) }}>
+	{{ form_row(form._token) }}
+    
     <div class="col-md-3">
 	  <p>
 	     <label> Photo : </label><br>
-	      {% include '@ath_main_path/Includes/user.html.twig' with {'user': app.user, 'img_filter' : 'user_detail' } %}
+	      {% include '@ath_main_path/Includes/user.html.twig' with {'user': app.user, 'img_filter' : 'medium' } %}
 	  </p>
 	  <p>
 	    {{ form_errors(form.file) }}
 	    {{ form_widget(form.file) }}
 	    {% if app.user.photoId is not null %}
 	        <a href="#" id="removePhoto">
-
-	                {{ 'profile.supprimerMaPhoto' | trans({},'fosuser') }}
-
+	           	{{ 'profile.supprimerMaPhoto' | trans({},'fosuser') }}
 	        </a>
 	    {% endif %}
 	    <a href="#" id="clear" style="display:none;"> {{ 'profile.retirerLaPhoto' | trans({},'fosuser') }}</a>
 	  </p>
     </div>
-    <div class="col-md-6">
-	    {% if app.user.statutJuridiqueId == 2 %}
+    <div class="col-md-9">
+	    {% if app.user.statutJuridiqueId == 3 %}
 		    {{ form_row(form.nom) }}
-		    {{ form_row(form.dateDeCreation) }}
+		    <br><br>
 		    {{ form_row(form.rue) }}
+		    <br><br>
 		    {{ form_row(form.ville) }}
+		    <br><br>
 		    {{ form_row(form.cp) }}
+		    <br><br>
 		    {{ form_row(form.description) }}
+		    <br><br> <br>	    
+		    {{ form_row(form.dateDeCreation) }}
 		{% else %}
 			{{ form_row(form.nom) }}
+		    <br><br>
 			{{ form_row(form.prenom) }}
-		    {{ form_row(form.dateDeNaissance) }}
-		    {{ form_row(form.rue) }}
+		    <br><br>
+			{{ form_row(form.rue) }}
+		    <br><br>
 		    {{ form_row(form.ville) }}
+		    <br><br>
 		    {{ form_row(form.cp) }}
+		    <br><br>		    
 		    {{ form_row(form.description) }}
+		    <br><br> <br>	    
+		    {{ form_row(form.dateDeNaissance) }}
+		    
 		{% endif %}
+	<br/>
+	<br/>
 	<input type="submit" class="btn btn-default" name="Enregistrer" value="{{ "save" | trans({}, 'home') }}">
-	{{ form_rest(form) }}
+	<br/>
+	<br/>
     </div>
-
-    <div class="col-md-3">
+    <div>
 		{% if canDemandeCelebrite %}
 		    <a href="{{ path('ath_user_demande_celebrite') }}" class="btn btn-info"> {{ "faire.demande.celebrite" | trans({}, 'home') }}</a>
 		{% endif %}
     </div>
-	
-
 </form>
+</div>
 
 
 <script type="text/javascript">

@@ -12,8 +12,8 @@ class EditProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', 'text', array('label' => 'nom', 'attr' => array('placeholder' => 'nom')))
-            ->add('prenom', 'text', array('label' => 'prenom', 'attr' => array('placeholder' => 'prenom')))
+            ->add('nom', 'text', array('label' => 'nom', 'attr' => array('class' =>'form-control', 'placeholder' => 'nom')))
+            ->add('prenom', 'text', array('label' => 'prenom', 'attr' => array('class' =>'form-control', 'placeholder' => 'prenom')))
 
             ->add('dateDeNaissance','date',array(
                 'label' => 'edit.dateDeNaissance',
@@ -24,12 +24,12 @@ class EditProfileType extends AbstractType
                 // 'required' => false,
             ))
 
-            ->add('rue', 'text', array('label' => 'label.rue', 'required' => false, 'attr' => array('placeholder' => 'placeholder.rue')))
-            ->add('ville', 'text', array('label' => 'label.ville', 'required' => true,'attr' => array('placeholder' => 'placeholder.ville')))
-            ->add('cp', 'text', array('label' => 'label.cp', 'required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
-            ->add('description', 'textarea', array('label' => 'label.cp','required' => false, 'attr' => array('placeholder' => 'placeholder.cp')))
+            ->add('rue', 'text', array('label' => 'label.rue', 'required' => false, 'attr' => array('class' =>'form-control', 'placeholder' => 'placeholder.rue')))
+            ->add('ville', 'text', array('label' => 'label.ville', 'required' => true,'attr' => array('class' =>'form-control', 'placeholder' => 'placeholder.ville')))
+            ->add('cp', 'text', array('label' => 'label.cp', 'required' => false, 'attr' => array('class' =>'form-control', 'placeholder' => 'placeholder.cp')))
+            ->add('description', 'textarea', array('label' => 'label.cp','required' => false, 'attr' => array('class' =>'form-control', 'placeholder' => 'placeholder.cp')))
             ->add('file', 'file', array('data_class' => 'Symfony\Component\HttpFoundation\File\File','label' => 'formEditProfile.photo', 'required' => false))
-            ->add('description', 'textarea', array('label' => 'label.description','required' => false, 'attr' => array('placeholder' => 'placeholder.description')))
+            ->add('description', 'textarea', array('label' => 'label.description','required' => false, 'attr' => array('class' =>'form-control', 'placeholder' => 'placeholder.description')))
         ;
     }
 
