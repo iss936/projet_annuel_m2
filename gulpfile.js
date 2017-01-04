@@ -22,6 +22,8 @@ compiledDir = appDir + '/web/compiled/';
 
 jsFrontFiles = [
     appDir + '/bower_components/jquery/dist/jquery.min.js',
+    appDir + '/bower_components/jquery-ui/ui/jquery-ui.js',
+    appDir + '/bower_components/bootstrap-select/dist/js/bootstrap-select.js',
     appDir + '/bower_components/jquery-debounce/jquery.debounce.js',
     appDir + '/bower_components/bootstrap/js/*.js',
     jsDir + '/front/**/*.js'
