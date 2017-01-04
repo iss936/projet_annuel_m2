@@ -302,6 +302,7 @@ class User extends BaseUser
         $this->userComparateurProduits = new ArrayCollection();
         $this->associationSports = new ArrayCollection();
         $this->groupApplications = new ArrayCollection();
+        $this->slug = uniqid(rand(), true);
     }
 
     /**

@@ -87,7 +87,6 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setSlug" => uniqid(),
                 "setUserInteretSports" => array($allSport[3], $allSport[0], $allSport[2]),
             ),
             array(
@@ -106,7 +105,6 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setSlug" => uniqid(),
                 "setUserInteretSports" => array($allSport[3], $allSport[0], $allSport[1]),
             ),
             array(
@@ -125,7 +123,6 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setSiteWeb" => "http://www.esgi.fr/ecole-informatique.html",
-                "setSlug" => uniqid(),
                 "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[2]),
                 "setAssociationSports" => array($allSport[1],$allSport[2])
             ),
@@ -145,7 +142,6 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setSlug" => uniqid(),
                 "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
             ),
             array(
@@ -164,7 +160,6 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 1,
-                "setSlug" => uniqid(),
                 "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[3])
             ),
         );
