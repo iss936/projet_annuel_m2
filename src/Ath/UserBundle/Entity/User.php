@@ -302,7 +302,6 @@ class User extends BaseUser
         $this->userComparateurProduits = new ArrayCollection();
         $this->associationSports = new ArrayCollection();
         $this->groupApplications = new ArrayCollection();
-        $this->slug = uniqid(rand(), true);
     }
 
     /**
@@ -1190,13 +1189,6 @@ class User extends BaseUser
         return $this->slug;
     }
 
-    /**
-     * Sets the value of slug.
-     *
-     * @param mixed $slug the slug
-     *
-     * @return self
-     */
     public function setSlug($slug)
     {
         $this->slug = $slug;
@@ -1204,6 +1196,15 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @ORM\PrePersist()
+     */
+    public function defaultSlug()
+    {
+        $this->slug = uniqid(rand(), true);
+
+        return $this;
+    }
     /********* Fin function pratique **********/
 
     /*** GESTION UPLOADS photo de profile ***/

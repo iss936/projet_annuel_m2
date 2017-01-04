@@ -81,9 +81,9 @@ user_security_check_type:
     pattern:    /login_check_type
     defaults:   { _controller: AthUserBundle:Security:checkTest }
 
-ath_user_show_profile:
-    pattern: /profile/{slug}
-    defaults: { _controller: 'AthUserBundle:Profile:show' }
+# ath_user_show_profile:
+#     pattern: /profile/{slug}
+#     defaults: { _controller: 'AthUserBundle:Profile:show' }
 
 # Permet de changer le parametre langue dans la configuration du site
 ath_choose_langue:
