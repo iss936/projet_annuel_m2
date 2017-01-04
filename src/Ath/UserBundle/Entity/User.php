@@ -282,6 +282,13 @@ class User extends BaseUser
     protected $groupApplications;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
@@ -910,6 +917,11 @@ class User extends BaseUser
       return $this->demandeCelebrites;
     }
 
+    public function setUserInteretSports($userInteretSports) {
+
+          $this->userInteretSports[] = $userInteretSports;
+        return $this;
+    }
     /**
      * Add userInteretSports
      *
@@ -972,6 +984,10 @@ class User extends BaseUser
         return $this->userComparateurProduits;
     }
 
+    public function setAssociationSports($associationSports) {
+          $this->associationSports[] = $associationSports;
+        return $this;
+    }
     /**
      * Add associationSports
      *
@@ -1161,6 +1177,30 @@ class User extends BaseUser
         }
 
         return $ok;
+    }
+
+    /**
+     * Gets the value of slug.
+     *
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Sets the value of slug.
+     *
+     * @param mixed $slug the slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /********* Fin function pratique **********/

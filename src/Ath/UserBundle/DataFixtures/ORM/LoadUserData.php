@@ -26,7 +26,25 @@ class LoadUserData extends AbstractDataFixture
 
             // on set tous les champs
             foreach($fixture as $key => $value ) {
-                $entity->{$key}($value);
+                switch ($key) {
+
+                    case 'setUserInteretSports': {
+                        foreach ($value as $oneSport) {
+                            $entity->addUserInteretSport($oneSport);
+                        }
+                        break;
+                    }
+                    case 'setAssociationSports': {
+                        foreach ($value as $oneSport) {
+                            $entity->addAssociationSport($oneSport);
+                        }
+                        break;
+                    }
+                    default: {
+                        $entity->{$key}($value);
+                        break;
+                    }
+                }
             }
 
             $manager->persist($entity);
@@ -41,8 +59,16 @@ class LoadUserData extends AbstractDataFixture
      */
     private function getFixtures()
     {
-        $dateOfBirth = new \DateTime("1993-09-05");
-        $dateOfBirth->createFromFormat("Y-M-d H:i:s", "1993-01-01");
+        $dateOfBirth = new \DateTime("1993-05-05");
+        $dateOfBirth->createFromFormat("Y-M-d H:i:s", "1993-05-01");
+
+        $dateOfBirth2 = new \DateTime("1990-09-05");
+        $dateOfBirth2->createFromFormat("Y-M-d H:i:s", "1990-01-01");
+
+        $dateOfBirth3 = new \DateTime("1987-08-05");
+        $dateOfBirth3->createFromFormat("Y-M-d H:i:s", "1987-08-05");
+
+        $allSport = $this->manager->getRepository('AthMainBundle:Sport')->findAll();
 
         $fixtures = array(
             array(
@@ -60,7 +86,9 @@ class LoadUserData extends AbstractDataFixture
                 "setStatutJuridique" => 1, // 1 = H et 2 pour F  3 pour Association
                 "setEnabled" => 1,
                 "setCgu" => 1,
-                "setIsCelebrite" => 0
+                "setIsCelebrite" => 0,
+                "setSlug" => uniqid(),
+                "setUserInteretSports" => array($allSport[3], $allSport[0], $allSport[2]),
             ),
             array(
                 "setUsername" => "john@gmail.com",
@@ -77,7 +105,9 @@ class LoadUserData extends AbstractDataFixture
                 "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
-                "setIsCelebrite" => 0
+                "setIsCelebrite" => 0,
+                "setSlug" => uniqid(),
+                "setUserInteretSports" => array($allSport[3], $allSport[0], $allSport[1]),
             ),
             array(
                 "setUsername" => "esgi@gmail.com",
@@ -93,8 +123,50 @@ class LoadUserData extends AbstractDataFixture
                 "setStatutJuridique" => 3,
                 "setEnabled" => 1,
                 "setCgu" => 1,
-                "setIsCelebrite" => 0
-            )
+                "setIsCelebrite" => 0,
+                "setSiteWeb" => "http://www.esgi.fr/ecole-informatique.html",
+                "setSlug" => uniqid(),
+                "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[2]),
+                "setAssociationSports" => array($allSport[1],$allSport[2])
+            ),
+            array(
+                "setUsername" => "femme1@gmail.com",
+                "setPlainPassword" => "esgi",
+                "setEmail" => "femme1@gmail.com",
+                "addRole" => "ROLE_USER",
+                "setPrenom" => "femme1",
+                "setNom" => "femme1",
+                "setDateDeNaissance" => $dateOfBirth2,
+                "setRue" => "12 avenue du général de Gaulle",
+                "setVille" => "Marseille",
+                "setCp" => "13000",
+                "setDescription" => "Je suis ......",
+                "setStatutJuridique" => 2,
+                "setEnabled" => 1,
+                "setCgu" => 1,
+                "setIsCelebrite" => 0,
+                "setSlug" => uniqid(),
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+            ),
+            array(
+                "setUsername" => "teddy@gmail.com",
+                "setPlainPassword" => "esgi",
+                "setEmail" => "teddy@gmail.com",
+                "setRoles" => array("ROLE_USER","ROLE_CELEBRITE"),
+                "setPrenom" => "Teddy",
+                "setNom" => "Riner",
+                "setDateDeNaissance" => $dateOfBirth3,
+                "setRue" => "rue de paris",
+                "setVille" => "Paris",
+                "setCp" => "75000",
+                "setDescription" => "Je suis ......",
+                "setStatutJuridique" => 1, // 1 = H et 2 pour F  3 pour Association
+                "setEnabled" => 1,
+                "setCgu" => 1,
+                "setIsCelebrite" => 1,
+                "setSlug" => uniqid(),
+                "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[3])
+            ),
         );
 
         return $fixtures;
@@ -114,6 +186,6 @@ class LoadUserData extends AbstractDataFixture
      */
     public function getOrder()
     {
-        return 0;
+        return 4;
     }
 }

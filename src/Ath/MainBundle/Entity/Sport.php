@@ -5,11 +5,14 @@ namespace Ath\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Sport
  *
  * @ORM\Table(name="sport")
  * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\SportRepository")
+ * @UniqueEntity("name")
  */
 class Sport
 {
