@@ -228,6 +228,10 @@ services:
             - { name: doctrine.event_subscriber, connection: default }
         calls:
             - [ setAnnotationReader, [ @annotation_reader ] ]
+    twig.extension.intl:
+       class: Twig_Extensions_Extension_Intl
+       tags:
+           - { name: twig.extension }
 
 # avalanche_imagine:
 #     source_root:  %kernel.root_dir%/../web
@@ -301,6 +305,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [200, 200], mode: outbound }
+        profile:
+            quality: 75
+            filters:
+                thumbnail: { size: [255, 255], mode: outbound }
         big:
             quality: 75
             filters:

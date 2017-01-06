@@ -21,7 +21,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Profil <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Voir mon profil</a></li>
+              <li><a href="{{ path('ath_user_show_profile',{'slug': app.user.slug }) }}">Voir mon profil</a></li>
               <li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
               <li><a href="{{ path('ath_user_change_password') }}">Modifier mon mot de passe</a></li>
               <li role="separator" class="divider"></li>

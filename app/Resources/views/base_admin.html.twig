@@ -50,11 +50,10 @@
                     create: function () {
                         $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
                             return $('<li>')
-                                .append('<a>' + item.img + ' ' + item.value + '<br>'+ '('+ item.ville+')'+ '</a>')
+                                .append('<a href="{{ path("ath_user_show_profile", {"slug":'+ item.slug +'  }) }}">' + item.img + ' ' + item.value + '<br>'+ '('+ item.ville+')'+ '</a>')
                                 .appendTo(ul);
                         };
                     }
-                    
                 });
             });
 

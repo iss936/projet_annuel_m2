@@ -1141,6 +1141,9 @@ class User extends BaseUser
         return ucfirst($this->prenom) . ' ' . ucfirst($this->nom);
     }
 	
+    public function getAdresse(){
+        return $this->rue.' '. $this->cp. ' '. $this->ville;
+    }
 	public function getPrefixMail($email) {
 		list($prefix, $suffixe) = explode('@', $email);
 		return $prefix;

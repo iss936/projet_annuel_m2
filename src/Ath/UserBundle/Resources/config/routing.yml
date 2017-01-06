@@ -14,9 +14,9 @@ ath_user_demande_celebrite:
 fos_user_security:
    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-fos_user_profile:
-   resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-   prefix: /profile
+# fos_user_profile:
+#    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+#    prefix: /profile
 
 fos_user_register:
    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
@@ -28,10 +28,10 @@ fos_user_resetting:
 
 fos_user_change_password:
    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-   prefix: /profile
+   prefix: /sportif/profile
 
 fos_user_profile_edit:
-    pattern: /modifier/profil
+    pattern: /sportif/modifier/profil
     defaults: { _controller: AthUserBundle:Profile:edit }
     requirements:
         _method: GET|POST
@@ -62,7 +62,7 @@ fos_user_resetting_reset:
 
 ### UserBundle -> Fos user route override
 ath_user_change_password:
-    pattern: /profile/change-password
+    pattern: /sportif/profile/change-password
     defaults: { _controller: 'AthUserBundle:ChangePassword:changePassword' }
 
 user_security_login:
@@ -81,9 +81,9 @@ user_security_check_type:
     pattern:    /login_check_type
     defaults:   { _controller: AthUserBundle:Security:checkTest }
 
-# ath_user_show_profile:
-#     pattern: /profile/{slug}
-#     defaults: { _controller: 'AthUserBundle:Profile:show' }
+ath_user_show_profile:
+    pattern: /sportif/profil/{slug}
+    defaults: { _controller: 'AthUserBundle:Profile:showProfile' }
 
 # Permet de changer le parametre langue dans la configuration du site
 ath_choose_langue:

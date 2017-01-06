@@ -32,7 +32,7 @@ class DefaultController extends Controller
 
                     	$ville = ($val->getVille()) ? $val->getVille() : $trad->trans("villeNonRenseigne", array(), 'home');
                     	// $image = $this->container->get('liip_imagine.filter.manager')->applyFilter($val->getWebPath(), 'small')->getContent();
-                        return array('id' => $val->getId(), 'value' => $val->__toString(), 'img' => '<img src='.$image.'>', 'ville' => $ville);
+                        return array('id' => $val->getId(), 'value' => $val->__toString(), 'img' => '<img src='.$image.'>','slug' => $val->getSlug(), 'ville' => $ville);
                     },
                     $users
                 )

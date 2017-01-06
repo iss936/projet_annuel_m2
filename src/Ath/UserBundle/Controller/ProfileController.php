@@ -16,19 +16,38 @@ class ProfileController extends BaseController
      /**
      * Show the user
      */
-    public function showAction()
+   /* public function showAction()
     {
         $user = $this->getUser();
-
+        $em = $this->getDoctrine()->getManager();
+        $userToShow = $em->getRepository('AthUserBundle:User')->findOneBySlug($slug);
+        
         // if (!is_object($user) || !$user instanceof UserInterface) {
         //     throw new AccessDeniedException('This user does not have access to this section.');
         // }
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user
+            'user' => $user,
+            'userToShow' => $userToShow
+        ));
+
+    }*/
+
+    public function showProfileAction(Request $request, $slug)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $userToShow = $em->getRepository('AthUserBundle:User')->findOneBySlug($slug);
+        
+        // if (!is_object($user) || !$user instanceof UserInterface) {
+        //     throw new AccessDeniedException('This user does not have access to this section.');
+        // }
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user,
+            'userToShow' => $userToShow
         ));
     }
-
     /**
      * Edit the user
      */

@@ -2,9 +2,266 @@
 
 {% include "::flash_messages.html.twig" %}
 
-<h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
+<div class="user_wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="user_container">
+            <div class="user_head">
+              <div class="col-sm-3 col-md-3">
+                <div class="">
+                	{# {% if userToShow.id == user.id %}
+						<h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
+                	{% else %} #}
+						<h1>{{userToShow}}</h1>
+                	{# {% endif %} #}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-</div>
+					{% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
+                <img id="image" src="images/ava.jpg"  alt="">
+               {#  <div class="upload-file-container-text">
+                  <input type="file" name="file" class="photo" id="imgInput"></div> #}
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3">
+                <div class="user_information">
+                  <p>
+                    <span class="edited" >Hours rate :</span>
+                    22
+                    <span class="edited" >$</span>
+                  </p>
+                  <p class="user_loc">
+                    <span class="edited" id="editer_profileglobe">
+                      <i class="fa fa-globe"></i>
+                    </span>
+                    Redwood city, USA
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-2">
+              	{% if userToShow.id == user.id %}
+                	<a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
+            	{% else %}
+            	    <a href="#"><button class="write" style="background-color: #33CCFF;">{{ "suivre" | trans({}, 'home') }}</button></a>
+            	{% endif %}
+              </div>
+
+              <div class="col-sm-2 col-md-2">
+                <div class="user_btn">
+                 {#  <a href="#" data-style="zoom-out" data-name="follow" class="btn btn-success btn-add_friends ladda btn-follow ladda-button ladda-primary edited" id="edited_addopr454">
+                    <span class="ladda-label">Add</span>
+                    <span class="ladda-spinner"></span>
+                  </a> #}
+                </div>
+              </div>
+
+            </div>
+            <div class="hidden-xs col-sm-9 col-md-9 сol-md-offset-2">
+
+              <div class="user_status">
+                <p>
+                  {{ userToShow.description }}
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="user_photo ">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 user_ph_width">
+          <a class="user_photo_container edited" id="edited_latestpr">
+            <i class="fa fa-picture-o"></i>
+            Interêts pour les produits
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 owl_photos">
+          <div id="owl-demo5" class="owl-carousel owl-theme">
+
+            <div class="item">
+              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
+                <img src="images/f-project.jpg" height="65" width="65" alt=""></a>
+            </div>
+
+          </div>
+          <div class="customNavigation">
+
+            <a class="next">
+              <i class="fa fa-chevron-right"></i>
+            </a>
+
+          </div>
+          <div class="photos_gradient"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user_properties">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="user_friends">
+            <h3>
+              Follow
+              <span>(186)</span>
+            </h3>
+           {#  <div class="row">
+              <div class="col-xs-3 col-sm-1 col-md-4 friend-item">
+                <a href="#">
+
+                  <img src="images/members-1-55.jpg" class="" height="65" width="65" alt=""></a>
+              </div>
+            </div> #}
+
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="user_question">
+            <h3 class="edited" id="edited_prtable">Informations:</h3>
+			<ul class="feature_table clearfix">
+			
+			{% if userToShow.statutJuridiqueId == 3 %}
+				  <li class="clearfix">
+	                <span class="feature_name">{{ "profil.nomAssoc" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">{{ userToShow.nom }}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.dateDeCreation" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">{{ userToShow.dateDeCreation |localizeddate('short', "none")}}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.adresse" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">{{ userToShow.adresse }}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.siteWeb" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value"><a href="{{ userToShow.siteWeb}}" style="color: blue;" target="_blank">{{ userToShow.siteWeb}}</a> </span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.associationSports" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value"></span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">
+	                  <i class="fa fa-envelope-o"></i>
+	                  {{ "profil.email" | trans({}, 'fosuser') }}:
+	                </span>
+	                <span class="feature_value">{{ userToShow.email }}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.interetSports" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">Basketball</span>
+	              </li>
+	           {#    <li class="clearfix">
+	                <span class="feature_name">Have team?:</span>
+	                <span class="feature_value">Yes</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">Some feature:</span>
+	                <span class="feature_value"></span>
+	              </li> #}
+			{% else %} <!-- on a une personne -->
+
+				  <li class="clearfix">
+	                <span class="feature_name">{{ "profil.nom" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">{{ userToShow.nom }}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.dateDeNaissance" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">{{ userToShow.dateDeNaissance |localizeddate('short', "none")}}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.ville" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">{{ userToShow.ville }}</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">{{ "profil.interetSports" | trans({}, 'fosuser') }}:</span>
+	                <span class="feature_value">Football, Basketball </span>
+	              </li>
+			{% endif %}
+	        </ul>
+           	
+
+          </div>
+          <div class="user_latest">
+            <h3 class="edited" id="edited_ltstre">Journal:</h3>
+            <div class="row">
+              <div class="col-md-12">
+                <form id="F_reviews"  method="post">
+         {#          <label class="enter_label edited" id="edited_ltstreghjkgh">
+                    <span class="edited" id="edited_wrnewentr">Write new entry:</span>
+                  </label> #}
+                  <p class="pos-neg edited" id="edited_ltstregNegative">Negative</p>
+                  <div class="switch_rating">
+                    {# <input type="checkbox" class="checkbox" id="checkbox" name="rating"> #}
+                    <label for="checkbox"></label>
+                  </div>
+
+                  {# <p class="pos-neg pos-pos edited" id="edited_ltstregPositive">Positive</p> #}
+                  <button class="send-message"></button>
+                  <textarea placeholder="Press Enter for send" class="e-mail_in" style="resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 80px; width: 848px; line-height: 25.7143px; text-decoration: none; letter-spacing: 0px;" tabindex="-1"></textarea>
+                  <textarea name="name" placeholder="Press Enter for send" id="send_reviews" class="e-mail_in" style="resize: none; overflow-y: hidden;"></textarea>
+                  <div id="fountainG">
+                    <div id="fountainG_1" class="fountainG"></div>
+                    <div id="fountainG_2" class="fountainG"></div>
+                    <div id="fountainG_3" class="fountainG"></div>
+                    <div id="fountainG_4" class="fountainG"></div>
+                    <div id="fountainG_5" class="fountainG"></div>
+                    <div id="fountainG_6" class="fountainG"></div>
+                    <div id="fountainG_7" class="fountainG"></div>
+                    <div id="fountainG_8" class="fountainG"></div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 reviews_list">
+                <div class="user_message red_comment ">
+                  <div class="row">
+                    <div class="col-xs-3 col-sm-1 col-md-1">
+                      <a href="#">
+                        <img src="images/small_ava.jpg" class="" height="55" width="55" alt=""></a>
+                    </div>
+                    <div class="col-xs-9 col-sm-3 col-md-3">
+                      <a href="#" class="us_name">admin</a>
+                      <p class="us_m_date">23.10.2015</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                      <ul class="user_message_options pull-right">
+                        <li>
+                          <a href="?del=2267">
+                            <i class="fa fa-minus-circle"></i>
+                            Delete
+                          </a>
+                        </li>
+                      </ul>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="us_line"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="us_content">
+                        <p>
+                          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
