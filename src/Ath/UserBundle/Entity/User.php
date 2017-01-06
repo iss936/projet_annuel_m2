@@ -269,7 +269,7 @@ class User extends BaseUser
      * @var \Ath\UserBundle\Entity\User
      *
      * @ORM\OneToOne(targetEntity="Ath\MainBundle\Entity\UserSetting", cascade={"all"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_setting_id", referencedColumnName="id")
      */
     private $userSetting;
 
@@ -1199,15 +1199,6 @@ class User extends BaseUser
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist()
-     */
-    public function defaultSlug()
-    {
-        $this->slug = uniqid(rand(), true);
-
-        return $this;
-    }
     /********* Fin function pratique **********/
 
     /*** GESTION UPLOADS photo de profile ***/

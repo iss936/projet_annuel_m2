@@ -100,7 +100,6 @@ services:
         class: Ath\MainBundle\Form\WidgetType\ImageType
         tags:
             - { name: form.type, alias: image }
-
     
     ath_main.form.type.roles_app:
         class: Ath\MainBundle\Form\Type\RolesAppFormType
@@ -110,3 +109,12 @@ services:
           - ""
         tags:
             - { name: form.type, alias: roles_app }
+
+    # Listener sur entity User
+    ath_main.user_follow_listener:
+        class: Ath\MainBundle\EventListener\UserFollowIndexer
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }

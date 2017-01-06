@@ -29,6 +29,12 @@ class UserSetting
     private $autoFollow = 1;
 
     /**
+     * @ORM\Column(name="mail_when_follower", type="boolean")
+     * @var boolean
+     */
+    private $mailWhenFollower = 1;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="newsletter", type="boolean")
@@ -89,5 +95,28 @@ class UserSetting
     public function getNewsletter()
     {
         return $this->newsletter;
+    }
+
+    /**
+     * Set mailWhenFollower
+     *
+     * @param boolean $mailWhenFollower
+     * @return UserSetting
+     */
+    public function setMailWhenFollower($mailWhenFollower)
+    {
+        $this->mailWhenFollower = $mailWhenFollower;
+
+        return $this;
+    }
+
+    /**
+     * Get mailWhenFollower
+     *
+     * @return boolean 
+     */
+    public function getMailWhenFollower()
+    {
+        return $this->mailWhenFollower;
     }
 }
