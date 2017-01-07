@@ -59,7 +59,7 @@ class UserFollow
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_reponse", type="datetime")
+     * @ORM\Column(name="date_reponse", type="datetime", nullable = true)
      */
     private $dateReponse;
 

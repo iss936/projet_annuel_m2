@@ -41,8 +41,12 @@
               <div class="col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-2">
               	{% if userToShow.id == user.id %}
                 	<a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
-            	{% else %}
-            	    <a href="#"><button class="write" style="background-color: #33CCFF;">{{ "suivre" | trans({}, 'home') }}</button></a>
+            	{% else %} <!-- ce n'est pas mon profil-->
+	            	{% if userToShow in amiFollows %}
+				        <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write" style="background-color: #33CCFF;">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
+	            	{% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
+	            	    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write" style="background-color: #33CCFF;">{{ "suivre" | trans({}, 'home') }}</button></a>
+	            	{% endif %}
             	{% endif %}
               </div>
 

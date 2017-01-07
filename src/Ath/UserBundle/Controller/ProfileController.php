@@ -10,6 +10,7 @@ use Ath\UserBundle\Form\EditProfileAssocType;
 use Ath\UserBundle\Form\EditProfileType;
 use Ath\MainBundle\Form\Type\DemandeCelebriteFormType;
 use Ath\MainBundle\Entity\DemandeCelebrite;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProfileController extends BaseController
 {
@@ -39,13 +40,21 @@ class ProfileController extends BaseController
         $em = $this->getDoctrine()->getManager();
         $userToShow = $em->getRepository('AthUserBundle:User')->findOneBySlug($slug);
         
+        if(!$userToShow)
+            throw new NotFoundHttpException("Page introuvable");
+
         // if (!is_object($user) || !$user instanceof UserInterface) {
         //     throw new AccessDeniedException('This user does not have access to this section.');
         // }
+        $followers =  $em->getRepository('AthUserBundle:User')->getFollowers($userToShow);
 
+        $amiFollows = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
+        
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
-            'userToShow' => $userToShow
+            'userToShow' => $userToShow,
+            'followers' => $followers,
+            'amiFollows' => $amiFollows
         ));
     }
     /**

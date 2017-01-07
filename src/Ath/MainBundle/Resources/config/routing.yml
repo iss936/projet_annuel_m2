@@ -12,3 +12,7 @@ ath_main_datavis_user:
 ath_main_search_user:
     path:     /user/autocomplete
     defaults: { _controller: AthMainBundle:Default:searchUserAjax }
+
+ath_main_follow_user:
+    path:     /sportif/suivre/{slug}/{suivre}
+    defaults: { _controller: AthMainBundle:Default:follow, suivre: 1 }

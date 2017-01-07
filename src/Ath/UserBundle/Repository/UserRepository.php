@@ -31,6 +31,7 @@ class UserRepository extends EntityRepository
 		$query = $this->createQueryBuilder('u')
 	    	->where('u.enabled = :enabled')
 	    	->andWhere('u.nom like :string')
+            ->orderBy('u.nom', 'DESC')
 	    	->setParameters(array(
 	    		'enabled' => 1,
 	    		'string' => '%'. $string .'%'
@@ -40,4 +41,49 @@ class UserRepository extends EntityRepository
 
 		return $query;
 	}
+
+    /**
+     * getFollowers => retourne les users qui me suivent
+     * 
+     * @param  User $userDestinataire
+     * @return array of collection of this
+     */
+    public function getFollowers($userDestinataire){
+        $query = $this->createQueryBuilder('u')
+            ->Join('u.userEmetteursFollow', 'uef')
+            ->where('uef.userDestinataire = :userDestinataire')
+            ->andWhere('uef.accepte = :accepte')
+            ->orderBy('u.nom', 'DESC')
+            ->setParameters(array(
+                'userDestinataire' => $userDestinataire,
+                'accepte' => 1
+            ))
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+    /**
+     * getAmiFollows => retourne les personnes que je suis
+     * 
+     * @param  User $userEmetteur
+     * @return array of collection of this
+     */
+    public function getAmiFollows($userEmetteur){
+        $query = $this->createQueryBuilder('u')
+            ->Join('u.userDestinatairesFollow', 'udf')
+            ->where('udf.userEmetteur = :userEmetteur')
+            ->andWhere('udf.accepte = :accepte')
+            ->orderBy('u.nom', 'DESC')
+            ->setParameters(array(
+                'userEmetteur' => $userEmetteur,
+                'accepte' => 1
+            ))
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
 }

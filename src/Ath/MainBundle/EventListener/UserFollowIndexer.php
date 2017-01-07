@@ -32,6 +32,8 @@ class UserFollowIndexer
             $destinataire = $entity->getUserDestinataire();
             if ($destinataire->getUserSetting()->getAutoFollow() == 1) {
                 $entity->setAccepte(1);
+                $entity->setDateReponse(new \DateTime());
+
             }
             else {
                 //senMail x veut vous suivre
@@ -43,6 +45,7 @@ class UserFollowIndexer
             else{
                 // on fait rien
             }
+            $entity->setDateDemande(new \DateTime());
         }
     }
 
@@ -62,6 +65,7 @@ class UserFollowIndexer
             elseif ($this->userFollow->getAccepte() == 0) {
                 // sendMail Invitation Refusé
             }
+            $entity->setDateReponse(new \DateTime());
         }
     }
 
