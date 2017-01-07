@@ -1,4 +1,4 @@
-<h1>{{ "title.edit.profile" | trans({}, 'fosuser') }}</h1>
+<h1 class="title-line">{{ "title.edit.profile" | trans({}, 'fosuser') }}</h1>
 {% include "::flash_messages.html.twig" %}
 
 <div class="row">
@@ -66,7 +66,7 @@
 	<br/>
     </div>
     <div>
-    	
+
 		{% if canDemandeCelebrite %}
 		    <a href="{{ path('ath_user_demande_celebrite') }}" class="btn btn-info"> {{ "faire.demande.celebrite" | trans({}, 'home') }}</a>
 		{% endif %}

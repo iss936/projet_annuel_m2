@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1>{{ "title.demande.celecrite" | trans({}, 'home') }}</h1>
+<h1 class="title-line">{{ "title.demande.celecrite" | trans({}, 'home') }}</h1>
 
 <form class="" action="{{ path('ath_user_demande_celebrite') }}" method="POST">
     {{ form_row(form._token) }}
@@ -22,7 +22,7 @@
           }}
         </div>
       </div> #}
-    <input type="submit" value="Submit" class="btn btn-default" />
+    <input type="submit" value="{{ "btn.send" | trans({}, 'home') }}" class="btn btn-default" />
 </form>
 
 {% endblock body %}

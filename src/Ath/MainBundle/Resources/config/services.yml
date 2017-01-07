@@ -118,3 +118,15 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: postFlush }
+
+    # Handler
+    ath.form.handler.user_setting:
+        class: Ath\MainBundle\Form\Handler\UserSettingFormHandler
+        scope: request
+        arguments:
+          - "@request"
+          - "@doctrine.orm.default_entity_manager"
+          - "@session"
+          - "@translator"
+        tags:
+            - { name: form.handler, alias: user_setting.handler }

@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ath\MainBundle\Entity\UserFollow;
+use Ath\MainBundle\Form\Type\UserSettingFormType;
+
 
 class DefaultController extends Controller
 {
@@ -75,11 +77,26 @@ class DefaultController extends Controller
         
         $referer = $request->headers->get('referer');
 
-        
-
         if($referer != null)
             return $this->redirect($referer);
         else
             return $this->redirect($this->generateUrl('ath_main_homepage'));
     }
+
+
+    public function userSettingsAction()
+    {
+        $user = $this->getUser();
+        $trad = $this->get('translator');
+
+        $form = $this->createForm(new UserSettingFormType(), $user->getUserSetting());
+
+        $formHandler = $this->container->get('ath.form.handler.user_setting');
+        $formHandler->process($form);
+
+        return $this->render('@ath_user_path/user_settings.html.twig',array(
+            'form' => $form->createView()
+            ));
+    }
+
 }

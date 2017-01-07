@@ -31,3 +31,11 @@ suivre: Suivre
 flash.new_contact: Vous suivez désormais les actualités de %user%
 ne_plus_suivre: Ne plus suivre
 flash.remove_contact: Vous ne suivez plus les actualités de %user%
+choice.oui: Oui
+choice.non: Non
+label.mailWhenFollower: Recevoir un mail lorsque vous avez un nouveau follower
+label.newsletter: S'abonner à notre newsletter
+title.settings: Paramètres
+flash.settings_save: Vos paramètres ont bien été enregistré
+btn.save: Enregistrer
+btn.send: Envoyer

@@ -16,3 +16,7 @@ ath_main_search_user:
 ath_main_follow_user:
     path:     /sportif/suivre/{slug}/{suivre}
     defaults: { _controller: AthMainBundle:Default:follow, suivre: 1 }
+
+ath_main_user_settings:
+    path:     /sportif/parametres
+    defaults: { _controller: AthMainBundle:Default:userSettings }

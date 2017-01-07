@@ -24,10 +24,9 @@
               <li><a href="{{ path('ath_user_show_profile',{'slug': app.user.slug }) }}">Voir mon profil</a></li>
               <li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
               <li><a href="{{ path('ath_user_change_password') }}">Modifier mon mot de passe</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"></a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Mon album photo</a></li>
+              {#  <li role="separator" class="divider"></li>
+              <li><a href="#">Mon album photo</a></li> #}
+              <li><a href="{{ path('ath_main_user_settings') }}">Paramètres</a></li>
             </ul>
           </li>
           <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussions</a></li>
