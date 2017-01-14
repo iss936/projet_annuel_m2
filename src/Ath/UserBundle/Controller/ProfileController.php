@@ -48,13 +48,16 @@ class ProfileController extends BaseController
         // }
         $followers =  $em->getRepository('AthUserBundle:User')->getFollowers($userToShow);
 
+        $countFollowers = $em->getRepository('AthUserBundle:User')->countFollowers($userToShow);
+
         $amiFollows = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
         
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'userToShow' => $userToShow,
             'followers' => $followers,
-            'amiFollows' => $amiFollows
+            'amiFollows' => $amiFollows,
+            'countFollowers' => $countFollowers
         ));
     }
     /**
