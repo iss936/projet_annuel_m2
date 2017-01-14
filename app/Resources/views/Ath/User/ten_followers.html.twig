@@ -1,0 +1,33 @@
+{% for oneFollower in followers %}
+<div class="row">
+      <div class="col-md-3">
+        <a href="{{ path('ath_user_show_profile',{'slug': oneFollower.slug }) }}">
+          <img class="" src="{{ oneFollower.webPath | imagine_filter('small') }}" alt="{{ oneFollower }}" title="{{ oneFollower }}" />
+        <p style="color: black">{{ oneFollower }}:</p>
+        </a>
+
+      </div>
+      <div class="col-md-3">
+        {% if oneFollower.ville %}
+        <p> {{ "ville" | trans({}, 'home') }}: {{oneFollower.ville }}</p>
+        {% else %}
+        <p> {{ "ville" | trans({}, 'home') }}: {{ "villeNonRenseigne" | trans({}, 'home') }}</p>
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        <a href="{{ path('ath_user_show_profile',{'slug': oneFollower.slug }) }}"><button class="btn-new-info">{{ "show_profil" | trans({}, 'home') }}</button></a>
+        
+        {% if oneFollower.id == user.id %}
+            {# <a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a> #}
+        {% else %} <!-- ce n'est pas mon profil-->
+          {% if oneFollower in amiFollows %}
+          <a href="{{ path('ath_main_follow_user', {'slug': oneFollower.slug, 'suivre': 0 }) }}"><button class="btn-no-suivre" style="border-color: red, color: red;">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
+          {% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
+              <a href="{{ path('ath_main_follow_user', {'slug': oneFollower.slug }) }}"><button class="btn-suivre" >{{ "suivre" | trans({}, 'home') }}</button></a>
+          {% endif %}
+        {% endif %}
+
+{#         <a href="{{ path('ath_user_show_profile',{'slug': oneFollower.slug }) }}"><button class="btn-new-info">{{ "show_profil" | trans({}, 'home') }}</button></a> #}
+      </div>
+</div>
+{% endfor %}

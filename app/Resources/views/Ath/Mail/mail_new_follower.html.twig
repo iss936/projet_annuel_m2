@@ -1,0 +1,32 @@
+{% extends "::Ath/Mail/base.html.twig" %}
+
+{# @see \app\Resources\translations\mail.{$lang}}.yml #}
+{% block body_mail %}
+
+    <table class="scaleForMobile" width="590" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tbody>
+            <tr>
+                <td width="590" height="15" bgcolor="#ffffff" style="line-height:1px;-webkit-text-size-adjust:none;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="590" style="font-size:14px;line-height:135%;color:#31414C;text-align:center;font-weight:bold;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-text-size-adjust:none;">
+
+                    <p> Bonjour {{ userDestinataire }}, </p>
+                    <p>{{ userEmetteur }} suit désormais vos actualités.</p>
+                    <br>
+                    {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_show_profile', {'slug': userEmetteur.slug }) %}
+
+                    <p><a href="{{ url }}">Veuillez consulter son profil</a></p>        
+                </td>
+            </tr>
+            <tr>
+                <td width="590" height="15" style="-webkit-text-size-adjust:none;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+{%  endblock %}
+
+{% block footer_mail %}
+    {{ 'footer' | trans({},'mail') |nl2br }}
+{%  endblock %}

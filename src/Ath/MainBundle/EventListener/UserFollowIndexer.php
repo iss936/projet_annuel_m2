@@ -29,18 +29,19 @@ class UserFollowIndexer
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
         if ($entity instanceof UserFollow) {
+            $emetteur = $entity->getUserEmetteur();
             $destinataire = $entity->getUserDestinataire();
+            
             if ($destinataire->getUserSetting()->getAutoFollow() == 1) {
                 $entity->setAccepte(1);
                 $entity->setDateReponse(new \DateTime());
-
             }
             else {
                 //senMail x veut vous suivre
             }
 
             if ($destinataire->getUserSetting()->getMailWhenFollower() == 1) {
-             // $this->container->get('atix_main.services.send_mail')->congesAValider($user, $this->demandeConge);
+                $this->container->get('ath_main.services.send_mail')->suivreUser($emetteur, $destinataire);
             }
             else{
                 // on fait rien

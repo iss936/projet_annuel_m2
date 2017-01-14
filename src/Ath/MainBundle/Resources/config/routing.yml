@@ -20,3 +20,11 @@ ath_main_follow_user:
 ath_main_user_settings:
     path:     /sportif/parametres
     defaults: { _controller: AthMainBundle:Default:userSettings }
+
+ath_main_followers:
+    path: /sportif/followers/{slug}
+    defaults: { _controller: AthMainBundle:Default:followers }
+
+ath_main_followers_ajax:
+    path: /sportif/followers/ajax/{slug}
+    defaults: { _controller: AthMainBundle:Default:followersAjax }

@@ -28,19 +28,19 @@ class UserRepository extends EntityRepository
      * @return array of collection of this
      */
     public function getUserActivesAutocomplete($string){
-        $query = $this->createQueryBuilder('u')
-            ->where('u.enabled = :enabled')
-            ->andWhere('u.nom like :string')
+		$query = $this->createQueryBuilder('u')
+	    	->where('u.enabled = :enabled')
+	    	->andWhere('u.nom like :string')
             ->orderBy('u.nom', 'DESC')
-            ->setParameters(array(
-                'enabled' => 1,
-                'string' => '%'. $string .'%'
-            ))
-            ->getQuery()
-            ->getResult();
+	    	->setParameters(array(
+	    		'enabled' => 1,
+	    		'string' => '%'. $string .'%'
+	    	))
+	    	->getQuery()
+	    	->getResult();
 
-        return $query;
-    }
+		return $query;
+	}
 
     public function getAllExceptMe($user) {
         $query = $this
@@ -63,12 +63,61 @@ class UserRepository extends EntityRepository
             ->Join('u.userEmetteursFollow', 'uef')
             ->where('uef.userDestinataire = :userDestinataire')
             ->andWhere('uef.accepte = :accepte')
-            ->orderBy('u.nom', 'DESC')
+            ->addOrderBy('u.prenom', 'ASC')
+            ->addOrderBy('u.nom', 'ASC')
             ->setParameters(array(
                 'userDestinataire' => $userDestinataire,
                 'accepte' => 1
             ))
             ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+    /**
+     * getFollowers => retournes 10 users qui me suivent
+     * 
+     * @param  User $userDestinataire, integer first = premier resultat a recuperer
+     * @return array of collection of this
+     */
+    public function getTenFollowers($userDestinataire, $first = 0){
+        $query = $this->createQueryBuilder('u')
+            ->Join('u.userEmetteursFollow', 'uef')
+            ->where('uef.userDestinataire = :userDestinataire')
+            ->andWhere('uef.accepte = :accepte')
+            ->addOrderBy('u.prenom', 'ASC')
+            ->addOrderBy('u.nom', 'ASC')
+            ->setParameters(array(
+                'userDestinataire' => $userDestinataire,
+                'accepte' => 1
+            ))
+            ->getQuery()
+            ->setFirstResult($first)
+            ->setMaxResults(10)
+            ->getResult();
+
+        return $query;
+    }
+
+    /**
+     * getFollowers => retourne les 12 derniers followers du user
+     * 
+     * @param  User $userDestinataire
+     * @return array of collection of this
+     */
+    public function getLastFollowers($userDestinataire){
+        $query = $this->createQueryBuilder('u')
+            ->Join('u.userEmetteursFollow', 'uef')
+            ->where('uef.userDestinataire = :userDestinataire')
+            ->andWhere('uef.accepte = :accepte')
+            ->orderBy('uef.updatedAt', 'DESC')
+            ->setParameters(array(
+                'userDestinataire' => $userDestinataire,
+                'accepte' => 1
+            ))
+            ->getQuery()
+            ->setMaxResults(12)
             ->getResult();
 
         return $query;

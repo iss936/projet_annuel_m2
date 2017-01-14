@@ -4,3 +4,4 @@ demande_celebrite.email.subject: "Demande de célébrité de l'utilisateur %id%"
 demande_celebrite_validation.email.subject: "Validation de votre demande de célébrité"
 footer: Cordialement,
 demande_celebrite_refus.email.subject: "Refus de votre demande de célébrité"
+user.nouveau.suivi: "%user% suit désormais vos actualités"

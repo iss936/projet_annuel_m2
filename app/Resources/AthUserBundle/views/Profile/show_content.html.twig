@@ -10,13 +10,13 @@
             <div class="user_head">
               <div class="col-sm-3 col-md-3">
                 <div class="">
-                  {# {% if userToShow.id == user.id %}
-            <h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
-                  {% else %} #}
-            <h1>{{userToShow}}</h1>
-                  {# {% endif %} #}
+                	{# {% if userToShow.id == user.id %}
+						<h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
+                	{% else %} #}
+						<h1>{{userToShow}}</h1>
+                	{# {% endif %} #}
 
-          {% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
+					{% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
                 <img id="image" src="images/ava.jpg"  alt="">
                {#  <div class="upload-file-container-text">
                   <input type="file" name="file" class="photo" id="imgInput"></div> #}
@@ -39,15 +39,15 @@
               </div>
 
               <div class="col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-2">
-                {% if userToShow.id == user.id %}
-                  <a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
-              {% else %} <!-- ce n'est pas mon profil-->
-                {% if userToShow in amiFollows %}
-                <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write" style="background-color: #33CCFF;">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
-                {% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
-                    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write" style="background-color: #33CCFF;">{{ "suivre" | trans({}, 'home') }}</button></a>
-                {% endif %}
-              {% endif %}
+              	{% if userToShow.id == user.id %}
+                	<a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
+            	{% else %} <!-- ce n'est pas mon profil-->
+	            	{% if userToShow in amiFollows %}
+				        <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write" style="background-color: #33CCFF;">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
+	            	{% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
+	            	    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write" style="background-color: #33CCFF;">{{ "suivre" | trans({}, 'home') }}</button></a>
+	            	{% endif %}
+            	{% endif %}
               </div>
 
               <div class="col-sm-2 col-md-2">
@@ -114,26 +114,36 @@
         <div class="col-md-3">
           <div class="user_friends">
             <h3>
-              Follow
-              <span>({{ countFollowers }})</span>
+              Followers
+              {% if countFollowers > 12 %}
+                <a href="{{ path('ath_main_followers', {'slug': userToShow.slug }) }}"><span style="color: blue">({{ countFollowers }})</span></a>
+              {% else %}
+                  <span>({{ countFollowers }})</span>
+              {% endif %}
             </h3>
-           {#  <div class="row">
-              <div class="col-xs-3 col-sm-1 col-md-4 friend-item">
-                <a href="#">
+            <div class="row">
+              {% for oneFollower in followers %}
+                    <div class="col-xs-3 col-sm-1 col-md-4 friend-item">
+                      <a href="{{ path('ath_user_show_profile',{'slug': oneFollower.slug }) }}">
+                        <img class="" src="{{ oneFollower.webPath | imagine_filter('mini') }}" alt="{{ oneFollower }}" title="{{ oneFollower }}" />
+                        <p style="color: black">{{ oneFollower }}:</p>
+                      </a>
+                    </div>
+              {% endfor %}
 
-                  <img src="images/members-1-55.jpg" class="" height="65" width="65" alt=""></a>
-              </div>
-            </div> #}
-
+              {% if countFollowers > 12 %}
+                  <a href="{{ path('ath_main_followers', {'slug': userToShow.slug }) }}"><button class="btn-new-info">{{ "voir_tous" | trans({}, 'home') }}</button></a>
+              {% endif %}
+            </div>
           </div>
         </div>
         <div class="col-md-9">
           <div class="user_question">
             <h3 class="edited" id="edited_prtable">Informations:</h3>
-      <ul class="feature_table clearfix">
-      
-      {% if userToShow.statutJuridiqueId == 3 %}
-          <li class="clearfix">
+			<ul class="feature_table clearfix">
+			
+			{% if userToShow.statutJuridiqueId == 3 %}
+	        <li class="clearfix">
             <span class="feature_name">{{ "profil.nomAssoc" | trans({}, 'fosuser') }}:</span>
             <span class="feature_value">{{ userToShow.nom }}</span>
           </li>
@@ -182,16 +192,16 @@
           </span>
              
           </li>
-             {#    <li class="clearfix">
-                  <span class="feature_name">Have team?:</span>
-                  <span class="feature_value">Yes</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">Some feature:</span>
-                  <span class="feature_value"></span>
-                </li> #}
-      {% else %} <!-- on a une personne -->
-          <li class="clearfix">
+	           {#    <li class="clearfix">
+	                <span class="feature_name">Have team?:</span>
+	                <span class="feature_value">Yes</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">Some feature:</span>
+	                <span class="feature_value"></span>
+	              </li> #}
+			{% else %} <!-- on a une personne -->
+	        <li class="clearfix">
             <span class="feature_name">{{ "profil.nom" | trans({}, 'fosuser') }}:</span>
             <span class="feature_value">{{ userToShow.nom }}</span>
           </li>
@@ -215,9 +225,9 @@
               {% endfor %}
             </span>
           </li>
-      {% endif %}
-          </ul>
-            
+			{% endif %}
+	        </ul>
+           	
 
           </div>
           <div class="user_latest">

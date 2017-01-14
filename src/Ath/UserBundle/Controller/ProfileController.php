@@ -46,7 +46,7 @@ class ProfileController extends BaseController
         // if (!is_object($user) || !$user instanceof UserInterface) {
         //     throw new AccessDeniedException('This user does not have access to this section.');
         // }
-        $followers =  $em->getRepository('AthUserBundle:User')->getFollowers($userToShow);
+        $followers =  $em->getRepository('AthUserBundle:User')->getLastFollowers($userToShow);
 
         $countFollowers = $em->getRepository('AthUserBundle:User')->countFollowers($userToShow);
 

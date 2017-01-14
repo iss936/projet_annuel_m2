@@ -229,4 +229,39 @@ class SendMail
 
         $this->container->get('mailer')->send($message);
     }
+
+    /**
+     * Permet d'informer un user qu'un autre user suis ses actualités
+     *
+     * @param User $userEmetteur, User $userDestinataire
+     */
+    public function suivreUser($userEmetteur,$userDestinataire)
+    {
+        $trad = $this->container->get('translator');
+
+        $subject = $trad->trans(
+            "user.nouveau.suivi",
+            array("%user%" => $userEmetteur),
+            'mail'
+        );
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->from)
+            ->setTo($userDestinataire->getEmail());
+
+        $message->setBody(
+            $this->container->get('templating')->render(
+                '::Ath/Mail/mail_new_follower.html.twig',
+                array(
+                    'userDestinataire' => $userDestinataire,
+                    'userEmetteur' => $userEmetteur
+                )
+            )
+        )
+        ->setContentType('text/html');
+
+        $this->container->get('mailer')->send($message);
+    }
+
 }
