@@ -134,36 +134,54 @@
       
       {% if userToShow.statutJuridiqueId == 3 %}
           <li class="clearfix">
-                  <span class="feature_name">{{ "profil.nomAssoc" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">{{ userToShow.nom }}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.dateDeCreation" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">{{ userToShow.dateDeCreation |localizeddate('short', "none")}}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.adresse" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">{{ userToShow.adresse }}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.siteWeb" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value"><a href="{{ userToShow.siteWeb}}" style="color: blue;" target="_blank">{{ userToShow.siteWeb}}</a> </span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.associationSports" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value"></span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">
-                    <i class="fa fa-envelope-o"></i>
-                    {{ "profil.email" | trans({}, 'fosuser') }}:
-                  </span>
-                  <span class="feature_value">{{ userToShow.email }}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.interetSports" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">Basketball</span>
-                </li>
+            <span class="feature_name">{{ "profil.nomAssoc" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value">{{ userToShow.nom }}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.dateDeCreation" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value">{{ userToShow.dateDeCreation |localizeddate('short', "none")}}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.adresse" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value">{{ userToShow.adresse }}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.siteWeb" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value"><a href="{{ userToShow.siteWeb}}" style="color: blue;" target="_blank">{{ userToShow.siteWeb}}</a> </span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.associationSports" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value"> 
+              {% for oneSport in userToShow.associationSports %}
+                {% if loop.last %}
+                    {{ oneSport }} 
+                {% else %}
+                    {{ oneSport }},
+                {% endif %}
+              {% endfor %}
+            </span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">
+              <i class="fa fa-envelope-o"></i>
+              {{ "profil.email" | trans({}, 'fosuser') }}:
+            </span>
+            <span class="feature_value">{{ userToShow.email }}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.interetSports" | trans({}, 'fosuser') }}:</span>
+       
+          <span class="feature_value"> 
+            {% for oneSport in userToShow.userInteretSports %}
+              {% if loop.last %}
+                  {{ oneSport }} 
+              {% else %}
+                  {{ oneSport }},
+              {% endif %}
+            {% endfor %}
+          </span>
+             
+          </li>
              {#    <li class="clearfix">
                   <span class="feature_name">Have team?:</span>
                   <span class="feature_value">Yes</span>
@@ -173,23 +191,30 @@
                   <span class="feature_value"></span>
                 </li> #}
       {% else %} <!-- on a une personne -->
-
           <li class="clearfix">
-                  <span class="feature_name">{{ "profil.nom" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">{{ userToShow.nom }}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.dateDeNaissance" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">{{ userToShow.dateDeNaissance |localizeddate('short', "none")}}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.ville" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">{{ userToShow.ville }}</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">{{ "profil.interetSports" | trans({}, 'fosuser') }}:</span>
-                  <span class="feature_value">Football, Basketball </span>
-                </li>
+            <span class="feature_name">{{ "profil.nom" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value">{{ userToShow.nom }}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.dateDeNaissance" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value">{{ userToShow.dateDeNaissance |localizeddate('short', "none")}}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.ville" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value">{{ userToShow.ville }}</span>
+          </li>
+          <li class="clearfix">
+            <span class="feature_name">{{ "profil.interetSports" | trans({}, 'fosuser') }}:</span>
+            <span class="feature_value"> 
+              {% for oneSport in userToShow.userInteretSports %}
+                {% if loop.last %}
+                    {{ oneSport }} 
+                {% else %}
+                    {{ oneSport }},
+                {% endif %}
+              {% endfor %}
+            </span>
+          </li>
       {% endif %}
           </ul>
             
