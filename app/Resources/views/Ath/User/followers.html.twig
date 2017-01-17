@@ -56,7 +56,7 @@
 </div>
 </div>
 {% else %}
-  <h3> Aucun followers pour le moment </h3>
+  <h3> {{ "no_followers" | trans({}, 'home') }} </h3>
   <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="btn-suivre" >{{ "suivre" | trans({}, 'home') }}</button></a>
 {% endif %}
 

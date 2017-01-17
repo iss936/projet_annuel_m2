@@ -87,6 +87,12 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Gestion des groupes administrateurs}
 
+    admin.event_admin:
+        class: Ath\MainBundle\Admin\EventAdminAdmin
+        arguments: [~, Ath\MainBundle\Entity\EventAdmin, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Administration, label: Gestion des évènements sportifs}
+
 # ----------------------- FIN GESTION ADMIN -------------------------------------------------
 
 # Widget Form pour les statuts de demande de célébrité

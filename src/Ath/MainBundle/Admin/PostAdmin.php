@@ -38,6 +38,7 @@ class PostAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('filePosts', 'array', array('label' => "Photo",'template' => '@ath_admin_path/Commun/article_first_image.html.twig'))
             ->add('createdBy',null, array('label' => 'Créé par'))
             ->add('contenu', 'text', array('template' => '@ath_admin_path/Commun/list_sub_string.html.twig'))
             ->add('createdAt', 'array', array('label' => "Créé le", 'template' => '@ath_admin_path/Commun/list_date.html.twig'))
@@ -88,8 +89,15 @@ class PostAdmin extends Admin
     public function getExportFormats()
     {
         return array(
-            // 'csv'
+            'csv', 'xls'
         );
+    }
+
+    public function getDataSourceIterator()
+    {
+        $datasourceit = parent::getDataSourceIterator();
+        $datasourceit->setDateTimeFormat('d/m/Y H:i'); //change this to suit your needs
+        return $datasourceit;
     }
 
     public function getBatchActions()

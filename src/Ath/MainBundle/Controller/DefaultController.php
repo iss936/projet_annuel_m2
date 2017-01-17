@@ -15,8 +15,16 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
     	$user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $events = $em->getRepository('AthMainBundle:EventAdmin')->getNotFinishedLimitEvents($user);
+        
+        $countEvents = $em->getRepository('AthMainBundle:EventAdmin')->getCountNotFinishedEvents($user);
 
-        return $this->render('@ath_main_path/index.html.twig');
+        return $this->render('@ath_main_path/index.html.twig', array(
+            'events' => $events,
+            'countEvents' => $countEvents
+
+        ));
     }
 
     public function searchUserAjaxAction(Request $request)
@@ -160,6 +168,45 @@ class DefaultController extends Controller
             'amiFollows' => $amiFollows,
             'userToShow' => $userToShow,
             'user' => $user
+        ));
+    }
+
+    /**
+     * followersAction: liste tous les évènements à venir en fonction des usersInteretsSports
+     * 
+     * @param  Request $request
+     * @return [type]          
+     */
+    public function eventSportifsAction(Request $request)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $events =  $em->getRepository('AthMainBundle:EventAdmin')->getTenNotFinishedLimitEvents($user);
+
+        return $this->render('@ath_main_path/Event/event_sportifs.html.twig', array(
+            'events' => $events,
+        ));
+    }
+
+    /**
+     * eventSportifsAjaxAction: scroll infini des evenements sportifs
+     * 
+     * @param  Request $request
+     * @return [type]          
+     */
+    public function eventSportifsAjaxAction(Request $request)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        
+        $load = $request->get('load');
+        $firstResult = (10 * $load) +1;
+
+        $events =  $em->getRepository('AthMainBundle:EventAdmin')->getTenNotFinishedLimitEvents($user, $firstResult);
+        
+        return $this->render('@ath_main_path/Event/ten_event_sportifs.html.twig', array(
+            'events' => $events,
         ));
     }
 

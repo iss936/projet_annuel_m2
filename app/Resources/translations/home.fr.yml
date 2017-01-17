@@ -43,4 +43,10 @@ voir_tous: Voir tous les followers
 followers.of: Followers de %user%
 ville: Ville
 show_profil: Voir profil
-no.results: Plus de résultats
+no.results: Pas plus de résultats
+voir_tous_events: Voir tous les évènements
+title.event_sportifs: Les évènements sportifs
+lien_billeterie_inscription: Lien Billeterie/Inscription
+description: Description
+no_event_sportifs: Aucun évènement sportif pour le moment
+no_followers: Aucun follower pour le moment

@@ -7,7 +7,7 @@
             </li>
         {% endif %}
         
-        {% if is_granted("ROLE_ADMIN_USER_LIST") or is_granted("ROLE_ADMIN_GROUP_APPLICATION_LIST") or is_granted('ROLE_ADMIN_DEMANDE_CELEBRITE_LIST') %}
+        {% if is_granted("ROLE_ADMIN_USER_LIST") or is_granted("ROLE_ADMIN_GROUP_APPLICATION_LIST") or is_granted('ROLE_ADMIN_DEMANDE_CELEBRITE_LIST') or is_granted('ROLE_ADMIN_USER_DISCUSSION_LIST') or is_granted('ROLE_ADMIN_MESSAGE_LIST') %}
             <li class="has-children">
                 <a href="#">{{ "gestion_utilisateurs" | trans({}, 'administration') }}<b class="caret"></b></a>
                 <ul>
@@ -24,6 +24,18 @@
                     {% if is_granted("ROLE_ADMIN_DEMANDE_CELEBRITE_LIST") %}
                         <li>
                             <a href="{{ path('admin_ath_main_demandecelebrite_list')}}">{{ "gestion_demande_celebrite" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if is_granted("ROLE_ADMIN_USER_DISCUSSION_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_userdiscussion_list')}}">{{ "gestion_discution_utilisateurs" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if is_granted("ROLE_ADMIN_MESSAGE_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_message_list')}}">{{ "gestion_message_utilisateurs" | trans({}, 'administration') }}</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -54,30 +66,33 @@
             </li>
         {% endif %}
         
-        {% if is_granted("ROLE_ADMIN_USER_DISCUSSION_LIST") %}
+        
+        {% if is_granted("ROLE_ADMIN_POST_LIST") or is_granted("ROLE_ADMIN_COMMENT_LIST") %}
+            <li class="has-children">
+                <a href="#">{{ "gestion_articles" | trans({}, 'administration') }}<b class="caret"></b></a>
+                <ul>
+                    {% if is_granted("ROLE_ADMIN_POST_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_post_list')}}">{{ "gestion_articles" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% if is_granted("ROLE_ADMIN_COMMENT_LIST") %}
+                        <li>
+                            <a href="{{ path('admin_ath_main_comment_list')}}">{{ "gestion_commentaire_articles" | trans({}, 'administration') }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+        
+        
+        {% if is_granted("ROLE_ADMIN_EVENT_ADMIN_LIST") %}
             <li>
-                <a href="{{ path('admin_ath_main_userdiscussion_list')}}">{{ "gestion_discution_utilisateurs" | trans({}, 'administration') }}</a>
+                <a href="{{ path('admin_ath_main_eventadmin_list')}}">{{ "gestion_evenement_sportifs" | trans({}, 'administration') }}</a>
             </li>
         {% endif %}
 
-        {% if is_granted("ROLE_ADMIN_MESSAGE_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_main_message_list')}}">{{ "gestion_message_utilisateurs" | trans({}, 'administration') }}</a>
-            </li>
-        {% endif %}
-        
-        {% if is_granted("ROLE_ADMIN_POST_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_main_post_list')}}">{{ "gestion_articles" | trans({}, 'administration') }}</a>
-            </li>
-        {% endif %}
-        
-        {% if is_granted("ROLE_ADMIN_COMMENT_LIST") %}
-            <li>
-                <a href="{{ path('admin_ath_main_comment_list')}}">{{ "gestion_commentaire_articles" | trans({}, 'administration') }}</a>
-            </li>
-        {% endif %}
-        
         {% if is_granted("ROLE_ADMIN") %}
             <li class="has-children">
                 <a href="#">{{ "statistique" | trans({}, 'administration') }}<b class="caret"></b></a>

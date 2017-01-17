@@ -227,6 +227,13 @@ class Post
         return $this;
     }
 
+    public function getFirstFilePost()
+    {
+        if(count($this->filePosts) > 0)
+            return $this->filePosts[0];
+
+        return null;
+    }
     public function __toString()
     {
         return (string)$this->id;

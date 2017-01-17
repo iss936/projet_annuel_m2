@@ -81,10 +81,17 @@ class DemandeCelebriteAdmin extends Admin
         ;
     }
 
-    public function getExportFormats()
+     public function getExportFormats()
     {
         return array(
-            'csv'
+            'csv', 'xls'
         );
+    }
+
+    public function getDataSourceIterator()
+    {
+        $datasourceit = parent::getDataSourceIterator();
+        $datasourceit->setDateTimeFormat('d/m/Y H:i'); //change this to suit your needs
+        return $datasourceit;
     }
 }

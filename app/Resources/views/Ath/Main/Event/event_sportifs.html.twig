@@ -1,0 +1,100 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1 class="title-line">{{ "title.event_sportifs" | trans({}, 'home') }}</h1>
+
+{% if events %}
+ <div class="user_properties">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="user_friends">
+              <div class="row">
+                    <div class="col-md-3">
+                        
+                    </div>
+                    <div class="col-md-3">
+                      <h4><strong>{{ "lien_billeterie_inscription" | trans({}, 'home') }}</strong></h4>
+                    </div>
+                    <div class="col-md-6">
+                      <h4><strong>{{ "description" | trans({}, 'home') }}</strong></h4>
+                    </div>
+              </div>
+              {% for oneEvent in events %}
+              <div class="row">
+                    <div class="col-md-3">
+                        <img class="" src="{{ oneEvent.webPath | imagine_filter('small') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
+                    </div>
+                    <div class="col-md-3">
+                      <a href="{{ oneEvent.siteWeb }}" target="_blank" style="color: blue">
+                          <p style=""><u>{{ oneEvent }}:</u></p>
+                      </a>
+
+                    </div>
+                    <div class="col-md-6">
+                      <p><i>{{ oneEvent.description }}</i></p>
+                    </div>
+              </div>
+    
+              <br>
+              {% endfor %}
+          <div id="my-loader"></div>
+          </div>
+          <div class="end"></div>
+
+
+        </div>
+  </div>
+</div>
+</div>
+{% else %}
+  <h3> {{ "no_event_sportifs" | trans({}, 'home') }} </h3>
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+<script type="text/javascript">
+  $(document).ready(function() {
+      var load = 0;
+      var end = false;
+
+      $(window).scroll(function(){
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+          if (end == false){
+            load++;
+            $.ajax({
+              url: "{{ path('ath_main_event_sportifs_ajax') }}",
+              type: 'POST',
+              dataType: 'html',
+              data: {load: load},
+              beforeSend: function(xhr) {
+                $("#my-loader").show();
+              }
+            })
+            .done(function(data) {
+              $("#my-loader").hide();
+              if (data) {
+                $('.user_friends').append(data);
+              }
+              else{
+
+                if (end == false){
+                $('.end').append('<h3 class="title-line"> {{ "no.results" | trans({}, "home") }} </h3>');
+                }
+                end = true;
+                
+              }
+            })
+            .fail(function() {
+              $("#my-loader").hide();
+
+              console.log("error");
+            })
+          }
+        }
+      });
+  });
+</script>
+{% endblock %}

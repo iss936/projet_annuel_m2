@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
@@ -42,7 +43,8 @@ twig:
         "%kernel.root_dir%/Resources/views/Ath/User": ath_user_path
         "%kernel.root_dir%/Resources/views": ath_views
     form:
-        resources: [':Ath/Form:ath_form_page_theme.html.twig']
+        resources: [':Ath/Form:ath_form_page_theme.html.twig', 'SonataCoreBundle:Form:datepicker.html.twig']
+
 
 # Doctrine Configuration
 doctrine:
@@ -172,7 +174,8 @@ sonata_admin:
             - sonata/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
             - sonata/sonatacore/vendor/moment/min/moment-with-locales.min.js
             - components/bootstrap/js/bootstrap.min.js
-            - sonata/atixformextra/js/bootstrap-datetimepicker.js
+            - sonata/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
+            # - sonata/atixformextra/js/bootstrap-datetimepicker.js
             - sonata/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
             - sonata/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
             - sonata/sonataadmin/jquery/jquery.form.js
@@ -395,3 +398,11 @@ ath_main:
             ROLE_ADMIN_COMMENT_DELETE: Supprimer un commentaire
             ROLE_ADMIN_COMMENT_EXPORT: Exporter un commentaire
             ROLE_ADMIN_COMMENT: Tous les droits commentaires
+        Evenements sportifs:
+            ROLE_ADMIN_EVENT_ADMIN_LIST: Liste des évènements sportifs
+            ROLE_ADMIN_EVENT_ADMIN_VIEW: Voir un évènement sportif
+            ROLE_ADMIN_EVENT_ADMIN_CREATE: Créer un évènement sportif
+            ROLE_ADMIN_EVENT_ADMIN_EDIT: Modification d'un évènement sportif
+            ROLE_ADMIN_EVENT_ADMIN_DELETE: Supprimer un évènement sportif
+            ROLE_ADMIN_EVENT_ADMIN_EXPORT: Exporter un évènement sportif
+            ROLE_ADMIN_EVENT_ADMIN: Tous les droits évènements sportifs

@@ -1,0 +1,18 @@
+{% for oneEvent in events %}
+<div class="row">
+      <div class="col-md-3">
+          <img class="" src="{{ oneEvent.webPath | imagine_filter('small') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
+      </div>
+      <div class="col-md-3">
+        <a href="{{ oneEvent.siteWeb }}" target="_blank" style="color: blue">
+            <p style=""><u>{{ oneEvent }}:</u></p>
+        </a>
+
+      </div>
+      <div class="col-md-6">
+        <p><i>{{ oneEvent.description }}</i></p>
+      </div>
+</div>
+
+<br>
+{% endfor %}

@@ -2,6 +2,6 @@
 
 {% block field%}
 	{% if object.getFirstFileProduit() is not null %}
-    	<img src="{{ object.getFirstFileProduit().webPath }}" alt="" height="200px" width="200px" />
+    	<img src="/{{ object.getFirstFileProduit().webPath }}" alt="" height="200px" width="200px" />
 	{% endif %}
 {% endblock %}

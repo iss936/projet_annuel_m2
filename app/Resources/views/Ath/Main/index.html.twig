@@ -2,6 +2,144 @@
 
 {% block body %}
 
-<h1>{{ "filActualite" | trans({}, 'home') }}</h1>
 
+{# <div class="user_wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="user_container">
+            <div class="user_head">
+				<h1>{{ "filActualite" | trans({}, 'home') }}</h1>
+              
+
+            </div>
+            
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+</div> #}
+
+  <div class="user_properties">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="user_friends">
+            <h3>
+              Evènement
+              {% if countEvents > 12 %}
+                <a href="{{ path('ath_main_event_sportifs') }}"><span style="color: blue">({{ countEvents }})</span></a>
+              {% else %}
+                  <span>({{ countEvents }})</span>
+              {% endif %}
+            </h3>
+              {% for oneEvent in events %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="" src="{{ oneEvent.webPath | imagine_filter('mini') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
+                        {# <p style="color: black">{{ oneEvent.description }}:</p> #}
+                    </div>
+                    <div class="col-md-8">
+                      <a href="{{ oneEvent.siteWeb }}" target="_blank" style="color: blue">
+                          <p style=""><u>{{ oneEvent }}:</u></p>
+                      </a>
+                      {% if oneEvent.description | length > 20 %}
+                        <p class="read-more" data-target="{{ oneEvent.siteWeb }}" data-confirm="{{ oneEvent.description }}" data-id="{{ oneEvent.libelle }}"><i>{{ oneEvent.description | slice(0,20) }}...</i></p>
+					  {% else %}
+                        <p><i>{{ oneEvent.description }}</i></p>
+                      {% endif %}
+                    </div>
+           	    </div>
+           	    <br><br>
+              {% endfor %}
+
+              {% if countEvents > 12 %}
+                  <a href="{{ path('ath_main_event_sportifs') }}"><button class="btn-new-info">{{ "voir_tous_events" | trans({}, 'home') }}</button></a>
+              {% endif %}
+          </div>
+        </div>
+        <div class="col-md-9">
+        	<div class="user_latest">
+            <h3 class="edited" id="edited_ltstre">Journal:</h3>
+            <div class="row">
+              <div class="col-md-12">
+                <form id="F_reviews"  method="post">
+         {#          <label class="enter_label edited" id="edited_ltstreghjkgh">
+                    <span class="edited" id="edited_wrnewentr">Write new entry:</span>
+                  </label> #}
+                  <p class="pos-neg edited" id="edited_ltstregNegative">Negative</p>
+                  <div class="switch_rating">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox"></label>
+                  </div>
+
+                  <p class="pos-neg pos-pos edited" id="edited_ltstregPositive">Positive</p>
+                  <button class="send-message"></button>
+                  <textarea placeholder="Press Enter for send" class="e-mail_in" style="resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 80px; width: 848px; line-height: 25.7143px; text-decoration: none; letter-spacing: 0px;" tabindex="-1"></textarea>
+                  <textarea name="name" placeholder="Press Enter for send" id="send_reviews" class="e-mail_in" style="resize: none; overflow-y: hidden;"></textarea>
+                  <div id="fountainG">
+                    <div id="fountainG_1" class="fountainG"></div>
+                    <div id="fountainG_2" class="fountainG"></div>
+                    <div id="fountainG_3" class="fountainG"></div>
+                    <div id="fountainG_4" class="fountainG"></div>
+                    <div id="fountainG_5" class="fountainG"></div>
+                    <div id="fountainG_6" class="fountainG"></div>
+                    <div id="fountainG_7" class="fountainG"></div>
+                    <div id="fountainG_8" class="fountainG"></div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 reviews_list">
+                <div class="user_message red_comment ">
+                  <div class="row">
+                    <div class="col-xs-3 col-sm-1 col-md-1">
+                      <a href="#">
+                        <img src="images/small_ava.jpg" class="" height="55" width="55" alt=""></a>
+                    </div>
+                    <div class="col-xs-9 col-sm-3 col-md-3">
+                      <a href="#" class="us_name">admin</a>
+                      <p class="us_m_date">23.10.2015</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                      <ul class="user_message_options pull-right">
+                        <li>
+                          <a href="?del=2267">
+                            <i class="fa fa-minus-circle"></i>
+                            Delete
+                          </a>
+                        </li>
+                      </ul>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="us_line"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="us_content">
+                        <p>
+                          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {# <div class="user_question">
+          	
+           	
+
+          </div> #}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include '@ath_main_path/Includes/read_more_modal.html.twig' %}
 {% endblock body %}

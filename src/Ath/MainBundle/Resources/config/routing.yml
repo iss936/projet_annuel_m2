@@ -28,3 +28,12 @@ ath_main_followers:
 ath_main_followers_ajax:
     path: /sportif/followers/ajax/{slug}
     defaults: { _controller: AthMainBundle:Default:followersAjax }
+
+ath_main_event_sportifs:
+    path: /sportif/evenements
+    defaults: { _controller: AthMainBundle:Default:eventSportifs }
+
+ath_main_event_sportifs_ajax:
+    path: /sportif/evenements/ajax
+    defaults: { _controller: AthMainBundle:Default:eventSportifsAjax }
+

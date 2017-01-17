@@ -260,7 +260,7 @@ class FileProduit
     protected function getUploadDir() {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
-        return '/uploads/produits';
+        return 'uploads/produits';
     }
 
     /**
