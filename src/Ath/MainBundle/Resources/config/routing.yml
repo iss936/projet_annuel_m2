@@ -2,8 +2,11 @@ ath_main_homepage:
     path:     /
     defaults: { _controller: AthMainBundle:Default:index }
 ath_list_association:
-    path:     /associations
-    defaults: { _controller: AthMainBundle:Association:index }
+    path:     /associations/list/{page}
+    defaults: { _controller: AthMainBundle:Association:index, page: 1 }
+ath_page_association:
+    path:     /associations/{id}
+    defaults: { _controller: AthMainBundle:Association:page }
 
 ath_main_datavis_user:
     path: /admin/datavis/user
@@ -36,4 +39,3 @@ ath_main_event_sportifs:
 ath_main_event_sportifs_ajax:
     path: /sportif/evenements/ajax
     defaults: { _controller: AthMainBundle:Default:eventSportifsAjax }
-
