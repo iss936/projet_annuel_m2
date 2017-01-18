@@ -6,3 +6,51 @@ btn.submit.connect: Sign in
 connexion: Connexion
 inscription: Inscription
 deconnexion: log out
+formConnection.errorPass: L'authentification a échoué
+forgotPassword: Mot de passe oublié
+save: Enregistrer
+flash.edit.success: Modification enregistré
+flash.edit.error: Une erreur est survenue
+flash.demande_celebrite.success: Votre demande a bien été enregistré vous receverez une réponse par mail
+profile.flash.photoSupprimer: La photo de profil a bien été supprimé
+prenom: prénom
+connexion.facebook: Connexion Facebook
+connexion.google: Connexion google+
+connexion.twitter: Connexion Twitter
+inscription.facebook: Inscription Facebook
+inscription.google: Inscription google+
+inscription.twitter: Inscription Twitter
+faire.demande.celebrite: faire une demande afin d'avoir le statut de célébrité
+title.demande.celecrite: Créer une demande de célébrité
+demande_celebrite.label.message: Veuillez saisir votre demande
+edit.dateDeNaissance: Votre date de naissance
+demandeCelebrite.message: Votre message
+villeNonRenseigne: Ville non renseigné
+modifier.profil: Modifier mon profil
+suivre: Suivre
+flash.new_contact: Vous suivez désormais les actualités de %user%
+ne_plus_suivre: Ne plus suivre
+flash.remove_contact: Vous ne suivez plus les actualités de %user%
+choice.oui: Oui
+choice.non: Non
+label.mailWhenFollower: Recevoir un mail lorsque vous avez un nouveau follower
+label.newsletter: S'abonner à notre newsletter
+title.settings: Paramètres
+flash.settings_save: Vos paramètres ont bien été enregistré
+btn.save: Enregistrer
+btn.send: Envoyer
+voir_tous: Voir tous les followers
+followers.of: Followers de %user%
+ville: Ville
+show_profil: Voir profil
+no.results: Pas plus de résultats
+voir_tous_events: Voir tous les évènements
+title.event_sportifs: Les évènements sportifs
+lien_billeterie_inscription: Lien Billeterie/Inscription
+description: Description
+no_event_sportifs: Aucun évènement sportif pour le moment
+no_followers: Aucun follower pour le moment
+new_post: Nouvelle actualité
+placeholder.new_post: Ajouter une nouvelle actualité
+error.404: Page non trouvé
+retour.accueil: Retourner à l'accueil

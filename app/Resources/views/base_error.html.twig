@@ -1,0 +1,40 @@
+<!doctype html>
+<!--[if IE 8]> <html lang="fr" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="fr" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+
+<html lang="fr">
+<!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Athleteec</title>
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="shortcut icon" href="">
+  {# <link rel="apple-touch-icon" href="apple-touch-icon.png"> #}
+
+  {% block stylesheets %}
+  {# {% include 'stylesheet.html.twig' %} #}
+  {% endblock %}
+
+</head>
+
+<body>
+
+  <div class="page bg-color">
+
+    <main class="page-container" role="main">
+      <div class="container">
+        {% block body %}{% endblock %}
+      </div>
+    </main>
+
+  </div>
+
+</body>
+</html>

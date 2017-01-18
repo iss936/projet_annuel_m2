@@ -12,4 +12,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+	/**
+     * getLimitfeed => retourne les 10 derniers posts que j'ai créé et des personnes que je suis du plus récent au plus ancien
+     * 
+     * @param  User $user, ArrayCollection of User $amis
+     * @return array of collection of this
+     */
+    public function getLimitfeed($user, $amis){
+
+    	foreach ($amis as $oneAmi) {
+    		$amis[] = $oneAmi->getId();
+    	}
+
+        $query = $this->createQueryBuilder('p')
+            ->Join('p.createdBy', 'u')
+            ->where('u = :user')
+            ->orWhere('u.id IN (:amis)')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setParameters(array(
+                'user' => $user,
+                'amis' => $amis
+            ))
+            ->getQuery()
+            ->setMaxResults(10)
+            ->getResult();
+
+        return $query;
+    }
 }

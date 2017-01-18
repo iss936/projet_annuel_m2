@@ -1,0 +1,19 @@
+{% extends '::base_error.html.twig' %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<center>
+    {# <img src=""/> #}
+    <br/>
+    <br/>
+    <br/>
+    <h1>404</h1>
+    <h1>{{ "error.404" | trans({}, 'home') }}</h1>
+    <br/>
+    <p>
+        <a href="#">{{ "retour.accueil" | trans({}, 'home') }}</a>.
+    </p>
+</center>
+{% endblock %}

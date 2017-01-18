@@ -20,3 +20,4 @@
 composer.lock
 /web/config.php
 /web/media/*
+/data_cache/*

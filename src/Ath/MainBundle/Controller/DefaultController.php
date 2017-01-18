@@ -20,9 +20,14 @@ class DefaultController extends Controller
         
         $countEvents = $em->getRepository('AthMainBundle:EventAdmin')->getCountNotFinishedEvents($user);
 
+        $amis = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
+        // 10 derniers posts
+        $posts = $em->getRepository('AthMainBundle:Post')->getLimitfeed($user,$amis);
+
         return $this->render('@ath_main_path/index.html.twig', array(
             'events' => $events,
-            'countEvents' => $countEvents
+            'countEvents' => $countEvents,
+            'posts' => $posts
 
         ));
     }

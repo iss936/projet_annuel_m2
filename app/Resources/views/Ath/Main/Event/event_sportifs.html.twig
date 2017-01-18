@@ -59,8 +59,11 @@
   $(document).ready(function() {
       var load = 0;
       var end = false;
-
+      var nearToBottom = 100;
+      
       $(window).scroll(function(){
+        // if($(window).scrollTop() + $(window).height() > 
+        // $(document).height() - nearToBottom){
         if ($(window).scrollTop() == $(document).height() - $(window).height()) {
           if (end == false){
             load++;

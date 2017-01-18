@@ -50,3 +50,7 @@ lien_billeterie_inscription: Lien Billeterie/Inscription
 description: Description
 no_event_sportifs: Aucun évènement sportif pour le moment
 no_followers: Aucun follower pour le moment
+new_post: Nouvelle actualité
+placeholder.new_post: Ajouter une nouvelle actualité
+error.404: Page non trouvé
+retour.accueil: Retourner à l'accueil

@@ -6,7 +6,8 @@
 
             $('#dataConfirmModal').find('#myModalLabel').text($(this).attr('data-id'));
             $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
-            $('#dataConfirmModal').find('.link-modal').append('<a href='+href+' class="btn-new-info" target="_blank"> Voir </a>');
+            $('#dataConfirmModal').find('.link-modal').text('');
+            $('#dataConfirmModal').find('.link-modal').append('<a href='+href+' class="btn btn-info" target="_blank"> Voir </a>');
             $('#dataConfirmModal').modal({show:true});
 
             return false;

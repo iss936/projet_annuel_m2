@@ -3,6 +3,7 @@ namespace Ath\UserBundle\DataFixtures\ORM;
 
 use Ath\MainBundle\DataFixtures\ORM\AbstractDataFixture;
 use Ath\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class LoadUserData extends AbstractDataFixture
 {
@@ -15,6 +16,12 @@ class LoadUserData extends AbstractDataFixture
         $userManager = $manager->getRepository('Ath\UserBundle\Entity\User');
 
         $allFixtures = $this->getFixtures($manager);
+        $sPathOrigine = $this->container->get('kernel')->getRootDir() . "/../data/profil";
+        $dataCache = $this->container->get('kernel')->getRootDir() . "/../data_cache/profil";
+        
+        if(!file_exists($dataCache) ){
+            mkdir("data_cache/profil");
+        }
 
         foreach ($allFixtures as $fixture) {
 
@@ -46,6 +53,13 @@ class LoadUserData extends AbstractDataFixture
                     }
                 }
             }
+            $photoId = $fixture["setPhotoId"];
+            $photoOriginalName = $fixture["setPhotoOriginalName"];
+           
+            copy($sPathOrigine . DIRECTORY_SEPARATOR . $photoOriginalName, $dataCache . DIRECTORY_SEPARATOR . $photoOriginalName);
+            $file = new UploadedFile($dataCache . DIRECTORY_SEPARATOR . $photoOriginalName, $photoId, null, null, null, true);
+         
+            $entity->setFile($file);
 
             $manager->persist($entity);
             $manager->flush();
@@ -88,6 +102,9 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setUserInteretSports" => array($allSport[3], $allSport[0], $allSport[2]),
+                "setPhotoId" => "issa.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "issa.jpg"
             ),
             array(
                 "setUsername" => "john@gmail.com",
@@ -106,25 +123,31 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setUserInteretSports" => array($allSport[3], $allSport[0], $allSport[1]),
+                "setPhotoId" => "john.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "john.jpg"
             ),
             array(
-                "setUsername" => "esgi@gmail.com",
+                "setUsername" => "redstar@gmail.com",
                 "setPlainPassword" => "esgi",
-                "setEmail" => "esgi@gmail.com",
+                "setEmail" => "redstar@gmail.com",
                 "setRoles" => array("ROLE_USER","ROLE_ASSOC"),
-                "setNom" => "ESGI",
+                "setNom" => "redstar",
                 "setDateDeCreation" => $dateOfBirth,
-                "setRue" => "12 avenue du général de Gaulle",
-                "setVille" => "Saint-mandé",
-                "setCp" => "94160",
+                "setRue" => "92, rue du Docteur Bauer",
+                "setVille" => "Saint-Ouen",
+                "setCp" => "93400 ",
                 "setDescription" => "Je suis ......",
                 "setStatutJuridique" => 3,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setSiteWeb" => "http://www.esgi.fr/ecole-informatique.html",
+                "setSiteWeb" => "http://www.redstar.fr/",
                 "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[2]),
-                "setAssociationSports" => array($allSport[1],$allSport[2])
+                "setAssociationSports" => array($allSport[1],$allSport[2]),
+                "setPhotoId" => "redstar.png",
+                "setPhotoExtension" => "png",
+                "setPhotoOriginalName" => "redstar.png"
             ),
             array(
                 "setUsername" => "femme1@gmail.com",
@@ -142,7 +165,10 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "femme1.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "femme1.jpg"
             ),
             array(
                 "setUsername" => "teddy@gmail.com",
@@ -160,7 +186,10 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 1,
-                "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[3])
+                "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[3]),
+                "setPhotoId" => "teddy.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "teddy.jpg"
             ),
             array(
                 "setUsername" => "femme2@gmail.com",
@@ -178,25 +207,10 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
-            ),
-            array(
-                "setUsername" => "femme2@gmail.com",
-                "setPlainPassword" => "esgi",
-                "setEmail" => "femme2@gmail.com",
-                "addRole" => "ROLE_USER",
-                "setPrenom" => "femme2",
-                "setNom" => "femme2",
-                "setDateDeNaissance" => $dateOfBirth2,
-                "setRue" => "12 avenue du général de Gaulle",
-                "setVille" => "Marseille",
-                "setCp" => "13000",
-                "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2,
-                "setEnabled" => 1,
-                "setCgu" => 1,
-                "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "femme2.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "femme2.jpg"
             ),
             array(
                 "setUsername" => "femme3@gmail.com",
@@ -214,7 +228,10 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "femme3.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "femme3.jpg"
             ),
             array(
                 "setUsername" => "femme4@gmail.com",
@@ -232,7 +249,10 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "femme4.png",
+                "setPhotoExtension" => "png",
+                "setPhotoOriginalName" => "femme4.png"
             ),
             array(
                 "setUsername" => "femme5@gmail.com",
@@ -250,97 +270,115 @@ class LoadUserData extends AbstractDataFixture
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "femme5.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "femme5.jpg"
             ),
             array(
-                "setUsername" => "femme6@gmail.com",
+                "setUsername" => "homme1@gmail.com",
                 "setPlainPassword" => "esgi",
-                "setEmail" => "femme6@gmail.com",
+                "setEmail" => "homme1@gmail.com",
                 "addRole" => "ROLE_USER",
-                "setPrenom" => "femme6",
-                "setNom" => "femme6",
+                "setPrenom" => "homme1",
+                "setNom" => "homme1",
                 "setDateDeNaissance" => $dateOfBirth2,
                 "setRue" => "12 avenue du général de Gaulle",
                 "setVille" => "Marseille",
                 "setCp" => "13000",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2,
+                "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "homme1.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "homme1.jpg"
             ),
             array(
-                "setUsername" => "femme7@gmail.com",
+                "setUsername" => "homme2@gmail.com",
                 "setPlainPassword" => "esgi",
-                "setEmail" => "femme7@gmail.com",
+                "setEmail" => "homme2@gmail.com",
                 "addRole" => "ROLE_USER",
-                "setPrenom" => "femme7",
-                "setNom" => "femme7",
+                "setPrenom" => "homme2",
+                "setNom" => "homme2",
                 "setDateDeNaissance" => $dateOfBirth2,
                 "setRue" => "12 avenue du général de Gaulle",
                 "setVille" => "Marseille",
                 "setCp" => "13000",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2,
+                "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "homme2.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "homme2.jpg"
             ),
             array(
-                "setUsername" => "femme8@gmail.com",
+                "setUsername" => "homme3@gmail.com",
                 "setPlainPassword" => "esgi",
-                "setEmail" => "femme8@gmail.com",
+                "setEmail" => "homme3@gmail.com",
                 "addRole" => "ROLE_USER",
-                "setPrenom" => "femme8",
-                "setNom" => "femme8",
+                "setPrenom" => "homme3",
+                "setNom" => "homme3",
                 "setDateDeNaissance" => $dateOfBirth2,
                 "setRue" => "12 avenue du général de Gaulle",
                 "setVille" => "Marseille",
                 "setCp" => "13000",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2,
+                "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "homme3.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "homme3.jpg"
             ),
             array(
-                "setUsername" => "femme9@gmail.com",
+                "setUsername" => "homme4@gmail.com",
                 "setPlainPassword" => "esgi",
-                "setEmail" => "femme9@gmail.com",
+                "setEmail" => "homme4@gmail.com",
                 "addRole" => "ROLE_USER",
-                "setPrenom" => "femme9",
-                "setNom" => "femme9",
+                "setPrenom" => "homme4",
+                "setNom" => "homme4",
                 "setDateDeNaissance" => $dateOfBirth2,
                 "setRue" => "12 avenue du général de Gaulle",
                 "setVille" => "Marseille",
                 "setCp" => "13000",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2,
+                "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "homme4.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "homme4.jpg"
             ),
             array(
-                "setUsername" => "femme10@gmail.com",
+                "setUsername" => "homme5@gmail.com",
                 "setPlainPassword" => "esgi",
-                "setEmail" => "femme10@gmail.com",
+                "setEmail" => "homme5@gmail.com",
                 "addRole" => "ROLE_USER",
-                "setPrenom" => "femme10",
-                "setNom" => "femme10",
+                "setPrenom" => "homme5",
+                "setNom" => "homme5",
                 "setDateDeNaissance" => $dateOfBirth2,
                 "setRue" => "12 avenue du général de Gaulle",
                 "setVille" => "Marseille",
                 "setCp" => "13000",
                 "setDescription" => "Je suis ......",
-                "setStatutJuridique" => 2,
+                "setStatutJuridique" => 1,
                 "setEnabled" => 1,
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
-                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2])
+                "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
+                "setPhotoId" => "homme5.jpg",
+                "setPhotoExtension" => "jpeg",
+                "setPhotoOriginalName" => "homme5.jpg"
             ),
         );
 
