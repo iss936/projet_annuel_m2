@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 dashboard: Dashboard
 gestion_categorie_produits: Product Category Management
 gestion_produits: product Management
@@ -17,3 +18,24 @@ datavisualisation: Datavisualization
 statistique_user: User's Statistics
 statistique: Statistics
 gestion_evenement_sportifs: Sports Events Management
+=======
+dashboard: Tableau de bord
+gestion_categorie_produits: Gestion des catégories de produits
+gestion_produits: Gestion des produits
+gestion_categorie_sports: Gestion des catégories de sports
+gestion_discution_utilisateurs: Gestion des discutions utilisateurs
+gestion_message_utilisateurs: Gestion des messages utilisateurs
+gestion_articles: Gestion des articles
+gestion_commentaire_articles: Gestion des commentaires d'articles
+user.changepassword.title: Changement de mot de passe
+user.changepassword.cancel: Retourner à la liste
+user.changepassword.save: Enregistrer
+user.button.changepassword: Changer mot de passe
+gestion_utilisateurs: Gestion des utilisateurs
+gestion_groupe_administrations: Gestion des groupes d'administration
+gestion_demande_celebrite: Gestion des demandes de célébrité
+datavisualisation: Datavisualisation
+statistique_user: Statistique utilisateur
+statistique: Statistique
+gestion_evenement_sportifs: Gestion des évènements sportifs
+>>>>>>> bd1d947a31348ee57d130b93fc4029ea4c7825a1

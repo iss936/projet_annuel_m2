@@ -27,8 +27,12 @@ class DefaultController extends Controller
         return $this->render('@ath_main_path/index.html.twig', array(
             'events' => $events,
             'countEvents' => $countEvents,
+<<<<<<< HEAD
             'posts' => $posts,
             'amis' => $amis
+=======
+            'posts' => $posts
+>>>>>>> bd1d947a31348ee57d130b93fc4029ea4c7825a1
 
         ));
     }

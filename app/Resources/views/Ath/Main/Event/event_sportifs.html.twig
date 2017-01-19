@@ -60,14 +60,21 @@
       var load = 0;
       var end = false;
       var nearToBottom = 100;
+<<<<<<< HEAD
       var ok = true;
+=======
+>>>>>>> bd1d947a31348ee57d130b93fc4029ea4c7825a1
       
       $(window).scroll(function(){
         // if($(window).scrollTop() + $(window).height() > 
         // $(document).height() - nearToBottom){
+<<<<<<< HEAD
         if ($(window).scrollTop() >= $(document).height() - $(window).height() - 3000 && ok == true) {
           ok = false;
 
+=======
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+>>>>>>> bd1d947a31348ee57d130b93fc4029ea4c7825a1
           if (end == false){
             load++;
             $.ajax({

@@ -39,6 +39,7 @@ class PostRepository extends EntityRepository
 
         return $query;
     }
+<<<<<<< HEAD
 
     /**
      * getTenPosts => retourne 10 posts que j'ai créé et des personnes que je suis du plus récent au plus ancien enfonction de la limit $first
@@ -68,4 +69,6 @@ class PostRepository extends EntityRepository
 
         return $query;
     }
+=======
+>>>>>>> bd1d947a31348ee57d130b93fc4029ea4c7825a1
 }
