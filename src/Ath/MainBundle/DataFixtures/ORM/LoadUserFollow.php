@@ -41,7 +41,7 @@ class LoadUserFollowData extends AbstractDataFixture
      */
     private function getFixtures()
     {
-        $esgi = $this->manager->getRepository('Ath\UserBundle\Entity\User')->findOneByEmail("esgi@gmail.com");
+        $esgi = $this->manager->getRepository('Ath\UserBundle\Entity\User')->findOneByEmail("redstar@gmail.com");
 
         $users = $this->manager->getRepository('Ath\UserBundle\Entity\User')->getAllExceptMe($esgi);
         $fixtures = array();

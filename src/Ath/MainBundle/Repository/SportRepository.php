@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class SportRepository extends EntityRepository
 {
+    public function getSportAll() {
+        $query = $this
+            ->createQueryBuilder('u')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

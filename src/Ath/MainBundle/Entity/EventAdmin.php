@@ -339,7 +339,7 @@ class EventAdmin
     public function addThemeSport(\Ath\MainBundle\Entity\Sport $themeSport)
     {
         if (!$this->themeSports->contains($themeSport)) {
-            $this->themeSports[] = $themeSports;
+            $this->themeSports[] = $themeSport;
         }
 
         return $this;

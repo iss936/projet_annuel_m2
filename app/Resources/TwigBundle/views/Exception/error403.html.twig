@@ -1,0 +1,16 @@
+{% extends '::base_error.html.twig' %}
+
+{% block body %}
+    <center>
+        <div class="fond_403">
+            <div class="text_403">
+                <h1 class="title-error">{{ "error.403" | trans({}, 'home') }}</h1>
+                <h2>{{ "error.403_message" | trans({}, 'home') }}</h2>
+                <br/>
+                <p>
+                    <a href="{{ path('ath_main_homepage') }}">{{ "retour.accueil" | trans({}, 'home') }}</a>.
+                </p>
+            </div>
+        </div>
+    </center>
+{% endblock %}

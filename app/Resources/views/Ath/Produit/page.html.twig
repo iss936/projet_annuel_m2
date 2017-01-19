@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="open_items_block">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="open_item_container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-5 col-md-5 beats">
+                <img class="" src="/{{ produit.fileProduits[0].webPath  }}" alt="{{ produit.fileProduits[0] }}" title="{{ produit.fileProduits[0] }}" style="width: 100%;" />
+                <div class="beats_circle">{{ produit.prix }} €</div>
+              </div>
+              <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-md-6 col-sm-offset-1 col-md-offset-1">
+                <h1>{{ produit.libelle }}</h1>
+                <p>
+                  {{ produit.description }}
+                </p>
+                <div class="row">
+                  <div class="col-sm-6 col-md-4">
+                    <button target="_blank" onclick="self.location.href='{{ produit.url }}'" class="btn-view_full">Acheter ce produit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

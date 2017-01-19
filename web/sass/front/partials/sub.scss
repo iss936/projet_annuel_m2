@@ -1,0 +1,60 @@
+.fos_user_registration_register{
+  h3{
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+}
+
+.fos_user_registration_register{
+  [type="radio"]{
+    margin: 0 5px 0 15px;
+  }
+  .content{
+    background: #fff;
+    padding : 10px;
+  }
+  .content>div , .Human>div{
+    clear: both;
+    margin: 10px;
+    min-height: 30px;
+  }
+  .buttons{
+    margin: 0 18%;
+  }
+
+  .btn-success, .btn-info{
+    border-radius: 0;
+    border: none;
+    background: $main-color;
+    padding: 10px 50px;
+    font-size: 25px;
+    width: 50%;
+    float: none;
+    margin-left: 25%;
+    margin-bottom: 20px;
+    @include transition(box-shadow .1s);
+    &:hover{
+      background: darken($main-color, 10%);
+    }
+  }
+  span{
+    display: block;
+    text-align: center;
+    padding: 30px 0;
+  }
+  .btn-info{
+    margin-top: 10px;
+    background: #444;
+    &:hover{
+      background: darken(#444, 10%);
+    }
+  }
+}
+
+.subscription_title{
+  color :#fff;
+  margin-bottom : 40px;
+}

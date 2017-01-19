@@ -1,7 +1,7 @@
 <script type="text/javascript" src="http://hammerjs.github.io/dist/hammer.min.js"></script>
-<script type="text/javascript" src="/bundles/atixheader/js/atixHeader.js"></script>
+<script type="text/javascript" src="/sonata/atixheader/js/atixHeader.js"></script>
 
-<link rel="stylesheet" href="{{ asset('bundles/atixheader/css/header.css') }}" type="text/css" media="all" />
+<link rel="stylesheet" href="/sonata/atixheader/css/header.css" type="text/css" media="all" />
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -60,7 +60,7 @@
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input id="searchUser" class="ui-autocomplete-input" type="text" class="form-control" placeholder="Search" autocomplete="off">
+            <input id="searchUser" class="ui-autocomplete-input" type="text" class="form-control" placeholder="{{ "Rechercher" | trans({}, 'home') }}" autocomplete="off">
           </div>
         </form>
 

@@ -27,7 +27,10 @@
 
             <script type="text/javascript">
             $(document).ready(function($) {
-                
+                $("#searchUser").focus(function() {
+                    $(this).autocomplete('search', $(this).val())
+                });
+
                 $( "#searchUser" ).autocomplete({
                     source: function( request, response ){
                         $.ajax({
@@ -35,6 +38,7 @@
                             data: {
                                 string: request.term
                             },
+                            minLength: 2,
                             beforeSend: function(xhr) {
                                 // $("#atix_caissebundle_facture_filtre_fkSoc").addClass("loadinggif-for-input");
                             },

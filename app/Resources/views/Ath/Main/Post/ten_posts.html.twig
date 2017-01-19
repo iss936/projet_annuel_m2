@@ -1,0 +1,21 @@
+{% for onePost in posts %}
+    <div class="panel panel-default">
+       <div class="panel-heading">
+        <span class="pull-right">
+          {{ onePost.createdAt |localizeddate('short', "none")}}
+        </span> 
+        <img class="" src="{{ onePost.createdBy.webPath | imagine_filter('mini') }}" alt="{{ onePost.createdBy }}" title="{{ onePost.createdBy }}" />
+      </div>
+       {% if onePost.filePosts| length > 0 %}
+          <div class="panel-body">
+            <img class="" src="/{{ onePost.filePosts[0].webPath  }}" alt="{{ onePost.filePosts[0] }}" title="{{ onePost.filePosts[0] }}" style="width: 100%;" />
+          </div>
+        <hr>
+       {% endif %}
+       
+        <div class="panel-body">
+          <div class="clearfix"></div>
+          {{ onePost.contenu }}
+        </div>
+    </div>
+{% endfor %}

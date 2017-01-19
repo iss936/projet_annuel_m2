@@ -175,7 +175,7 @@
 		overflow: hidden;
 		position: absolute;
 		top: -214px;
-		border: 10px solid #b3de1d;
+		border: 10px solid $main-color;
 		border-right: none;
 		border-left: none;
 		font-size: 15px;
@@ -324,7 +324,7 @@
 		margin-bottom: 30px;
 	}
 	.user_status {
-		border: 10px solid #b3de1d;
+		border: 10px solid $main-color;
 		padding: 9px 40px 1px 30px;
 		position: absolute;
 		top: 8px;
@@ -1267,7 +1267,7 @@
 		height: calc(100% - 256px);
 	}
 	.open_post .one_comment {
-		border: 10px solid #b3de1d;
+		border: 10px solid $main-color;
 		margin: 0 -26px 60px -26px;
 	}
 	.side_bar_sm_openpost{
@@ -1412,7 +1412,7 @@
 	.Single-item .beats_circle {
 		width: 100%;
 		height: 100px;
-		background: #b3de1d;
+		background: $main-color;
 		position: relative;
 		color: #212339;
 		padding: 0;

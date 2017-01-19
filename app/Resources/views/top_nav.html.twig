@@ -36,12 +36,12 @@
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input id="searchUser" class="ui-autocomplete-input" type="text" class="form-control" placeholder="Search">
+            <input id="searchUser" class="ui-autocomplete-input" type="text" class="form-control" placeholder="{{ "Rechercher" | trans({}, 'home') }}" autocomplete="off">
           </div>
         </form>
 
         <ul class="nav navbar-nav">
-          <li><a href="#"><i class="fa fa-eur" aria-hidden="true"></i> Comparateur de prix</a></li>
+          <li><a href="{{ path('ath_list_produit') }}"><i class="fa fa-eur" aria-hidden="true"></i> Comparateur de prix</a></li>
         </ul>
       {% endif %}
 

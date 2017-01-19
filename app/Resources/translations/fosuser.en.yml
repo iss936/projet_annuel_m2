@@ -1,8 +1,8 @@
-form.password: Mot de passe (4 caractères)
-form.password_confirmation: Resaisir le mot de passe
-dateDeNaissance: Votre date de naissance
+form.password: Password (4 chars)
+form.password_confirmation: Password again
+dateDeNaissance: Your birthdate
 nom: Name
 prenom: First name
-ath_user.first_name.blank: Veuillez saisir votre prénom
-password: mot de passe
-mail_adress: Adresse électronique
+ath_user.first_name.blank: Fill up your first name
+password: Password
+mail_adress: email

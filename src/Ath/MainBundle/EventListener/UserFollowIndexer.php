@@ -22,7 +22,6 @@ class UserFollowIndexer
 
     /**
     * Creation
-    *
     **/
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -39,9 +38,14 @@ class UserFollowIndexer
             else {
                 //senMail x veut vous suivre
             }
-
+            
             if ($destinataire->getUserSetting()->getMailWhenFollower() == 1) {
-                $this->container->get('ath_main.services.send_mail')->suivreUser($emetteur, $destinataire);
+                $requestStack = $this->container->get('request_stack');
+                $masterRequest = $requestStack->getMasterRequest(); // this is the call that breaks ESI
+
+                if ($masterRequest) {
+                    $this->container->get('ath_main.services.send_mail')->suivreUser($emetteur, $destinataire);
+                }
             }
             else{
                 // on fait rien

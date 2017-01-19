@@ -1,0 +1,105 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <!--  bg_fon -->
+    <br><br><br><br><br><br><br><br><br>
+    <div class="members_middle pad_off full-page">
+        <!--<div class="search_block" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="get" action="{{ path('ath_list_association') }}" class="search_container  ">
+                            <div class="row sc_f">
+                                <div class="col-sm-4 col-md-4">
+                                    <label id='edited_scateg'>Categories:</label>
+                                    <select name='sport_category'>
+                                        <option value="-1">---</option>
+                                        {% for sport in sports %}
+                                            <option value="{{ sport.id }}">{{ sport.name }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <label class='edited' id='edited_name'>Nom de l'association</label>
+                                    <input type="text" class="location" id="tokenfield-typeahead" name="name" value="" placeholder="Nom"/>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <div class="submit_location">
+                                        <label class='edited' for='edited_labelalocation'>Localisation</label>
+                                        <input type="text"  id='edited_labelalocation' name='location' class="location" value='' placeholder="Localisation"/>
+                                    </div>
+                                </div>
+                                <div class="mob_search_bg">
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <button name="search" value="1" class="search pull-right">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>-->
+    </div>
+    <form class="" action="{{ path('ath_list_association') }}" method="POST">
+        {{ form_row(form._token) }}
+        {{ form_row(form.sports) }}
+        <input type="submit" value="Trier" class="btn btn-default" />
+    </form>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="members-inline-wrap clearfix">
+                {% for association in associations %}
+                    <a href="{{ path('ath_page_association', { 'id' : association.id }) }}" >
+                        <div class="col-md-4 col-sm-6 members_inline_aj ">
+                            <div class="members_item clearfix">
+                                <div class="members_item_img">
+
+                                    {% include '@ath_main_path/Includes/user.html.twig' with {'user': association, 'img_filter' : 'mini' } %}
+                                    <div class="happy_f_block_hover">
+                                        <div class="plus-hover-content">
+                                            <i class="fa fa-plus fa-3x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="member-info">
+                                    <p class="member_name">{{ association.nom }}</p>
+                                    <p class="member_year"><i class="fa fa-soccer-ball-o"></i>
+
+                                        {% for sport in association.associationSports %}
+
+                                            {{ sport.name }}
+
+                                        {% endfor %}
+                                    </p>
+                                    <ul class="user_inf">
+                                        <li>
+                                            <a>
+                                                <i class="fa fa-location-arrow"></i>
+                                                {{ association.ville }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <i class="fa fa-laptop"></i>
+                                                {{ association.siteWeb }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="members_item_border visible-xs"></div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                {% include '@ath_views/Ath/Association/pagination.html.twig' %}
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+{% endblock body %}

@@ -151,7 +151,7 @@ img { vertical-align: middle; }
 
 .remove-sidebar .sidebarSite { left: -275px; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
 
-.sidebarSite { position: fixed; left: -275px; top: 0; width: 275px; background: white; height: 100%; -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); z-index: 2000; font-size: 16px; font-family: "parisine-std", Calibri, Helvetica, Arial, sans-serif; }
+.sidebarSite { position: fixed; left: -275px; top: 0; width: 275px; background: white; height: 100%; -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); z-index: 2000; font-size: 16px; font-family: "parisine-std", Calibri, Helvetica, Arial, sans-serif; overflow:auto;}
 .sidebarSite a { color: black; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; }
 .sidebarSite a:hover { background-color: #f4f4f4; color: #00aa95; }
 .sidebarSite .caret { display: inline-block; width: 0; height: 0; margin-left: 2px; vertical-align: middle; border-left: 3px dashed; border-left: 3px solid\9; border-top: 3px solid transparent; border-bottom: 3px solid transparent; }

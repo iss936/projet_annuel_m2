@@ -24,16 +24,11 @@
               </div>
               <div class="col-sm-3 col-md-3">
                 <div class="user_information">
-                  <p>
-                    <span class="edited" >Hours rate :</span>
-                    22
-                    <span class="edited" >$</span>
-                  </p>
                   <p class="user_loc">
                     <span class="edited" id="editer_profileglobe">
                       <i class="fa fa-globe"></i>
                     </span>
-                    Redwood city, USA
+                    {{ userToShow.statutJuridique }}
                   </p>
                 </div>
               </div>
@@ -43,9 +38,9 @@
                 	<a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
             	{% else %} <!-- ce n'est pas mon profil-->
 	            	{% if userToShow in amiFollows %}
-				        <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write" style="background-color: #33CCFF;">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
+				        <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write unfollow">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
 	            	{% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
-	            	    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write" style="background-color: #33CCFF;">{{ "suivre" | trans({}, 'home') }}</button></a>
+	            	    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write follow">{{ "suivre" | trans({}, 'home') }}</button></a>
 	            	{% endif %}
             	{% endif %}
               </div>
@@ -125,7 +120,12 @@
               {% for oneFollower in followers %}
                     <div class="col-xs-3 col-sm-1 col-md-4 friend-item">
                       <a href="{{ path('ath_user_show_profile',{'slug': oneFollower.slug }) }}">
+                        {% if oneFollower.statutJuridiqueId == 1 and oneFollower.photoId == null %}
+                        <img class="" src="/{{ oneFollower.webPath }}" alt="{{ oneFollower }}" title="{{ oneFollower }}" width="70" height="70" />
+                        {% else %}
+                        
                         <img class="" src="{{ oneFollower.webPath | imagine_filter('mini') }}" alt="{{ oneFollower }}" title="{{ oneFollower }}" />
+                        {% endif %}
                         <p style="color: black">{{ oneFollower }}:</p>
                       </a>
                     </div>

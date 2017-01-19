@@ -1,0 +1,7 @@
+registration.email.subject: 'Welcome %username%'
+registration.flash.mail_send: "An email was sent to you to confirm your registration"
+demande_celebrite.email.subject: "User %id% demand for celebrity"
+demande_celebrite_validation.email.subject: "Validating your Celebrity request"
+footer: Best Regards,
+demande_celebrite_refus.email.subject: "Denial of your request celebrity"
+user.nouveau.suivi: "%user% is now following your updates"

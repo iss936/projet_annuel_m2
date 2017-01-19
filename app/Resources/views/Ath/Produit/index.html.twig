@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+      <div class="members-inline-wrap clearfix">
+    {% for produit in produits %}
+    <div class="members_inline members_inline_aj">
+      <div class="container">
+        <div class="members_inline_wrap clearfix">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="members-inline-left pull-left">
+                <div class="members_inline_item clearfix">
+                  <div class="memb_img">
+                    <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
+                       <img class="" src="/{{ produit.fileProduits[0].webPath  }}" alt="{{ produit.fileProduits[0] }}" title="{{ produit.fileProduits[0] }}" style="width: 100%;" />
+                    </a>
+                  </div>
+                  <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
+                    <p class="member_name">{{ produit.libelle }}</p>
+                  </a>
+                  <ul class="user_inf">
+                    <li>
+                      <a href="#">{{ produit.categorieProduit }}</a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span class='edited'>Prix :</span>
+                        {{ produit.prix }}
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <button class="write">Comparaison</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+        {% endfor %}
+        {% include '@ath_views/Ath/Produit/pagination.html.twig' %}
+</div>
+                
+
+{% endblock body %}

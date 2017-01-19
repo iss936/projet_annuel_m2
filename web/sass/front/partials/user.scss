@@ -1,0 +1,23 @@
+.user_head {
+  .write.follow{
+    border: none;
+    background: $main-color;
+    &:hover {
+      background: darken($main-color, 10%);
+      color: #fff;
+    }
+  }
+  .user_information{
+    p{
+      color :#444;
+    }
+  }
+  .write.unfollow{
+    border: none;
+    background: #444;
+    &:hover {
+      background: darken(#444, 10%);
+      color: #fff;
+    }
+  }
+}

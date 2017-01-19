@@ -7,6 +7,13 @@ ath_list_association:
 ath_page_association:
     path:     /associations/{id}
     defaults: { _controller: AthMainBundle:Association:page }
+    
+ath_list_produit:
+    path:     /produits/list/{page}
+    defaults: { _controller: AthMainBundle:Produit:index, page: 1 }
+ath_page_produit:
+    path:     /produits/{id}
+    defaults: { _controller: AthMainBundle:Produit:page }
 
 ath_main_datavis_user:
     path: /admin/datavis/user
@@ -39,3 +46,7 @@ ath_main_event_sportifs:
 ath_main_event_sportifs_ajax:
     path: /sportif/evenements/ajax
     defaults: { _controller: AthMainBundle:Default:eventSportifsAjax }
+
+ath_main_posts_ajax:
+    path: /sportif/posts/ajax
+    defaults: { _controller: AthMainBundle:Default:postsAjax }

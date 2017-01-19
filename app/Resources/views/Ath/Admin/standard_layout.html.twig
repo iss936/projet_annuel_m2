@@ -63,7 +63,9 @@ file that was distributed with this source code.
             {% endif %}
             <script type="text/javascript">
             $(document).ready(function($) {
-                
+                $("#searchUser").focus(function() {
+                    $(this).autocomplete('search', $(this).val())
+                });
                 $( "#searchUser" ).autocomplete({
                     source: function( request, response ){
                         $.ajax({
@@ -71,6 +73,7 @@ file that was distributed with this source code.
                             data: {
                                 string: request.term
                             },
+                            minLength: 2,
                             beforeSend: function(xhr) {
                                 // $("#atix_caissebundle_facture_filtre_fkSoc").addClass("loadinggif-for-input");
                             },

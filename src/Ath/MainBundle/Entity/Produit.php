@@ -8,12 +8,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ath\MainBundle\Validator\Constraints as MainAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
+// * @MainAssert\Decimal
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\ProduitRepository")
- * @MainAssert\Decimal
  */
 class Produit
 {

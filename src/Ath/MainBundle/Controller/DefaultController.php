@@ -20,13 +20,43 @@ class DefaultController extends Controller
         
         $countEvents = $em->getRepository('AthMainBundle:EventAdmin')->getCountNotFinishedEvents($user);
 
+        $amis = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
+        // 10 derniers posts
+        $posts = $em->getRepository('AthMainBundle:Post')->getLimitfeed($user,$amis);
+
         return $this->render('@ath_main_path/index.html.twig', array(
             'events' => $events,
-            'countEvents' => $countEvents
+            'countEvents' => $countEvents,
+            'posts' => $posts,
+            'amis' => $amis
 
         ));
     }
 
+    public function postsAjaxAction(Request $request)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        if ($request->isXmlHttpRequest()) {
+            
+            $load = $request->get('load');
+            $firstResult = (10 * $load) +1;
+
+            $amis = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
+
+            // 10 posts suivant
+            $posts = $em->getRepository('AthMainBundle:Post')->getTenPosts($user,$amis,$firstResult);
+
+            return $this->render('@ath_main_path/Post/ten_posts.html.twig', array(
+                // 'amis' => $amis,
+                'posts' => $posts
+
+            ));
+
+        }
+       
+        return new JsonResponse("Ko");
+    }
     public function searchUserAjaxAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();

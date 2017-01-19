@@ -1,0 +1,8 @@
+ath_user.nom.blank: Please provide your name
+ath_user.nom.short: Please enter a name that contains at least 2 letters
+ath_user.nom.long: Please enter a shorter name
+
+ath_user.prenom.blank: Please enter your first name
+ath_user.prenom.short: Please enter a first name containing at least 2 letters
+ath_user.prenom.long: Please enter a shorter name
+ath_user.dateDeCreation.required: Please enter the creation date of your Association
