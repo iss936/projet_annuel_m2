@@ -6,32 +6,25 @@
 <html lang="fr">
 <!--<![endif]-->
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% block title %}Le réseau social pour le sport{% endblock %}</title>
+  <title>Athleteec</title>
 
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <link rel="shortcut icon" href="">
+  {# <link rel="apple-touch-icon" href="apple-touch-icon.png"> #}
+
   {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('compiled/front/common.css') }}" type="text/css" media="all" />
-  {% endblock stylesheets %}
+  {# {% include 'stylesheet.html.twig' %} #}
+  {% endblock %}
 
-  {% block scripts_head %}
-    <script type="text/javascript" src="{{ asset('compiled/front/main.min.js') }}"></script>
-  {% endblock scripts_head %}
-
-  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 
 <body>
-  {% if is_granted('ROLE_ADMIN_TABORD') %}
-      {% include 'top_nav_admin.html.twig' %}
-  {% else %}
-    {% include 'top_nav.html.twig' %}
-  {% endif %}
 
   <div class="page bg-color">
 

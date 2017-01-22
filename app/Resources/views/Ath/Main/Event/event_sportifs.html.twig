@@ -21,21 +21,21 @@
                     </div>
               </div>
               {% for oneEvent in events %}
-              <div class="row event_preview">
-                    <div class="col-md-2">
-                      <a href="{{ oneEvent.siteWeb }}" target="_blank" >
+              <div class="row">
+                    <div class="col-md-3">
                         <img class="" src="{{ oneEvent.webPath | imagine_filter('small') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
-                      </a>
                     </div>
                     <div class="col-md-3">
-                      <a href="{{ oneEvent.siteWeb }}" target="_blank" >
+                      <a href="{{ oneEvent.siteWeb }}" target="_blank" style="color: blue">
                           <p style=""><u>{{ oneEvent }}:</u></p>
                       </a>
+
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                       <p><i>{{ oneEvent.description }}</i></p>
                     </div>
               </div>
+    
               <br>
               {% endfor %}
           <div id="my-loader"></div>
@@ -60,14 +60,11 @@
       var load = 0;
       var end = false;
       var nearToBottom = 100;
-      var ok = true;
       
       $(window).scroll(function(){
         // if($(window).scrollTop() + $(window).height() > 
         // $(document).height() - nearToBottom){
-        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 3000 && ok == true) {
-          ok = false;
-
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
           if (end == false){
             load++;
             $.ajax({
@@ -76,13 +73,11 @@
               dataType: 'html',
               data: {load: load},
               beforeSend: function(xhr) {
-                // $("#my-loader").show();
+                $("#my-loader").show();
               }
             })
             .done(function(data) {
-              ok = true;
-
-              // $("#my-loader").hide();
+              $("#my-loader").hide();
               if (data) {
                 $('.user_friends').append(data);
               }
@@ -96,8 +91,7 @@
               }
             })
             .fail(function() {
-              ok = true;
-              // $("#my-loader").hide();
+              $("#my-loader").hide();
 
               console.log("error");
             })

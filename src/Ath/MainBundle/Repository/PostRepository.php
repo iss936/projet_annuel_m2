@@ -39,33 +39,4 @@ class PostRepository extends EntityRepository
 
         return $query;
     }
-
-    /**
-     * getTenPosts => retourne 10 posts que j'ai créé et des personnes que je suis du plus récent au plus ancien enfonction de la limit $first
-     * 
-     * @param  User $user, ArrayCollection of User $amis, Integer $first
-     * @return array of collection of this
-     */
-    public function getTenPosts($user, $amis, $first = 0){
-
-    	foreach ($amis as $oneAmi) {
-    		$amis[] = $oneAmi->getId();
-    	}
-
-        $query = $this->createQueryBuilder('p')
-            ->Join('p.createdBy', 'u')
-            ->where('u = :user')
-            ->orWhere('u.id IN (:amis)')
-            ->orderBy('p.createdAt', 'DESC')
-            ->setParameters(array(
-                'user' => $user,
-                'amis' => $amis
-            ))
-            ->getQuery()
-            ->setFirstResult($first)
-            ->setMaxResults(10)
-            ->getResult();
-
-        return $query;
-    }
 }

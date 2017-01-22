@@ -20,7 +20,6 @@
     "bootstrap-sass" : "*",
     "breakpoint-sass" : "*",
     "bootstrap" : "*",
-    "bootstrap-social" : "*",
-    "bootstrap-select" : "*"
+    "bootstrap-social" : "*"
   }
 }

@@ -29,22 +29,19 @@
             <h3>
               Evènement
               {% if countEvents > 12 %}
-                <a href="{{ path('ath_main_event_sportifs') }}"><span>({{ countEvents }})</span></a>
+                <a href="{{ path('ath_main_event_sportifs') }}"><span style="color: blue">({{ countEvents }})</span></a>
               {% else %}
                   <span>({{ countEvents }})</span>
               {% endif %}
             </h3>
               {% for oneEvent in events %}
-                <div class="row event_preview small">
+                <div class="row">
                     <div class="col-md-4">
-                      <a href="{{ oneEvent.siteWeb }}" target="_blank">
-
                         <img class="" src="{{ oneEvent.webPath | imagine_filter('mini') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
-                      </a>
                         {# <p style="color: black">{{ oneEvent.description }}:</p> #}
                     </div>
                     <div class="col-md-8">
-                      <a href="{{ oneEvent.siteWeb }}" target="_blank">
+                      <a href="{{ oneEvent.siteWeb }}" target="_blank" style="color: blue">
                           <p style=""><u>{{ oneEvent }}:</u></p>
                       </a>
                       {% if oneEvent.description | length > 20 %}
@@ -54,6 +51,7 @@
                       {% endif %}
                     </div>
            	    </div>
+           	    <br><br>
               {% endfor %}
 
               {% if countEvents > 12 %}
@@ -106,14 +104,12 @@
                     </div>
                 {% endfor %}
 
-            <div id="my-loader"></div>
             </div>
           </div>
-          <div class="row">
-            <div class="end"></div>
-          </div>
           {# <div class="user_question">
+          	
            	
+
           </div> #}
           
         </div>
@@ -125,56 +121,3 @@
   </div>
   {% include '@ath_main_path/Includes/read_more_modal.html.twig' %}
 {% endblock body %}
-
-
-{% block javascripts %}
-  {{ parent() }}
-<script type="text/javascript">
-  $(document).ready(function() {
-      var load = 0;
-      var end = false;
-      var nearToBottom = 100;
-      var ok = true;
-      $(window).scroll(function(){
-        // if($(window).scrollTop() + $(window).height() > 
-        // $(document).height() - nearToBottom){
-        
-        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 3000 && ok ==true) {
-          ok = false;
-          if (end == false){
-            load++;
-            $.ajax({
-              url: "{{ path('ath_main_posts_ajax') }}",
-              type: 'POST',
-              dataType: 'html',
-              data: {load: load},
-              beforeSend: function(xhr) {
-                // $("#my-loader").show();
-              }
-            })
-            .done(function(data) {
-              ok = true;
-              // $("#my-loader").hide();
-              if (data) {
-                $('.reviews_list').append(data);
-              }
-              else{
-
-                if (end == false){
-                $('.end').append('<h3 class="title-line"> {{ "no.results" | trans({}, "home") }} </h3>');
-                }
-                end = true;
-              }
-            })
-            .fail(function() {
-              ok =true;
-              // $("#my-loader").hide();
-
-              console.log("error");
-            })
-          }
-        }
-      });
-  });
-</script>
-{% endblock %}

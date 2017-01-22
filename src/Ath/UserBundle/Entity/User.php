@@ -1215,10 +1215,7 @@ class User extends BaseUser
     public function getWebPath()
     {
         if ($this->photoId == null) {
-            if($this->getStatutJuridiqueId() == 1)
-                return 'images/inconnu.jpg';
-            else if($this->getStatutJuridiqueId() == 2)
-                return 'images/femme-inconnu.jpg';
+            return 'images/inconnu.jpg';
         }
 
         return $this->getUploadDir().'/'.$this->photoId;
