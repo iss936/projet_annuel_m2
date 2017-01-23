@@ -1,19 +1,16 @@
 {% extends '::base_error.html.twig' %}
 
 {% block body %}
-<br/>
-<br/>
-<br/>
 <center>
-    {# <img src=""/> #}
-    <br/>
-    <br/>
-    <br/>
-    <h1>404</h1>
-    <h1>{{ "error.404" | trans({}, 'home') }}</h1>
-    <br/>
-    <p>
-        <a href="#">{{ "retour.accueil" | trans({}, 'home') }}</a>.
-    </p>
+    <div class="fond_404">
+        <div class="text_404">
+            <h1 class="title-error">{{ "error.404" | trans({}, 'home') }}</h1>
+            <h2>{{ "error.404_message" | trans({}, 'home') }}</h2>
+            <br/>
+            <p>
+                <a href="{{ path('ath_main_homepage') }}">{{ "retour.accueil" | trans({}, 'home') }}</a>.
+            </p>
+        </div>
+    </div>
 </center>
 {% endblock %}

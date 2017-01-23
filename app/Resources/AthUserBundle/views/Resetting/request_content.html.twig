@@ -4,8 +4,9 @@
     <main id="top" class="masthead" role="main">
         <div class="container">
             <h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
-            <div class="row myBackground">
-                <div class="">
+            <div class="row request_form  authorization">
+                <div class="authorization_head "><h3>{{ "réinitialisation de mot de passe" | trans({}, 'home') }}</h3></div>
+                <div class="content">
                     <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
                         <div>
                             {% if invalid_username is defined %}
@@ -14,31 +15,20 @@
                                 </div>
                             {% endif %}
                             <div class="space-vertical-input">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                    <label for="username">{{ 'resetting.request.username'|trans }}</label>
                                 </div>
 
-                                <div class="col-sm-9">
+                                <div class="col-sm-8">
                                     <input type="text" id="username" name="username" required="required" class="form-control" />
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <br>
                         <div>
-                            <input type="submit" class="btn btn-default" value="{{ 'resetting.request.submit'|trans }}" />
+                            <input type="submit" class="btn btn-info" value="{{ 'resetting.request.submit'|trans }}" />
                         </div>
                     </form>
-                        <br>
-                        <br>
                 </div>
             </div>
-            <a href="#explore" class="scrollto">
-                    <p>{% filter upper %}
-                        {{ "scroll" | trans({}, 'home') }}
-                       {% endfilter %}
-                    </p>
-                    <p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
-                </a>
         </div><!-- /container -->
     </main><!--/main -->

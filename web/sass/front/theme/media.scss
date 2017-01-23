@@ -175,7 +175,7 @@
 		overflow: hidden;
 		position: absolute;
 		top: -214px;
-		border: 10px solid #b3de1d;
+		border: 10px solid $main-color;
 		border-right: none;
 		border-left: none;
 		font-size: 15px;
@@ -324,7 +324,7 @@
 		margin-bottom: 30px;
 	}
 	.user_status {
-		border: 10px solid #b3de1d;
+		border: 10px solid $main-color;
 		padding: 9px 40px 1px 30px;
 		position: absolute;
 		top: 8px;
@@ -333,8 +333,7 @@
 		left: -31px;
 	}
 	.user_photo_container:after {
-
-		right: -62px;
+		right: -85px;
 	}
 	.users_friends .gradient_bg {
 		height: 115px;
@@ -377,13 +376,13 @@
 		content: "";
 		width: 0;
 		top: 0px;
-		right: -62px!important;
+		right: -89px!important;
 		position: absolute;
 		height: 0;
-		border-top: 31px solid transparent;
-		border-right: 31px solid transparent;
-		border-left: 31px solid #f3f3f3;
-		border-bottom: 31px solid transparent;
+		border-top: 45px solid transparent;
+		border-right: 45px solid transparent;
+		border-left: 45px solid #f3f3f3;
+		border-bottom: 45px solid transparent;
 	}
 	.user_head .write{
 		margin-bottom: 0!important;
@@ -1267,7 +1266,7 @@
 		height: calc(100% - 256px);
 	}
 	.open_post .one_comment {
-		border: 10px solid #b3de1d;
+		border: 10px solid $main-color;
 		margin: 0 -26px 60px -26px;
 	}
 	.side_bar_sm_openpost{
@@ -1313,7 +1312,7 @@
 		top: -37px;
 	}
 	.user_photo_container:after {
-		right: -62px;
+		right: -89px;
 	}
 	.user_photo_container{
 		position: relative;
@@ -1412,7 +1411,7 @@
 	.Single-item .beats_circle {
 		width: 100%;
 		height: 100px;
-		background: #b3de1d;
+		background: $main-color;
 		position: relative;
 		color: #212339;
 		padding: 0;

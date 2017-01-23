@@ -52,5 +52,13 @@ no_event_sportifs: Aucun évènement sportif pour le moment
 no_followers: Aucun follower pour le moment
 new_post: Nouvelle actualité
 placeholder.new_post: Ajouter une nouvelle actualité
-error.404: Page non trouvé
+error.404: Erreur 404
+error.404_message: Désolé, la page demandée n'existe pas
+error.403: Erreur 403
+error.403_message: Vous n'êtes pas autorisé à accéder à cette page
+error.500: Erreur 500
+error.500_message: Une erreur s'est produite
 retour.accueil: Retourner à l'accueil
+Rechercher: Rechercher
+placeholder.comment: Appuyer entrée pour envoyer
+change_password.title: Changer de mot de passe

@@ -4,28 +4,28 @@
         $('p[data-confirm]').click(function(ev) {
             var href = $(this).attr("data-target");
 
-            $('#dataConfirmModal').find('#myModalLabel').text($(this).attr('data-id'));
-            $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
-            $('#dataConfirmModal').find('.link-modal').text('');
-            $('#dataConfirmModal').find('.link-modal').append('<a href='+href+' class="btn btn-info" target="_blank"> Voir </a>');
-            $('#dataConfirmModal').modal({show:true});
+            $('#dataReadMoreModal').find('#myModalReadMoreLabel').text($(this).attr('data-id'));
+            $('#dataReadMoreModal').find('.modal-body').text($(this).attr('data-confirm'));
+            $('#dataReadMoreModal').find('.link-modal').text('');
+            $('#dataReadMoreModal').find('.link-modal').append('<a href='+href+' class="btn btn-info" target="_blank"> Voir </a>');
+            $('#dataReadMoreModal').modal({show:true});
 
             return false;
         });
 
-        $('#dataConfirmOK').click(function(ev) {
-            $('#dataConfirmModal').modal('hide');
+        $('#dataReadMoreOK').click(function(ev) {
+            $('#dataReadMoreModal').modal('hide');
             return false;
         });
     });
     </script>
 {% endblock %}
-<div class="modal fade" id="dataConfirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="dataReadMoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalReadMoreLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
+        <h4 class="modal-title" id="myModalReadMoreLabel"></h4>
       </div>
       <div class="modal-body" id="myModalContent" style='color: #000'>
 
@@ -33,7 +33,7 @@
       <div align="center" class="link-modal"></div>
       
       <div class="modal-footer">
-        <a class="btn btn-primary" id="dataConfirmOK">ok</a>
+        <a class="btn btn-primary" id="dataReadMoreOK">ok</a>
       </div>
     </div>
   </div>

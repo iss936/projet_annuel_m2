@@ -13,8 +13,13 @@
 
                     <p> Bonjour {{ user }},</p>
                     <p>Votre compte a bien été activé.</p>
-
-                    <p> A bientôt, sur <a href="{{ path('ath_user_homepage') }}">Athleteec</a> </p>
+                    {% if app.environment == 'dev' %}
+                        {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_homepage') %}
+                    {% else %}
+                        {% set url = "https://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_homepage') %}
+                    {% endif %}
+                    
+                    <p> A bientôt, sur <a href="{{ url }}">Athleteec</a> </p>
                 </td>
             </tr>
             <tr>

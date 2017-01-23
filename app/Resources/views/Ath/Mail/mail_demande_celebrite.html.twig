@@ -16,7 +16,12 @@
                     
                     <p> {{ message }} </p>
                     <br>
-                    {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('admin_ath_main_demandecelebrite_list') %}
+
+                    {% if app.environment == 'dev' %}
+                        {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('admin_ath_main_demandecelebrite_list') %}
+                    {% else %}
+                        {% set url = "https://" ~ app.request.server.get('SERVER_NAME') ~ path ('admin_ath_main_demandecelebrite_list') %}
+                    {% endif %}
                     <p> A bientôt, sur <a href="{{ url }}">Athleteec</a> </p>
                 </td>
             </tr>

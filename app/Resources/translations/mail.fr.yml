@@ -1,5 +1,5 @@
 registration.email.subject: 'Bienvenue %username%'
-registration.flash.mail_send: "Un mail vous a été envoyé afin de confirmer votre inscription"
+registration.flash.mail_send: "Un mail vous à été envoyé afin de confirmer votre inscription"
 demande_celebrite.email.subject: "Demande de célébrité de l'utilisateur %id%"
 demande_celebrite_validation.email.subject: "Validation de votre demande de célébrité"
 footer: Cordialement,

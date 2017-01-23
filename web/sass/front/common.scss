@@ -1,3 +1,5 @@
+$icon-font-path : "/fonts/";
+
 
 @import "../../../bower_components/breakpoint-sass/stylesheets/breakpoint";
 @import "../../../bower_components/compass-mixins/lib/compass";
@@ -8,6 +10,10 @@
 @import "../../../bower_components/jquery-ui/themes/base/jquery-ui.css";
 @import "../../../bower_components/jquery-ui/themes/smoothness/jquery-ui.css";
 @import "../../../bower_components/bootstrap-select/sass/bootstrap-select.scss";
+
+
+@import "param_color";
+@import "param_typo";
 
 // Base Theme
 @import "theme/animate";
@@ -24,3 +30,6 @@
 // Custom Style
 @import "partials/auth";
 @import "partials/practice.scss";
+@import "partials/home.scss";
+@import "partials/user.scss";
+@import "partials/sub.scss";

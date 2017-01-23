@@ -14,7 +14,11 @@
                     <p> Bonjour {{ userDestinataire }}, </p>
                     <p>{{ userEmetteur }} suit désormais vos actualités.</p>
                     <br>
-                    {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_show_profile', {'slug': userEmetteur.slug }) %}
+                    {% if app.environment == 'dev' %}
+                        {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_show_profile', {'slug': userEmetteur.slug }) %}
+                    {% else %}
+                        {% set url = "https://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_show_profile', {'slug': userEmetteur.slug }) %}
+                    {% endif %}
 
                     <p><a href="{{ url }}">Veuillez consulter son profil</a></p>        
                 </td>

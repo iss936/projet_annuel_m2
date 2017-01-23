@@ -1,8 +1,7 @@
 {% block javascripts  %}
-  {{ parent() }}
     <script type="text/javascript">
     $(document).ready(function(){
-        $('a[data-confirm]').click(function(ev) {
+        $("body").delegate("a[data-confirm]", "click",  function(e) {
             var href = $(this).attr('href');
 
             $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));

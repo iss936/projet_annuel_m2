@@ -29,29 +29,31 @@
             <h3>
               Evènement
               {% if countEvents > 12 %}
-                <a href="{{ path('ath_main_event_sportifs') }}"><span style="color: blue">({{ countEvents }})</span></a>
+                <a href="{{ path('ath_main_event_sportifs') }}"><span>({{ countEvents }})</span></a>
               {% else %}
                   <span>({{ countEvents }})</span>
               {% endif %}
             </h3>
               {% for oneEvent in events %}
-                <div class="row">
+                <div class="row event_preview small">
                     <div class="col-md-4">
+                      <a href="{{ oneEvent.siteWeb }}" target="_blank">
+
                         <img class="" src="{{ oneEvent.webPath | imagine_filter('mini') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
+                      </a>
                         {# <p style="color: black">{{ oneEvent.description }}:</p> #}
                     </div>
                     <div class="col-md-8">
-                      <a href="{{ oneEvent.siteWeb }}" target="_blank" style="color: blue">
+                      <a href="{{ oneEvent.siteWeb }}" target="_blank">
                           <p style=""><u>{{ oneEvent }}:</u></p>
                       </a>
                       {% if oneEvent.description | length > 20 %}
                         <p class="read-more" data-target="{{ oneEvent.siteWeb }}" data-confirm="{{ oneEvent.description }}" data-id="{{ oneEvent.libelle }}"><i>{{ oneEvent.description | slice(0,20) }}...</i></p>
-					  {% else %}
+					           {% else %}
                         <p><i>{{ oneEvent.description }}</i></p>
                       {% endif %}
                     </div>
            	    </div>
-           	    <br><br>
               {% endfor %}
 
               {% if countEvents > 12 %}
@@ -64,32 +66,68 @@
             <h3 class="edited" id="edited_ltstre">Journal:</h3>
             <div class="row">
               <div class="col-md-12">
-                <form class="" action="" method="Post">
-                    <div class="well"> 
-                       <form class="form-horizontal" role="form">
-                          <h4>{{ "new_post" | trans({}, 'home') }}</h4>
-                           <div class="form-group" style="padding:14px;">
-                            <textarea class="form-control" placeholder="{{ "placeholder.new_post" | trans({}, 'home') }}"></textarea>
-                          </div>
-                          <input type="submit" class="btn btn-primary pull-right" value="Envoyer" />
-                          <ul class="list-inline">
-                            <li><i class="glyphicon glyphicon-camera"></i></li>
-                          </ul>
-                      </form>
-                    </div>
-                </form>
+                  <div class="well"> 
+                     <form id="upload" action="{{ path('ath_main_add_post') }}" class="form-horizontal" role="form" {{ form_enctype(form) }} method="POST">
+                        <h4>{{ "new_post" | trans({}, 'home') }}</h4>
+                         <div class="form-group" style="padding:14px;">
+                          {{ form_widget(form.contenu) }}
+                        <ul class="list-inline">
+                          <li>
+                              <label for="post_form_file" class="btn btn-primary">
+                                  <i class="glyphicon glyphicon-camera"></i> <span class="actu_value">Choisir un fichier</span>
+                              </label>
+                              {{ form_widget(form.file) }}</li>
+                        </ul>
+
+        
+                        <input type="submit" class="btn btn-primary pull-right" value="{{ "btn.send" | trans({}, 'home') }}" />
+                        {{ form_rest(form)}}
+                        </div>
+                    </form>
+                  </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12 col-md-12 reviews_list">
+              <div id="reviews_list" class="col-sm-12 col-md-12 reviews_list">
                 {% for onePost in posts %}
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" id="panel{{ onePost.id }}" data-id="{{ onePost.id }}">
                        <div class="panel-heading">
-                        <span class="pull-right">
-                          {{ onePost.createdAt |localizeddate('short', "none")}}
-                        </span> 
-                        <img class="" src="{{ onePost.createdBy.webPath | imagine_filter('mini') }}" alt="{{ onePost.createdBy }}" title="{{ onePost.createdBy }}" />
+                        <div class="row" style="font-size: 12px">
+                          <div class="col-md-9">
+                            <a href="{{ path('ath_user_show_profile',{'slug': onePost.createdBy.slug }) }}">
+                              <img class="" src="{{ onePost.createdBy.webPath | imagine_filter('micro') }}" alt="{{ onePost.createdBy }}" title="{{ onePost.createdBy }}" />
+                            <i>{{ onePost.createdBy }}</i>
+                            </a>
+                              {% if onePost.getParent() is not null %}
+                              {% set onePostTemp = onePost.getParent() %}
+                              
+                              {% if onePostTemp.createdBy == app.user %}
+                                 à re-publié un article datant du {{ onePostTemp.createdAt |localizeddate('short', "none")}}
+                              {% else %}
+                                 a partagé la publication de <a href="{{ path('ath_user_show_profile',{'slug': onePostTemp.createdBy.slug }) }}">{{ onePostTemp.createdBy }}</a>
+                              {% endif %}
+                            
+                            {% endif %}
+                          </div>
+                          <div class="col-md-3">
+                            {# <span class="pull-right"> #}
+                              {{ onePost.createdAt |localizeddate('short', "none")}}
+                              {% if onePost.createdBy == app.user %}
+                                  <br />
+                                  <a href="#" class="removePost" data-confirm="Voulez-vous vraiment supprimer cette article?"><i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer</a>
+                              {% endif %}
+                            {# </span> #}
+
+                          </div>
+                        </div>
                       </div>
+                      {% set realId = onePost.id %}
+
+                      {# shamble post and parent #}
+                      {% if onePost.getParent() is not null %}
+                          {% set onePost = onePost.getParent() %}
+                      {% endif %}
+                        
                        {% if onePost.filePosts| length > 0 %}
                           <div class="panel-body">
                             <img class="" src="/{{ onePost.filePosts[0].webPath  }}" alt="{{ onePost.filePosts[0] }}" title="{{ onePost.filePosts[0] }}" style="width: 100%;" />
@@ -101,15 +139,110 @@
                           <div class="clearfix"></div>
                           {{ onePost.contenu }}
                         </div>
-                    </div>
+                        <hr>
+                        <div class="row actions-post">
+                          <div class="block-action-post">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-3">
+                              <a class="happy_like {% if onePost.hasUserLike(app.user) %}already-like{% endif %}" href="#" data-id="{{ onePost.userLikes | length }}" data-label="{{ onePost.id }}">
+                                <i class="fa fa-thumbs-up"></i>
+                                <span id="nbLikes{{ realId }}">
+                                  {% if onePost.userLikes | length > 0 %}
+                                    {{ onePost.userLikes | length }}
+                                  {% endif %}
+                                </span>
+                                J'aime
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                              <a href="#" style="" class="seeComment" data-id="seeComment{{realId}}">
+                                <i class="fa fa-comments"></i>
+                                  {% if onePost.getComments() | length != 0 %}
+                                      {{ onePost.getComments() | length}}
+                                  {% endif %}
+                                  Commentaire(s)
+                              </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="{{ path('ath_main_share_post', {'idPost': onePost.id }) }}"><i class="fa fa-share-alt" aria-hidden="true"></i> Partager</a>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <div id="seeComment{{realId}}" class="hide-comments" data-id="{{ realId }}">
+
+                          <div class="row">
+                              <div class="panel-body">
+                                <div class="col-md-3">
+                                  {% include '@ath_main_path/Includes/user.html.twig' with {'user': app.user, 'img_filter' : 'mini' } %}
+                                </div>
+                                <div class="col-md-9">
+                                  <textarea placeholder="{{ "placeholder.comment" | trans({}, 'home') }}" data-id="{{ onePost.Id }}" class="autoExpand form-control"></textarea>
+                                  {% if onePost.getComments() | length > 10 %}
+                                      <a href="#" id="voirPlus{{ realId }}" class="moreComment" data-confirm="{{ onePost.getComments() | length }}" data-label="{{ onePost.Id }}" data-id="1">Voir plus de commentaires</a>
+                                  {% endif %}
+                                </div>
+                              </div>
+                          </div>
+                        <div class="row">
+                          
+                            {# bouuuu #}
+                            <div id="panelComment{{ realId }}" class="panel-body panelComment">
+
+                                {% for oneComment in onePost.getTenLastComments() %}
+                                  {% set auteur = oneComment.createdBy %}
+                                    <div class="col-sm-12 col-md-12">
+                                    <div class="user_message green_comment ">
+
+                                      <div class="row">
+                                        <div class="col-xs-3 col-sm-2 col-md-2">
+                                          <a href="{{ path('ath_user_show_profile',{'slug': auteur.slug }) }}">
+                                            {% include '@ath_main_path/Includes/user.html.twig' with {'user': auteur, 'img_filter' : 'micro' } %}
+                                          </a>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-3 col-md-3">
+                                          <a href="{{ path('ath_user_show_profile',{'slug': auteur.slug }) }}" class="us_name">{{auteur}}</a>
+                                          <p class="us_m_date">{{oneComment.createdAt |localizeddate('short', "none") }}</p>
+                                        </div>
+                                       {#  <div class="col-xs-8 col-sm-8 col-md-8">
+                                          <ul class="user_message_options pull-right">
+                                            <li>
+                                              <a href="?del=2267">
+                                                <i class="fa fa-minus-circle"></i>
+                                                Delete
+                                              </a>
+                                            </li>
+                                          </ul>
+
+                                        </div>
+ #}                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                          <div class="us_line"></div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                          <div class="us_content">
+                                            <p>{{ oneComment.getMessage() }}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+
+                    </div> <!-- panel-default -->
                 {% endfor %}
 
+            <div id="my-loader"></div>
             </div>
           </div>
+          <div class="row">
+            <div class="end"></div>
+          </div>
           {# <div class="user_question">
-          	
            	
-
           </div> #}
           
         </div>
@@ -120,4 +253,250 @@
     </div>
   </div>
   {% include '@ath_main_path/Includes/read_more_modal.html.twig' %}
+  {# Modal confirm suppression post #}
+  <div class="modal fade" id="dataConfirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+      </div>
+      <div class="modal-body" id="myModalContent" style='color: #000'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <a class="btn btn-primary" data-id="" id="dataConfirmOK">Valider</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock body %}
+
+
+{% block javascripts %}
+  {{ parent() }}
+<script type="text/javascript">
+  $(document).ready(function() {
+      var load = 0;
+      var end = false;
+      var nearToBottom = 100;
+      var ok = true;
+      $(window).scroll(function(){
+        // if($(window).scrollTop() + $(window).height() > 
+        // $(document).height() - nearToBottom){
+        
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 3000 && ok ==true) {
+          ok = false;
+          if (end == false){
+            load++;
+            $.ajax({
+              url: "{{ path('ath_main_posts_ajax') }}",
+              type: 'POST',
+              dataType: 'html',
+              data: {load: load},
+              beforeSend: function(xhr) {
+                // $("#my-loader").show();
+              }
+            })
+            .done(function(data) {
+              ok = true;
+              // $("#my-loader").hide();
+              if (data) {
+                $('#reviews_list').append(data);
+              }
+              else{
+
+                if (end == false){
+                $('.end').append('<h3 class="title-line"> {{ "no.results" | trans({}, "home") }} </h3>');
+                }
+                end = true;
+              }
+            })
+            .fail(function() {
+              ok =true;
+              // $("#my-loader").hide();
+              console.log("error");
+            })
+          }
+        }
+      });
+
+      $("body").delegate(".seeComment", "click",  function(e) {
+
+          var selector = $(this).attr('data-id');
+          // console.log(selector);
+          if ($( "div" ).find('#'+selector).is(":visible") ) {
+              $( "div" ).find('#'+selector).hide();
+              $('#'+selector).hide();
+            // console.log($('#'+selector).length);
+
+          }
+          else{
+            // console.log("hide");
+
+            // console.log($('#'+selector).length);
+            $( "div" ).find('#'+selector).show();
+              // $('#'+selector).show();
+          }
+          e.preventDefault();
+
+          return false;
+      });
+    $("body").delegate(".autoExpand", "keydown",  function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        var message = $(this).val();
+        var idPost = $(this).attr('data-id');
+
+        if ($.trim(message) != "") 
+        {
+            $.ajax({
+              url: "{{ path('ath_main_add_comment') }}",
+              type: 'POST',
+              dataType: 'html',
+              data: {message: message, idPost: idPost},
+              beforeSend: function(xhr) {
+                $("#my-loader").show();
+              }
+            })
+            .done(function(data) {
+              $("#my-loader").hide();
+              if (data) {
+                $( "div" ).find("#panelComment"+idPost).html(data);
+              }
+            })
+            .fail(function() {
+              $("#my-loader").hide();
+            })
+        }
+          
+          return false;
+      }
+    });
+
+    $("body").delegate(".moreComment", "click",  function(e) {
+        e.preventDefault();
+        var firstResult = $(this).attr('data-id');
+        var sum = parseInt(firstResult) + 1;
+        $(this).attr('data-id', sum);
+        var idPost = $(this).attr('data-label');
+        var nbComments = $(this).attr('data-confirm');
+        var realId = $(this).closest('.hide-comments').attr('data-id');
+
+        $.ajax({
+            url: "{{ path('ath_main_more_comments') }}",
+            type: 'POST',
+            dataType: 'html',
+            data: {load: sum, idPost: idPost},
+            beforeSend: function(xhr) {
+              $("#my-loader").show();
+            }
+          })
+          .done(function(data) {
+            $("#my-loader").hide();
+            if (data) {
+              $( "div" ).find("#panelComment"+realId).html(data);
+              // on ne peut voir plus de commentaire => on cache le lien
+              var nbToPrint = 10 *sum;
+              var firstResult = parseInt(nbComments) - nbToPrint;
+              if (firstResult <= 0) {
+                $("div").find("#voirPlus"+realId).hide();
+
+                // $("#voirPlus"+realId).hide();
+              }
+            }
+          })
+          .fail(function() {
+            $("#my-loader").hide();
+          })
+        return false;
+    });
+
+    $("body").delegate(".removePost", "click",  function(e) {
+        var idPost = $(this).closest('.panel-default').attr('data-id');
+        // console.log(idPost);
+        $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+        $('#dataConfirmOK').attr('data-id', idPost);
+        $('#dataConfirmModal').modal({show:true});
+        return false;
+    });
+    // remove onePost
+    $("body").delegate("#dataConfirmOK", "click",  function(e) {
+        e.preventDefault();
+        var idPost = $(this).attr('data-id');
+        $('#dataConfirmModal').modal('hide');
+        $.ajax({
+            url: "{{ path('ath_main_remove_post') }}",
+            type: 'POST',
+            dataType: 'Json',
+            data: {idPost: idPost},
+            beforeSend: function(xhr) {
+              $("#my-loader").show();
+            }
+          })
+          .done(function(data) {
+            $("#my-loader").hide();
+            if (data) {
+              $("div").find("#panelComment"+idPost).html(data);
+              $("div").find("#panel"+idPost).remove();
+            }
+          })
+          .fail(function() {
+            $("#my-loader").hide();
+          })
+        return false;
+    });
+
+    $("body").delegate(".happy_like", "click",  function(e) {
+        var realId = $(this).closest('.panel-default').attr('data-id');
+
+        var substract = $(this).hasClass('already-like');
+        var nbLikes = parseInt($(this).attr('data-id'));
+        var idPost = $(this).attr('data-label');
+        if (substract) {
+          $(this).attr('data-id', nbLikes - 1);
+          $(this).removeClass('already-like');
+        }
+        else // on incrémente le j'aime' et on ajoute la class already-like
+        {
+          $(this).attr('data-id', nbLikes + 1);
+          $(this).addClass('already-like');
+        }
+        
+        nbLikes = $(this).attr('data-id');
+
+        if (nbLikes != "0") {
+            $("div").find("#nbLikes"+realId).html(nbLikes);
+        }
+        else
+            $("div").find("#nbLikes"+realId).html("");
+
+        // ajax en cache
+        $.ajax({
+            url: "{{ path('ath_main_like_post') }}",
+            type: 'POST',
+            dataType: 'html',
+            data: {idPost: idPost, realId: realId, remove: substract},
+          })
+          .done(function(data) {
+            if (data) {
+              // $("div #panel"+realId).find(".happy_like").html(data);
+            }
+          })
+          .fail(function() {
+            alert("Une erreur est survenue");
+          })
+
+        e.preventDefault();
+        return false;
+    });
+
+      $('input[type="file"]').change(function() {
+          var val = ($(this).val() != "") ? "Fichier choisi : " + $(this).val() : "Choisir un fichier";
+          $('.actu_value').html(val);
+      });
+  });
+</script>
+{% endblock %}

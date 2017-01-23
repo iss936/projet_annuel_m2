@@ -14,8 +14,12 @@
                     <p> Bonjour {{ user }}, </p>
                     <p>Votre demande de célébrité a bien été accepté par l'équipe Athleteec.</p>                 
                     <br>
-                    {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('fos_user_profile_edit') %}
-
+                    
+                    {% if app.environment == 'dev' %}
+                        {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('fos_user_profile_edit') %}
+                    {% else %}
+                        {% set url = "https://" ~ app.request.server.get('SERVER_NAME') ~ path ('fos_user_profile_edit') %}
+                    {% endif %}
                     <p> Mettez en valeur votre équipement sportif et votre profil <a href="{{ url }}">Athleteec</a> </p>
                 </td>
             </tr>

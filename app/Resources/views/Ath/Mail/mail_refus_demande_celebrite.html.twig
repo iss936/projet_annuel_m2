@@ -13,8 +13,11 @@
                     <p> Bonjour {{ user }}, </p>
                     <p>Votre demande de célébrité a été refusé par l'équipe Athleteec. </p>               
                     <br>
-                    {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_homepage') %}
-
+                    {% if app.environment == 'dev' %}
+                        {% set url = "http://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_homepage') %}
+                    {% else %}
+                        {% set url = "https://" ~ app.request.server.get('SERVER_NAME') ~ path ('ath_user_homepage') %}
+                    {% endif %}
                     <p> A bientôt, sur <a href="{{ url }}">Athleteec</a> </p>
                 </td>
             </tr>

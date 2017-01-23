@@ -8,83 +8,67 @@
 			<!-- <div class="logo"> <a href="index.html#"><img src="images/logo.png" alt="logo"></a>
 			</div> -->
  			
-			<h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
+			<h1 class="subscription_title"><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></h1>
  
 			<div class="row myBackground">
 				{# <div class="col-md-6 col-sm-12 col-md-offset-3 subscribe"> #}
 				<div class="">
 
-	                <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
-						
-						<h2>{{ "inscription" | trans({}, 'home') }}</h2>
-	                    {{ form_widget(form._token) }}
-	                    <div class="space-vertical-input">
-					        {{ form_label(form.statutJuridique) }}
-					        <div class="col-sm-9">
-					            {{ form_errors(form.statutJuridique) }}
-					           {% for choiceFormView in form.statutJuridique %}
-								    {{ form_widget(choiceFormView) }}
-								{% endfor %}
-					        </div>
-					    </div>
-					    <br>
-		                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
-		                <br>
-                        {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-							
-			            {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-		                
-		                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
-		                
-		                {% if form.vars.value.statutJuridique != "Association" %}
-		                
-	                        <div class="Human">
-	           
-				                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
-	                            <br>
-								<br>
-				                {{ form_row(form.dateDeNaissance) }}
-			                </div>
-			                <div class="Assoc" style="display: none">
-				                {{ form_row(form.dateDeCreation) }}
-			                </div>
-		                {% else %}
-		                    <div class="Human" style="display: none">
-	           
-				                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
-	                            <br>
-								<br>
-				                {{ form_row(form.dateDeNaissance) }}
-			                </div>
-			                <div class="Assoc">
-				                {{ form_row(form.dateDeCreation) }}
-			                </div>
-		                {% endif %}
+	                <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register authorization">
+						<div class="authorization_head "><h3>{{ "inscription" | trans({}, 'home') }}</h3></div>
+						<div class="content">
+							{{ form_widget(form._token) }}
+							<div class="space-vertical-input">
+								{{ form_label(form.statutJuridique) }}
+								<div class="col-sm-9">
+									{{ form_errors(form.statutJuridique) }}
+								   {% for choiceFormView in form.statutJuridique %}
+										{{ form_widget(choiceFormView) }}
+									{% endfor %}
+								</div>
+							</div>
+							{{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+							{{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+							{{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+							{{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+							{% if form.vars.value.statutJuridique != "Association" %}
+								<div class="Human">
+									{{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.dateDeNaissance) }}
+								</div>
+								<div class="Assoc" style="display: none">
+									{{ form_row(form.dateDeCreation) }}
+								</div>
+							{% else %}
+								<div class="Human" style="display: none">
 
-					<br>
-					<p>
-						<button type="submit" class="btn btn-success btn-lg">{{ "inscription" | trans({}, 'home') }}</button>
-						<a href="{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}" class="btn btn-block btn-social btn-facebook" ><span class="fa fa-facebook"></span> {{ "inscription.facebook" | trans({}, 'home') }}</a>
-        				{# <a href="{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}" class="btn btn-block btn-social btn-twitter" ><span class="fa fa-twitter"></span> {{ "inscription.twitter" | trans({}, 'home') }}</a> #}
-        				<a href="{{ url("hwi_oauth_service_redirect", {service: "google"}) }}" class="btn btn-block btn-social btn-google" ><span class="fa fa-google"></span> {{ "inscription.google" | trans({}, 'home') }}</a>
-    				</p>
-					<h3>{{ "ou" | trans({}, 'home') }}</h3>
-					<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">{{ "connexion" | trans({}, 'home') }}</a>
-					{# <button type="submit" class="btn btn-info btn-lg">Se connecter</button> #}
-                </form>
+									{{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
+
+									{{ form_row(form.dateDeNaissance) }}
+								</div>
+								<div class="Assoc">
+									{{ form_row(form.dateDeCreation) }}
+								</div>
+							{% endif %}
+
+						<p class="buttons">
+							<button type="submit" class="btn btn-success btn-lg">{{ "inscription" | trans({}, 'home') }}</button>
+							<a href="{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}" class="btn btn-block btn-social btn-facebook" ><span class="fa fa-facebook"></span> {{ "inscription.facebook" | trans({}, 'home') }}</a>
+							{# <a href="{{ url("hwi_oauth_service_redirect", {service: "twitter"}) }}" class="btn btn-block btn-social btn-twitter" ><span class="fa fa-twitter"></span> {{ "inscription.twitter" | trans({}, 'home') }}</a> #}
+							<a href="{{ url("hwi_oauth_service_redirect", {service: "google"}) }}" class="btn btn-block btn-social btn-google" ><span class="fa fa-google"></span> {{ "inscription.google" | trans({}, 'home') }}</a>
+
+							<span>{{ "ou" | trans({}, 'home') }}</span>
+							<a href="{{ path('user_security_login') }}" class="btn btn-info btn-lg">{{ "connexion" | trans({}, 'home') }}</a>
+							{# <button type="submit" class="btn btn-info btn-lg">Se connecter</button> #}
+							<div style="clear: both"></div>
+						</p>
+					</div>
+				</form>
 
 					<span id="result" class="alertMsg"></span> 
 				</div>
 
 				</div>
- 
-				<a href="#explore" class="scrollto">
-					<p>{% filter upper %}
-                        {{ "scroll" | trans({}, 'home') }}
-                       {% endfilter %}
-                    </p>
-					<p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
-				</a>
 		</div><!-- /container -->
 	</main><!--/main -->
 

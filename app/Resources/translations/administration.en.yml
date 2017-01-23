@@ -1,19 +1,19 @@
-dashboard: Tableau de bord
-gestion_categorie_produits: Gestion des catégories de produits
-gestion_produits: Gestion des produits
-gestion_categorie_sports: Gestion des catégories de sports
-gestion_discution_utilisateurs: Gestion des discutions utilisateurs
-gestion_message_utilisateurs: Gestion des messages utilisateurs
-gestion_articles: Gestion des articles
-gestion_commentaire_articles: Gestion des commentaires d'articles
-user.changepassword.title: Changement de mot de passe
-user.changepassword.cancel: Retourner à la liste
-user.changepassword.save: Enregistrer
-user.button.changepassword: Changer mot de passe
-gestion_utilisateurs: Gestion des utilisateurs
-gestion_groupe_administrations: Gestion des groupes d'administration
-gestion_demande_celebrite: Gestion des demandes de célébrité
-datavisualisation: Datavisualisation
-statistique_user: Statistique utilisateur
-statistique: Statistique
-gestion_evenement_sportifs: Gestion des évènements sportifs
+dashboard: Dashboard
+gestion_categorie_produits: Product Category Management
+gestion_produits: product Management
+gestion_categorie_sports: Sport Category Management
+gestion_discution_utilisateurs: User management discussions
+gestion_message_utilisateurs: User message management
+gestion_articles: Posts Management
+gestion_commentaire_articles: Management of articles comments
+user.changepassword.title: Password Management
+user.changepassword.cancel: Return back
+user.changepassword.save: Save
+user.button.changepassword: Change Password
+gestion_utilisateurs: User Management
+gestion_groupe_administrations: Managing Administrative Groups
+gestion_demande_celebrite: Celebrity management applications
+datavisualisation: Datavisualization
+statistique_user: User's Statistics
+statistique: Statistics
+gestion_evenement_sportifs: Sports Events Management

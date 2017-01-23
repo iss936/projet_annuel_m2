@@ -1,4 +1,5 @@
-.fos_user_registration_register{
+.fos_user_registration_register, .request_form{
+  margin-bottom: 20px;
   h3{
     font-weight: bold;
     text-transform: uppercase;
@@ -7,8 +8,10 @@
     margin-bottom: 5px;
   }
 }
-
-.fos_user_registration_register{
+.auth_container{
+  height: auto !important;
+}
+.fos_user_registration_register, .request_form{
   [type="radio"]{
     margin: 0 5px 0 15px;
   }

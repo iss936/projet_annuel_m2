@@ -1,21 +1,83 @@
-{% extends '::base_admin.html.twig' %}
 
-{% block scripts_head %}
-{{ parent() }}
-{#  Appel les librairy d3 #}
-<script type="text/javascript" src="{{ asset('components/js/d3.min.js') }}"></script>
-
-{% endblock %}
+{#  Appel les librairy jqplot #}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/sonata/js/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="/sonata/js/plugins/jqplot.barRenderer.js"></script>
+<script type="text/javascript" src="/sonata/js/plugins/jqplot.pieRenderer.js"></script>
+<script type="text/javascript" src="/sonata/js/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="/sonata/js/plugins/jqplot.pointLabels.js"></script><link rel="stylesheet" type="text/css" href="/sonata/js/jquery.jqplot.min.css" />
 
 {% block body %}
 <h2>
-    Pourcentage homme femme
+    Pourcentage Homme Femme Association
 </h2>
-....
+  <div id="pourcentageHommeFemme" style="margin-top:20px; margin-left:20px; width:300px; height:300px;"></div>
+  <br>
+   <div><span id="info1"></span></div><br>
+  <div id="pourcentage" style="margin-top:20px; margin-left:20px; width:300px; height:300px;"></div>
+  
 
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
-    {# écris ton js et ajax #}
+<script type="text/javascript">
+    $(document).ready(function(){ 
+    var s1 = [['Homme', {{ nombreHomme.0.nombre }}], ['Femme', {{ nombreFemme.0.nombre }}], ['Associations', {{ nombreAssociation.0.nombre }}]];
+         
+    var plot8 = $.jqplot('pourcentageHommeFemme', [s1], {
+        grid: {
+            drawBorder: false, 
+            drawGridlines: false,
+            background: '#ffffff',
+            shadow:false
+        },
+        axesDefaults: {
+             
+        },
+        seriesDefaults:{
+            renderer:$.jqplot.PieRenderer,
+            rendererOptions: {
+                showDataLabels: true
+            }
+        },
+        legend: {
+            show: true,
+            rendererOptions: {
+                numberRows: 1
+            },
+            location: 's'
+        }
+    }); 
+	
+        var s1 = [{{ homme.moyenne }}, {{ femme.moyenne }}, {{ association.moyenne }}];
+        var s2 = [{{ homme.total }}, {{ femme.total }}, {{ association.total }}];
+        var ticks = ['Homme', 'Femme', 'Association'];
+         
+        plot2 = $.jqplot('pourcentage', [s1, s2], {
+            seriesDefaults: {
+                renderer:$.jqplot.BarRenderer,
+                pointLabels: { show: true }
+            },
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer,
+                    ticks: ticks
+                }
+            }
+        });
+     
+        $('#pourcentage').bind('jqplotDataHighlight', 
+            function (ev, seriesIndex, pointIndex, data) {
+                $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+            }
+        );
+             
+        $('#pourcentage').bind('jqplotDataUnhighlight', 
+            function (ev) {
+                $('#info1').html('Nothing');
+            });
+
+});
+</script>
+
 {% endblock %}

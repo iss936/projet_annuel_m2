@@ -2,10 +2,9 @@
 <div class="row">
       <div class="col-md-3">
         <a href="{{ path('ath_user_show_profile',{'slug': oneFollower.slug }) }}">
-          <img class="" src="{{ oneFollower.webPath | imagine_filter('small') }}" alt="{{ oneFollower }}" title="{{ oneFollower }}" />
+          <img src="{{ oneFollower.webPath | imagine_filter('small') }}" alt="{{ oneFollower }}" title="{{ oneFollower }}" />
         <p style="color: black">{{ oneFollower }}:</p>
         </a>
-
       </div>
       <div class="col-md-3">
         {% if oneFollower.ville %}

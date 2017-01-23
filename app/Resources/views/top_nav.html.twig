@@ -31,17 +31,17 @@
           </li>
           <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussions</a></li>
           {# <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Mes performances</a></li> #}
-          <li><a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i> Relations/Invitations/Groupe</a></li>
+          {# <li><a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i> Relations/Invitations/Groupe</a></li> #}
           <li><a href="{{ path('ath_list_association') }}"><i class="fa fa-users" aria-hidden="true"></i> Liste des Associations</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input id="searchUser" class="ui-autocomplete-input" type="text" class="form-control" placeholder="Search">
+            <input id="searchUser" class="ui-autocomplete-input" type="text" class="form-control" placeholder="{{ "Rechercher" | trans({}, 'home') }}" autocomplete="off">
           </div>
         </form>
 
         <ul class="nav navbar-nav">
-          <li><a href="#"><i class="fa fa-eur" aria-hidden="true"></i> Comparateur de prix</a></li>
+          <li><a href="{{ path('ath_list_produit') }}"><i class="fa fa-eur" aria-hidden="true"></i> Comparateur de prix</a></li>
         </ul>
       {% endif %}
 

@@ -78,7 +78,8 @@
                                 <div class="authorization">
                                     <div class="authorization_head clearfix">
                                         <p class="edited auth_p pull-left" id="edited_Autorization1">
-                                            Autorization </p>
+                                            {{ "connexion" | trans({}, 'home') }}
+                                        </p>
                                         <a href="#" id="auth_menu">
                                             <i class="fa fa-user-plus fa-2x pull-right"></i>
                                         </a>
@@ -89,7 +90,6 @@
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                                     
                                         <div class="authorization_form">
-                                            <h2>{{ "connexion" | trans({}, 'home') }}</h2>
                                             {% if error %}
                                                 <div class="alert alert-warning">
                                                     <strong>{{ "formConnection.errorPass" | trans({},'home') }}</strong>

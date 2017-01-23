@@ -8,3 +8,9 @@
 {% endblock %}
 
 {% block body_page %}page de connexion {% endblock %}
+
+{% block scripts_head %}
+  {{ parent() }}
+<script type='text/javascript' src='/js/front/theme/owl.carousel.js'></script>
+
+{% endblock %}

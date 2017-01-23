@@ -1,0 +1,9 @@
+<a class="happy_like {% if app.user.hasPostLike(onePost) %}already-like{% endif %}" href="#" data-id="{{ onePost.userLikes | length }}" data-label="{{ onePost.id }}">
+	<i class="fa fa-thumbs-up"></i>
+	<span id="nbLikes{{ realId }}">
+	{% if onePost.userLikes | length > 0 %}
+		{{ onePost.userLikes | length }}
+	{% endif %}
+	</span>
+	J'aime
+</a>

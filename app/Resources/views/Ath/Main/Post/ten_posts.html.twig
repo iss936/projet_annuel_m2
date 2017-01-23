@@ -1,21 +1,145 @@
 {% for onePost in posts %}
-    <div class="panel panel-default">
-       <div class="panel-heading">
-        <span class="pull-right">
-          {{ onePost.createdAt |localizeddate('short', "none")}}
-        </span> 
-        <img class="" src="{{ onePost.createdBy.webPath | imagine_filter('mini') }}" alt="{{ onePost.createdBy }}" title="{{ onePost.createdBy }}" />
-      </div>
-       {% if onePost.filePosts| length > 0 %}
-          <div class="panel-body">
-            <img class="" src="/{{ onePost.filePosts[0].webPath  }}" alt="{{ onePost.filePosts[0] }}" title="{{ onePost.filePosts[0] }}" style="width: 100%;" />
-          </div>
-        <hr>
-       {% endif %}
-       
-        <div class="panel-body">
-          <div class="clearfix"></div>
-          {{ onePost.contenu }}
+  <div class="panel panel-default" id="panel{{ onePost.id }}" data-id="{{ onePost.id }}">
+     <div class="panel-heading">
+      <div class="row" style="font-size: 12px">
+        <div class="col-md-9">
+          <a href="{{ path('ath_user_show_profile',{'slug': onePost.createdBy.slug }) }}">
+            <img class="" src="{{ onePost.createdBy.webPath | imagine_filter('micro') }}" alt="{{ onePost.createdBy }}" title="{{ onePost.createdBy }}" />
+          <i>{{ onePost.createdBy }}</i>
+          </a>
+            {% if onePost.getParent() is not null %}
+            {% set onePostTemp = onePost.getParent() %}
+            
+            {% if onePostTemp.createdBy == app.user %}
+               à re-publié un article datant du {{ onePostTemp.createdAt |localizeddate('short', "none")}}
+            {% else %}
+               a partagé la publication de <a href="{{ path('ath_user_show_profile',{'slug': onePostTemp.createdBy.slug }) }}">{{ onePostTemp.createdBy }}</a>
+            {% endif %}
+          
+          {% endif %}
         </div>
+        <div class="col-md-3">
+          {# <span class="pull-right"> #}
+            {{ onePost.createdAt |localizeddate('short', "none")}}
+            <br />
+            {% if onePost.createdBy == app.user %}
+                <a href="#" class="removePost" data-confirm="Voulez-vous vraiment supprimer cette article?"><i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer</a>
+            {% endif %}
+          {# </span> #}
+
+        </div>
+      </div>
     </div>
+    {% set realId = onePost.id %}
+
+    {# shamble post and parent #}
+    {% if onePost.getParent() is not null %}
+        {% set onePost = onePost.getParent() %}
+    {% endif %}
+      
+     {% if onePost.filePosts| length > 0 %}
+        <div class="panel-body">
+          <img class="" src="/{{ onePost.filePosts[0].webPath  }}" alt="{{ onePost.filePosts[0] }}" title="{{ onePost.filePosts[0] }}" style="width: 100%;" />
+        </div>
+      <hr>
+     {% endif %}
+     
+      <div class="panel-body">
+        <div class="clearfix"></div>
+        {{ onePost.contenu }}
+      </div>
+      <hr>
+      <div class="row actions-post">
+        <div class="block-action-post">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <a class="happy_like {% if onePost.hasUserLike(app.user) %}already-like{% endif %}" href="#" data-id="{{ onePost.userLikes | length }}" data-label="{{ onePost.id }}">
+              <i class="fa fa-thumbs-up"></i>
+              <span id="nbLikes{{ realId }}">
+                {% if onePost.userLikes | length > 0 %}
+                  {{ onePost.userLikes | length }}
+                {% endif %}
+              </span>
+              J'aime
+              </a>
+          </div>
+          <div class="col-md-4">
+            <a href="#" style="" class="seeComment" data-id="seeComment{{realId}}">
+              <i class="fa fa-comments"></i>
+                {% if onePost.getComments() | length != 0 %}
+                    {{ onePost.getComments() | length}}
+                {% endif %}
+                Commentaire(s)
+            </a>
+          </div>
+          <div class="col-md-4">
+              <a href="{{ path('ath_main_share_post', {'idPost': onePost.id }) }}"><i class="fa fa-share-alt" aria-hidden="true"></i> Partager</a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div id="seeComment{{realId}}" class="hide-comments" data-id="{{ realId }}">
+
+        <div class="row">
+            <div class="panel-body">
+              <div class="col-md-3">
+                {% include '@ath_main_path/Includes/user.html.twig' with {'user': app.user, 'img_filter' : 'mini' } %}
+              </div>
+              <div class="col-md-9">
+                <textarea placeholder="{{ "placeholder.comment" | trans({}, 'home') }}" data-id="{{ onePost.Id }}" class="autoExpand form-control"></textarea>
+                {% if onePost.getComments() | length > 10 %}
+                    <a href="#" id="voirPlus{{ realId }}" class="moreComment" data-confirm="{{ onePost.getComments() | length }}" data-label="{{ onePost.Id }}" data-id="1">Voir plus de commentaires</a>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+      <div class="row">
+        
+          {# bouuuu #}
+          <div id="panelComment{{ realId }}" class="panel-body panelComment">
+
+              {% for oneComment in onePost.getTenLastComments() %}
+                {% set auteur = oneComment.createdBy %}
+                  <div class="col-sm-12 col-md-12">
+                  <div class="user_message green_comment ">
+
+                    <div class="row">
+                      <div class="col-xs-3 col-sm-2 col-md-2">
+                        <a href="{{ path('ath_user_show_profile',{'slug': auteur.slug }) }}">
+                          {% include '@ath_main_path/Includes/user.html.twig' with {'user': auteur, 'img_filter' : 'micro' } %}
+                        </a>
+                      </div>
+                      <div class="col-xs-9 col-sm-3 col-md-3">
+                        <a href="{{ path('ath_user_show_profile',{'slug': auteur.slug }) }}" class="us_name">{{auteur}}</a>
+                        <p class="us_m_date">{{oneComment.createdAt |localizeddate('short', "none") }}</p>
+                      </div>
+                     {#  <div class="col-xs-8 col-sm-8 col-md-8">
+                        <ul class="user_message_options pull-right">
+                          <li>
+                            <a href="?del=2267">
+                              <i class="fa fa-minus-circle"></i>
+                              Delete
+                            </a>
+                          </li>
+                        </ul>
+
+                      </div>
+#}                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="us_line"></div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="us_content">
+                          <p>{{ oneComment.getMessage() }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+
+  </div> <!-- panel-default -->
 {% endfor %}
