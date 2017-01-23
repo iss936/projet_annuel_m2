@@ -10,13 +10,13 @@
             <div class="user_head">
               <div class="col-sm-3 col-md-3">
                 <div class="">
-                	{# {% if userToShow.id == user.id %}
-						<h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
-                	{% else %} #}
-						<h1>{{userToShow}}</h1>
-                	{# {% endif %} #}
+                  {# {% if userToShow.id == user.id %}
+            <h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
+                  {% else %} #}
+            <h1>{{userToShow}}</h1>
+                  {# {% endif %} #}
 
-					{% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
+          {% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
                {#  <div class="upload-file-container-text">
                   <input type="file" name="file" class="photo" id="imgInput"></div> #}
                 </div>
@@ -33,15 +33,15 @@
               </div>
 
               <div class="col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-2">
-              	{% if userToShow.id == user.id %}
-                	<a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
-            	{% else %} <!-- ce n'est pas mon profil-->
-	            	{% if userToShow in amiFollows %}
-				        <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write unfollow">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
-	            	{% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
-	            	    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write follow">{{ "suivre" | trans({}, 'home') }}</button></a>
-	            	{% endif %}
-            	{% endif %}
+                {% if userToShow.id == user.id %}
+                  <a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
+              {% else %} <!-- ce n'est pas mon profil-->
+                {% if userToShow in amiFollows %}
+                <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write unfollow">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
+                {% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
+                    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write follow">{{ "suivre" | trans({}, 'home') }}</button></a>
+                {% endif %}
+              {% endif %}
               </div>
 
               <div class="col-sm-2 col-md-2">
@@ -173,10 +173,10 @@
         <div class="col-md-6">
           <div class="user_question">
             <h3 class="edited" id="edited_prtable">Informations:</h3>
-			<ul class="feature_table clearfix">
-			
-			{% if userToShow.statutJuridiqueId == 3 %}
-	        <li class="clearfix">
+      <ul class="feature_table clearfix">
+      
+      {% if userToShow.statutJuridiqueId == 3 %}
+          <li class="clearfix">
             <span class="feature_name">{{ "profil.nomAssoc" | trans({}, 'fosuser') }}:</span>
             <span class="feature_value">{{ userToShow.nom }}</span>
           </li>
@@ -225,16 +225,16 @@
           </span>
              
           </li>
-	           {#    <li class="clearfix">
-	                <span class="feature_name">Have team?:</span>
-	                <span class="feature_value">Yes</span>
-	              </li>
-	              <li class="clearfix">
-	                <span class="feature_name">Some feature:</span>
-	                <span class="feature_value"></span>
-	              </li> #}
-			{% else %} <!-- on a une personne -->
-	        <li class="clearfix">
+             {#    <li class="clearfix">
+                  <span class="feature_name">Have team?:</span>
+                  <span class="feature_value">Yes</span>
+                </li>
+                <li class="clearfix">
+                  <span class="feature_name">Some feature:</span>
+                  <span class="feature_value"></span>
+                </li> #}
+      {% else %} <!-- on a une personne -->
+          <li class="clearfix">
             <span class="feature_name">{{ "profil.nom" | trans({}, 'fosuser') }}:</span>
             <span class="feature_value">{{ userToShow.nom }}</span>
           </li>
@@ -258,9 +258,9 @@
               {% endfor %}
             </span>
           </li>
-			{% endif %}
-	        </ul>
-           	
+      {% endif %}
+          </ul>
+            
 
           </div>
           <div class="user_latest">
@@ -711,6 +711,11 @@
           // itemsDesktopSmall : [979,3]
    
         });
+
+      $('input[type="file"]').change(function() {
+          var val = ($(this).val() != "") ? "Fichier choisi : " + $(this).val() : "Choisir un fichier";
+          $('.actu_value').html(val);
+      });
   });
 </script>
 {% endblock %}
