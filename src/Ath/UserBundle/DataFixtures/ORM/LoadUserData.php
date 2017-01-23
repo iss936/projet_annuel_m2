@@ -53,13 +53,16 @@ class LoadUserData extends AbstractDataFixture
                     }
                 }
             }
-            $photoId = $fixture["setPhotoId"];
-            $photoOriginalName = $fixture["setPhotoOriginalName"];
-           
-            copy($sPathOrigine . DIRECTORY_SEPARATOR . $photoOriginalName, $dataCache . DIRECTORY_SEPARATOR . $photoOriginalName);
-            $file = new UploadedFile($dataCache . DIRECTORY_SEPARATOR . $photoOriginalName, $photoId, null, null, null, true);
-         
-            $entity->setFile($file);
+            if (isset($fixture["setPhotoId"])) {
+                $photoId = $fixture["setPhotoId"];
+                $photoOriginalName = $fixture["setPhotoOriginalName"];
+               
+                copy($sPathOrigine . DIRECTORY_SEPARATOR . $photoOriginalName, $dataCache . DIRECTORY_SEPARATOR . $photoOriginalName);
+                $file = new UploadedFile($dataCache . DIRECTORY_SEPARATOR . $photoOriginalName, $photoId, null, null, null, true);
+             
+                $entity->setFile($file);
+            }
+            
 
             $manager->persist($entity);
             $manager->flush();
@@ -229,9 +232,9 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
-                "setPhotoId" => "femme3.jpg",
-                "setPhotoExtension" => "jpeg",
-                "setPhotoOriginalName" => "femme3.jpg"
+                "setPhotoId" => "femme3.png",
+                "setPhotoExtension" => "png",
+                "setPhotoOriginalName" => "femme3.png"
             ),
             array(
                 "setUsername" => "femme4@gmail.com",
@@ -250,9 +253,9 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
-                "setPhotoId" => "femme4.png",
-                "setPhotoExtension" => "png",
-                "setPhotoOriginalName" => "femme4.png"
+                // "setPhotoId" => "femme4.png",
+                // "setPhotoExtension" => "png",
+                // "setPhotoOriginalName" => "femme4.png"
             ),
             array(
                 "setUsername" => "femme5@gmail.com",
@@ -292,9 +295,9 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
-                "setPhotoId" => "homme1.jpg",
-                "setPhotoExtension" => "jpeg",
-                "setPhotoOriginalName" => "homme1.jpg"
+                // "setPhotoId" => "homme1.jpg",
+                // "setPhotoExtension" => "jpeg",
+                // "setPhotoOriginalName" => "homme1.jpg"
             ),
             array(
                 "setUsername" => "homme2@gmail.com",
@@ -376,9 +379,9 @@ class LoadUserData extends AbstractDataFixture
                 "setCgu" => 1,
                 "setIsCelebrite" => 0,
                 "setUserInteretSports" => array($allSport[9], $allSport[0], $allSport[2]),
-                "setPhotoId" => "homme5.jpg",
-                "setPhotoExtension" => "jpeg",
-                "setPhotoOriginalName" => "homme5.jpg"
+                // "setPhotoId" => "homme5.jpg",
+                // "setPhotoExtension" => "jpeg",
+                // "setPhotoOriginalName" => "homme5.jpg"
             ),
         );
 

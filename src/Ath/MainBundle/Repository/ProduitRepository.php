@@ -49,4 +49,36 @@ class ProduitRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * getMyProduct Retourne les produits créé par un user du plus récent au plus anciens
+     * @param  User $user
+     * @return ArrayCollection of this
+     */
+    public function getMyProducts($user) {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->where('p.createdBy = :user')
+            ->setParameter('user', $user)
+            ->orderBy('p.updatedAt', 'DESC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
+     * getLastProductsLimit Retourne les 20 derniers produits du plus récent au plus anciens
+     * 
+     * @param  User $user
+     * @return ArrayCollection of this
+     */
+    public function getLastProductsLimit() {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->orderBy('p.updatedAt', 'DESC')
+            ->setMaxResults(20)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

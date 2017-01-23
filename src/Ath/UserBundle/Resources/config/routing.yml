@@ -92,3 +92,6 @@ ath_choose_langue:
     requirements:
         langue: en|fr
 
+ath_user_my_posts_ajax:
+    path: /sportif/mes-articles/ajax
+    defaults: { _controller: AthUserBundle:Profile:myPostsAjax }

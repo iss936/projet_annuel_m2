@@ -392,4 +392,33 @@ class DefaultController extends Controller
         
         return new JsonResponse($ok);
     }
+
+
+    public function addComparateurAjaxAction(Request $request)
+    {
+        $ok = false;
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+
+            $idProduit = $request->get('idProduit');
+            $action = $request->get('action');
+
+            $oneProduit = $em->getRepository('AthMainBundle:Produit')->find($idProduit);
+            // add or remove from comparateur
+            $user->clickComparateur($oneProduit,$action);
+            if ($action == 'ajouter') {
+                $em->persist($user);
+            }
+            $em->flush();
+            // var_dump($action,count($user->getUserComparateurProduits()));
+            // die();
+
+            return $this->render('@ath_main_path/Produit/add_remove_comparateur.html.twig', array(
+                'oneProduit' => $oneProduit,
+            ));
+        }
+        
+        return new JsonResponse($ok);
+    }
 }

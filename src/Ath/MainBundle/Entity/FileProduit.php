@@ -355,7 +355,7 @@ class FileProduit
 
     public function __toString()
     {
-        return $this->nomFichier;
+        return $this->originalFichier;
     }
 }
 

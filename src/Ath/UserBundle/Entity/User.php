@@ -281,7 +281,7 @@ class User extends BaseUser
     *
     * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\GroupApplication", mappedBy="users")
     */
-    protected $groupApplications;
+    private $groupApplications;
 
     /**
      * @var string
@@ -289,6 +289,14 @@ class User extends BaseUser
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
+
+    /**
+    * @var ArrayCollection Post
+    * Owning Side
+    *
+    * @ORM\ManyToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="userLikes")
+    */
+    private $postLikes;
 
     /**
      * @Assert\File(maxSize="6000000")
@@ -304,6 +312,8 @@ class User extends BaseUser
         $this->userComparateurProduits = new ArrayCollection();
         $this->associationSports = new ArrayCollection();
         $this->groupApplications = new ArrayCollection();
+        $this->postLikes = new ArrayCollection();
+
     }
 
     /**
@@ -986,6 +996,19 @@ class User extends BaseUser
         return $this->userComparateurProduits;
     }
 
+    /**
+    * Get hasUserComparateurProduits
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function hasUserComparateurProduits($produit) {
+        if ($this->userComparateurProduits->contains($produit)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function setAssociationSports($associationSports) {
           $this->associationSports[] = $associationSports;
         return $this;
@@ -1021,6 +1044,61 @@ class User extends BaseUser
         return $this->associationSports;
     }
 
+    /**
+     * Add postLikes
+     *
+     * @param \Ath\MainBundle\Entity\Post $post
+     * @return User
+     */
+    public function addPostLikes(\Ath\MainBundle\Entity\Post $post) {
+        if (!$this->postLikes->contains($post)) {
+            $this->postLikes[] = $post;
+        }
+        return $this;
+    }
+
+    /**
+     * Remove postLikes
+     *
+     * @param \Ath\MainBundle\Entity\Post $post
+     */
+    public function removePostLike(\Ath\MainBundle\Entity\Post $post) {
+        $this->postLikes->removeElement($post);
+    }
+
+   /**
+    * Get postLikes
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getPostLikes() {
+        return $this->postLikes;
+    }
+
+    public function hasPostLike($post)
+    {   
+        if ($this->postLikes->contains($post)) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    /**
+     * clickLike
+     * add or remove a post
+     * @param \Ath\MainBundle\Entity\Post $post, bool $remove
+     * @return Void
+     */
+    public function clickLike(\Ath\MainBundle\Entity\Post $post, $remove) {
+        if ($remove) {
+            $this->removePostLike($post);
+        }
+        else
+            $this->addPostLike($post);
+
+        // return $ok;
+    }
     public function getProduits()
     {
       return $this->produits;
@@ -1184,6 +1262,18 @@ class User extends BaseUser
         return $ok;
     }
 
+    public function clickComparateur(\Ath\MainBundle\Entity\Produit $produit, $action) {
+        if ($action == 'ajouter') {
+            $this->addUserComparateurProduit($produit);
+        }
+
+        if ($action == 'supprimer') {
+            $this->removeUserComparateurProduit($produit);
+        }
+
+        // return $ok;
+    }
+
     /**
      * Gets the value of slug.
      *
@@ -1215,7 +1305,12 @@ class User extends BaseUser
     public function getWebPath()
     {
         if ($this->photoId == null) {
-            return 'images/inconnu.jpg';
+            if($this->getStatutJuridiqueId() == 1)
+                return 'images/inconnu.jpg';
+            else if($this->getStatutJuridiqueId() == 2)
+                return 'images/femme-inconnu.jpg';
+            else
+                return 'images/inconnu.jpg';
         }
 
         return $this->getUploadDir().'/'.$this->photoId;

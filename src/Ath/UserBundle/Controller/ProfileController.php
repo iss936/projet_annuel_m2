@@ -11,6 +11,7 @@ use Ath\UserBundle\Form\EditProfileType;
 use Ath\MainBundle\Form\Type\DemandeCelebriteFormType;
 use Ath\MainBundle\Entity\DemandeCelebrite;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Ath\MainBundle\Form\Type\PostFormType;
 
 class ProfileController extends BaseController
 {
@@ -52,12 +53,40 @@ class ProfileController extends BaseController
 
         $amiFollows = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
         
+        if ($userToShow->hasRole('ROLE_CELEBRITE')) {
+            $produits = $em->getRepository('AthMainBundle:Produit')->getMyProducts($userToShow);
+        }
+        else // on récupère les products de son comparateur
+        {
+            $comparateurProduits = $userToShow->getUserComparateurProduits();
+            $produits = array();
+            foreach ($comparateurProduits as $oneProduit) {
+                $produits[] = $oneProduit;
+            }
+        }
+
+        $noProduct = false;
+        if(!$produits){
+            // on récupère les 20 derniers produits
+            $produits = $em->getRepository('AthMainBundle:Produit')->getLastProductsLimit();
+            $noProduct = true;
+        }
+
+        // 10 derniers posts
+        $posts = $em->getRepository('AthMainBundle:Post')->getMyLimitfeed($userToShow);
+
+        $form = $this->createForm(new PostFormType());
+
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'userToShow' => $userToShow,
             'followers' => $followers,
             'amiFollows' => $amiFollows,
-            'countFollowers' => $countFollowers
+            'countFollowers' => $countFollowers,
+            'posts' => $posts,
+            'form' => $form->createView(),
+            'produits' => $produits,
+            'noProduct' => $noProduct
         ));
     }
     /**
@@ -141,5 +170,28 @@ class ProfileController extends BaseController
         return $this->render('@ath_user_path/demande_celebrite.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    public function myPostsAjaxAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if ($request->isXmlHttpRequest()) {
+            
+            $load = $request->get('load');
+            $id = $request->get('id');
+
+            $firstResult = (10 * $load) +1;
+
+            $userToShow = $em->getRepository('AthUserBundle:User')->find($id);
+
+            // 10 posts suivant
+            $posts = $em->getRepository('AthMainBundle:Post')->getMyTenPosts($userToShow,$firstResult);
+
+            return $this->render('@ath_main_path/Post/ten_posts.html.twig', array(
+                'posts' => $posts,
+            ));
+        }
+       
+        return new JsonResponse("Ko");
     }
 }

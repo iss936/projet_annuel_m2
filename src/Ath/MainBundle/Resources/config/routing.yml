@@ -74,3 +74,7 @@ ath_main_remove_post:
 ath_main_like_post:
     path: /sportif/aimer/article
     defaults: { _controller: AthMainBundle:Default:likePostAjax }
+
+ath_main_add_comparateur:
+    path: /sportif/ajouter/comparateur
+    defaults: { _controller: AthMainBundle:Default:addComparateurAjax }

@@ -1,0 +1,9 @@
+{% if app.user.hasUserComparateurProduits(oneProduit) %}
+    <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="supprimer">
+        Supprimer
+    <a>
+{% else %}
+    <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="ajouter">
+        Ajouter
+    <a>
+{% endif %}

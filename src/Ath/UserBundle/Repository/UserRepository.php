@@ -31,7 +31,7 @@ class UserRepository extends EntityRepository
     public function getUserActivesAutocomplete($string){
 		$query = $this->createQueryBuilder('u')
 	    	->where('u.enabled = :enabled')
-	    	->andWhere('u.nom like :string')
+	    	->andWhere('u.nom like :string or u.prenom like :string')
             ->orderBy('u.nom', 'DESC')
 	    	->setParameters(array(
 	    		'enabled' => 1,
@@ -138,7 +138,7 @@ class UserRepository extends EntityRepository
     }
 
     /**
-     * getFollowers => retourne les 12 derniers followers du user
+     * getLastFollowers => retourne les 12 derniers followers du user
      * 
      * @param  User $userDestinataire
      * @return array of collection of this

@@ -10,13 +10,13 @@
             <div class="user_head">
               <div class="col-sm-3 col-md-3">
                 <div class="">
-                  {# {% if userToShow.id == user.id %}
-            <h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
-                  {% else %} #}
-            <h1>{{userToShow}}</h1>
-                  {# {% endif %} #}
+                	{# {% if userToShow.id == user.id %}
+						<h1>{{ "title.monProfil" | trans({}, 'fosuser') }}</h1>
+                	{% else %} #}
+						<h1>{{userToShow}}</h1>
+                	{# {% endif %} #}
 
-          {% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
+					{% include '@ath_main_path/Includes/user.html.twig' with {'user': userToShow, 'img_filter' : 'profile' } %}
                {#  <div class="upload-file-container-text">
                   <input type="file" name="file" class="photo" id="imgInput"></div> #}
                 </div>
@@ -33,15 +33,15 @@
               </div>
 
               <div class="col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-2">
-                {% if userToShow.id == user.id %}
-                  <a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
-              {% else %} <!-- ce n'est pas mon profil-->
-                {% if userToShow in amiFollows %}
-                <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write unfollow">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
-                {% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
-                    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write follow">{{ "suivre" | trans({}, 'home') }}</button></a>
-                {% endif %}
-              {% endif %}
+              	{% if userToShow.id == user.id %}
+                	<a href="{{ path('fos_user_profile_edit') }}"><button class="write" style="background-color: #33CCFF;">{{ "modifier.profil" | trans({}, 'home') }}</button></a>
+            	{% else %} <!-- ce n'est pas mon profil-->
+	            	{% if userToShow in amiFollows %}
+				        <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug, 'suivre': 0 }) }}"><button class="write unfollow">{{ "ne_plus_suivre" | trans({}, 'home') }}</button></a>
+	            	{% else %} <!-- je ne suis pas cette personne alors je peut la suivre -->
+	            	    <a href="{{ path('ath_main_follow_user', {'slug': userToShow.slug }) }}"><button class="write follow">{{ "suivre" | trans({}, 'home') }}</button></a>
+	            	{% endif %}
+            	{% endif %}
               </div>
 
               <div class="col-sm-2 col-md-2">
@@ -76,52 +76,47 @@
       <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 user_ph_width">
           <a class="user_photo_container edited" id="edited_latestpr">
-            <i class="fa fa-picture-o"></i>
-            Interêts pour les produits
+
+            {% if noProduct %}
+              <i class="fa fa-picture-o"></i>
+              Les derniers produits
+            {% else %}
+              {% if userToShow.hasRole('ROLE_CELEBRITE') %}
+                  <i class="fa fa-picture-o"></i>
+                  Mon équipement sportif
+              {% else %}
+                  <i class="fa fa-picture-o"></i>
+                  Interêts pour les produits
+              {% endif %}
+            {% endif %}
+
           </a>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 owl_photos">
           <div id="owl-product">
-
-            <div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div>
-            <div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div>
-            <div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div><div class="item2">
-              <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
-                <img src="/images/f-project.jpg" height="65" width="65" alt=""></a>
-            </div>
+            {% for oneProduit in produits %}
+                <div class="item2">
+                  <a title="{{oneProduit}}" data-rel="lightcase:myCollection" href="#">
+                    {% if oneProduit.fileProduits| length > 0 %}
+                        {# <img class="" src="/{{ oneProduit.fileProduits[0].webPath  }}" alt="{{ onePost.fileProduits[0] }}" title="{{ onePost.fileProduits[0] }}"  height="65" width="65"/> #}
+                        {% include '@ath_main_path/Includes/user.html.twig' with {'user': oneProduit.fileProduits[0], 'img_filter' : 'mini' } %}
+                        {% if app.user.hasUserComparateurProduits(oneProduit) %}
+                            <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="supprimer">
+                                Supprimer
+                            <a>
+                        {% else %}
+                            <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="ajouter">
+                                Ajouter
+                            <a>
+                        {% endif %}
+                        
+                    {% endif %}
+                  {# <img src="/images/f-project.jpg" height="65" width="65" alt=""> #}
+                  </a>
+                </div>
+            {% endfor %}
+            
+            
           </div>
           <div class="customNavigation">
 
@@ -173,10 +168,10 @@
         <div class="col-md-6">
           <div class="user_question">
             <h3 class="edited" id="edited_prtable">Informations:</h3>
-      <ul class="feature_table clearfix">
-      
-      {% if userToShow.statutJuridiqueId == 3 %}
-          <li class="clearfix">
+			<ul class="feature_table clearfix">
+			
+			{% if userToShow.statutJuridiqueId == 3 %}
+	        <li class="clearfix">
             <span class="feature_name">{{ "profil.nomAssoc" | trans({}, 'fosuser') }}:</span>
             <span class="feature_value">{{ userToShow.nom }}</span>
           </li>
@@ -225,16 +220,16 @@
           </span>
              
           </li>
-             {#    <li class="clearfix">
-                  <span class="feature_name">Have team?:</span>
-                  <span class="feature_value">Yes</span>
-                </li>
-                <li class="clearfix">
-                  <span class="feature_name">Some feature:</span>
-                  <span class="feature_value"></span>
-                </li> #}
-      {% else %} <!-- on a une personne -->
-          <li class="clearfix">
+	           {#    <li class="clearfix">
+	                <span class="feature_name">Have team?:</span>
+	                <span class="feature_value">Yes</span>
+	              </li>
+	              <li class="clearfix">
+	                <span class="feature_name">Some feature:</span>
+	                <span class="feature_value"></span>
+	              </li> #}
+			{% else %} <!-- on a une personne -->
+	        <li class="clearfix">
             <span class="feature_name">{{ "profil.nom" | trans({}, 'fosuser') }}:</span>
             <span class="feature_value">{{ userToShow.nom }}</span>
           </li>
@@ -258,9 +253,9 @@
               {% endfor %}
             </span>
           </li>
-      {% endif %}
-          </ul>
-            
+			{% endif %}
+	        </ul>
+           	
 
           </div>
           <div class="user_latest">
@@ -686,31 +681,43 @@
         e.preventDefault();
         return false;
     });
-/*
-     if( typeof  window.lightcase == "object") { 
-            $('a[data-rel^=lightcase]').lightcase
-            ({
-                transition: 'scrollHorizontal',
-                showSequenceInfo: false,
-                showTitle: true,
-                swipe: true
-            });
 
-        }*/
-        $(document).on('click','.user_photo .next',function(){
-        var owl = $("#owl-product");
+    $("body").delegate(".action-comparateur", "click",  function(e) {
+        var idProduit = $(this).attr('data-id');
+        var action = $(this).attr('data-label');
+        // ajax en cache
+        $.ajax({
+            url: "{{ path('ath_main_add_comparateur') }}",
+            type: 'POST',
+            dataType: 'html',
+            data: {idProduit: idProduit, action: action},
+          })
+          .done(function(data) {
+            if (data) {
+              $("div").find("#addComparateur").html(data);
+              // $(this).html(data);
+            }
+          })
+          .fail(function() {
+            alert("Une erreur est survenue");
+          })
 
-          owl.trigger('owl.next');
-        }); 
-         $("#owl-product").owlCarousel({
-            navigation : true,
-          // autoPlay: 3000, //Set AutoPlay to 3 seconds
-     
-          items : 10,
-          // itemsDesktop : [1199,3],
-          // itemsDesktopSmall : [979,3]
-   
-        });
+        e.preventDefault();
+        return false;
+    });
+
+      $(document).on('click','.user_photo .next',function(){
+      var owl = $("#owl-product");
+
+        owl.trigger('owl.next');
+      }); 
+       $("#owl-product").owlCarousel({
+          navigation : true,
+        // autoPlay: 3000, //Set AutoPlay to 3 seconds
+        items : 10,
+        // itemsDesktop : [1199,3],
+        // itemsDesktopSmall : [979,3]
+      });
 
       $('input[type="file"]').change(function() {
           var val = ($(this).val() != "") ? "Fichier choisi : " + $(this).val() : "Choisir un fichier";

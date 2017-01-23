@@ -5,16 +5,16 @@ namespace Ath\UserBundle\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Ath\UserBundle\Form\Type\ChangePasswordFormType;
+use Ath\UserBundle\Form\Type\MyChangePasswordFormType;
 use Symfony\Component\HttpFoundation\Request;
 
 class CRUDController extends Controller
 {
     public function passwordAction(Request $request)
     {
-        $Utilisateur = $this->admin->getSubject();
+        $user = $this->admin->getSubject();
 
-        if (!$Utilisateur) {
+        if (!$user) {
             throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
         }
 
@@ -22,7 +22,7 @@ class CRUDController extends Controller
             throw $this->createAccessDeniedException();
         }
         
-        $formPassword = $this->createForm(new ChangePasswordFormType());
+        $formPassword = $this->createForm(new MyChangePasswordFormType());
         if ($request->getMethod() == 'POST') {
             $formPassword->bind($request);
             if ($formPassword->isValid()) {
@@ -30,11 +30,11 @@ class CRUDController extends Controller
                 $sPassword = $aChangePassword['new']['first'];
 
                 $factory = $this->get('security.encoder_factory');
-                $encoder = $factory->getEncoder($Utilisateur);
-                $Utilisateur->setPassword($encoder->encodePassword($sPassword, $Utilisateur->getSalt()));
+                $encoder = $factory->getEncoder($user);
+                $user->setPassword($encoder->encodePassword($sPassword, $user->getSalt()));
 
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($Utilisateur);
+                $em->persist($user);
                 $em->flush();
 
 
@@ -46,7 +46,7 @@ class CRUDController extends Controller
         }
 
         return $this->render('@ath_admin_path/User/password.html.twig', array(
-                                'Utilisateur'  => $Utilisateur,
+                                'user'  => $user,
                                 'form'         => $formPassword->createView()
                             ));
     }
