@@ -19,7 +19,7 @@ class LoadSportData extends AbstractDataFixture
         foreach ($allFixtures as $fixture) {
 
             // On ne créer pas l'objet si il existe
-            $exist = $sport->find($fixture["setName"]);
+            $exist = $sport->findOneByName($fixture["setName"]);
             if ( $exist ) continue;
 
             $entity = new Sport();

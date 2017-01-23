@@ -23,8 +23,13 @@ class LoadPostData extends AbstractDataFixture
         if(!file_exists($dataCache) ){
             mkdir("data_cache/post");
         }
+        $post = $manager->getRepository('Ath\MainBundle\Entity\Post');
 
         foreach ($allFixtures as $fixture) {
+
+            // On ne créer pas l'objet si il existe
+            $exist = $post->findOneByContenu($fixture["setContenu"]);
+            if ( $exist ) continue;
 
             $entity = new Post();
 
@@ -88,7 +93,17 @@ class LoadPostData extends AbstractDataFixture
 
         $fixtures = array(
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous !",
+                "setFilePosts" => array(1),
+                "setCreatedBy" => $user
+            ),
+            array(
+                "setContenu" => "Victoire inoubliable !",
+                "setFilePosts" => array(2),
+                "setCreatedBy" => $user
+            ),
+            array(
+                "setContenu" => "Rejoignez-nous !!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
@@ -98,102 +113,92 @@ class LoadPostData extends AbstractDataFixture
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous !!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable !!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous !!!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable !!!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous !!!!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable !!!!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous !!!!!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable !!!!!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous !!!!!!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable !!!!!!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous2",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable2",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous2 !!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable2 !!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous3 !!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable3 !!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
+                "setContenu" => "Rejoignez-nous4 !!!!",
                 "setFilePosts" => array(1),
                 "setCreatedBy" => $user
             ),
             array(
-                "setContenu" => "Victoire inoubliable !!",
-                "setFilePosts" => array(2),
-                "setCreatedBy" => $user
-            ),
-            array(
-                "setContenu" => "Rejoignez-nous !!!!!!!!!!!",
-                "setFilePosts" => array(1),
-                "setCreatedBy" => $user
-            ),
-            array(
-                "setContenu" => "Victoire inoubliable !!",
+                "setContenu" => "Victoire inoubliable4 !!!!",
                 "setFilePosts" => array(2),
                 "setCreatedBy" => $user
             ),

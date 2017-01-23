@@ -81,7 +81,7 @@
           </a>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 owl_photos">
-          <div id="issa">
+          <div id="owl-product">
 
             <div class="item2">
               <a title="Radical – Single Page PSD Template" data-rel="lightcase:myCollection" href="http://freelance.vioo.ru/wp-content/uploads/2015/11/demo1.png">
@@ -697,16 +697,20 @@
             });
 
         }*/
+        $(document).on('click','.user_photo .next',function(){
+        var owl = $("#owl-product");
 
-       $("#issa").owlCarousel({
-          navigation : true,
-        // autoPlay: 3000, //Set AutoPlay to 3 seconds
+          owl.trigger('owl.next');
+        }); 
+         $("#owl-product").owlCarousel({
+            navigation : true,
+          // autoPlay: 3000, //Set AutoPlay to 3 seconds
+     
+          items : 10,
+          // itemsDesktop : [1199,3],
+          // itemsDesktopSmall : [979,3]
    
-        items : 10,
-        // itemsDesktop : [1199,3],
-        // itemsDesktopSmall : [979,3]
- 
-      });
+        });
   });
 </script>
 {% endblock %}

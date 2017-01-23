@@ -13,7 +13,7 @@ class LoadEventAdminData extends AbstractDataFixture
     public function doLoad()
     {
         $manager = $this->manager;
-        $sport = $manager->getRepository('Ath\MainBundle\Entity\Sport');
+        $eventAdmin = $manager->getRepository('Ath\MainBundle\Entity\EventAdmin');
 
         $allFixtures = $this->getFixtures($manager);
 
@@ -26,7 +26,7 @@ class LoadEventAdminData extends AbstractDataFixture
 
         foreach ($allFixtures as $fixture) {
             // On ne créer pas l'objet si il existe
-            $exist = $sport->find($fixture["setLibelle"]);
+            $exist = $eventAdmin->findOneByLibelle($fixture["setLibelle"]);
             if ( $exist ) continue;
 
             $entity = new EventAdmin();

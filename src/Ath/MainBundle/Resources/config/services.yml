@@ -136,3 +136,14 @@ services:
           - "@translator"
         tags:
             - { name: form.handler, alias: user_setting.handler }
+
+    ath.form.post_handler:
+        class: Ath\MainBundle\Form\Handler\PostFormHandler
+        scope: request
+        arguments:
+          - "@request"
+          - "@doctrine.orm.default_entity_manager"
+          - "@session"
+          - "@translator"
+        tags:
+            - { name: form.handler, alias: post.handler }

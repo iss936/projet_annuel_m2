@@ -7,13 +7,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ath\MainBundle\Validator\Constraints as MainAssert;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContext;
 
+// * @MainAssert\Decimal
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\ProduitRepository")
- * @MainAssert\Decimal
  */
 class Produit
 {
@@ -333,6 +334,17 @@ class Produit
         return $this->url;
     }
 
+    /**
+     * [postControl controle la cohérence des données soumise par le form]
+     * @param  ExecutionContext $context
+     * @return void
+     */
+    public function postControl(ExecutionContext $context)
+    {
+        if (count($this->getFileProduits()) == 0) {
+            $context->addViolation('Veuillez ajouter une photo.');
+        }
+    }
     public function __toString()
     {
         return $this->libelle;

@@ -3,6 +3,7 @@
 namespace Ath\MainBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * ProduitRepository
@@ -12,4 +13,40 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProduitRepository extends EntityRepository
 {
+    public function getProduitAll() {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+    
+    public function getProduitList($page=1, $maxperpage=10)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->getQuery();
+
+        $query->setFirstResult(($page-1) * $maxperpage)
+            ->setMaxResults($maxperpage);
+
+        return new Paginator($query);
+    }
+
+    public function countProduit() {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->getQuery();
+        return count($query);
+    }
+
+    public function getProduit($id) {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

@@ -12,4 +12,23 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
+	/**
+     * moreComments => retourne x commentaires en fonctions du param $first
+     * 
+     * @param  Post $post, Integer $first
+     * @return array of collection of this
+     */
+    public function moreComments($post, $first){
+        $query = $this->createQueryBuilder('c')
+            ->where('c.post = :post')
+            ->orderBy('c.createdAt', 'ASC')
+            ->setParameters(array(
+                'post' => $post,
+            ))
+            ->getQuery()
+            ->setFirstResult($first)
+            ->getResult();
+
+        return $query;
+    }
 }

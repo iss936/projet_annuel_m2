@@ -22,7 +22,7 @@ class FileProduitAdmin extends Admin
             ->add('file', 'image', array(
             'data_class' => 'Symfony\Component\HttpFoundation\File\File',
             'label' => 'Photo',
-            'required' => false,
+            'required' => true,
             'image_web_path' => ($id && is_object($image)) ? $this->getRequest()->getBasePath().'/'.$image->getWebPath() : ''// affiche
         ))
         ;
