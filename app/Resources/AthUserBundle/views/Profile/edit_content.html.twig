@@ -13,7 +13,13 @@
 	  </p>
 	  <p>
 	    {{ form_errors(form.file) }}
-	    {{ form_widget(form.file) }}
+          <span class="prof_pic">
+              <label for="ath_user_edit_profile_file" class="btn btn-primary">
+                  <i class="glyphicon glyphicon-camera"></i> Choisir un fichier
+              </label>
+              <div class="profile_value"></div>
+              {{ form_widget(form.file) }}
+          </span>
 	    {% if app.user.photoId is not null %}
 	        <a href="#" id="removePhoto">
 	           	{{ 'profile.supprimerMaPhoto' | trans({},'fosuser') }}
@@ -101,6 +107,7 @@
 	    // On enlève la photo sélectionnez
 	    $("#clear").click(function () {
 	        $("#ath_user_edit_profile_file").val("");
+            $('.profile_value').html("");
 	        $("#clear").hide();
 	    });
 
@@ -111,6 +118,13 @@
 	        }
     	});
 
+        $('input[type="file"]').change(function() {
+            var val = ($(this).val() != "") ? "<b>Fichier choisi :</b> " + $(this).val() : "";
+            $('.profile_value').html(val);
+            if($(this).val() == ""){
+                $("#clear").hide();
+            }
+        });
     });
 
 </script>

@@ -101,12 +101,12 @@
                         {# <img class="" src="/{{ oneProduit.fileProduits[0].webPath  }}" alt="{{ onePost.fileProduits[0] }}" title="{{ onePost.fileProduits[0] }}"  height="65" width="65"/> #}
                         {% include '@ath_main_path/Includes/user.html.twig' with {'user': oneProduit.fileProduits[0], 'img_filter' : 'mini' } %}
                         {% if app.user.hasUserComparateurProduits(oneProduit) %}
-                            <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="supprimer">
-                                Supprimer
+                            <a title="Retirer du comparateur de prix"  id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="supprimer">
+                                <i class="fa fa-minus" aria-hidden="true"></i>
                             <a>
                         {% else %}
-                            <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="ajouter">
-                                Ajouter
+                            <a title="Ajouter au comparateur de prix" id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="ajouter">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
                             <a>
                         {% endif %}
                         

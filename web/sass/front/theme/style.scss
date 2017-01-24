@@ -4609,7 +4609,7 @@ header .navigate > li > a:hover{
 .open_item_container h1{
 	margin-bottom: 35px;
     font-size: 60px;
-    margin-top: 100px;
+    margin-top: 0;
     font-weight: bold;
     color: #212339;
 }
@@ -8393,6 +8393,20 @@ body.custom-background {
   z-index: 5;
 }
 
+/** Home **/
+
+.user_properties .col-md-3.colonne {
+  background-color: #e2e2e2;
+}
+.user_friends .event_preview {
+  border: solid 2px #301E52;
+  border-radius: 6px;
+  margin: -9px -9px 15px -9px;
+}
+.user_friends .event_preview:hover {
+  border: solid 2px #b3de1d;
+}
+
 /** Errors */
 h1.title-error {
   padding-bottom: 20px;
@@ -8461,6 +8475,23 @@ h1.title-error {
   width: 101%;
 }
 
+.prof_pic .btn.btn-primary {
+  background-color: #33CCFF;
+  border: 1px solid #33CCFF;
+  overflow: hidden;
+}
+.prof_pic .btn.btn-primary:hover {
+  background-color: #b3de1d !important;
+  color: black;
+  border: 1px solid #b3de1d;
+}
+.profile_value {
+  font-size: 12px;
+}
+#ath_user_edit_profile_file {
+  display: none;
+}
+
 /** Accueil **/
 .reviews_list .panel-heading .col-md-3 {
   text-align: right;
@@ -8524,12 +8555,10 @@ h1.title-error {
   font-size: 18px;
   padding: 11px 12px;
 }
-
-
-
-.btn.btn-success.btn-outline:hover {
-  color: #272a4f !important;
+.member-info .member_name {
+  border-bottom: 1px solid #b3de1d;
 }
+
 
 .open_items_block button.btn-view_full {
   border: 2px solid #272a4f;
