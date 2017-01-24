@@ -17,7 +17,7 @@ class DefaultController extends Controller
 
     public function indexAction(Request $request)
     {
-    	$user = $this->getUser();
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $events = $em->getRepository('AthMainBundle:EventAdmin')->getNotFinishedLimitEvents($user);
         
@@ -29,13 +29,34 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new PostFormType());
 
+        $tableau = array();
+        
+        
+        if($flux = simplexml_load_file('http://www.lequipe.fr/rss/actu_rss.xml'))
+        {
+           $donnee = $flux->channel;
+        
+           //Lecture des données
+        
+           foreach($donnee->item as $valeur)
+           {
+              //Affichages des données
+        
+           $tableau[] = ["link" => $valeur->link,
+                        "image" => $valeur->enclosure['url'],
+                        "title" => $valeur->title,
+                        "description" => $valeur->description,
+                        "date" => date("d/m/Y", strtotime($valeur->pubDate))];
+           }
+        }else echo 'Erreur de lecture du flux RSS';
+
         return $this->render('@ath_main_path/index.html.twig', array(
             'events' => $events,
             'countEvents' => $countEvents,
             'posts' => $posts,
             'amis' => $amis,
-            'form' => $form->createView()
-
+            'form' => $form->createView(),
+            'lequipe' => $tableau
         ));
     }
 
@@ -93,7 +114,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         if ($request->isXmlHttpRequest()) {
-        	
+            
             $users = $em->getRepository('AthUserBundle:User')->getUserActivesAutocomplete($request->query->get('string'));
             if (!$users) {
                 return new JsonResponse("ko");
@@ -101,12 +122,12 @@ class DefaultController extends Controller
             return new JsonResponse(
                 array_map(
                     function ($val) {
-        				$trad = $this->get('translator');
+                        $trad = $this->get('translator');
 
-                    	$image = $this->get('liip_imagine.cache.manager')->getBrowserPath($val->getWebPath(), 'mini');
+                        $image = $this->get('liip_imagine.cache.manager')->getBrowserPath($val->getWebPath(), 'mini');
 
-                    	$ville = ($val->getVille()) ? $val->getVille() : $trad->trans("villeNonRenseigne", array(), 'home');
-                    	// $image = $this->container->get('liip_imagine.filter.manager')->applyFilter($val->getWebPath(), 'small')->getContent();
+                        $ville = ($val->getVille()) ? $val->getVille() : $trad->trans("villeNonRenseigne", array(), 'home');
+                        // $image = $this->container->get('liip_imagine.filter.manager')->applyFilter($val->getWebPath(), 'small')->getContent();
                         return array('id' => $val->getId(), 'value' => $val->__toString(), 'img' => '<img src='.$image.'>','slug' => $val->getSlug(), 'ville' => $ville);
                     },
                     $users

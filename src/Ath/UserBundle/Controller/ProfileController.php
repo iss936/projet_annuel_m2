@@ -77,6 +77,28 @@ class ProfileController extends BaseController
 
         $form = $this->createForm(new PostFormType());
 
+        $tableau = array();
+        
+        
+        if($flux = simplexml_load_file('http://www.lequipe.fr/rss/actu_rss.xml'))
+        {
+           $donnee = $flux->channel;
+        
+           //Lecture des données
+        
+           foreach($donnee->item as $valeur)
+           {
+              //Affichages des données
+        
+           $tableau[] = ["link" => $valeur->link,
+                        "image" => $valeur->enclosure['url'],
+                        "title" => $valeur->title,
+                        "description" => $valeur->description,
+                        "date" => date("d/m/Y", strtotime($valeur->pubDate))];
+           }
+        }else echo 'Erreur de lecture du flux RSS';
+
+
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'userToShow' => $userToShow,
@@ -86,7 +108,8 @@ class ProfileController extends BaseController
             'posts' => $posts,
             'form' => $form->createView(),
             'produits' => $produits,
-            'noProduct' => $noProduct
+            'noProduct' => $noProduct,
+            'lequipe' => $tableau
         ));
     }
     /**
