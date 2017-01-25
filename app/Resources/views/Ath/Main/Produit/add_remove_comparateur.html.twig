@@ -1,9 +1,9 @@
 {% if app.user.hasUserComparateurProduits(oneProduit) %}
-    <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="supprimer">
-        Supprimer
-    <a>
+	<a title="Retirer du comparateur de prix"  id="addComparateur{{ oneProduit.id }}" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="supprimer">
+	    <i class="fa fa-minus" aria-hidden="true"></i>
+	<a>
 {% else %}
-    <a id="addComparateur" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="ajouter">
-        Ajouter
-    <a>
+	<a title="Ajouter au comparateur de prix" id="addComparateur{{ oneProduit.id }}" class="action-comparateur" href="#" data-id="{{ oneProduit.id }}" data-label="ajouter">
+	    <i class="fa fa-plus" aria-hidden="true"></i>
+	</a>
 {% endif %}

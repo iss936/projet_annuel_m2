@@ -9,7 +9,7 @@
         <div class="col-sm-12 col-md-12">
           <div class="user_container">
             <div class="user_head">
-        <h1>{{ "filActualite" | trans({}, 'home') }}</h1>
+				<h1>{{ "filActualite" | trans({}, 'home') }}</h1>
               
 
             </div>
@@ -24,7 +24,7 @@
   <div class="user_properties">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 colonne">
           <div class="user_friends">
             <h3>
               Evènement
@@ -49,11 +49,11 @@
                       </a>
                       {% if oneEvent.description | length > 20 %}
                         <p class="read-more" data-target="{{ oneEvent.siteWeb }}" data-confirm="{{ oneEvent.description }}" data-id="{{ oneEvent.libelle }}"><i>{{ oneEvent.description | slice(0,20) }}...</i></p>
-                     {% else %}
+					           {% else %}
                         <p><i>{{ oneEvent.description }}</i></p>
                       {% endif %}
                     </div>
-                </div>
+           	    </div>
               {% endfor %}
 
               {% if countEvents > 12 %}
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="user_latest">
+        	<div class="user_latest">
             <h3 class="edited" id="edited_ltstre">Journal:</h3>
             <div class="row">
               <div class="col-md-12">
@@ -242,14 +242,48 @@
             <div class="end"></div>
           </div>
           {# <div class="user_question">
-            
+           	
           </div> #}
           
         </div>
       </div>
-      <div class="col-md-3">
-       
-      </div>
+          <div class="col-md-3 colonne">
+              <div class="user_friends">
+                  <h3>
+                      <img src="{{ asset('images/equipe.png') }}" width="150" />
+                      {% if countEvents > 12 %}
+                          <a href="{{ path('ath_main_event_sportifs') }}"><span>({{ countEvents }})</span></a>
+                      {% else %}
+                          <span>({{ countEvents }})</span>
+                      {% endif %}
+                  </h3>
+                  {% for oneEvent in events %}
+                      <div class="row event_preview small">
+                          <div class="col-md-4">
+                              <a href="{{ oneEvent.siteWeb }}" target="_blank">
+
+                                  <img class="" src="{{ oneEvent.webPath | imagine_filter('mini') }}" alt="{{ oneEvent }}" title="{{ oneEvent }}" />
+                              </a>
+                              {# <p style="color: black">{{ oneEvent.description }}:</p> #}
+                          </div>
+                          <div class="col-md-8">
+                              <a href="{{ oneEvent.siteWeb }}" target="_blank">
+                                  <p style=""><u>{{ oneEvent }}:</u></p>
+                              </a>
+                              {% if oneEvent.description | length > 20 %}
+                                  <p class="read-more" data-target="{{ oneEvent.siteWeb }}" data-confirm="{{ oneEvent.description }}" data-id="{{ oneEvent.libelle }}"><i>{{ oneEvent.description | slice(0,20) }}...</i></p>
+                              {% else %}
+                                  <p><i>{{ oneEvent.description }}</i></p>
+                              {% endif %}
+                          </div>
+                      </div>
+                  {% endfor %}
+
+                  {% if countEvents > 12 %}
+                      <a href="{{ path('ath_main_event_sportifs') }}"><button class="btn-new-info">{{ "voir_tous_events" | trans({}, 'home') }}</button></a>
+                  {% endif %}
+              </div>
+          </div>
     </div>
   </div>
   {% include '@ath_main_path/Includes/read_more_modal.html.twig' %}
