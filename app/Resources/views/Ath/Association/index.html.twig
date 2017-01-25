@@ -4,42 +4,6 @@
     <!--  bg_fon -->
     <br><br><br><br><br><br><br><br><br>
     <div class="members_middle pad_off full-page">
-        <!--<div class="search_block" >
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form method="get" action="{{ path('ath_list_association') }}" class="search_container  ">
-                            <div class="row sc_f">
-                                <div class="col-sm-4 col-md-4">
-                                    <label id='edited_scateg'>Categories:</label>
-                                    <select name='sport_category'>
-                                        <option value="-1">---</option>
-                                        {% for sport in sports %}
-                                            <option value="{{ sport.id }}">{{ sport.name }}</option>
-                                        {% endfor %}
-                                    </select>
-
-                                </div>
-                                <div class="col-sm-4 col-md-4">
-                                    <label class='edited' id='edited_name'>Nom de l'association</label>
-                                    <input type="text" class="location" id="tokenfield-typeahead" name="name" value="" placeholder="Nom"/>
-                                </div>
-                                <div class="col-sm-4 col-md-4">
-                                    <div class="submit_location">
-                                        <label class='edited' for='edited_labelalocation'>Localisation</label>
-                                        <input type="text"  id='edited_labelalocation' name='location' class="location" value='' placeholder="Localisation"/>
-                                    </div>
-                                </div>
-                                <div class="mob_search_bg">
-                                    <div class="col-sm-2 col-md-2 col-lg-2">
-                                        <button name="search" value="1" class="search pull-right">Search</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>-->
     </div>
     <form action="{{ path('ath_list_association') }}" method="POST" class="search_container asso_search">
         <div class="row sc_f">

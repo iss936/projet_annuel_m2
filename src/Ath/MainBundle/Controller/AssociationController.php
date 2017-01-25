@@ -36,15 +36,6 @@ class AssociationController extends Controller
                     $searchAssociations = $em->getRepository('AthUserBundle:User')->getAssociationFiltre($filtreSports, $page,6);
                 }
 
-               /* $searchAssociations = [];
-                foreach ($associations as $association) {
-                    foreach ($association->getAssociationSports() as $sport) {
-                        if ($sport->getName() == $data->sports->getName()) {
-                            $searchAssociations[] = $association;
-                        }
-                    }
-                }*/
-
                 $pagination = array(
                     'page' => $page,
                     'route' => 'ath_list_association',
@@ -78,7 +69,6 @@ class AssociationController extends Controller
         return $this->render('@ath_views/Ath/Association/index.html.twig', array(
             'form' => $form->createView(),
             'associations' => $associations,
-            'sports' => $sports,
             'pagination' => $pagination
         ));
     }

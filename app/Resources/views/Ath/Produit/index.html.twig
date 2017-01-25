@@ -1,12 +1,24 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-      <div class="members-inline-wrap clearfix">
+  <div class="members-inline-wrap clearfix">
+    <form action="{{ path('ath_list_produit') }}" method="POST" class="search_container asso_search">
+      <div class="row sc_f">
+        {{ form_row(form._token) }}
+        <div class="col-sm-9 col-md-10">
+          <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Catégorie produit:</label></div>
+          <div class="col-sm-10 col-md-7">{{ form_row(form.categorieProduit) }}</div>
+        </div>
+        <div class="col-sm-3 col-md-2">
+          <input type="submit" value="Trier" class="btn btn-default" />
+        </div>
+      </div>
+    </form>
+  <div class="container">
+  <div class="row">
     {% for produit in produits %}
     <div class="members_inline members_inline_aj">
-      <div class="container">
         <div class="members_inline_wrap clearfix">
-          <div class="row">
             <div class="col-md-12">
               <div class="members-inline-left pull-left">
                 <div class="members_inline_item clearfix">
@@ -35,15 +47,14 @@
               <div>
                 <button class="write">Comparaison</button>
               </div>
-            </div>
-
-          </div>
 
         </div>
       </div>
     </div>
         {% endfor %}
         {% include '@ath_views/Ath/Produit/pagination.html.twig' %}
+    </div>
+    </div>
 </div>
                 
 

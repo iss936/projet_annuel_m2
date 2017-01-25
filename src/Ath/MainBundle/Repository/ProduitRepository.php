@@ -81,4 +81,26 @@ class ProduitRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    public function getCategorieProduitFiltre($categorieProduit, $page=1, $maxperpage=10)
+    {
+        foreach ($categorieProduit as $oneCategorieProduit) {
+            $categorieProduit2[] = $oneCategorieProduit->getId();
+        }
+
+        $query = $this
+            ->createQueryBuilder('u')
+            ->Join('u.categorieProduit', 'c')
+            ->andWhere("c IN (:categorieProduit)")
+
+            ->setParameters(array(
+                'categorieProduit' => $categorieProduit2
+            ))
+            ->getQuery();
+
+        $query->setFirstResult(($page-1) * $maxperpage)
+            ->setMaxResults($maxperpage);
+
+        return new Paginator($query);
+    }
 }
