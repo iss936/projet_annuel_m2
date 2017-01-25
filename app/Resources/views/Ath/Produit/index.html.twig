@@ -37,6 +37,15 @@
                     <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
                        <img class="" src="/{{ produit.fileProduits[0].webPath  }}" alt="{{ produit.fileProduits[0] }}" title="{{ produit.fileProduits[0] }}" style="width: 100%;" />
                     </a>
+                    {% if app.user.hasUserComparateurProduits(produit) %}
+                            <a title="Retirer du comparateur de prix"  id="addComparateur{{ produit.id }}" class="action-comparateur" href="#" data-id="{{ produit.id }}" data-label="supprimer">
+                                <i class="fa fa-minus" aria-hidden="true"></i>
+                            <a>
+                        {% else %}
+                            <a title="Ajouter au comparateur de prix" id="addComparateur{{ produit.id }}" class="action-comparateur" href="#" data-id="{{ produit.id }}" data-label="ajouter">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
                   </div>
                   <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
                     <p class="member_name">{{ produit.libelle }}</p>
@@ -80,11 +89,37 @@
 
 {% endblock body %}
 {% block javascripts %}
+  {{ parent() }}
 
   {% if app.request.locale == "fr" %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-fr_FR.js"></script>
   {% else %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
   {% endif %}
+  
+  <script type="text/javascript">
+    $("body").delegate(".action-comparateur", "click",  function(e) {
+        var idProduit = $(this).attr('data-id');
+        var action = $(this).attr('data-label');
+        // ajax en cache
+        $.ajax({
+            url: "{{ path('ath_main_add_comparateur') }}",
+            type: 'POST',
+            dataType: 'html',
+            data: {idProduit: idProduit, action: action},
+          })
+          .done(function(data) {
+            if (data) {
+              $("div").find("#addComparateur"+idProduit).html(data);
+              // $(this).html(data);
+            }
+          })
+          .fail(function() {
+            alert("Une erreur est survenue");
+          })
 
+        e.preventDefault();
+        return false;
+    });
+  </script>
 {% endblock %}
