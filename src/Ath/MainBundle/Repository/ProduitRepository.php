@@ -82,20 +82,62 @@ class ProduitRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getCategorieProduitFiltre($categorieProduit, $page=1, $maxperpage=10)
+    public function getCategorieProduitFiltre($comparateur,$page=1, $maxperpage=10)
     {
-        foreach ($categorieProduit as $oneCategorieProduit) {
-            $categorieProduit2[] = $oneCategorieProduit->getId();
+        $query = $this->createQueryBuilder('p');
+        if(!empty($comparateur['myProduit'])) {
+            foreach ($comparateur['myProduit'] as $oneMyProduit) {
+                $comparateur['myProduit2'][] = $oneMyProduit->getId();
+            }
+            $query = $query
+                ->where('p IN (:userComparateurProduit)')
+                ->setParameter(
+                    'userComparateurProduit', $comparateur['myProduit2']
+                );
         }
 
-        $query = $this
-            ->createQueryBuilder('u')
-            ->Join('u.categorieProduit', 'c')
-            ->andWhere("c IN (:categorieProduit)")
+        if(!empty($comparateur['categorieProduit'])) {
+            foreach ($comparateur['categorieProduit'] as $oneCategorieProduit) {
+                $comparateur['categorieProduit2'][] = $oneCategorieProduit->getId();
+            }
+            $query = $query
+                ->Join('p.categorieProduit', 'c')
+                ->andwhere('c IN (:categorieProduit)')
+                ->setParameter(
+                    'categorieProduit', $comparateur['categorieProduit2']
+                );
+        }
+        if($comparateur['prix'] != 0) {
+            switch($comparateur['prix']) {
+                case '1':
+                    $query = $query
+                        ->andwhere('p.prix < :prix')
+                        ->setParameter(
+                            'prix', 100
+                        );
+                    break;
+                case '2':
+                    $query = $query
+                        ->andwhere('p.prix > :prixInf and p.prix < :prixSup')
+                        ->setParameter(
+                            'prixInf',100)
+                        ->setParameter(
+                            'prixSup',499
+                        )
+                        ;
+                    break;
+                case '3':
+                    $query = $query
+                    ->andwhere('p.prix > :prix')
+                    ->setParameter(
+                        'prix', 499
+                    );
+                    break;
+            }
+        }
 
-            ->setParameters(array(
-                'categorieProduit' => $categorieProduit2
-            ))
+        $query = $query
+            ->add('orderBy', 'p.libelle ASC')
             ->getQuery();
 
         $query->setFirstResult(($page-1) * $maxperpage)

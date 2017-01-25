@@ -22,6 +22,11 @@ class CategorieProduitFormType extends AbstractType
                 return $er->createQueryBuilder('t')
                     ->orderBy('t.libelle', 'ASC');
             }
+        ))->add('prix', 'choice', array(
+            'choices' => array('0' => 'Tous', '1' => '0 à 99€', '2' => '100 à 499€', '3' => 'plus de 500 €'),
+            'label' => false,
+            'expanded' => false,
+            'multiple' => false
         ));
 
     }

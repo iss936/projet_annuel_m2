@@ -5,10 +5,21 @@
     <form action="{{ path('ath_list_produit') }}" method="POST" class="search_container asso_search">
       <div class="row sc_f">
         {{ form_row(form._token) }}
+        <div class="col-sm-9 col-md-10 pull-right">
+          <div class="radio">
+            <label class="radio-inline"><input type="radio" name="optradio" value="all" checked="checked">Tous les produits</label>
+            <label class="radio-inline"><input type="radio" name="optradio" value="my">Mes produits</label>
+          </div>
+        </div>
         <div class="col-sm-9 col-md-10">
           <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Catégorie produit:</label></div>
           <div class="col-sm-10 col-md-7">{{ form_row(form.categorieProduit) }}</div>
         </div>
+        <div class="col-sm-9 col-md-10">
+          <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Prix:</label></div>
+          <div class="col-sm-10 col-md-7">{{ form_row(form.prix) }}</div>
+        </div>
+
         <div class="col-sm-3 col-md-2">
           <input type="submit" value="Trier" class="btn btn-default" />
         </div>

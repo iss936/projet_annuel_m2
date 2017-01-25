@@ -21,19 +21,26 @@ class ProduitController extends Controller
 
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
-
+            $radioProduit = $request->request->get('optradio');
             if ($form->isValid()) {
                 $data = $form->getData();
                 $filtreCategorie = $data->categorieProduit;
 
-                if (count($filtreCategorie) == 0) {
-                    $searchProduits = $produits;
+                $comparateur = [];
+                $comparateur['prix'] = $data->prix;
+                if (count($filtreCategorie) != 0) {
+                    $comparateur['categorieProduit'] = $filtreCategorie;
                 }
-                else // on a des categorie on filtre
-                {
-                    $searchProduits = $em->getRepository('AthMainBundle:Produit')->getCategorieProduitFiltre($filtreCategorie, $page,6);
+                switch($radioProduit) {
+                    case 'all' :
+                            $searchProduits = $em->getRepository('AthMainBundle:Produit')->getCategorieProduitFiltre($comparateur, $page,6);
+                        break;
+                    case 'my' :
+                        $user = $this->getUser();
+                        $comparateur['myProduit'] = $em->getRepository('AthMainBundle:Produit')->getMyProducts($user);
+                        $searchProduits = $em->getRepository('AthMainBundle:Produit')->getCategorieProduitFiltre($comparateur, $page,6);
+                        break;
                 }
-
                 $pagination = array(
                     'page' => $page,
                     'route' => 'ath_list_produit',
