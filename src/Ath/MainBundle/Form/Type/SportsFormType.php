@@ -14,8 +14,10 @@ class SportsFormType extends AbstractType
         $builder->add('sports', 'entity', array(
             'class' => 'AthMainBundle:Sport',
             'label' => false,
-            'empty_value' => false,
+            'empty_value' => true,
+            'multiple' => true,
             'required' => false,
+            'attr' => array('class' => 'selectpicker'),
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('t')
                     ->orderBy('t.name', 'ASC');

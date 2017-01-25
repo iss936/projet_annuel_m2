@@ -7,7 +7,7 @@ class FiltreSportAssociation
     /**
      * @var string
      */
-    public $sports;
+    public $sports = array();
 
     /**
      * Gets the value of sports.

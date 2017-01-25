@@ -147,7 +147,7 @@ class LoadUserData extends AbstractDataFixture
                 "setIsCelebrite" => 0,
                 "setSiteWeb" => "http://www.redstar.fr/",
                 "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[2]),
-                "setAssociationSports" => array($allSport[1],$allSport[2]),
+                "setAssociationSports" => array($allSport[0], $allSport[1]),
                 "setPhotoId" => "redstar.png",
                 "setPhotoExtension" => "png",
                 "setPhotoOriginalName" => "redstar.png"

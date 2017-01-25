@@ -107,3 +107,13 @@
     </div>
 
 {% endblock body %}
+
+{% block javascripts %}
+
+    {% if app.request.locale == "fr" %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-fr_FR.js"></script>
+    {% else %}
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+    {% endif %}
+
+{% endblock %}

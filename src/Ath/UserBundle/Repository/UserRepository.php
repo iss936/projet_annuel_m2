@@ -67,6 +67,52 @@ class UserRepository extends EntityRepository
         return new Paginator($query);
     }
 
+    public function getLimitfeed($user, $amis){
+
+        foreach ($amis as $oneAmi) {
+            $amis[] = $oneAmi->getId();
+        }
+
+        $query = $this->createQueryBuilder('p')
+            ->Join('p.createdBy', 'u')
+            ->where('u = :user')
+            ->orWhere('u.id IN (:amis)')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setParameters(array(
+                'user' => $user,
+                'amis' => $amis
+            ))
+            ->getQuery()
+            ->setMaxResults(10)
+            ->getResult();
+
+        return $query;
+    }
+
+    public function getAssociationFiltre($sports, $page=1, $maxperpage=10)
+    {
+        foreach ($sports as $oneSport) {
+            $sports2[] = $oneSport->getId();
+        }
+
+        $query = $this
+            ->createQueryBuilder('u')
+            ->Join('u.associationSports', 's')
+            ->where('u.statutJuridique = :statutJuridique')
+            ->andWhere("s IN (:sports)")
+
+            ->setParameters(array(
+                'statutJuridique'=> 3,
+                'sports' => $sports2
+            ))
+            ->getQuery();
+
+        $query->setFirstResult(($page-1) * $maxperpage)
+            ->setMaxResults($maxperpage);
+
+        return new Paginator($query);
+    }
+    
     public function countAssociation($name = null, $localisation = null) {
         $query = $this
             ->createQueryBuilder('u')

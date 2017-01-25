@@ -26,14 +26,24 @@ class AssociationController extends Controller
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $searchAssociations = [];
+                $filtreSports = $data->sports;
+
+                if (count($filtreSports) == 0) {
+                    $searchAssociations = $associations;
+                }   
+                else // on a des sports on filtre
+                {
+                    $searchAssociations = $em->getRepository('AthUserBundle:User')->getAssociationFiltre($filtreSports, $page,6);
+                }
+
+               /* $searchAssociations = [];
                 foreach ($associations as $association) {
                     foreach ($association->getAssociationSports() as $sport) {
                         if ($sport->getName() == $data->sports->getName()) {
                             $searchAssociations[] = $association;
                         }
                     }
-                }
+                }*/
 
                 $pagination = array(
                     'page' => $page,
