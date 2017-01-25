@@ -441,9 +441,27 @@
           </div> #}
           </div>
         </div>
-        <div class="col-md-3">
-        
-        </div>
+       <div class="col-md-3 colonne">
+              <div class="user_friends">
+                  <h3>
+                      <img src="{{ asset('images/equipe.png') }}" width="150" />
+                  </h3>
+                  {% for nouvelle in lequipe %}
+                      <div class="row event_preview small">
+                          <div class="col-md-6">
+                              <a href="{{ nouvelle.link }}" title="{{ nouvelle.title }}" target="_blank">
+                                  <img width="135px" height="90px" class="" src="{{ nouvelle.image }}" alt="{{ nouvelle.title }}" />
+                              </a>
+                          </div>
+                          <div class="col-md-6">
+                              <a style="text-decoration:none !important;" href="{{ nouvelle.link }}" target="_blank" title="{{ nouvelle.fulltitle }}" >
+                                  <p style="color: black; font-size: 12px; text-decoration:none !important; ">{{ nouvelle.title }}</p>
+                              </a>
+                          </div>
+                      </div>
+                  {% endfor %}
+              </div>
+          </div>
       </div>
     </div>
   </div>

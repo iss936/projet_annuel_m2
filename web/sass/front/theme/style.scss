@@ -8394,9 +8394,15 @@ body.custom-background {
 }
 
 /** Home **/
+.navbar {
+  border-radius: 0px;
+}
+.navbar .container-fluid {
+  border-bottom: solid 2px #B3DE1D;
+}
 
 .user_properties .col-md-3.colonne {
-  background-color: #e2e2e2;
+  background-color: #F5F5F5;
   border-radius: 6px;
 }
 .user_friends .event_preview {
@@ -8406,6 +8412,13 @@ body.custom-background {
 }
 .user_friends .event_preview:hover {
   border: solid 2px #b3de1d;
+}
+.user_friends .event_preview a p {
+  color: #000;
+  font-size: 12px;
+}
+.user_friends .event_preview:hover a p {
+  color: #6B6565;
 }
 
 /** Errors */
