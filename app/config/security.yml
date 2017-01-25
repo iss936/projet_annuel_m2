@@ -61,8 +61,10 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/public, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/admin, role: ROLE_ADMIN_TABORD }
+        - { path: ^/sportif, role: ROLE_USER}
+        - { path: ^/produits, role: ROLE_USER}
+        - { path: ^/associations, role: ROLE_USER}
         - { path: ^/admin/dashboard, role: ROLE_ADMIN }
         - { path: ^/admin/datavis, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
-            
     

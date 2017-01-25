@@ -296,6 +296,10 @@ liip_imagine:
 
     filter_sets:
         cache: ~
+        micro:
+            quality: 75
+            filters:
+                thumbnail: { size: [50, 50], mode: outbound }
         mini:
             quality: 75
             filters:
@@ -351,12 +355,12 @@ ath_main:
             ROLE_ADMIN_CATEGORIE_PRODUIT_EXPORT: Exporter une catégorie de produit
             ROLE_ADMIN_CATEGORIE_PRODUIT: Tous les droits catégorie de produit
         Produit:
-            ROLE_ADMIN_PRODUIT_LIST: Liste des produits
-            ROLE_ADMIN_PRODUIT_VIEW: Voir une catégorie de produit
-            ROLE_ADMIN_PRODUIT_CREATE: Création d'un produit
-            ROLE_ADMIN_PRODUIT_EDIT: Modification d'un produit
-            ROLE_ADMIN_PRODUIT_DELETE: Supprimer un produit
-            ROLE_ADMIN_PRODUIT_EXPORT: Exporter un produit
+            # ROLE_ADMIN_PRODUIT_LIST: Liste des produits
+            # ROLE_ADMIN_PRODUIT_VIEW: Voir une catégorie de produit
+            # ROLE_ADMIN_PRODUIT_CREATE: Création d'un produit
+            # ROLE_ADMIN_PRODUIT_EDIT: Modification d'un produit
+            # ROLE_ADMIN_PRODUIT_DELETE: Supprimer un produit
+            # ROLE_ADMIN_PRODUIT_EXPORT: Exporter un produit
             ROLE_ADMIN_PRODUIT: Tous les droits produits
         Categorie de sport:
             ROLE_ADMIN_SPORT_LIST: Liste des catégorie de sports

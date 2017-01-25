@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class ProduitAdmin extends Admin
 {
@@ -16,6 +18,14 @@ class ProduitAdmin extends Admin
 
     protected $baseRoutePattern = 'produit';
 
+    protected $securityContext;
+
+    public function setSecurityContext(SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
+
+    }
+    
     public function toString($object)
     {
         return  $object->getId()
@@ -35,6 +45,34 @@ class ProduitAdmin extends Admin
         ;
     }
 
+    /**
+     * createQuery permet d'override la requête qui liste les produits
+     * @param  string $context
+     * @return Array of collection of produuit
+     */
+    public function createQuery($context = 'list')
+    {
+        $queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
+
+        //if is logged admin, show all data
+        if ($this->securityContext->isGranted('ROLE_ADMIN_PRODUIT')) {
+            $queryBuilder->select('p')
+                    ->from($this->getClass(), 'p')
+             ;
+        }
+        else // Pour les autres on affiche la liste des produits dont ils sont auteur (createdBy)
+        {
+            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+            $queryBuilder->select('p')
+                    ->from($this->getClass(), 'p')
+                    ->where('p.createdBy = :createdBy')
+                    ->setParameter('createdBy', $user)
+            ;
+        }
+
+        $proxyQuery = new ProxyQuery($queryBuilder);
+        return $proxyQuery;
+    }
     /**
      * @param ListMapper $listMapper
      */

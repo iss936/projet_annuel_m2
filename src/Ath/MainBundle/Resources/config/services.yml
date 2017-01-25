@@ -35,9 +35,11 @@ services:
 
     admin.produit:
         class: Ath\MainBundle\Admin\ProduitAdmin
-        arguments: [~, Ath\MainBundle\Entity\Produit, ~]
+        arguments: [~, Ath\MainBundle\Entity\Produit, AthMainBundle:ProduitAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Administration, label: Produit}
+        calls:
+            - [setSecurityContext, ['@security.context']]
 
     admin.file_produit:
         class: Ath\MainBundle\Admin\FileProduitAdmin

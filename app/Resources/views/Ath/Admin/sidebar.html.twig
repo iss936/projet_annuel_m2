@@ -53,7 +53,11 @@
                     {% endif %}
                     {% if is_granted("ROLE_ADMIN_PRODUIT_LIST") %}
                         <li>
-                            <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits" | trans({}, 'administration') }}</a>
+                            {% if is_granted('ROLE_ADMIN_PRODUIT') %}
+                                <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits" | trans({}, 'administration') }}</a>
+                            {% elseif (is_granted('ROLE_ADMIN_PRODUIT_CELEBRITE'))%}
+                                <a href="{{ path('admin_ath_main_produit_list')}}">{{ "gestion_produits_celebrite" | trans({}, 'administration') }}</a>
+                            {% endif %}
                         </li>
                     {% endif %}
                 </ul>

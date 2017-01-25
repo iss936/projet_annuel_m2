@@ -131,7 +131,7 @@ file that was distributed with this source code.
         {% block sonata_header %}
       
         {% endblock sonata_header %}
-        {% if _breadcrumb is not empty or action is defined %}
+        {% if _breadcrumb is not empty or action is defined  and app.user.hasRole('SUPER_ADMIN')%}
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     {% block sonata_breadcrumb %}

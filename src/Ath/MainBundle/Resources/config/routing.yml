@@ -20,7 +20,7 @@ ath_main_datavis_user:
     defaults: { _controller: AthMainBundle:Datavisualisation:user }
 
 ath_main_search_user:
-    path:     /user/autocomplete
+    path:     sportif/user/autocomplete
     defaults: { _controller: AthMainBundle:Default:searchUserAjax }
 
 ath_main_follow_user:
