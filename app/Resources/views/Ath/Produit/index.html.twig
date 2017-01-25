@@ -51,12 +51,21 @@
                         {{ produit.prix }}
                       </a>
                     </li>
+                    {% if produit.createdBy != "Super Admin" %}
+                    <li>
+                      <a href="{{ path('ath_user_show_profile',{'slug': produit.createdBy.slug }) }}">
+                        <span class='edited'>Créé par :</span>
+                        {{ produit.createdBy }}
+                      </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <span class='edited'>Sponsorisé</span>
+                    </li>
+                    {% endif %}
 
                   </ul>
                 </div>
-              </div>
-              <div>
-                <button class="write">Comparaison</button>
               </div>
 
         </div>
@@ -67,6 +76,15 @@
     </div>
     </div>
 </div>
-                
+
 
 {% endblock body %}
+{% block javascripts %}
+
+  {% if app.request.locale == "fr" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-fr_FR.js"></script>
+  {% else %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+  {% endif %}
+
+{% endblock %}
