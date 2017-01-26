@@ -13,6 +13,12 @@ class ProduitController extends Controller
      * @Route("/associations", name="ath_list_association")
      */
     public function indexAction(Request $request, $page) {
+        $all = 'all';
+        if ('POST' === $request->getMethod()) {
+            if ($_POST['optradio'] != "all") {
+                $all = $_POST['optradio'];
+            }
+        }
 
         $form = $this->createForm(new CategorieProduitFormType());
         $em = $this->getDoctrine()->getManager();
@@ -51,7 +57,8 @@ class ProduitController extends Controller
                 return $this->render('@ath_views/Ath/Produit/index.html.twig', array(
                     'form' => $form->createView(),
                     'produits' => $searchProduits,
-                    'pagination' => $pagination
+                    'pagination' => $pagination,
+                    'seeAll' => $all
                 ));
             }
         } else {
@@ -71,7 +78,9 @@ class ProduitController extends Controller
         return $this->render('@ath_views/Ath/Produit/index.html.twig', array(
             'form' => $form->createView(),
             'produits' => $produits,
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'seeAll' => $all
+
         ));
     }
 
