@@ -16,9 +16,9 @@ class DemandeCelebriteFormType extends AbstractType
     {
         $builder
             ->add('contenu', 'textarea',array(
-                /*'attr' => array(
-                    'class' => "js-editor"
-                )*/
+                'attr' => array(
+                    'class' => "form-control"
+                ),
                 'label' => 'demandeCelebrite.message'
             ))
         ;
