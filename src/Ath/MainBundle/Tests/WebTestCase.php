@@ -14,8 +14,8 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
      */
     static private $kernel;
 
-    private $username = array();
-    private $password = array();
+    protected $username;
+    protected $password;
 
     public function __construct()
     {
@@ -28,6 +28,10 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
         // Celebrité
         $this->username['teddy@gmail.com'] = "teddy@gmail.com";
         $this->password['teddy@gmail.com'] = "esgi";
+
+        // User
+        $this->username['femme1@gmail.com'] = "femme1@gmail.com";
+        $this->password['femme1@gmail.com'] = "esgi";
     }
 
     static protected function getManagerStatic()
@@ -39,7 +43,7 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param bool $loggedIn
-     * @param bool $followRedirects
+     * @param bool $followRedirects => true permet de suivre automatiquement les redirections
      *
      * @return \Symfony\Component\BrowserKit\Client
      */
@@ -89,8 +93,9 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
     protected function login(Client $client, $username, $password)
     {
         $crawler = $client->request('GET', self::$kernel->getContainer()->get('router')->generate('user_security_login'));
-        $this->assertTrue($crawler->filter('section button[type=submit]')->count() > 0);
-        $form    = $crawler->filter('section button[type=submit]')->form();
+        $this->assertTrue($crawler->filter('form input[type="submit"]')->count() > 0);
+        
+        $form    = $crawler->filter('form input[type="submit"]')->form();
         
         //on récupère les identifiants et soumet le form
         $form['_username'] = $username;
