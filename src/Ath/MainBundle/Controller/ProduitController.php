@@ -47,6 +47,7 @@ class ProduitController extends Controller
                         $searchProduits = $em->getRepository('AthMainBundle:Produit')->getCategorieProduitFiltre($comparateur, $page,6);
                         break;
                 }
+                var_dump(ceil(count($searchProduits) / 6));
                 $pagination = array(
                     'page' => $page,
                     'route' => 'ath_list_produit',
@@ -65,13 +66,12 @@ class ProduitController extends Controller
             foreach ($produits as $produit) {
                 $produit->getCategorieProduit();
             }
-            $produits_count = $em->getRepository('AthMainBundle:Produit')->countProduit();
         }
 
         $pagination = array(
             'page' => $page,
             'route' => 'ath_list_produit',
-            'pages_count' => ceil($produits_count / 6),
+            'pages_count' => ceil(count($produits)/ 6),
             'route_params' => array()
         );
 
