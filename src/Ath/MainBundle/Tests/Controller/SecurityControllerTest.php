@@ -21,27 +21,31 @@ class SecurityControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('form input[type="submit"]')->count() > 0);
         $form = $crawler->filter('form input[type="submit"]')->form();
 
+        //fausse auth
         $form['_username'] = "test";
         $form['_password'] = "mdp-faux";
 
         $crawler = $client->submit($form);
         $this->assertTrue($crawler->filter('html:contains("L\'authentification a échoué")')->count() > 0);
-        // $this->assertTrue($crawler->filter('html:contains("Se connecter")')->count() > 0);
+        $this->assertTrue($crawler->filter('form input[name="_username"]')->count() == 1);
+        $this->assertTrue($crawler->filter('form input[name="_password"]')->count() == 1);
 
-       /* $form['_username'] = $this->username['soumare.iss@gmail.com'];
-        $form['_password'] = $this->password['esgi'];
+        // vrai auth
+        $form['_username'] = $this->username['soumare.iss@gmail.com'];
+        $form['_password'] = $this->password['soumare.iss@gmail.com'];
 
         $crawler = $client->submit($form);
-        $this->assertFalse($crawler->filter('html:contains("Nom d\'utilisateur ou mot de passe incorrect")')->count() > 0);
-        $this->assertFalse($crawler->filter('html:contains("Se connecter")')->count() > 0);
-        $this->assertTrue($crawler->filter('html:contains("Mes tâches")')->count() > 0);*/
-
+        $this->assertFalse($crawler->filter('html:contains("L\'authentification a échoué")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("Nouvelle actualité")')->count() > 0);
     }
 
- /*   public function testLogout()
+    public function testLogout()
     {
-        $client = $this->getClient('tgilbert');
+        //on récupère le browserkit et on connecte le superAdmin
+        $client = $this->getClient('soumare.iss@gmail.com');
         $crawler = $client->request('GET', $this->getRouter()->generate('user_security_logout'));
-        $this->assertTrue($crawler->filter('html:contains("Se connecter")')->count() > 0);
-    }*/
+        // Auth: login passwprd
+        $this->assertTrue($crawler->filter('form input[name="_username"]')->count() == 1);
+        $this->assertTrue($crawler->filter('form input[name="_password"]')->count() == 1);
+    }
 }
