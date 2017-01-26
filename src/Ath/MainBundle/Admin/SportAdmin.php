@@ -76,7 +76,7 @@ class SportAdmin extends Admin
     public function getExportFormats()
     {
         return array(
-            'csv', 'xls'
+            'xls'
         );
     }
 

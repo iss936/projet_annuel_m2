@@ -242,7 +242,7 @@ class UserAdmin extends Admin
     public function getExportFormats()
     {
         return array(
-            'csv', 'xls'
+            'xls'
         );
     }
 
@@ -251,5 +251,10 @@ class UserAdmin extends Admin
         $datasourceit = parent::getDataSourceIterator();
         $datasourceit->setDateTimeFormat('d/m/Y H:i'); //change this to suit your needs
         return $datasourceit;
+    }
+
+    public function getExportFields() {
+        return array('id','nom', 'prenom','email'
+            );
     }
 }
