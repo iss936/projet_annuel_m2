@@ -11,11 +11,11 @@
                         <i class="fa fa-bars fa-2x"></i>
                     </a>
                     <h2>
-                        <strong>auth </strong><span>:</span>
+                        <strong>{{ "welcome" | trans({}, 'home') }}</strong> <span>Athleteec</span>
                         <span class="yellow"></span>
                     </h2>
                     <p>
-                        I figured I could cut classes for the rest of the semester and he couldn't flunk me as long as I, you know, made the thing. So I finished it in a couple days. And it looked pretty lame, but it worked. You know, for putting in or whatnot. So when I showed it to Mr. Pike for my grade, he looked at it and said: 'Is that the best you can do?'
+                        {{ "home_text" | trans({}, 'home') }}
                     </p>
                 </div>
             </div>
@@ -147,6 +147,5 @@
 
 
 {% endblock fos_user_content %}
-
 
 

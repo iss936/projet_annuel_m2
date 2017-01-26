@@ -1,5 +1,5 @@
 form.password: Mot de passe (4 caractères)
-form.password_confirmation: Resaisir le mot de passe
+form.password_confirmation: Ressaisir le mot de passe
 registration.dateDeNaissance: Votre date de naissance *
 nom: Nom
 registration.prenom: Prenom *
