@@ -19,7 +19,7 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-    	// admin
+        // admin
         $this->username['soumare.iss@gmail.com'] = "soumare.iss@gmail.com";
         $this->password['soumare.iss@gmail.com'] = "esgi";
         // assoc
@@ -182,7 +182,7 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
         return self::$kernel->getWebDir().$path;
     }
 
-/*    protected function isRedirectLogin($client)
+    protected function isRedirectLogin($client)
     {
         if ($client->getResponse()->isRedirect()) {
             if ($client->getResponse()->getTargetUrl() == "http://localhost/login")  {
@@ -190,6 +190,6 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
             }
         }
         return false;
-    }*/
+    }
 
 }
