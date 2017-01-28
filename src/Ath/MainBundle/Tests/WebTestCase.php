@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Util\Filesystem;
 use Symfony\Component\BrowserKit\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
-abstract class WebTestCase extends \PHPUnit_Framework_TestCase
+class WebTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \AppKernel
@@ -38,7 +38,6 @@ abstract class WebTestCase extends \PHPUnit_Framework_TestCase
     {
         self::createKernel();
         return self::$kernel->getContainer()->get('doctrine')->getManager();
-
     }
 
     /**

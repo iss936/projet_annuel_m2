@@ -49,6 +49,11 @@ class ProfileControllerTest extends WebTestCase
         $this->assertTrue($user->getPhotoOriginalName() == 'issa2.jpg');
         $this->assertTrue($user->getNom() == 'Admin2');
         $this->assertTrue($user->getPrenom() == 'Prenom2');
+        $photo = $user->getAbsolutePath();
+        $this->assertTrue(file_exists($photo));
+
+        $user->removeUpload();
+        $this->assertFalse(file_exists($photo));
     }
 
 
