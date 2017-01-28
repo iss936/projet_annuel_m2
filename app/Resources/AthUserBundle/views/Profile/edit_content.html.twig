@@ -3,7 +3,7 @@
 
 <div class="row">
 	
-<form action="{{ path('fos_user_profile_edit') }}" method="POST" {{ form_enctype(form) }}>
+<form id="form_profile" action="{{ path('fos_user_profile_edit') }}" method="POST" {{ form_enctype(form) }}>
 	{{ form_row(form._token) }}
     
     <div class="col-md-3">

@@ -20,6 +20,7 @@ class ProfileControllerTest extends WebTestCase
 
     public function testShowProfile()
     {
+        // browserkit
         $client = $this->getClient(null);
         $client = $this->login($client, 'soumare.iss@gmail.com', 'esgi');
         $user = $this->getUser();
@@ -29,41 +30,42 @@ class ProfileControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('h1:contains("Super Admin")')->count() == 1);
     }
 
-   /* public function testEdit()
+    /*public function testEdit()
     {
-        $this->em->getConnection()->beginTransaction();
-        $this->em->getConnection()->rollback();
+        // $this->em->getConnection()->beginTransaction();
 
-        $client = $this->getClient('tgilbert');
-        $crawler = $client->request('GET', $this->getRouter()->generate('user_myprofile_edit'));
+        $client = $this->getClient(null);
+        $client = $this->login($client, 'soumare.iss@gmail.com', 'esgi');
+        $crawler = $client->request('GET', $this->getRouter()->generate('fos_user_profile_edit'));
 
         $this->assertTrue($client->getResponse()->isSuccessful());
 
-        $this->assertTrue($crawler->filter('form#form_profile button[type="submit"]')->count() > 0);
-        $form    = $crawler->filter('form#form_profile button[type="submit"]')->form();
+        $this->assertTrue($crawler->filter('form#form_profile input[type="submit"]')->count() == 1);
+        $form    = $crawler->filter('form#form_profile input[type="submit"]')->form();
 
-        $em      = $this->getManager();
-        $lieu    = $em->getRepository('AtixMainBundle:Lieu')->findOneByCode('stmande');
+        $form['ath_user_edit_profile[nom]'] = "Admin2";
+        $form['ath_user_edit_profile[prenom]'] = "Prenom2";
+        $form['ath_user_edit_profile[rue]']      = "3 place des lotus2";
+        $form['ath_user_edit_profile[ville]']     = "Aulnay-Sous-Bois2";
+        $form['ath_user_edit_profile[cp]']     = "93602";
+        $form['ath_user_edit_profile[description]']     = "Je suis passionné";
 
-        $form['profile[firstname]'] = "Tom";
-        $form['profile[lastname]'] = "Festen";
-        $form['profile[tel]']      = "0102030201";
-        $form['profile[lieu]']     = $lieu->getId();
-        $form['profile[file]']     = $this->preUploadDoc();
+        $form['ath_user_edit_profile[file]']     = $this->preUploadDoc();
 
         $crawler = $client->submit($form);
 
-        $this->assertTrue($crawler->filter('h1:contains("Tom Festen")')->count() > 0);
+        $user = $this->getUser();
+        $this->assertTrue($user->getPhotoOriginalName() == 'issa2.jpg');
 
-        self::cancelProfile($em);
+        // $this->em->getConnection()->rollback();
     }
 
 
     private function preUploadDoc()
     {
-        $sFile = 'tux-1.png';
-        self::$sPathOrigine = $this->getPathFile("/../web/images/avatar");
-        self::$sPathCache = $this->getPathFile("/cache/test/avatar");
+        $sFile = 'issa2.jpg';
+        self::$sPathOrigine = $this->getPathFile("/../data/profil");
+        self::$sPathCache = $this->getPathFile("/../data_cache/profil");
 
         if (!is_dir(self::$sPathCache)) {
             mkdir(self::$sPathCache);
