@@ -25,12 +25,12 @@ class ProfileControllerTest extends WebTestCase
         $client = $this->login($client, 'soumare.iss@gmail.com', 'esgi');
         $user = $this->getUser();
         $crawler = $client->request('GET', $this->getRouter()->generate('ath_user_show_profile',array('slug' => $user->getSlug())));
-        
+    
         $this->assertTrue($client->getResponse()->isSuccessful());
         $this->assertTrue($crawler->filter('h1:contains("Super Admin")')->count() == 1);
     }
 
-    /*public function testEdit()
+    public function testEdit()
     {
         // $this->em->getConnection()->beginTransaction();
 
@@ -80,6 +80,6 @@ class ProfileControllerTest extends WebTestCase
             123
         );
         return  $photo;
-    }*/
+    }
 
 }

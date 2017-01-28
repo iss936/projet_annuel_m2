@@ -6,8 +6,10 @@ imports:
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+
 parameters:
     locale: fr
+    test.client.class: Ath\MainBundle\Tests\Client
 
 framework:
     #esi:             ~
@@ -49,13 +51,24 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
+        default_connection: default
+        connections:
+            default: 
+                driver:   pdo_mysql
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+            # test_app:
+            #     driver:   pdo_mysql
+            #     host:     "%database_host%"
+            #     port:     "%database_port%"
+            #     dbname:   "%database_name_test%"
+            #     user:     "%database_user%"
+            #     password: "%database_password%"
+            #     charset:  UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
