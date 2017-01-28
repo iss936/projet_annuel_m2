@@ -1,6 +1,6 @@
 
 {#  Appel les librairy jqplot #}
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/sonata/js/jquery.jqplot.min.js"></script>
 <script type="text/javascript" src="/sonata/js/plugins/jqplot.barRenderer.js"></script>
 <script type="text/javascript" src="/sonata/js/plugins/jqplot.pieRenderer.js"></script>
@@ -48,7 +48,7 @@
             location: 's'
         }
     }); 
-	
+    
         var s1 = [{{ homme.moyenne }}, {{ femme.moyenne }}, {{ association.moyenne }}];
         var s2 = [{{ homme.total }}, {{ femme.total }}, {{ association.total }}];
         var ticks = ['Homme', 'Femme', 'Association'];
