@@ -32,8 +32,6 @@ class ProfileControllerTest extends WebTestCase
 
     public function testEdit()
     {
-        // $this->em->getConnection()->beginTransaction();
-
         $client = $this->getClient(null);
         $client = $this->login($client, 'soumare.iss@gmail.com', 'esgi');
         $crawler = $client->request('GET', $this->getRouter()->generate('fos_user_profile_edit'));
@@ -56,8 +54,6 @@ class ProfileControllerTest extends WebTestCase
 
         $user = $this->getUser();
         $this->assertTrue($user->getPhotoOriginalName() == 'issa2.jpg');
-
-        // $this->em->getConnection()->rollback();
     }
 
 
