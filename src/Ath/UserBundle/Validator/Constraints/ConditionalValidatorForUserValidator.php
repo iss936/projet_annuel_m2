@@ -21,10 +21,10 @@ class ConditionalValidatorForUserValidator extends ConstraintValidator
             {
                 $this->context->addViolationAt('dateDeCreation', 'Veuillez saisir la date de création de votre Association', array(), null);
             }
-
-            if($enabled == 1 && count($protocol->getAssociationSports()) < 1){
+/*
+            if($enabled == 1 && count($protocol->getAssociationSports()) < 1 ){
                 $this->context->addViolationAt('associationSports', 'Veuillez ajouter les sports pratiqués au sein de l\'association', array(), null);
-            }
+            }*/
           
         }
 

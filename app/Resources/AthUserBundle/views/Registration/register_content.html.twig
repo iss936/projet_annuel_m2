@@ -17,6 +17,7 @@
 	                <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register authorization">
 						<div class="authorization_head "><h3>{{ "inscription" | trans({}, 'home') }}</h3></div>
 						<div class="content">
+							{{ form_errors(form)}}
 							{{ form_widget(form._token) }}
 							<div class="space-vertical-input">
 								{{ form_label(form.statutJuridique) }}
