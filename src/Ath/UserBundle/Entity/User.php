@@ -188,8 +188,8 @@ class User extends BaseUser
      * @ORM\Column(name="is_celebrite", type="boolean")
      */
     private $isCelebrite = 0;
-	
-	/**
+    
+    /**
      * @var ArrayCollection User $posts
      * 
      * @ORM\OneToMany(targetEntity="Ath\MainBundle\Entity\Post", mappedBy="createdBy", cascade={"all"})
@@ -306,14 +306,13 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-		$this->posts = new ArrayCollection();     
+        $this->posts = new ArrayCollection();     
         $this->demandeCelebrites = new ArrayCollection();
         $this->userInteretSports = new ArrayCollection();
         $this->userComparateurProduits = new ArrayCollection();
         $this->associationSports = new ArrayCollection();
         $this->groupApplications = new ArrayCollection();
         $this->postLikes = new ArrayCollection();
-
     }
 
     /**
@@ -820,20 +819,20 @@ class User extends BaseUser
     {
       return $this->posts;
     }
-	
-	public function removePost(\Ath\MainBundle\Entity\Post $post)
+    
+    public function removePost(\Ath\MainBundle\Entity\Post $post)
     {
       $this->posts->removeElement($post);
     }
-	
-	public function addPost(\Ath\MainBundle\Entity\Post $post)
+    
+    public function addPost(\Ath\MainBundle\Entity\Post $post)
     {
         if (!$this->posts->contains($post))
             $this->posts->add($post);
         
         return $this;
     }
-	
+    
     public function getComments()
     {
       return $this->comments;
@@ -927,6 +926,14 @@ class User extends BaseUser
     public function getDemandeCelebrites()
     {
       return $this->demandeCelebrites;
+    }
+
+    public function addDemandeCelebrite(\Ath\MainBundle\Entity\DemandeCelebrite $demandeCelebrite)
+    {
+        if (!$this->demandeCelebrites->contains($demandeCelebrite))
+            $this->demandeCelebrites->add($demandeCelebrite);
+        
+        return $this;
     }
 
     public function setUserInteretSports($userInteretSports) {
@@ -1220,14 +1227,14 @@ class User extends BaseUser
     public function getNomComplet() {
         return ucfirst($this->prenom) . ' ' . ucfirst($this->nom);
     }
-	
+    
     public function getAdresse(){
         return $this->rue.' '. $this->cp. ' '. $this->ville;
     }
-	public function getPrefixMail($email) {
-		list($prefix, $suffixe) = explode('@', $email);
-		return $prefix;
-	}
+    public function getPrefixMail($email) {
+        list($prefix, $suffixe) = explode('@', $email);
+        return $prefix;
+    }
 
     /**
      * Vérifie si l'utilisateur peut faire une demande de célébrité
@@ -1253,7 +1260,7 @@ class User extends BaseUser
                     $dateAutoriser->add(new \DateInterval('P30D'));
                     $now = new \DateTime();
                     // le user peut refaire une demande 30j après sa dernière demande
-                    if($now > $dateAutoriser)
+                    if($now >= $dateAutoriser)
                         $ok = true;
                 }
             }

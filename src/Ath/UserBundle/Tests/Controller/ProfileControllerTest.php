@@ -10,14 +10,6 @@ class ProfileControllerTest extends WebTestCase
     static private $sPathOrigine;
     static private $sPathCache;
 
-    protected $em;
-
-    public function __construct()
-    {
-        $em = static::getManagerStatic();
-        $this->em = $em;
-    }
-
     public function testShowProfile()
     {
         // browserkit
@@ -53,7 +45,10 @@ class ProfileControllerTest extends WebTestCase
         $crawler = $client->submit($form);
 
         $user = $this->getUser();
+      
         $this->assertTrue($user->getPhotoOriginalName() == 'issa2.jpg');
+        $this->assertTrue($user->getNom() == 'Admin2');
+        $this->assertTrue($user->getPrenom() == 'Prenom2');
     }
 
 
