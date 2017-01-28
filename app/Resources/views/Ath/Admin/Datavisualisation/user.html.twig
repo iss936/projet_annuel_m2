@@ -5,9 +5,14 @@
 <script type="text/javascript" src="/sonata/js/plugins/jqplot.barRenderer.js"></script>
 <script type="text/javascript" src="/sonata/js/plugins/jqplot.pieRenderer.js"></script>
 <script type="text/javascript" src="/sonata/js/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="/sonata/js/plugins/jqplot.dateAxisRenderer.js"></script>
 <script type="text/javascript" src="/sonata/js/plugins/jqplot.pointLabels.js"></script><link rel="stylesheet" type="text/css" href="/sonata/js/jquery.jqplot.min.css" />
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 {% block body %}
+<center>
 <h2>
     Pourcentage Homme Femme Association
 </h2>
@@ -15,13 +20,49 @@
   <br>
    <div><span id="info1"></span></div><br>
   <div id="pourcentage" style="margin-top:20px; margin-left:20px; width:300px; height:300px;"></div>
-  
+  <br>
+  <div id="utilisateurs" style="height:300px; width:650px;"></div>
+<br>
+<div id="container"></div>
+<div id="sliders">
+    <table>
+        <tr>
+            <td>Alpha Angle</td>
+            <td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
+        </tr>
+        <tr>
+            <td>Beta Angle</td>
+            <td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
+        </tr>
+        <tr>
+            <td>Depth</td>
+            <td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
+        </tr>
+    </table>
+</div>
+
+<br />
+<div id="container2" style="height: 400px"></div>
+</center>
 
 {% endblock %}
 
 {% block javascripts %}
 <script type="text/javascript">
     $(document).ready(function(){ 
+    
+     var line1=[['2016-07-12 4:00PM',4], ['2016-07-13 4:00PM',6.5], ['2016-07-14 4:00PM',5.7], ['2016-07-15 4:00PM', 9], ['2016-07-16 4:00PM',8]];
+  var plot1 = $.jqplot('utilisateurs', [line1], {
+    title:'Nombre d\'utilisateurs actifs par jour',
+    axes:{
+        xaxis:{
+            renderer:$.jqplot.DateAxisRenderer
+        }
+    },
+    series:[{lineWidth:4, markerOptions:{style:'square'}}]
+  });
+  
+  
     var s1 = [['Homme', {{ nombreHomme.0.nombre }}], ['Femme', {{ nombreFemme.0.nombre }}], ['Associations', {{ nombreAssociation.0.nombre }}]];
          
     var plot8 = $.jqplot('pourcentageHommeFemme', [s1], {
@@ -77,6 +118,85 @@
                 $('#info1').html('Nothing');
             });
 
+ // Set up the chart
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                depth: 50,
+                viewDistance: 25
+            }
+        },
+        title: {
+            text: 'Nombre d\'utilisateurs par jour'
+        },
+        subtitle: {
+            text: 'Nombre d\'utilisateurs connectes par jour'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        series: [{
+            data: [29, 71, 106, 129, 144, 176, 135]
+        }]
+    });
+
+    function showValues() {
+        $('#alpha-value').html(chart.options.chart.options3d.alpha);
+        $('#beta-value').html(chart.options.chart.options3d.beta);
+        $('#depth-value').html(chart.options.chart.options3d.depth);
+    }
+
+    // Activate the sliders
+    $('#sliders input').on('input change', function () {
+        chart.options.chart.options3d[this.id] = this.value;
+        showValues();
+        chart.redraw(false);
+    });
+
+    showValues();
+     $('#container2').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Categories de sport'
+        },
+        subtitle: {
+            text: 'Categories de sport du site internet par pourcentage utilisateur'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Nombre de sportifs',
+            data: [
+                ['Football', 8],
+                ['Rugby', 3],
+                ['Equitation', 1],
+                ['Course a pied', 6],
+                ['Natation', 4],
+                ['Golf', 4],
+                ['Tennis', 4],
+                ['Judo', 3],
+                ['Musculation', 5]
+            ]
+        }]
+    });
+    
 });
 </script>
 
