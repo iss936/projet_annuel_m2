@@ -3,33 +3,20 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-	<div class="preloader"></div>
 
-	<main id="top" class="masthead" role="main">
-		<div class="container">
-			<!-- <div class="logo"> <a href="index.html#"><img src="images/logo.png" alt="logo"></a>
-			</div> -->
- 			
+	<div class="authorization" style="background-color: white; width: 80%; padding: 50px">
+
 			<h1><strong>{{ "noConnected.h1" | trans({}, 'home') }}</strong></strong></h1>
  
-			<div class="row myBackground">
 				{# <div class="col-md-6 col-sm-12 col-md-offset-3 subscribe"> #}
-				<div class="">
-    				<p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
-    				
-    				<a href="{{ path('user_security_login') }}" class="btn btn-default"> Retourner à l'accueil</a>
-					<br><br>
-					<span id="result" class="alertMsg"></span> 
-				</div>
+			<div class="">
+				<p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+				
+				<a href="{{ path('user_security_login') }}" class="btn btn-default"> Retourner à l'accueil</a>
+				<br><br>
+				<span id="result" class="alertMsg"></span> 
 			</div>
- 
-			<a href="#explore" class="scrollto">
-				<p>SCROLL</p>
-				<p class="scrollto--arrow"><img src="/images/scroll_down.png" alt="scroll down arrow"></p>
-			</a>
-		</div><!-- /container -->
-	</main><!--/main -->
 
+	</div><!-- /container -->
 
-    {% include '@ath_views/include_no_connected.html.twig' %}
 {% endblock fos_user_content %}
