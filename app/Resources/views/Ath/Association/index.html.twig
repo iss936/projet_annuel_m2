@@ -23,7 +23,7 @@
 
             <div class="members-inline-wrap clearfix">
                 {% for association in associations %}
-                    <a href="{{ path('ath_page_association', { 'id' : association.id }) }}" >
+                    <a href="{{ path('ath_user_show_profile', { 'slug' : association.slug }) }}" >
                         <div class="col-md-4 col-sm-6 members_inline_aj ">
                             <div class="members_item clearfix">
                                 <div class="members_item_img">
