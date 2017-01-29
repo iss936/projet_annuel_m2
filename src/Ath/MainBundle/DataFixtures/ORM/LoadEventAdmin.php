@@ -67,20 +67,20 @@ class LoadEventAdminData extends AbstractDataFixture
      */
     private function getFixtures()
     {
-        $dateDebut1 = new \DateTime("2016-07-01");
-        $dateFin1 = new \DateTime("2016-07-01");
+        $dateDebut1 = new \DateTime("2017-01-30");
+        $dateFin1 = new \DateTime("2017-01-30");
         $dateFin1 =  $dateFin1->add(new \DateInterval('P20D'));
 
-        $dateDebut2 = new \DateTime("2016-07-02");
-        $dateFin2 = new \DateTime("2016-07-02");
+        $dateDebut2 = new \DateTime("2017-01-31");
+        $dateFin2 = new \DateTime("2017-01-31");
         $dateFin2 =  $dateFin2->add(new \DateInterval('P20D'));
 
-        $dateDebut3 = new \DateTime("2016-07-03");
-        $dateFin3 = new \DateTime("2016-07-03");
+        $dateDebut3 = new \DateTime("2017-02-01");
+        $dateFin3 = new \DateTime("2017-02-01");
         $dateFin3 =  $dateFin3->add(new \DateInterval('P20D'));
 
-        $dateDebut4 = new \DateTime("2016-07-04");
-        $dateFin4 = new \DateTime("2016-07-04");
+        $dateDebut4 = new \DateTime("2017-02-02");
+        $dateFin4 = new \DateTime("2017-02-02");
         $dateFin4 =  $dateFin3->add(new \DateInterval('P20D'));
 
         $admin = $this->manager->getRepository('AthUserBundle:User')->findOneByEmail("soumare.iss@gmail.com");
