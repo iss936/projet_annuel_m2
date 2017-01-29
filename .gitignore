@@ -21,3 +21,7 @@ composer.lock
 /web/config.php
 /web/media/*
 /data_cache/*
+app/SymfonyRequirements.php
+composer.lock
+/app/check.php
+/web/config.php
