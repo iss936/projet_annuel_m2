@@ -360,8 +360,9 @@
     $("body").delegate(".autoExpand", "keydown",  function(e) {
       if (e.keyCode == 13) {
         e.preventDefault();
-        var message = $(this).val();
-        var idPost = $(this).attr('data-id');
+        var myObject = $(this);
+        var message = myObject.val();
+        var idPost = myObject.attr('data-id');
         if ($.trim(message) != "") 
         {
             $.ajax({
@@ -377,6 +378,7 @@
               $("#my-loader").hide();
               if (data) {
                 $( "div" ).find("#panelComment"+idPost).html(data);
+                myObject.val("");
               }
             })
             .fail(function() {
