@@ -39,7 +39,8 @@ class LoadPostData extends AbstractDataFixture
 
                     case 'setFilePosts': {
                         foreach ($value as $oneFilePost) {
-                            if($oneFilePost[0] == 1)
+                            
+                            if($oneFilePost == 1)
                             {
                                 $filePost = new FilePost();
                                 $filePost->setNomFichier('france.jpg');
@@ -49,9 +50,9 @@ class LoadPostData extends AbstractDataFixture
                             }
                             else{
                                 $filePost = new FilePost();
-                                $filePost->setNomFichier('france.jpg');
+                                $filePost->setNomFichier('blue_team.jpg');
                                 $filePost->setTypeFichier('jpeg');
-                                $filePost->setOriginalFichier('team_france.jpg');
+                                $filePost->setOriginalFichier('blue_team.jpg');
                             }
                         
                             $filePost->setPost($entity);
