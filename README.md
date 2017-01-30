@@ -1,6 +1,18 @@
 # Athleteec
 ##Installation
-### Via Composer
+créer 2 base de données une pour l'application et une pour les tests
+
+1) clone le projet
+2) composer install
+3) php app/console doctrine:schema:create
+4) Ajouter les dossiers suivants au projets
+
+/data_cache/
+/web/uploads/posts/
+
+5) php app/console doctrine:fixtures:load
+
+6) 
 ### Dépendances JS & CSS
 Pour commencer installer [**nodeJs**](https://nodejs.org/en/) en global (Executer les commandes avec l'utilisateur par defaut).
 Installer gulp et bower.
@@ -27,3 +39,5 @@ Plutôt que de lancer gulp à chaque fois, on peut appeler un watcher pour lance
 gulp watch:sass
 gulp watch:js
 ```
+
+L'application peut-être lancé
