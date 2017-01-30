@@ -8,12 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ath\MainBundle\Validator\Constraints as MainAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContext;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-// * @MainAssert\Decimal
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
+ * @UniqueEntity("libelle")
  * @ORM\Entity(repositoryClass="Ath\MainBundle\Repository\ProduitRepository")
  */
 class Produit
