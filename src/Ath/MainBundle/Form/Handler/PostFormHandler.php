@@ -27,7 +27,7 @@ class PostFormHandler
     public function process(Form $form)
     {
         if ('POST' === $this->request->getMethod()) {
-            $form->bind($this->request);
+            $form->handleRequest($this->request);
                 
             if ($form->isValid()) {
                 $post = $form->getData();
