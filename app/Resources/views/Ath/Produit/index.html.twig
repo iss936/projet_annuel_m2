@@ -1,95 +1,97 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-  <div class="members-inline-wrap clearfix">
-    <form action="{{ path('ath_list_produit') }}" method="POST" class="search_container asso_search">
-      <div class="row sc_f">
-        {{ form_row(form._token) }}
-        <div class="col-sm-9 col-md-10 pull-right">
-          <div class="radio">
-            {% if seeAll == 'all' %}
-              <label class="radio-inline"><input type="radio" name="optradio" value="all" checked="checked">Tous les produits</label>
-              <label class="radio-inline"><input type="radio" name="optradio" value="my">Mes produits</label>
-            {% else %}
-              <label class="radio-inline"><input type="radio" name="optradio" value="all">Tous les produits</label>
-              <label class="radio-inline"><input type="radio" name="optradio" value="my" checked="checked">Mes produits</label>
-            {% endif %}
+  <div class="container">
+      <div class="row">
+        <form action="{{ path('ath_list_produit') }}" method="POST" class="search_container asso_search">
+            <div class="row sc_f">
+                {{ form_row(form._token) }}
+                <div class="col-sm-9 col-md-10 pull-right">
+                    <div class="radio">
+                        {% if seeAll == 'all' %}
+                            <label class="radio-inline"><input type="radio" name="optradio" value="all" checked="checked">Tous les produits</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="my">Mes produits</label>
+                        {% else %}
+                            <label class="radio-inline"><input type="radio" name="optradio" value="all">Tous les produits</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="my" checked="checked">Mes produits</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-10">
+                    <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Catégorie produit:</label></div>
+                    <div class="col-sm-10 col-md-7">{{ form_row(form.categorieProduit) }}</div>
+                </div>
+                <div class="col-sm-9 col-md-10">
+                    <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Prix:</label></div>
+                    <div class="col-sm-10 col-md-7">{{ form_row(form.prix) }}</div>
+                </div>
+
+                <div class="col-sm-3 col-md-2">
+                    <input type="submit" value="Trier" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <br><br>
+    <br><br>
+    <div class="row">
+        {% for produit in produits %}
+        <div class="members_inline members_inline_aj">
+            <div class="members_inline_wrap clearfix">
+                <div class="col-md-12">
+                  <div class="members-inline-left pull-left">
+                    <div class="members_inline_item clearfix">
+                      <div class="memb_img">
+                        <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
+                           <img class="" src="/{{ produit.fileProduits[0].webPath  }}" alt="{{ produit.fileProduits[0] }}" title="{{ produit.fileProduits[0] }}" style="width: 100%;" />
+                        </a>
+                        {% if app.user.hasUserComparateurProduits(produit) %}
+                                <a title="Retirer du comparateur de prix"  id="addComparateur{{ produit.id }}" class="action-comparateur" href="#" data-id="{{ produit.id }}" data-label="supprimer">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                <a>
+                            {% else %}
+                                <a title="Ajouter au comparateur de prix" id="addComparateur{{ produit.id }}" class="action-comparateur" href="#" data-id="{{ produit.id }}" data-label="ajouter">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                      </div>
+                      <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
+                        <p class="member_name">{{ produit.libelle }}</p>
+                      </a>
+                      <ul class="user_inf">
+                        <li>
+                          <a href="#">{{ produit.categorieProduit }}</a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <span class='edited'>Prix :</span>
+                            {{ produit.prix }}
+                          </a>
+                        </li>
+                        {% if produit.createdBy.isCelebrite %}
+                        <li>
+                          <a href="{{ path('ath_user_show_profile',{'slug': produit.createdBy.slug }) }}">
+                            <span class='edited'>Créé par :</span>
+                            {{ produit.createdBy }}
+                          </a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <span class='edited'>Sponsorisé</span>
+                        </li>
+                        {% endif %}
+
+                      </ul>
+                    </div>
+                  </div>
+
+            </div>
           </div>
         </div>
-        <div class="col-sm-9 col-md-10">
-          <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Catégorie produit:</label></div>
-          <div class="col-sm-10 col-md-7">{{ form_row(form.categorieProduit) }}</div>
+            {% endfor %}
+            {% include '@ath_views/Ath/Produit/pagination.html.twig' %}
         </div>
-        <div class="col-sm-9 col-md-10">
-          <div class="col-sm-2 col-md-5"><label for="categorieProduit_form_categorieProduit" class="edited">Prix:</label></div>
-          <div class="col-sm-10 col-md-7">{{ form_row(form.prix) }}</div>
-        </div>
-
-        <div class="col-sm-3 col-md-2">
-          <input type="submit" value="Trier" class="btn btn-default" />
-        </div>
-      </div>
-    </form>
-  <div class="container">
-  <div class="row">
-    {% for produit in produits %}
-    <div class="members_inline members_inline_aj">
-        <div class="members_inline_wrap clearfix">
-            <div class="col-md-12">
-              <div class="members-inline-left pull-left">
-                <div class="members_inline_item clearfix">
-                  <div class="memb_img">
-                    <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
-                       <img class="" src="/{{ produit.fileProduits[0].webPath  }}" alt="{{ produit.fileProduits[0] }}" title="{{ produit.fileProduits[0] }}" style="width: 100%;" />
-                    </a>
-                    {% if app.user.hasUserComparateurProduits(produit) %}
-                            <a title="Retirer du comparateur de prix"  id="addComparateur{{ produit.id }}" class="action-comparateur" href="#" data-id="{{ produit.id }}" data-label="supprimer">
-                                <i class="fa fa-minus" aria-hidden="true"></i>
-                            <a>
-                        {% else %}
-                            <a title="Ajouter au comparateur de prix" id="addComparateur{{ produit.id }}" class="action-comparateur" href="#" data-id="{{ produit.id }}" data-label="ajouter">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </a>
-                        {% endif %}
-                  </div>
-                  <a href="{{ path('ath_page_produit', { 'id' : produit.id }) }}">
-                    <p class="member_name">{{ produit.libelle }}</p>
-                  </a>
-                  <ul class="user_inf">
-                    <li>
-                      <a href="#">{{ produit.categorieProduit }}</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class='edited'>Prix :</span>
-                        {{ produit.prix }}
-                      </a>
-                    </li>
-                    {% if produit.createdBy != "Super Admin" %}
-                    <li>
-                      <a href="{{ path('ath_user_show_profile',{'slug': produit.createdBy.slug }) }}">
-                        <span class='edited'>Créé par :</span>
-                        {{ produit.createdBy }}
-                      </a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <span class='edited'>Sponsorisé</span>
-                    </li>
-                    {% endif %}
-
-                  </ul>
-                </div>
-              </div>
-
-        </div>
-      </div>
     </div>
-        {% endfor %}
-        {% include '@ath_views/Ath/Produit/pagination.html.twig' %}
-    </div>
-    </div>
-</div>
 
 
 {% endblock body %}

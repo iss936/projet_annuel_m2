@@ -7,8 +7,8 @@ $icon-font-path : "/fonts/";
 @import "../../../bower_components/compass-mixins/lib/animation/animate";
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
 @import "../../../bower_components/bootstrap-social/bootstrap-social.scss";
-@import "../../../bower_components/jquery-ui/themes/base/jquery-ui.css";
-@import "../../../bower_components/jquery-ui/themes/smoothness/jquery-ui.css";
+// @import "../../../bower_components/jquery-ui/themes/base/jquery-ui.css";
+// @import "../../../bower_components/jquery-ui/themes/smoothness/jquery-ui.css";
 @import "../../../bower_components/bootstrap-select/sass/bootstrap-select.scss";
 
 
@@ -19,7 +19,7 @@ $icon-font-path : "/fonts/";
 @import "theme/animate";
 @import "theme/bootstrap.min";
 @import "theme/bootstrap-tokenfield.min";
-@import "theme/font-awesome.min";
+// @import "theme/font-awesome.min";
 @import "theme/ladda.min";
 @import "theme/lightcase";
 @import "theme/media";

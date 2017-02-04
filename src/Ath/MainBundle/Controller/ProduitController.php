@@ -3,15 +3,11 @@
 namespace Ath\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Ath\MainBundle\Form\Type\CategorieProduitFormType;
 
 class ProduitController extends Controller
 {
-    /**
-     * @Route("/associations", name="ath_list_association")
-     */
     public function indexAction(Request $request, $page) {
         $all = 'all';
         if ('POST' === $request->getMethod()) {
@@ -47,7 +43,6 @@ class ProduitController extends Controller
                         $searchProduits = $em->getRepository('AthMainBundle:Produit')->getCategorieProduitFiltre($comparateur, $page,6);
                         break;
                 }
-                var_dump(ceil(count($searchProduits) / 6));
                 $pagination = array(
                     'page' => $page,
                     'route' => 'ath_list_produit',
@@ -84,9 +79,6 @@ class ProduitController extends Controller
         ));
     }
 
-    /**
-     * @Route("/associations/{id}", name="ath_page_association")
-     */
     public function pageAction($id) {
         $em = $this->getDoctrine()->getManager();
         $produit = $em->getRepository('AthMainBundle:Produit')->getProduit($id);

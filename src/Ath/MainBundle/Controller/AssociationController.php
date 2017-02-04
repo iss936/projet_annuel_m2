@@ -3,26 +3,20 @@
 namespace Ath\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Ath\MainBundle\Form\Type\SportsFormType;
 
 class AssociationController extends Controller
 {
-    /**
-     * @Route("/associations", name="ath_list_association")
-     */
     public function indexAction(Request $request, $page) {
 
         $form = $this->createForm(new SportsFormType());
         $em = $this->getDoctrine()->getManager();
         $sports = $em->getRepository('AthMainBundle:Sport')->getSportAll();
-
         $associations = $em->getRepository('AthUserBundle:User')->getAssociationList($page,6);
 
-
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -73,9 +67,6 @@ class AssociationController extends Controller
         ));
     }
 
-    /**
-     * @Route("/associations/{id}", name="ath_page_association")
-     */
     public function pageAction($id) {
         $association = $this->getUser();
         $em = $this->getDoctrine()->getManager();

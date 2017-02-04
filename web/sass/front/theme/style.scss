@@ -8528,10 +8528,12 @@ h1.title-error {
 
 /** Search asso **/
 .asso_search {
+  position: relative !important;
+  margin:auto;
   width: 795px;
-  transform: translateX(-50%);
-  margin-left: 50vw;
-  top: 95px;
+  // transform: translateX(-50%);
+  // margin-left: 50vw;
+  top: 50px;
 }
 #sports_form_sports {
   width: 100%;
@@ -8612,3 +8614,4 @@ h1.title-error {
 .Human {
   margin: 0 !important;
 }
+
