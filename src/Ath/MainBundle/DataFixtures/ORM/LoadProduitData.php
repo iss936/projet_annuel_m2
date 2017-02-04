@@ -39,6 +39,7 @@ class LoadProduitData extends AbstractDataFixture
                     case 'setFileProduits': {
                         // foreach ($value as $oneFileProduit) {
                             // creation d'un FileProduit en fonction de la value
+                            // var_dump($value);
                             $fileProduit = $this->createFileProduit($value);
                         
                             $fileProduit->setProduit($entity);
@@ -85,15 +86,6 @@ class LoadProduitData extends AbstractDataFixture
         $admin = $this->manager->getRepository('AthUserBundle:User')->findOneByEmail("soumare.iss@gmail.com");
 
         $fixtures = array(
-            array(
-                "setLibelle" => "kimono adidas",
-                "setDescription" => "loremipsum",
-                "setCreatedBy" => $teddy,
-                "setCategorieProduit" => $kimono,
-                "setFileProduits" => 1,
-                "setPrix" => 56.00,
-                "setUrl" => "https://www.amazon.fr/Noris-Kimono-comp%C3%A9tition-Couleur-Taille/dp/B007XTCIII/ref=sr_1_2?ie=UTF8&qid=1485706676&sr=8-2&keywords=kimono+homme+judo",
-            ),
             array(
                 "setLibelle" => "kimono norris",
                 "setDescription" => "loremipsum",
@@ -151,6 +143,22 @@ class LoadProduitData extends AbstractDataFixture
             )
         );
 
+        
+        $tabKimono = array();
+        // pousse une tableau de kimono
+        for ($i=0; $i < 14 ; $i++) {
+            $oneTab = array(
+                "setLibelle" => "kimono adidas".$i,
+                "setDescription" => "loremipsum",
+                "setCreatedBy" => $teddy,
+                "setCategorieProduit" => $kimono,
+                "setFileProduits" => 1,
+                "setPrix" => 56.00,
+                "setUrl" => "https://www.amazon.fr/Noris-Kimono-comp%C3%A9tition-Couleur-Taille/dp/B007XTCIII/ref=sr_1_2?ie=UTF8&qid=1485706676&sr=8-2&keywords=kimono+homme+judo",
+            );
+            array_push($fixtures, $oneTab);
+        }
+
         return $fixtures;
     }
     /**
@@ -204,7 +212,6 @@ class LoadProduitData extends AbstractDataFixture
                 $fileProduit->setTypeFichier('jpeg');
                 $fileProduit->setOriginalFichier('wilson_federer.jpg');
                 break;
-      
         }
 
         return $fileProduit;
