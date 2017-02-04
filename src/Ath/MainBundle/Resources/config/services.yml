@@ -149,3 +149,12 @@ services:
           - "@translator"
         tags:
             - { name: form.handler, alias: post.handler }
+
+    ath.form.filtre_association:
+        class: Ath\MainBundle\Services\FiltreAssociation
+        scope: request
+        arguments:
+          - "@request"
+          - "@doctrine.orm.default_entity_manager"
+          - "@session"
+          - "@service_container"

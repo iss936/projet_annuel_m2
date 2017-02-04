@@ -22,7 +22,7 @@ class ProduitController extends Controller
         $produits = $em->getRepository('AthMainBundle:Produit')->getProduitList($page,6);
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $radioProduit = $request->request->get('optradio');
             if ($form->isValid()) {
                 $data = $form->getData();

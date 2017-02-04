@@ -2,12 +2,8 @@ ath_main_homepage:
     path:     /
     defaults: { _controller: AthMainBundle:Default:index }
 ath_list_association:
-    path:     /associations/list/{page}
-    defaults: { _controller: AthMainBundle:Association:index, page: 1 }
-ath_page_association:
-    path:     /associations/{id}
-    defaults: { _controller: AthMainBundle:Association:page }
-    
+    path:     /associations/list
+    defaults: { _controller: AthMainBundle:Association:index }
 ath_list_produit:
     path:     /produits/list/{page}
     defaults: { _controller: AthMainBundle:Produit:index, page: 1 }

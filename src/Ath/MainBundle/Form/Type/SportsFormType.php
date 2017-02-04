@@ -36,4 +36,9 @@ class SportsFormType extends AbstractType
             'translation_domain' => 'home'
         ));
     }
+
+    public function getName()
+    {
+        return 'sports_form_type';
+    }
 }

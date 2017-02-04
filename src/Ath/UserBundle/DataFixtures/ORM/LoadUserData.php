@@ -385,6 +385,39 @@ class LoadUserData extends AbstractDataFixture
             ),
         );
 
+        // pousse un tableau d'assoc
+        for ($i=0; $i < 6; $i++) {
+            if ($i < 3) {
+                $indiceSport = 1;
+            }
+            else {
+                $indiceSport = $i;
+            }
+            $oneTab =  array(
+                "setUsername" => "redstar".$i."@gmail.com",
+                "setPlainPassword" => "esgi",
+                "setEmail" => "redstar".$i."@gmail.com",
+                "setRoles" => array("ROLE_USER","ROLE_ASSOC"),
+                "setNom" => "redstar".$i,
+                "setDateDeCreation" => $dateOfBirth,
+                "setRue" => "92, rue du Docteur Bauer",
+                "setVille" => "Saint-Ouen",
+                "setCp" => "93400 ",
+                "setDescription" => "Je suis ......",
+                "setStatutJuridique" => 3,
+                "setEnabled" => 1,
+                "setCgu" => 1,
+                "setIsCelebrite" => 0,
+                "setSiteWeb" => "http://www.redstar.fr/",
+                "setUserInteretSports" => array($allSport[10], $allSport[0], $allSport[2]),
+                "setAssociationSports" => array($allSport[0], $allSport[$indiceSport]),
+                "setPhotoId" => "redstar.png",
+                "setPhotoExtension" => "png",
+                "setPhotoOriginalName" => "redstar.png"
+            );
+            array_push($fixtures, $oneTab);
+        }
+
         return $fixtures;
     }
 

@@ -89,52 +89,34 @@ class UserRepository extends EntityRepository
         return $query;
     }
 
-    public function getAssociationFiltre($sports, $page=1, $maxperpage=10)
+    /**
+     * getAssociationFiltre filtre les associations par sports
+     * @param  Array $keyword
+     * @return ArrayCollection of this
+     */
+    public function getAssociationFiltre($keyword)
     {
-        foreach ($sports as $oneSport) {
-            $sports2[] = $oneSport->getId();
+        $sports = $keyword['sports'];
+
+        $query = $this
+            ->createQueryBuilder('u')
+            ->Join('u.associationSports', 's');
+
+        if (!empty($sports)) {
+            $query = $query
+                ->andWhere("s IN (:sports)")
+                ->setParameter('sports', $sports);
         }
 
-        $query = $this
-            ->createQueryBuilder('u')
-            ->Join('u.associationSports', 's')
-            ->where('u.statutJuridique = :statutJuridique')
-            ->andWhere("s IN (:sports)")
-
-            ->setParameters(array(
-                'statutJuridique'=> 3,
-                'sports' => $sports2
-            ))
-            ->getQuery();
-
-        $query->setFirstResult(($page-1) * $maxperpage)
-            ->setMaxResults($maxperpage);
-
-        return new Paginator($query);
+        $query = $query
+            ->andWhere('u.statutJuridique = :statutJuridique')
+            ->setParameter('statutJuridique', 3)
+            ->getQuery()
+            ->getResult();
+        
+        return $query;
     }
     
-    public function countAssociation($name = null, $localisation = null) {
-        $query = $this
-            ->createQueryBuilder('u')
-            ->where('u.statutJuridique = :statutJuridique and u.name = :name and  u.ville = :ville ')
-            ->setParameter('statutJuridique', 3)
-            ->setParameter('name', $name)
-            ->setParameter('ville', $localisation)
-            ->getQuery();
-        return count($query);
-    }
-
-    public function getAssociation($id) {
-        $query = $this
-            ->createQueryBuilder('u')
-            ->where('u.statutJuridique = :statutJuridique and u.id = :id')
-            ->setParameter('statutJuridique', 3)
-            ->setParameter('id', $id)
-            ->getQuery();
-
-        return $query->getResult();
-    }
-
     /**
      * getFollowers => retourne les users qui me suivent
      * 

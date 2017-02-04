@@ -143,9 +143,7 @@ class LoadProduitData extends AbstractDataFixture
             )
         );
 
-        
-        $tabKimono = array();
-        // pousse une tableau de kimono
+        // pousse un tableau de kimono
         for ($i=0; $i < 14 ; $i++) {
             $oneTab = array(
                 "setLibelle" => "kimono adidas".$i,
