@@ -15,25 +15,6 @@ use Ath\MainBundle\Form\Type\PostFormType;
 
 class ProfileController extends BaseController
 {
-     /**
-     * Show the user
-     */
-   /* public function showAction()
-    {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $userToShow = $em->getRepository('AthUserBundle:User')->findOneBySlug($slug);
-        
-        // if (!is_object($user) || !$user instanceof UserInterface) {
-        //     throw new AccessDeniedException('This user does not have access to this section.');
-        // }
-
-        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user,
-            'userToShow' => $userToShow
-        ));
-
-    }*/
 
     public function showProfileAction(Request $request, $slug)
     {
@@ -44,9 +25,6 @@ class ProfileController extends BaseController
         if(!$userToShow)
             throw new NotFoundHttpException("Page introuvable");
 
-        // if (!is_object($user) || !$user instanceof UserInterface) {
-        //     throw new AccessDeniedException('This user does not have access to this section.');
-        // }
         $followers =  $em->getRepository('AthUserBundle:User')->getLastFollowers($userToShow);
 
         $countFollowers = $em->getRepository('AthUserBundle:User')->countFollowers($userToShow);

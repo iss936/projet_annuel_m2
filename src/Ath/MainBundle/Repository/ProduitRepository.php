@@ -40,16 +40,6 @@ class ProduitRepository extends EntityRepository
         return count($query);
     }
 
-    public function getProduit($id) {
-        $query = $this
-            ->createQueryBuilder('p')
-            ->where('p.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery();
-
-        return $query->getResult();
-    }
-
     /**
      * getMyProduct Retourne les produits créé par un user du plus récent au plus anciens
      * @param  User $user
@@ -82,6 +72,13 @@ class ProduitRepository extends EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * [getCategorieProduitFiltre description]
+     * @param  array  $comparateur tableau de filtre
+     * @param  integer $page
+     * @param  integer $maxperpage
+     * @return ArrayCollection of this
+     */
     public function getCategorieProduitFiltre($comparateur,$page=1, $maxperpage=10)
     {
         $query = $this->createQueryBuilder('p');

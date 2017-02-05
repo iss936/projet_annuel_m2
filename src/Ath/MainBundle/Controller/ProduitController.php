@@ -10,9 +10,10 @@ class ProduitController extends Controller
 {
     public function indexAction(Request $request, $page) {
         $all = 'all';
+
         if ('POST' === $request->getMethod()) {
-            if ($_POST['optradio'] != "all") {
-                $all = $_POST['optradio'];
+            if ($request->request->get('optradio') != "all") {
+                $all = $request->request->get('optradio');
             }
         }
 
@@ -39,10 +40,11 @@ class ProduitController extends Controller
                         break;
                     case 'my' :
                         $user = $this->getUser();
-                        $comparateur['myProduit'] = $em->getRepository('AthMainBundle:Produit')->getMyProducts($user);
+                        $comparateur['myProduit'] = $user->getUserComparateurProduits();
                         $searchProduits = $em->getRepository('AthMainBundle:Produit')->getCategorieProduitFiltre($comparateur, $page,6);
                         break;
                 }
+                
                 $pagination = array(
                     'page' => $page,
                     'route' => 'ath_list_produit',
@@ -81,13 +83,7 @@ class ProduitController extends Controller
 
     public function pageAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $produit = $em->getRepository('AthMainBundle:Produit')->getProduit($id);
-
-        if ($produit) {
-            $produit = $produit[0];
-        }
-
-        //$association->getUserFollow();
+        $produit = $em->getRepository('AthMainBundle:Produit')->find($id);
 
         return $this->render('@ath_views/Ath/Produit/page.html.twig', array(
             'produit' => $produit
