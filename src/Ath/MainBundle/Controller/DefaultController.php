@@ -31,25 +31,28 @@ class DefaultController extends Controller
 
 		$tableau = array();
 		
+		try {
+            if($flux = simplexml_load_file('http://www.lequipe.fr/rss/actu_rss_Football.xml'))
+            {
+               $donnee = $flux->channel;
+               //Lecture des données
+               foreach($donnee->item as $valeur)
+               {
+                  //Affichages des données
+                if ($valeur->enclosure['url'] == "") continue;
+               $tableau[] = ["link" => $valeur->link,
+                            "image" => $valeur->enclosure['url'],
+                            "title" => substr($valeur->title, 0, 45)."...",
+                            "fulltitle" => $valeur->title,
+                            "description" => $valeur->description,
+                            "date" => date("d/m/Y", strtotime($valeur->pubDate))];
+               }
+            }
+        } catch (\Exception $e) {
+            /*var_dump($e);
+            die();*/
+        }
 		
-		if($flux = simplexml_load_file('http://www.lequipe.fr/rss/actu_rss.xml'))
-		{
-		   $donnee = $flux->channel;
-		
-		   //Lecture des données
-		
-		   foreach($donnee->item as $valeur)
-		   {
-			  //Affichages des données
-			if ($valeur->enclosure['url'] == "") continue;
-		   $tableau[] = ["link" => $valeur->link,
-		   				"image" => $valeur->enclosure['url'],
-						"title" => substr($valeur->title, 0, 45)."...",
-						"fulltitle" => $valeur->title,
-						"description" => $valeur->description,
-						"date" => date("d/m/Y", strtotime($valeur->pubDate))];
-		   }
-		}else echo 'Erreur de lecture du flux RSS';
 
         return $this->render('@ath_main_path/index.html.twig', array(
             'events' => $events,

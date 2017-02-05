@@ -249,24 +249,22 @@
                   <h3>
                       <img src="{{ asset('images/equipe.png') }}" width="150" />
                   </h3>
-                  {% for nouvelle in lequipe %}
-                      <div class="row event_preview small">
-                          <div class="col-md-6">
-                              <a href="{{ nouvelle.link }}" title="{{ nouvelle.title }}" target="_blank">
-                                  <img width="135px" height="90px" class="" src="{{ nouvelle.image }}" alt="{{ nouvelle.title }}" title="{{ nouvelle.fulltitle }}" />
-                              </a>
-                          </div>
-                          <div class="col-md-6">
-                              <a href="{{ nouvelle.link }}" title="{{ nouvelle.title }}" target="_blank">
-                                  <p>{{ nouvelle.title }}</p>
-                              </a>
-                          </div>
-                      </div>
-                  {% endfor %}
-
-                  {% if countEvents > 12 %}
-                      <a href="{{ path('ath_main_event_sportifs') }}"><button class="btn-new-info">{{ "voir_tous_events" | trans({}, 'home') }}</button></a>
-                  {% endif %}
+                {% if lequipe %}
+                    {% for nouvelle in lequipe %}
+                        <div class="row event_preview small">
+                            <div class="col-md-6">
+                                <a href="{{ nouvelle.link }}" title="{{ nouvelle.title }}" target="_blank">
+                                    <img width="135px" height="90px" class="" src="{{ nouvelle.image }}" alt="{{ nouvelle.title }}" title="{{ nouvelle.fulltitle }}" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ nouvelle.link }}" title="{{ nouvelle.title }}" target="_blank">
+                                    <p>{{ nouvelle.title }}</p>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
               </div>
           </div>
     </div>
