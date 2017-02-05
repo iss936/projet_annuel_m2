@@ -186,14 +186,4 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
         return self::$kernel->getWebDir().$path;
     }
 
-    protected function isRedirectLogin($client)
-    {
-        if ($client->getResponse()->isRedirect()) {
-            if ($client->getResponse()->getTargetUrl() == "http://localhost/login")  {
-                return true;
-            }
-        }
-        return false;
-    }
-
 }
