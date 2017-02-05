@@ -47,9 +47,7 @@ class UserFollowIndexer
                     $this->container->get('ath_main.services.send_mail')->suivreUser($emetteur, $destinataire);
                 }
             }
-            else{
-                // on fait rien
-            }
+          
             $entity->setDateDemande(new \DateTime());
         }
     }
