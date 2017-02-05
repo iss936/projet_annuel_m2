@@ -53,7 +53,7 @@ class ProfileController extends BaseController
 
         $amiFollows = $em->getRepository('AthUserBundle:User')->getAmiFollows($user);
         
-        if ($userToShow->hasRole('ROLE_CELEBRITE')) {
+        if ($userToShow->getIsCelebrite()) {
             $produits = $em->getRepository('AthMainBundle:Produit')->getMyProducts($userToShow);
         }
         else // on récupère les products de son comparateur

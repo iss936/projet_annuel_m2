@@ -81,7 +81,7 @@
               <i class="fa fa-picture-o"></i>
               Les derniers produits
             {% else %}
-              {% if userToShow.hasRole('ROLE_CELEBRITE') %}
+              {% if userToShow.isCelebrite %}
                   <i class="fa fa-picture-o"></i>
                   Mon équipement sportif
               {% else %}
