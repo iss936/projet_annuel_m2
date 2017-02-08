@@ -16,7 +16,7 @@ class ProfileControllerTest extends WebTestCase
         $client = $this->getClient(null);
         $client = $this->login($client, 'soumare.iss@gmail.com', 'esgi');
         $user = $this->getUser();
-        $crawler = $client->request('GET', $this->getRouter()->generate('ath_user_show_profile',array('slug' => $user->getSlug())));
+        $crawler = $client->request('GET', '/sportif/profil/'.$user->getSlug());
     
         $this->assertTrue($client->getResponse()->isSuccessful());
         $this->assertTrue($crawler->filter('h1:contains("Super Admin")')->count() == 1);
@@ -26,7 +26,7 @@ class ProfileControllerTest extends WebTestCase
     {
         $client = $this->getClient(null);
         $client = $this->login($client, 'soumare.iss@gmail.com', 'esgi');
-        $crawler = $client->request('GET', $this->getRouter()->generate('fos_user_profile_edit'));
+        $crawler = $client->request('GET', '/sportif/modifier/profil');
 
         $this->assertTrue($client->getResponse()->isSuccessful());
 
